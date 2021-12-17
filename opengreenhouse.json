@@ -179,5 +179,25 @@
         "width": "20",
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "273b4a3829d447ed",
+        "type": "sqlitedb",
+        "db": "/home/pi/opengreenhouse/main.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "6d1fd696c4bf8db1",
+        "type": "sqlite",
+        "z": "d131706f99a3b080",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "main",
+        "x": 380,
+        "y": 100,
+        "wires": [
+            []
+        ]
     }
 ]

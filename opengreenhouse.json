@@ -172,10 +172,10 @@
     {
         "id": "f83273088eb193ee",
         "type": "ui_group",
-        "name": "Irrigation",
+        "name": "Programming",
         "tab": "6691e9ed50dfc4a2",
         "order": 1,
-        "disp": true,
+        "disp": false,
         "width": "20",
         "collapse": false,
         "className": ""
@@ -185,6 +185,28 @@
         "type": "sqlitedb",
         "db": "/home/pi/opengreenhouse/main.db",
         "mode": "RWC"
+    },
+    {
+        "id": "5e17e0da459b8444",
+        "type": "ui_group",
+        "name": "Temperature",
+        "tab": "6691e9ed50dfc4a2",
+        "order": 2,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "76b62dcf392e0c7d",
+        "type": "ui_group",
+        "name": "Humidity",
+        "tab": "6691e9ed50dfc4a2",
+        "order": 3,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "6d1fd696c4bf8db1",
@@ -199,5 +221,196 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "318caacaa77f998d",
+        "type": "ui_chart",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "group": "5e17e0da459b8444",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Temperature",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-10",
+        "ymax": "50",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 430,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "075a1b22708c87eb",
+        "type": "ui_chart",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "group": "76b62dcf392e0c7d",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Humidity",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 420,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "44ad992ef7e50aa6",
+        "type": "ui_timelines_chart",
+        "z": "473af4e9135bb6f3",
+        "group": "f83273088eb193ee",
+        "name": "",
+        "order": 2,
+        "label": "Programming",
+        "width": "0",
+        "height": "0",
+        "lineColors": [
+            {
+                "statusColor": "#002aff",
+                "statusValue": "Irrigation"
+            }
+        ],
+        "xTickFormat": "HH:mm",
+        "startDateTime": "2021-01-01T00:00",
+        "endDateTime": "2021-01-01T23:59",
+        "maxLineHeight": "20",
+        "xAxisLabelsFontSize": 16,
+        "xAxisLabelslColor": "#000000",
+        "yAxisLabelsFontSize": 16,
+        "yAxisLabelslColor": "#000000",
+        "resetZoomLabelFontSize": 24,
+        "resetZoomLabelColor": "#000000",
+        "enableAnimations": true,
+        "enableDateMarker": true,
+        "forwardInputMessages": false,
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "2f40eb1e65f95f8f"
+            ]
+        ]
+    },
+    {
+        "id": "a0c1de3745bd1f68",
+        "type": "inject",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 100,
+        "y": 160,
+        "wires": [
+            [
+                "a49933558f887776"
+            ]
+        ]
+    },
+    {
+        "id": "a49933558f887776",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "func": "msg.payload = {\n    \"dataItems\": [\n        {\n            \"group\": \"Irrigation\",\n            \"data\": [\n                {\n                    \"label\": \"Radiation\",\n                    \"data\": [\n                        {\n                            \"timeRange\": [\"2021-01-01 01:00:00\", \"2021-01-01 10:00:00\"],\n                                \"val\": \"220 joule\"\n                        }\n                    ]\n                }\n            ]    \n        }\n    ]    \n}\n        \n                    \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "44ad992ef7e50aa6",
+                "2f40eb1e65f95f8f"
+            ]
+        ]
+    },
+    {
+        "id": "2f40eb1e65f95f8f",
+        "type": "debug",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 120,
+        "wires": []
     }
 ]

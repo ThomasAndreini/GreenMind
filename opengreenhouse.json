@@ -92,11 +92,11 @@
             "themeState": {
                 "base-color": {
                     "default": "#0094CE",
-                    "value": "#00ff40",
+                    "value": "#0094CE",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#00ff40",
+                    "value": "#0094CE",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -108,7 +108,7 @@
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#4dff79",
+                    "value": "#1bbfff",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -124,7 +124,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#00ff40",
+                    "value": "#0094ce",
                     "edited": false
                 },
                 "widget-borderColor": {
@@ -326,6 +326,10 @@
             {
                 "statusColor": "#002aff",
                 "statusValue": "Irrigation"
+            },
+            {
+                "statusColor": "#001eff",
+                "statusValue": "Irrigation"
             }
         ],
         "xTickFormat": "HH:mm",
@@ -383,7 +387,7 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "",
-        "func": "msg.payload = {\n    \"dataItems\": [\n        {\n            \"group\": \"Irrigation\",\n            \"data\": [\n                {\n                    \"label\": \"Radiation\",\n                    \"data\": [\n                        {\n                            \"timeRange\": [\"2021-01-01 01:00:00\", \"2021-01-01 10:00:00\"],\n                                \"val\": \"220 joule\"\n                        }\n                    ]\n                }\n            ]    \n        }\n    ]    \n}\n        \n                    \nreturn msg;",
+        "func": "msg.payload = {\n    \"dataItems\": [\n        {\n            \"group\": \"Irrigation\",\n            \"data\": [\n                {\n                    \"label\": \"Radiation\",\n                    \"data\": [\n                        {\n                            \"timeRange\": [\"2021-01-01 01:00:00\", \"2021-01-01 10:00:00\"],\n                                \"val\": \"220 joule, 30 sec\"\n                        }\n                    ]\n                },\n                {\n                    \"label\": \"Time\",\n                    \"data\": [\n                        {\n                            \"timeRange\": [\"2021-01-01 10:00:00\", \"2021-01-01 10:10:00\"],\n                            \"val\": \"50 sec\"\n                        }\n                    ]\n                },\n            ]    \n        }\n    ]    \n}\n        \n                    \nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",

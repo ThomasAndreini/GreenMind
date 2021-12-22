@@ -238,10 +238,12 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "main",
-        "x": 380,
-        "y": 100,
+        "x": 470,
+        "y": 180,
         "wires": [
-            []
+            [
+                "2a65702819994012"
+            ]
         ]
     },
     {
@@ -249,9 +251,73 @@
         "type": "comment",
         "z": "d131706f99a3b080",
         "name": "Tables description",
-        "info": "Tables:\n- Irrigation - active,  ",
+        "info": "Tables:\n- Irrigation - active integer, fromtime integer, totime integer, every integer, duration integer, oneshoot integer.  ",
         "x": 240,
         "y": 40,
+        "wires": []
+    },
+    {
+        "id": "a76d28be768bf6fd",
+        "type": "inject",
+        "z": "d131706f99a3b080",
+        "name": "CREATE TABLE irrigation",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER)",
+        "x": 220,
+        "y": 140,
+        "wires": [
+            [
+                "6d1fd696c4bf8db1"
+            ]
+        ]
+    },
+    {
+        "id": "8ba8fcbcc89d2716",
+        "type": "inject",
+        "z": "d131706f99a3b080",
+        "name": "drop table",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DROP TABLE irrigation",
+        "x": 440,
+        "y": 100,
+        "wires": [
+            [
+                "6d1fd696c4bf8db1"
+            ]
+        ]
+    },
+    {
+        "id": "2a65702819994012",
+        "type": "debug",
+        "z": "d131706f99a3b080",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 180,
         "wires": []
     },
     {
@@ -437,7 +503,7 @@
         "type": "debug",
         "z": "473af4e9135bb6f3",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -468,13 +534,86 @@
         "order": 0,
         "width": 0,
         "height": 0,
-        "columns": [],
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "80",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "active",
+                "title": "Active",
+                "width": "100",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "fromtime",
+                "title": "From",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "totime",
+                "title": "To",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "every",
+                "title": "Every minutes",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "duration",
+                "title": "Duration",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "oneshoot",
+                "title": "One shoot",
+                "width": "100",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
         "outputs": 1,
         "cts": true,
         "x": 710,
         "y": 160,
         "wires": [
-            []
+            [
+                "d64fc7f15e9287b3"
+            ]
         ]
     },
     {
@@ -489,7 +628,8 @@
         "y": 160,
         "wires": [
             [
-                "f8e099d3825a6ece"
+                "f8e099d3825a6ece",
+                "d64fc7f15e9287b3"
             ]
         ]
     },
@@ -512,7 +652,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n\n\n}\nreturn msg;\n",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime\";\n    node.send(msgout);\n}\nreturn;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -525,5 +665,21 @@
                 "5d4434152352be75"
             ]
         ]
+    },
+    {
+        "id": "d64fc7f15e9287b3",
+        "type": "debug",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 280,
+        "wires": []
     }
 ]

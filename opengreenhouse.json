@@ -70,7 +70,7 @@
             "name": "theme-light",
             "lightTheme": {
                 "default": "#0094CE",
-                "baseColor": "#00ff40",
+                "baseColor": "#001eff",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
                 "edited": true,
                 "reset": false
@@ -92,11 +92,11 @@
             "themeState": {
                 "base-color": {
                     "default": "#0094CE",
-                    "value": "#0094CE",
+                    "value": "#001eff",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "#001eff",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -104,11 +104,11 @@
                     "edited": false
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
+                    "value": "#333333",
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#1bbfff",
+                    "value": "#4d61ff",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -124,7 +124,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#001eff",
                     "edited": false
                 },
                 "widget-borderColor": {
@@ -211,6 +211,26 @@
         "className": ""
     },
     {
+        "id": "c9196ab76e307349",
+        "type": "ui_tab",
+        "name": "Irrigation",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "fa9ccf2e0cfb5c02",
+        "type": "ui_group",
+        "name": "Programming",
+        "tab": "c9196ab76e307349",
+        "order": 1,
+        "disp": true,
+        "width": "20",
+        "collapse": true,
+        "className": ""
+    },
+    {
         "id": "6d1fd696c4bf8db1",
         "type": "sqlite",
         "z": "d131706f99a3b080",
@@ -223,6 +243,16 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "4731039f2e9ee849",
+        "type": "comment",
+        "z": "d131706f99a3b080",
+        "name": "Tables description",
+        "info": "Tables:\n- Irrigation - active,  ",
+        "x": 240,
+        "y": 40,
+        "wires": []
     },
     {
         "id": "318caacaa77f998d",
@@ -418,5 +448,82 @@
         "x": 630,
         "y": 120,
         "wires": []
+    },
+    {
+        "id": "be7cbfc514e81423",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Programming",
+        "info": "",
+        "x": 200,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "f8e099d3825a6ece",
+        "type": "ui_table",
+        "z": "9cfee97fb9e96644",
+        "group": "fa9ccf2e0cfb5c02",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "columns": [],
+        "outputs": 1,
+        "cts": true,
+        "x": 710,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5d4434152352be75",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 480,
+        "y": 160,
+        "wires": [
+            [
+                "f8e099d3825a6ece"
+            ]
+        ]
+    },
+    {
+        "id": "09cf0f0ca103e47e",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "events": "all",
+        "x": 80,
+        "y": 160,
+        "wires": [
+            [
+                "d69ce2da8441ec24"
+            ]
+        ]
+    },
+    {
+        "id": "d69ce2da8441ec24",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n\n\n}\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "5d4434152352be75"
+            ]
+        ]
     }
 ]

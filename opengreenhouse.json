@@ -519,9 +519,9 @@
         "id": "be7cbfc514e81423",
         "type": "comment",
         "z": "9cfee97fb9e96644",
-        "name": "Programming",
+        "name": "Programming dashboard",
         "info": "",
-        "x": 200,
+        "x": 240,
         "y": 60,
         "wires": []
     },
@@ -609,7 +609,7 @@
         "outputs": 1,
         "cts": true,
         "x": 710,
-        "y": 160,
+        "y": 300,
         "wires": [
             [
                 "d64fc7f15e9287b3",
@@ -632,7 +632,7 @@
         "sql": "",
         "name": "",
         "x": 480,
-        "y": 160,
+        "y": 300,
         "wires": [
             [
                 "f8e099d3825a6ece",
@@ -647,7 +647,7 @@
         "name": "",
         "events": "all",
         "x": 80,
-        "y": 160,
+        "y": 300,
         "wires": [
             [
                 "d69ce2da8441ec24"
@@ -659,17 +659,18 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 240,
-        "y": 160,
+        "y": 300,
         "wires": [
             [
-                "5d4434152352be75"
+                "5d4434152352be75",
+                "9b96e90fe4a26a8a"
             ]
         ]
     },
@@ -717,7 +718,7 @@
         "animate": false,
         "className": "",
         "x": 1090,
-        "y": 220,
+        "y": 360,
         "wires": [
             [
                 "fc57f377ec280935"
@@ -743,7 +744,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1090,
-        "y": 260,
+        "y": 400,
         "wires": [
             [
                 "abbba47230890ecb"
@@ -769,7 +770,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1090,
-        "y": 300,
+        "y": 440,
         "wires": [
             [
                 "81761520c7dc5aef"
@@ -795,7 +796,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1090,
-        "y": 340,
+        "y": 480,
         "wires": [
             [
                 "9f7002438e1ab4ea"
@@ -821,7 +822,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1100,
-        "y": 380,
+        "y": 520,
         "wires": [
             [
                 "16869e0b8315f42c"
@@ -855,7 +856,7 @@
         "animate": false,
         "className": "",
         "x": 1110,
-        "y": 420,
+        "y": 560,
         "wires": [
             [
                 "1f65ef9f4a1665a6"
@@ -869,7 +870,7 @@
         "name": "",
         "group": "fa9ccf2e0cfb5c02",
         "order": 8,
-        "width": "10",
+        "width": 7,
         "height": 1,
         "passthru": false,
         "label": "Edit",
@@ -883,7 +884,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 70,
-        "y": 220,
+        "y": 160,
         "wires": [
             [
                 "b2727c05738a4afa"
@@ -897,7 +898,7 @@
         "name": "",
         "group": "fa9ccf2e0cfb5c02",
         "order": 9,
-        "width": "10",
+        "width": 7,
         "height": 1,
         "passthru": false,
         "label": "New",
@@ -911,7 +912,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 70,
-        "y": 260,
+        "y": 200,
         "wires": [
             [
                 "b2727c05738a4afa"
@@ -938,7 +939,7 @@
         "to": "",
         "reg": false,
         "x": 920,
-        "y": 220,
+        "y": 360,
         "wires": [
             [
                 "0ec6e2279f40fc7b"
@@ -965,7 +966,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 220,
+        "y": 360,
         "wires": [
             []
         ]
@@ -990,7 +991,7 @@
         "to": "",
         "reg": false,
         "x": 1310,
-        "y": 260,
+        "y": 400,
         "wires": [
             []
         ]
@@ -1015,7 +1016,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 300,
+        "y": 440,
         "wires": [
             []
         ]
@@ -1040,7 +1041,7 @@
         "to": "",
         "reg": false,
         "x": 1300,
-        "y": 340,
+        "y": 480,
         "wires": [
             []
         ]
@@ -1065,7 +1066,7 @@
         "to": "",
         "reg": false,
         "x": 1330,
-        "y": 380,
+        "y": 520,
         "wires": [
             []
         ]
@@ -1090,7 +1091,7 @@
         "to": "",
         "reg": false,
         "x": 1350,
-        "y": 420,
+        "y": 560,
         "wires": [
             []
         ]
@@ -1115,7 +1116,7 @@
         "to": "",
         "reg": false,
         "x": 950,
-        "y": 160,
+        "y": 300,
         "wires": [
             []
         ]
@@ -1140,7 +1141,7 @@
         "to": "",
         "reg": false,
         "x": 920,
-        "y": 260,
+        "y": 400,
         "wires": [
             [
                 "1ac85274d91d1f6b"
@@ -1167,7 +1168,7 @@
         "to": "",
         "reg": false,
         "x": 920,
-        "y": 300,
+        "y": 440,
         "wires": [
             [
                 "8be6109a5cbe938b"
@@ -1194,7 +1195,7 @@
         "to": "",
         "reg": false,
         "x": 920,
-        "y": 340,
+        "y": 480,
         "wires": [
             [
                 "35b1cb8d9c5604fd"
@@ -1221,7 +1222,7 @@
         "to": "",
         "reg": false,
         "x": 920,
-        "y": 380,
+        "y": 520,
         "wires": [
             [
                 "77490e9a5b6a8097"
@@ -1248,7 +1249,7 @@
         "to": "",
         "reg": false,
         "x": 920,
-        "y": 420,
+        "y": 560,
         "wires": [
             [
                 "3051c6860a0e394c"
@@ -1260,14 +1261,14 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (\" + flow.get(\"programming.id\") + \", \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n}\nif (msg.payload === \"new\") {\n    msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n}\nreturn;",
+        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nif (msg.payload === \"new\") {\n    msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 240,
-        "y": 240,
+        "y": 200,
         "wires": [
             [
                 "5d4434152352be75"
@@ -1279,9 +1280,104 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "to do",
-        "info": "modificare query edit da insert a update",
-        "x": 240,
-        "y": 340,
+        "info": "abilitare o disabilitare i text check ecc in base alle scelte( oneshoot enable ===> every disable)",
+        "x": 310,
+        "y": 540,
         "wires": []
+    },
+    {
+        "id": "35245eb2fa31ffbd",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "delete",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 70,
+        "y": 240,
+        "wires": [
+            [
+                "b2727c05738a4afa"
+            ]
+        ]
+    },
+    {
+        "id": "9b96e90fe4a26a8a",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "reset at loading page",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.active",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.fromtime",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.totime",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.every",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.duration",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.oneshoot",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 460,
+        "wires": [
+            [
+                "71206f6b9df1f514",
+                "ec1ebd7a220d51b4",
+                "5bfb44d232689676",
+                "82b221ac92059b34",
+                "b4efc86f44c4e2da",
+                "3e27331e70384ee0"
+            ]
+        ]
     }
 ]

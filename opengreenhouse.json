@@ -1379,5 +1379,15 @@
                 "3e27331e70384ee0"
             ]
         ]
+    },
+    {
+        "id": "f5b7956e546e6e1f",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Programming logic",
+        "info": "",
+        "x": 210,
+        "y": 660,
+        "wires": []
     }
 ]

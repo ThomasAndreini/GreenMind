@@ -174,7 +174,7 @@
     {
         "id": "f83273088eb193ee",
         "type": "ui_group",
-        "name": "Programming",
+        "name": "Schedule summary",
         "tab": "6691e9ed50dfc4a2",
         "order": 1,
         "disp": false,
@@ -222,7 +222,7 @@
     {
         "id": "fa9ccf2e0cfb5c02",
         "type": "ui_group",
-        "name": "Programming",
+        "name": "Schedule",
         "tab": "c9196ab76e307349",
         "order": 1,
         "disp": true,
@@ -415,7 +415,7 @@
         "group": "f83273088eb193ee",
         "name": "",
         "order": 2,
-        "label": "Programming",
+        "label": "Schedule summary",
         "width": "0",
         "height": "0",
         "lineColors": [
@@ -519,9 +519,9 @@
         "id": "be7cbfc514e81423",
         "type": "comment",
         "z": "9cfee97fb9e96644",
-        "name": "Programming dashboard",
+        "name": "Irrigation schedule dashboard",
         "info": "",
-        "x": 240,
+        "x": 250,
         "y": 60,
         "wires": []
     },
@@ -608,7 +608,7 @@
         ],
         "outputs": 1,
         "cts": true,
-        "x": 710,
+        "x": 790,
         "y": 300,
         "wires": [
             [
@@ -631,7 +631,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 480,
+        "x": 560,
         "y": 300,
         "wires": [
             [
@@ -644,9 +644,9 @@
         "id": "09cf0f0ca103e47e",
         "type": "ui_ui_control",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "events": "all",
-        "x": 80,
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 110,
         "y": 300,
         "wires": [
             [
@@ -658,14 +658,14 @@
         "id": "d69ce2da8441ec24",
         "type": "function",
         "z": "9cfee97fb9e96644",
-        "name": "",
+        "name": "sqlite query",
         "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
+        "x": 310,
         "y": 300,
         "wires": [
             [
@@ -697,7 +697,7 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "label": "Active",
-        "tooltip": "",
+        "tooltip": "Enable or disable this programming row",
         "group": "fa9ccf2e0cfb5c02",
         "order": 2,
         "width": 3,
@@ -731,7 +731,7 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "label": "From",
-        "tooltip": "",
+        "tooltip": "Start time of programming",
         "group": "fa9ccf2e0cfb5c02",
         "order": 3,
         "width": 4,
@@ -757,7 +757,7 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "label": "To",
-        "tooltip": "",
+        "tooltip": "End time of programming",
         "group": "fa9ccf2e0cfb5c02",
         "order": 4,
         "width": 4,
@@ -783,7 +783,7 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "label": "Every",
-        "tooltip": "",
+        "tooltip": "Run irrigation every (minutes)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 5,
         "width": 3,
@@ -809,7 +809,7 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "label": "Duration",
-        "tooltip": "",
+        "tooltip": "Duration of irrigation (minutes)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 6,
         "width": 3,
@@ -835,7 +835,7 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "label": "One Shoot",
-        "tooltip": "",
+        "tooltip": "Run irrigation once (disable the Every field and the To field)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 7,
         "width": 3,
@@ -874,7 +874,7 @@
         "height": 1,
         "passthru": false,
         "label": "Edit",
-        "tooltip": "",
+        "tooltip": "Edit the selected schedule",
         "color": "",
         "bgcolor": "",
         "className": "",
@@ -902,7 +902,7 @@
         "height": 1,
         "passthru": false,
         "label": "New",
-        "tooltip": "",
+        "tooltip": "Add a schedule",
         "color": "",
         "bgcolor": "",
         "className": "",
@@ -965,7 +965,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1300,
+        "x": 1320,
         "y": 360,
         "wires": [
             []
@@ -990,7 +990,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1310,
+        "x": 1330,
         "y": 400,
         "wires": [
             []
@@ -1015,7 +1015,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1300,
+        "x": 1320,
         "y": 440,
         "wires": [
             []
@@ -1040,7 +1040,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1300,
+        "x": 1320,
         "y": 480,
         "wires": [
             []
@@ -1115,7 +1115,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 950,
+        "x": 1010,
         "y": 300,
         "wires": [
             []
@@ -1260,14 +1260,14 @@
         "id": "b2727c05738a4afa",
         "type": "function",
         "z": "9cfee97fb9e96644",
-        "name": "",
+        "name": "sqlite query",
         "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nif (msg.payload === \"new\") {\n    msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 240,
+        "x": 310,
         "y": 200,
         "wires": [
             [
@@ -1296,7 +1296,7 @@
         "height": 1,
         "passthru": false,
         "label": "Delete",
-        "tooltip": "",
+        "tooltip": "Remove the selected schedule",
         "color": "",
         "bgcolor": "",
         "className": "",
@@ -1384,9 +1384,9 @@
         "id": "f5b7956e546e6e1f",
         "type": "comment",
         "z": "9cfee97fb9e96644",
-        "name": "Programming logic",
+        "name": "Irrigation schedule logic",
         "info": "",
-        "x": 210,
+        "x": 220,
         "y": 660,
         "wires": []
     }

@@ -1,5 +1,5 @@
 {
-    "name": "opengreenhouse",
+    "name": "Grower Assistant",
     "description": "A Node-RED Project",
     "version": "0.0.1",
     "dependencies": {
@@ -8,8 +8,8 @@
     },
     "node-red": {
         "settings": {
-            "flowFile": "opengreenhouse.json",
-            "credentialsFile": "opengreenhouse_cred.json"
+            "flowFile": "growerassistant.json",
+            "credentialsFile": "growerassistant_cred.json"
         }
     }
 }

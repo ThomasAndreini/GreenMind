@@ -1,4 +1,4 @@
-opengreenhouse
+Open GreenHouse
 ==============
 
 ### About

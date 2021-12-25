@@ -1,6 +1,6 @@
 {
     "name": "GrowerAssistant",
-    "description": "A Node-RED Project",
+    "description": "A Grower Assistant for small crop",
     "version": "0.0.1",
     "dependencies": {
         "node-red-dashboard": "3.1.2",

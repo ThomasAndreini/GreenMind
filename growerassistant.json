@@ -296,7 +296,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "DROP TABLE irrigation",
-        "x": 440,
+        "x": 480,
         "y": 100,
         "wires": [
             [

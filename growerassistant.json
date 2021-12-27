@@ -96,7 +96,7 @@
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#001eff",
+                    "value": "#0094CE",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -104,11 +104,11 @@
                     "edited": false
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#333333",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#4d61ff",
+                    "value": "#1bbfff",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -124,7 +124,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#001eff",
+                    "value": "#0094ce",
                     "edited": false
                 },
                 "widget-borderColor": {
@@ -608,7 +608,7 @@
         ],
         "outputs": 1,
         "cts": true,
-        "x": 790,
+        "x": 830,
         "y": 300,
         "wires": [
             [
@@ -687,8 +687,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 730,
-        "y": 80,
+        "x": 1190,
+        "y": 180,
         "wires": []
     },
     {
@@ -717,7 +717,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1090,
+        "x": 1490,
         "y": 360,
         "wires": [
             [
@@ -743,7 +743,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1090,
+        "x": 1490,
         "y": 400,
         "wires": [
             [
@@ -769,7 +769,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1090,
+        "x": 1490,
         "y": 440,
         "wires": [
             [
@@ -795,7 +795,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1090,
+        "x": 1490,
         "y": 480,
         "wires": [
             [
@@ -809,7 +809,7 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "label": "Duration",
-        "tooltip": "Duration of irrigation (minutes)",
+        "tooltip": "Duration of irrigation (seconds)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 6,
         "width": 3,
@@ -821,8 +821,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1100,
-        "y": 520,
+        "x": 1400,
+        "y": 640,
         "wires": [
             [
                 "16869e0b8315f42c"
@@ -855,11 +855,12 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1110,
-        "y": 560,
+        "x": 1410,
+        "y": 600,
         "wires": [
             [
-                "1f65ef9f4a1665a6"
+                "1f65ef9f4a1665a6",
+                "37a971ed9a826349"
             ]
         ]
     },
@@ -938,7 +939,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 920,
+        "x": 1080,
         "y": 360,
         "wires": [
             [
@@ -965,7 +966,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1320,
+        "x": 1720,
         "y": 360,
         "wires": [
             []
@@ -990,7 +991,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1330,
+        "x": 1730,
         "y": 400,
         "wires": [
             []
@@ -1015,7 +1016,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1320,
+        "x": 1720,
         "y": 440,
         "wires": [
             []
@@ -1040,7 +1041,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1320,
+        "x": 1720,
         "y": 480,
         "wires": [
             []
@@ -1065,8 +1066,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1330,
-        "y": 520,
+        "x": 1630,
+        "y": 640,
         "wires": [
             []
         ]
@@ -1090,8 +1091,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1350,
-        "y": 560,
+        "x": 1650,
+        "y": 600,
         "wires": [
             []
         ]
@@ -1115,7 +1116,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1010,
+        "x": 1110,
         "y": 300,
         "wires": [
             []
@@ -1140,7 +1141,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 920,
+        "x": 1080,
         "y": 400,
         "wires": [
             [
@@ -1167,7 +1168,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 920,
+        "x": 1080,
         "y": 440,
         "wires": [
             [
@@ -1194,7 +1195,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 920,
+        "x": 1080,
         "y": 480,
         "wires": [
             [
@@ -1221,8 +1222,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 920,
-        "y": 520,
+        "x": 1080,
+        "y": 640,
         "wires": [
             [
                 "77490e9a5b6a8097"
@@ -1248,8 +1249,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 920,
-        "y": 560,
+        "x": 1080,
+        "y": 600,
         "wires": [
             [
                 "3051c6860a0e394c"
@@ -1280,7 +1281,7 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "to do",
-        "info": "abilitare o disabilitare i text check ecc in base alle scelte( oneshoot enable ===> every disable)",
+        "info": "trasformare timestamp in orario leggibile su tabella e ritrasformarlo in uscita in timestamp (con moment)",
         "x": 310,
         "y": 540,
         "wires": []
@@ -1367,7 +1368,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 440,
+        "x": 520,
         "y": 460,
         "wires": [
             [
@@ -1386,8 +1387,28 @@
         "z": "9cfee97fb9e96644",
         "name": "Irrigation schedule logic",
         "info": "",
-        "x": 220,
-        "y": 660,
+        "x": 300,
+        "y": 680,
         "wires": []
+    },
+    {
+        "id": "37a971ed9a826349",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "func": "if (msg.payload === 1){\n    msg.payload = null;\n    msg.enabled = false;\n    node.send(msg);\n}\nif (msg.payload === 0) {\n    msg.payload = undefined;\n    msg.enabled = true;\n    node.send(msg);\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1180,
+        "y": 540,
+        "wires": [
+            [
+                "8be6109a5cbe938b",
+                "35b1cb8d9c5604fd"
+            ]
+        ]
     }
 ]

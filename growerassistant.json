@@ -684,8 +684,7 @@
         "y": 300,
         "wires": [
             [
-                "a7ae236536372f97",
-                "f1a1dda5d71dda21"
+                "a7ae236536372f97"
             ]
         ]
     },
@@ -779,8 +778,7 @@
         "y": 380,
         "wires": [
             [
-                "abbba47230890ecb",
-                "385cca24c67f92ee"
+                "abbba47230890ecb"
             ]
         ]
     },
@@ -806,8 +804,7 @@
         "y": 420,
         "wires": [
             [
-                "81761520c7dc5aef",
-                "385cca24c67f92ee"
+                "81761520c7dc5aef"
             ]
         ]
     },
@@ -1314,10 +1311,10 @@
         "id": "9e3cc02ba788f699",
         "type": "comment",
         "z": "9cfee97fb9e96644",
-        "name": "to do",
+        "name": "TODO generale",
         "info": "controllare che i reset dei campi di input non facciano casino in giro\nfai logica\nV fai una tabella con i log delle irrigazioni fatte FATTO da ricevere da logica di irrigazione\nfai irr manuali",
-        "x": 310,
-        "y": 540,
+        "x": 720,
+        "y": 20,
         "wires": []
     },
     {
@@ -1470,22 +1467,6 @@
         ]
     },
     {
-        "id": "385cca24c67f92ee",
-        "type": "debug",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 2120,
-        "y": 180,
-        "wires": []
-    },
-    {
         "id": "4258efc5d0dbfd62",
         "type": "function",
         "z": "9cfee97fb9e96644",
@@ -1514,22 +1495,6 @@
                 "b4efc86f44c4e2da"
             ]
         ]
-    },
-    {
-        "id": "f1a1dda5d71dda21",
-        "type": "debug",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 880,
-        "y": 220,
-        "wires": []
     },
     {
         "id": "7489810a9a80d4a5",
@@ -1643,6 +1608,96 @@
         "info": "",
         "x": 320,
         "y": 960,
+        "wires": []
+    },
+    {
+        "id": "31b7d3097f0df449",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 380,
+        "y": 1300,
+        "wires": [
+            [
+                "b0a9b08b0a502a9e"
+            ]
+        ]
+    },
+    {
+        "id": "b1d5ca956a4e5bbd",
+        "type": "inject",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;",
+        "x": 160,
+        "y": 1300,
+        "wires": [
+            [
+                "31b7d3097f0df449"
+            ]
+        ]
+    },
+    {
+        "id": "b0a9b08b0a502a9e",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "func": "//for (let i = 0; i < msg.payload.length; i++) {\n//    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"hh:mm\");\n//    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"hh:mm\");\n//}\nmsg.payload = Date.now();\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 620,
+        "y": 1300,
+        "wires": [
+            [
+                "fe05788bef69549e"
+            ]
+        ]
+    },
+    {
+        "id": "fe05788bef69549e",
+        "type": "debug",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "7447a9a874d9bc97",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "TODO",
+        "info": "Come togliere giorno mese e anno dall'epoch in modo da controllare quando far partire l'irrigazione?",
+        "x": 600,
+        "y": 1240,
         "wires": []
     }
 ]

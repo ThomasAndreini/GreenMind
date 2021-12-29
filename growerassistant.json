@@ -628,7 +628,8 @@
         "y": 300,
         "wires": [
             [
-                "a7ae236536372f97"
+                "a7ae236536372f97",
+                "f1a1dda5d71dda21"
             ]
         ]
     },
@@ -1239,7 +1240,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "sqlite query",
-        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nif (msg.payload === \"new\") {\n    msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msg);\n}\nreturn;",
+        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nif (msg.payload === \"new\") {\n    msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n    \n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1393,7 +1394,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "epoch to time",
-        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[0].fromtime).utc().format(\"hh:mm\");\n    msg.payload[i].totime = moment(msg.payload[0].totime).utc().format(\"hh:mm\");\n}\nreturn msg;",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"hh:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"hh:mm\");\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1457,5 +1458,21 @@
                 "b4efc86f44c4e2da"
             ]
         ]
+    },
+    {
+        "id": "f1a1dda5d71dda21",
+        "type": "debug",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 880,
+        "y": 220,
+        "wires": []
     }
 ]

@@ -1637,7 +1637,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "1",
+        "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -1655,7 +1655,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "func": "//for (let i = 0; i < msg.payload.length; i++) {\n//    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"hh:mm\");\n//    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"hh:mm\");\n//}\nmsg.payload = Date.now();\nreturn msg;",
+        "func": "//for (let i = 0; i < msg.payload.length; i++) {\n//    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"hh:mm\");\n//    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"hh:mm\");\n//}\n//parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY hh:mm\").add(1, 'hours').format(\"x\"));\nvar millisoftheday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1695,7 +1695,7 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "TODO",
-        "info": "Come togliere giorno mese e anno dall'epoch in modo da controllare quando far partire l'irrigazione?",
+        "info": "Continuare logica\ncontrollare se il calcolo che restituisce i millis in utc va bene o va portato al fuso orario giusto",
         "x": 600,
         "y": 1240,
         "wires": []

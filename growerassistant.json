@@ -231,6 +231,37 @@
         "className": ""
     },
     {
+        "id": "25572f3b22faabc8",
+        "type": "ui_group",
+        "name": "Irrigation done",
+        "tab": "c9196ab76e307349",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "091840eba315d61e",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 1,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "9976c8160ed58833",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 3,
+        "width": 4,
+        "height": 1
+    },
+    {
         "id": "6d1fd696c4bf8db1",
         "type": "sqlite",
         "z": "d131706f99a3b080",
@@ -272,7 +303,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER)",
-        "x": 220,
+        "x": 210,
         "y": 140,
         "wires": [
             [
@@ -295,7 +326,7 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "DROP TABLE irrigation",
+        "topic": "DROP TABLE irrigationmade",
         "x": 480,
         "y": 100,
         "wires": [
@@ -319,6 +350,31 @@
         "x": 660,
         "y": 180,
         "wires": []
+    },
+    {
+        "id": "dedef65710f4f7e7",
+        "type": "inject",
+        "z": "d131706f99a3b080",
+        "name": "CREATE TABLE irrigationdone",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER)",
+        "x": 230,
+        "y": 200,
+        "wires": [
+            [
+                "6d1fd696c4bf8db1"
+            ]
+        ],
+        "info": "records the daily irrigations done"
     },
     {
         "id": "318caacaa77f998d",
@@ -1259,7 +1315,7 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "to do",
-        "info": "controllare che i reset dei campi di input non facciano casino in giro\nfai logica\nvedi se fare una tabella con i log delle irrigazioni\nfai irr manuali",
+        "info": "controllare che i reset dei campi di input non facciano casino in giro\nfai logica\nV fai una tabella con i log delle irrigazioni fatte FATTO da ricevere da logica di irrigazione\nfai irr manuali",
         "x": 310,
         "y": 540,
         "wires": []
@@ -1366,7 +1422,7 @@
         "name": "Irrigation schedule logic",
         "info": "",
         "x": 300,
-        "y": 680,
+        "y": 1200,
         "wires": []
     },
     {
@@ -1473,6 +1529,120 @@
         "statusType": "auto",
         "x": 880,
         "y": 220,
+        "wires": []
+    },
+    {
+        "id": "7489810a9a80d4a5",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Irrigation done dashboard",
+        "info": "",
+        "x": 330,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "c478e8f4d3a24c0c",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 320,
+        "y": 780,
+        "wires": [
+            [
+                "cafd7de47d246249"
+            ]
+        ]
+    },
+    {
+        "id": "91e9b6b0bea69b12",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "sqlite query",
+        "func": "    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, duration FROM irrigationdone ORDER BY time;\";\n    node.send(msgout);\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cafd7de47d246249",
+        "type": "ui_table",
+        "z": "9cfee97fb9e96644",
+        "group": "25572f3b22faabc8",
+        "name": "",
+        "order": 2,
+        "width": 12,
+        "height": 1,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "80",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "time",
+                "title": "Time",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "duration",
+                "title": "Duration",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 550,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "1135fae4fea7ccc9",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "to_irrigation_done_table",
+        "links": [],
+        "x": 115,
+        "y": 780,
+        "wires": [
+            [
+                "c478e8f4d3a24c0c"
+            ]
+        ]
+    },
+    {
+        "id": "0463b6ba55aa7acd",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Manual irrigation dashboard",
+        "info": "",
+        "x": 320,
+        "y": 960,
         "wires": []
     }
 ]

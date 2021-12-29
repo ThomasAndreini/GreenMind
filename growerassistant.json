@@ -608,18 +608,11 @@
         ],
         "outputs": 1,
         "cts": true,
-        "x": 830,
+        "x": 990,
         "y": 300,
         "wires": [
             [
-                "d64fc7f15e9287b3",
-                "71206f6b9df1f514",
-                "dcf96c4280814575",
-                "ec1ebd7a220d51b4",
-                "5bfb44d232689676",
-                "82b221ac92059b34",
-                "b4efc86f44c4e2da",
-                "3e27331e70384ee0"
+                "4258efc5d0dbfd62"
             ]
         ]
     },
@@ -635,8 +628,7 @@
         "y": 300,
         "wires": [
             [
-                "f8e099d3825a6ece",
-                "d64fc7f15e9287b3"
+                "a7ae236536372f97"
             ]
         ]
     },
@@ -675,23 +667,6 @@
         ]
     },
     {
-        "id": "d64fc7f15e9287b3",
-        "type": "debug",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1190,
-        "y": 180,
-        "wires": []
-    },
-    {
         "id": "0ec6e2279f40fc7b",
         "type": "ui_switch",
         "z": "9cfee97fb9e96644",
@@ -717,8 +692,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1490,
-        "y": 360,
+        "x": 1870,
+        "y": 340,
         "wires": [
             [
                 "fc57f377ec280935"
@@ -743,11 +718,12 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1490,
-        "y": 400,
+        "x": 1870,
+        "y": 380,
         "wires": [
             [
-                "abbba47230890ecb"
+                "abbba47230890ecb",
+                "385cca24c67f92ee"
             ]
         ]
     },
@@ -769,11 +745,12 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1490,
-        "y": 440,
+        "x": 1870,
+        "y": 420,
         "wires": [
             [
-                "81761520c7dc5aef"
+                "81761520c7dc5aef",
+                "385cca24c67f92ee"
             ]
         ]
     },
@@ -795,8 +772,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1490,
-        "y": 480,
+        "x": 1870,
+        "y": 460,
         "wires": [
             [
                 "9f7002438e1ab4ea"
@@ -821,8 +798,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1400,
-        "y": 640,
+        "x": 1780,
+        "y": 620,
         "wires": [
             [
                 "16869e0b8315f42c"
@@ -855,8 +832,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1410,
-        "y": 600,
+        "x": 1790,
+        "y": 580,
         "wires": [
             [
                 "1f65ef9f4a1665a6",
@@ -939,8 +916,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1080,
-        "y": 360,
+        "x": 1460,
+        "y": 340,
         "wires": [
             [
                 "0ec6e2279f40fc7b"
@@ -966,8 +943,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1720,
-        "y": 360,
+        "x": 2100,
+        "y": 340,
         "wires": [
             []
         ]
@@ -991,8 +968,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1730,
-        "y": 400,
+        "x": 2110,
+        "y": 380,
         "wires": [
             []
         ]
@@ -1016,8 +993,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1720,
-        "y": 440,
+        "x": 2100,
+        "y": 420,
         "wires": [
             []
         ]
@@ -1041,8 +1018,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1720,
-        "y": 480,
+        "x": 2100,
+        "y": 460,
         "wires": [
             []
         ]
@@ -1066,8 +1043,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1630,
-        "y": 640,
+        "x": 2010,
+        "y": 620,
         "wires": [
             []
         ]
@@ -1091,8 +1068,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1650,
-        "y": 600,
+        "x": 2030,
+        "y": 580,
         "wires": [
             []
         ]
@@ -1116,8 +1093,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1110,
-        "y": 300,
+        "x": 1490,
+        "y": 280,
         "wires": [
             []
         ]
@@ -1141,8 +1118,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1080,
-        "y": 400,
+        "x": 1460,
+        "y": 380,
         "wires": [
             [
                 "1ac85274d91d1f6b"
@@ -1168,8 +1145,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1080,
-        "y": 440,
+        "x": 1460,
+        "y": 420,
         "wires": [
             [
                 "8be6109a5cbe938b"
@@ -1195,8 +1172,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1080,
-        "y": 480,
+        "x": 1460,
+        "y": 460,
         "wires": [
             [
                 "35b1cb8d9c5604fd"
@@ -1222,8 +1199,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1080,
-        "y": 640,
+        "x": 1460,
+        "y": 620,
         "wires": [
             [
                 "77490e9a5b6a8097"
@@ -1249,8 +1226,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1080,
-        "y": 600,
+        "x": 1460,
+        "y": 580,
         "wires": [
             [
                 "3051c6860a0e394c"
@@ -1281,7 +1258,7 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "to do",
-        "info": "trasformare timestamp in orario leggibile su tabella e ritrasformarlo in uscita in timestamp (con moment)",
+        "info": "controllare che i reset dei campi di input non facciano casino in giro\nfai logica\nvedi se fare una tabella con i log delle irrigazioni\nfai irr manuali",
         "x": 310,
         "y": 540,
         "wires": []
@@ -1402,12 +1379,82 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1180,
-        "y": 540,
+        "x": 1560,
+        "y": 520,
         "wires": [
             [
                 "8be6109a5cbe938b",
                 "35b1cb8d9c5604fd"
+            ]
+        ]
+    },
+    {
+        "id": "a7ae236536372f97",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "epoch to time",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[0].fromtime).utc().format(\"hh:mm\");\n    msg.payload[i].totime = moment(msg.payload[0].totime).utc().format(\"hh:mm\");\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 820,
+        "y": 300,
+        "wires": [
+            [
+                "f8e099d3825a6ece"
+            ]
+        ]
+    },
+    {
+        "id": "385cca24c67f92ee",
+        "type": "debug",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2120,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4258efc5d0dbfd62",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "time to epoch",
+        "func": "msg.payload.fromtime = parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY hh:mm\").add(1, 'hours').format(\"x\"));\nmsg.payload.totime = parseInt(moment(\"01/01/1970 \" + msg.payload.totime, \"DD/MM/YYYY hh:mm\").add(1, 'hours').format(\"x\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 1160,
+        "y": 300,
+        "wires": [
+            [
+                "dcf96c4280814575",
+                "71206f6b9df1f514",
+                "ec1ebd7a220d51b4",
+                "5bfb44d232689676",
+                "82b221ac92059b34",
+                "3e27331e70384ee0",
+                "b4efc86f44c4e2da"
             ]
         ]
     }

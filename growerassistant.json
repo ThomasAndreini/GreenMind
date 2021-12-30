@@ -1655,7 +1655,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "func": "//for (let i = 0; i < msg.payload.length; i++) {\n//    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"hh:mm\");\n//    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"hh:mm\");\n//}\n//parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY hh:mm\").add(1, 'hours').format(\"x\"));\nvar millisoftheday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds\nreturn msg;",
+        "func": "//for (let i = 0; i < msg.payload.length; i++) {\n//    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"hh:mm\");\n//    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"hh:mm\");\n//}\n//parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY hh:mm\").add(1, 'hours').format(\"x\"));\nvar millisoftheday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds\nmsg.payload = millisoftheday;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1670,7 +1670,8 @@
         "y": 1300,
         "wires": [
             [
-                "fe05788bef69549e"
+                "fe05788bef69549e",
+                "124d1d547f80139e"
             ]
         ]
     },
@@ -1695,9 +1696,33 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "TODO",
-        "info": "Continuare logica\ncontrollare se il calcolo che restituisce i millis in utc va bene o va portato al fuso orario giusto",
+        "info": "Continuare logica",
         "x": 600,
         "y": 1240,
         "wires": []
+    },
+    {
+        "id": "124d1d547f80139e",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "25572f3b22faabc8",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 800,
+        "y": 1380,
+        "wires": [
+            []
+        ]
     }
 ]

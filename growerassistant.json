@@ -577,8 +577,8 @@
         "z": "9cfee97fb9e96644",
         "name": "Irrigation schedule dashboard",
         "info": "",
-        "x": 250,
-        "y": 60,
+        "x": 400,
+        "y": 280,
         "wires": []
     },
     {
@@ -664,8 +664,8 @@
         ],
         "outputs": 1,
         "cts": true,
-        "x": 990,
-        "y": 300,
+        "x": 1000,
+        "y": 500,
         "wires": [
             [
                 "4258efc5d0dbfd62"
@@ -680,8 +680,8 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 560,
-        "y": 300,
+        "x": 570,
+        "y": 500,
         "wires": [
             [
                 "a7ae236536372f97"
@@ -694,8 +694,8 @@
         "z": "9cfee97fb9e96644",
         "name": "load irrigation notify",
         "events": "change",
-        "x": 110,
-        "y": 300,
+        "x": 120,
+        "y": 500,
         "wires": [
             [
                 "d69ce2da8441ec24"
@@ -713,8 +713,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 300,
+        "x": 320,
+        "y": 500,
         "wires": [
             [
                 "5d4434152352be75",
@@ -748,8 +748,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1870,
-        "y": 340,
+        "x": 1880,
+        "y": 540,
         "wires": [
             [
                 "fc57f377ec280935"
@@ -774,8 +774,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1870,
-        "y": 380,
+        "x": 1880,
+        "y": 580,
         "wires": [
             [
                 "abbba47230890ecb"
@@ -800,8 +800,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1870,
-        "y": 420,
+        "x": 1880,
+        "y": 620,
         "wires": [
             [
                 "81761520c7dc5aef"
@@ -826,8 +826,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1870,
-        "y": 460,
+        "x": 1880,
+        "y": 660,
         "wires": [
             [
                 "9f7002438e1ab4ea"
@@ -852,8 +852,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1780,
-        "y": 620,
+        "x": 1790,
+        "y": 820,
         "wires": [
             [
                 "16869e0b8315f42c"
@@ -886,8 +886,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1790,
-        "y": 580,
+        "x": 1800,
+        "y": 780,
         "wires": [
             [
                 "1f65ef9f4a1665a6",
@@ -915,8 +915,8 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 70,
-        "y": 160,
+        "x": 80,
+        "y": 360,
         "wires": [
             [
                 "b2727c05738a4afa"
@@ -943,8 +943,8 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 70,
-        "y": 200,
+        "x": 80,
+        "y": 400,
         "wires": [
             [
                 "b2727c05738a4afa"
@@ -970,8 +970,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1460,
-        "y": 340,
+        "x": 1470,
+        "y": 540,
         "wires": [
             [
                 "0ec6e2279f40fc7b"
@@ -997,8 +997,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2100,
-        "y": 340,
+        "x": 2110,
+        "y": 540,
         "wires": [
             []
         ]
@@ -1022,8 +1022,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2110,
-        "y": 380,
+        "x": 2120,
+        "y": 580,
         "wires": [
             []
         ]
@@ -1047,8 +1047,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2100,
-        "y": 420,
+        "x": 2110,
+        "y": 620,
         "wires": [
             []
         ]
@@ -1072,8 +1072,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2100,
-        "y": 460,
+        "x": 2110,
+        "y": 660,
         "wires": [
             []
         ]
@@ -1097,8 +1097,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2010,
-        "y": 620,
+        "x": 2020,
+        "y": 820,
         "wires": [
             []
         ]
@@ -1122,8 +1122,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2030,
-        "y": 580,
+        "x": 2040,
+        "y": 780,
         "wires": [
             []
         ]
@@ -1147,8 +1147,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1490,
-        "y": 280,
+        "x": 1500,
+        "y": 480,
         "wires": [
             []
         ]
@@ -1172,8 +1172,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1460,
-        "y": 380,
+        "x": 1470,
+        "y": 580,
         "wires": [
             [
                 "1ac85274d91d1f6b"
@@ -1199,8 +1199,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1460,
-        "y": 420,
+        "x": 1470,
+        "y": 620,
         "wires": [
             [
                 "8be6109a5cbe938b"
@@ -1226,8 +1226,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1460,
-        "y": 460,
+        "x": 1470,
+        "y": 660,
         "wires": [
             [
                 "35b1cb8d9c5604fd"
@@ -1253,8 +1253,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1460,
-        "y": 620,
+        "x": 1470,
+        "y": 820,
         "wires": [
             [
                 "77490e9a5b6a8097"
@@ -1280,8 +1280,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1460,
-        "y": 580,
+        "x": 1470,
+        "y": 780,
         "wires": [
             [
                 "3051c6860a0e394c"
@@ -1299,8 +1299,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 310,
-        "y": 200,
+        "x": 320,
+        "y": 400,
         "wires": [
             [
                 "5d4434152352be75"
@@ -1337,8 +1337,8 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 70,
-        "y": 240,
+        "x": 80,
+        "y": 440,
         "wires": [
             [
                 "b2727c05738a4afa"
@@ -1399,8 +1399,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 520,
-        "y": 460,
+        "x": 530,
+        "y": 660,
         "wires": [
             [
                 "71206f6b9df1f514",
@@ -1418,8 +1418,8 @@
         "z": "9cfee97fb9e96644",
         "name": "Irrigation schedule logic",
         "info": "",
-        "x": 300,
-        "y": 1200,
+        "x": 310,
+        "y": 1400,
         "wires": []
     },
     {
@@ -1433,8 +1433,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1560,
-        "y": 520,
+        "x": 1570,
+        "y": 720,
         "wires": [
             [
                 "8be6109a5cbe938b",
@@ -1458,8 +1458,8 @@
                 "module": "moment"
             }
         ],
-        "x": 820,
-        "y": 300,
+        "x": 830,
+        "y": 500,
         "wires": [
             [
                 "f8e099d3825a6ece"
@@ -1482,8 +1482,8 @@
                 "module": "moment"
             }
         ],
-        "x": 1160,
-        "y": 300,
+        "x": 1170,
+        "y": 500,
         "wires": [
             [
                 "dcf96c4280814575",
@@ -1502,8 +1502,8 @@
         "z": "9cfee97fb9e96644",
         "name": "Irrigation done dashboard",
         "info": "",
-        "x": 330,
-        "y": 640,
+        "x": 410,
+        "y": 900,
         "wires": []
     },
     {
@@ -1514,8 +1514,8 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 320,
-        "y": 780,
+        "x": 330,
+        "y": 1040,
         "wires": [
             [
                 "cafd7de47d246249"
@@ -1533,8 +1533,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 250,
-        "y": 720,
+        "x": 260,
+        "y": 980,
         "wires": [
             []
         ]
@@ -1582,8 +1582,8 @@
         ],
         "outputs": 0,
         "cts": false,
-        "x": 550,
-        "y": 780,
+        "x": 560,
+        "y": 1040,
         "wires": []
     },
     {
@@ -1592,8 +1592,8 @@
         "z": "9cfee97fb9e96644",
         "name": "to_irrigation_done_table",
         "links": [],
-        "x": 115,
-        "y": 780,
+        "x": 125,
+        "y": 1040,
         "wires": [
             [
                 "c478e8f4d3a24c0c"
@@ -1606,8 +1606,8 @@
         "z": "9cfee97fb9e96644",
         "name": "Manual irrigation dashboard",
         "info": "",
-        "x": 320,
-        "y": 960,
+        "x": 330,
+        "y": 1220,
         "wires": []
     },
     {
@@ -1618,8 +1618,8 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 380,
-        "y": 1300,
+        "x": 390,
+        "y": 1500,
         "wires": [
             [
                 "b0a9b08b0a502a9e"
@@ -1637,13 +1637,13 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;",
-        "x": 160,
-        "y": 1300,
+        "x": 170,
+        "y": 1500,
         "wires": [
             [
                 "31b7d3097f0df449"
@@ -1654,8 +1654,8 @@
         "id": "b0a9b08b0a502a9e",
         "type": "function",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "func": "//for (let i = 0; i < msg.payload.length; i++) {\n//    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"hh:mm\");\n//    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"hh:mm\");\n//}\n//parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY hh:mm\").add(1, 'hours').format(\"x\"));\nvar millisoftheday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds\nmsg.payload = millisoftheday;\nreturn msg;",
+        "name": "check irrigation program",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif (global.get(\"irrprgact.id\") === 0) {//if irrprgact is equal than 0 therefore no program is active\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1){\n            global.set(\"irrprgact.id\", msg.payload[i].id);//if the current time is greater than or equal to the start time or less than the program end time and is set to active, set the id program as active\n            global.set(\"irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrprgact.totime\", msg.payload[i].totime);\n            global.set(\"irrprgact.every\", msg.payload[i].every);\n            global.set(\"irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            return;\n        }\n    }\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1666,63 +1666,102 @@
                 "module": "moment"
             }
         ],
-        "x": 620,
-        "y": 1300,
+        "x": 670,
+        "y": 1500,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0357f13b7e1543e0",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Initialize context on first start",
+        "info": "",
+        "x": 410,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "80b88dccb016df1d",
+        "type": "inject",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 140,
         "wires": [
             [
-                "fe05788bef69549e",
-                "124d1d547f80139e"
+                "eb57c242dd6101db"
             ]
         ]
     },
     {
-        "id": "fe05788bef69549e",
-        "type": "debug",
+        "id": "eb57c242dd6101db",
+        "type": "function",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 950,
-        "y": 1280,
-        "wires": []
+        "name": "Initialize context and table of db at first start",
+        "func": "if (flow.get(\"irrinit\") === 0){\n    global.set(\"irrprgact\",0);\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msg.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 300ms and create table irrigationdone\n    }, 300);\n    global.set(\"irrinit\", 1);//set irrinit to 1, context and db table are created and initialized\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 140,
+        "wires": [
+            [
+                "d1436ddcad8a9e8f"
+            ]
+        ]
     },
     {
-        "id": "7447a9a874d9bc97",
-        "type": "comment",
+        "id": "d1436ddcad8a9e8f",
+        "type": "sqlite",
         "z": "9cfee97fb9e96644",
-        "name": "TODO",
-        "info": "Continuare logica",
-        "x": 600,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "124d1d547f80139e",
-        "type": "ui_text_input",
-        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
         "name": "",
-        "label": "",
-        "tooltip": "",
-        "group": "25572f3b22faabc8",
-        "order": 3,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 800,
-        "y": 1380,
+        "x": 740,
+        "y": 140,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "349a6bc907d00143",
+        "type": "complete",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "scope": [
+            "b0a9b08b0a502a9e"
+        ],
+        "uncaught": false,
+        "x": 170,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "201777e280bfa091",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "TODO",
+        "info": "dopo aver copiato da db a context e segnalato quale programma attivo\nva fatta irrigazione oneshoot o ripetuta",
+        "x": 390,
+        "y": 1580,
+        "wires": []
     }
 ]

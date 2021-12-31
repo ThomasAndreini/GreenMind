@@ -748,7 +748,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1880,
+        "x": 1890,
         "y": 540,
         "wires": [
             [
@@ -774,7 +774,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1880,
+        "x": 1890,
         "y": 580,
         "wires": [
             [
@@ -800,7 +800,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1880,
+        "x": 1890,
         "y": 620,
         "wires": [
             [
@@ -826,7 +826,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1880,
+        "x": 1890,
         "y": 660,
         "wires": [
             [
@@ -852,7 +852,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1790,
+        "x": 1800,
         "y": 820,
         "wires": [
             [
@@ -886,7 +886,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1800,
+        "x": 1810,
         "y": 780,
         "wires": [
             [
@@ -970,7 +970,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1470,
+        "x": 1480,
         "y": 540,
         "wires": [
             [
@@ -997,7 +997,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2110,
+        "x": 2250,
         "y": 540,
         "wires": [
             []
@@ -1022,7 +1022,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2120,
+        "x": 2260,
         "y": 580,
         "wires": [
             []
@@ -1047,7 +1047,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2110,
+        "x": 2250,
         "y": 620,
         "wires": [
             []
@@ -1072,7 +1072,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2110,
+        "x": 2250,
         "y": 660,
         "wires": [
             []
@@ -1097,7 +1097,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2020,
+        "x": 2030,
         "y": 820,
         "wires": [
             []
@@ -1122,7 +1122,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2040,
+        "x": 2050,
         "y": 780,
         "wires": [
             []
@@ -1147,7 +1147,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1500,
+        "x": 1510,
         "y": 480,
         "wires": [
             []
@@ -1172,7 +1172,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1470,
+        "x": 1480,
         "y": 580,
         "wires": [
             [
@@ -1199,7 +1199,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1470,
+        "x": 1480,
         "y": 620,
         "wires": [
             [
@@ -1226,7 +1226,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1470,
+        "x": 1480,
         "y": 660,
         "wires": [
             [
@@ -1253,7 +1253,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1470,
+        "x": 1480,
         "y": 820,
         "wires": [
             [
@@ -1280,7 +1280,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1470,
+        "x": 1480,
         "y": 780,
         "wires": [
             [
@@ -1293,7 +1293,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "sqlite query",
-        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nif (msg.payload === \"new\") {\n    msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n    \n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n    if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nif (msg.payload === \"new\") {\n    if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n    \n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1433,7 +1433,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1570,
+        "x": 1580,
         "y": 720,
         "wires": [
             [
@@ -1655,7 +1655,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "check irrigation program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif (global.get(\"irrigation.irrprgact.id\") === 0) {//if irrprgact is equal than 0 therefore no program is active\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1){\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//if the current time is greater than or equal to the start time or less than the program end time and is set to active, set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode set the value to null\n                global.set(\"irrigation.irrprgact.totime\", null);\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program\n    var msgout = {\"payload\" : null};\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send(msgout);\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send(msgout);\n        }\n    }\n}\n\n//da fare esecuzione programma in modalita ripetuta (copia e modifica quello sopra)\n\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif (global.get(\"irrigation.irrprgact.id\") === 0) {//if irrprgact is equal than 0 therefore no program is active\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1){\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//if the current time is greater than or equal to the start time or less than the program end time and is set to active, set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday + (msg.payload[i].every * 60000));//set every timer to now time + every (so the irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode set the value to null\n                global.set(\"irrigation.irrprgact.totime\", null);\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program\n    var msgout = {\"payload\" : null};\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send(msgout);\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send(msgout);\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program\n    var msgout = { \"payload\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send(msgout);\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= global.get(\"irrigation.irrprgact.duration\")) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send(msgout);\n        }\n    }\n    return;\n}\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1746,9 +1746,9 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "TODO",
-        "info": "va fatta irrigazione ripetuta",
-        "x": 370,
-        "y": 1660,
+        "info": "da provare irrigazione one shoot e sopratutto ripetuta\naggiungere insert in tabella db irrigation done su funzione",
+        "x": 690,
+        "y": 1460,
         "wires": []
     },
     {

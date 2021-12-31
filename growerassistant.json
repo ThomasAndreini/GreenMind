@@ -242,26 +242,6 @@
         "className": ""
     },
     {
-        "id": "091840eba315d61e",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 1,
-        "width": 4,
-        "height": 1
-    },
-    {
-        "id": "9976c8160ed58833",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 3,
-        "width": 4,
-        "height": 1
-    },
-    {
         "id": "2b2b4e4e8122d74f",
         "type": "ui_group",
         "name": "Manual irrigation",
@@ -271,6 +251,46 @@
         "width": "20",
         "collapse": true,
         "className": ""
+    },
+    {
+        "id": "3554415ed1d97095",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 1,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "22dcf2570162878d",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 3,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "898ac06143bcc9cc",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "2b2b4e4e8122d74f",
+        "order": 1,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "7079d27de42b415a",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "2b2b4e4e8122d74f",
+        "order": 3,
+        "width": 5,
+        "height": 1
     },
     {
         "id": "6d1fd696c4bf8db1",
@@ -1813,11 +1833,11 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "group": "2b2b4e4e8122d74f",
-        "order": 0,
-        "width": "10",
-        "height": "1",
+        "order": 2,
+        "width": 10,
+        "height": 1,
         "passthru": false,
-        "label": "Start / Stop irrigation",
+        "label": "Start / Stop manual irrigation",
         "tooltip": "",
         "color": "",
         "bgcolor": "",
@@ -1827,7 +1847,7 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 330,
+        "x": 350,
         "y": 1260,
         "wires": [
             []

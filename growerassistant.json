@@ -262,6 +262,17 @@
         "height": 1
     },
     {
+        "id": "2b2b4e4e8122d74f",
+        "type": "ui_group",
+        "name": "Manual irrigation",
+        "tab": "c9196ab76e307349",
+        "order": 3,
+        "disp": true,
+        "width": "20",
+        "collapse": true,
+        "className": ""
+    },
+    {
         "id": "6d1fd696c4bf8db1",
         "type": "sqlite",
         "z": "d131706f99a3b080",
@@ -1795,5 +1806,41 @@
                 "c478e8f4d3a24c0c"
             ]
         ]
+    },
+    {
+        "id": "753b11787971f0df",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "2b2b4e4e8122d74f",
+        "order": 0,
+        "width": "10",
+        "height": "1",
+        "passthru": false,
+        "label": "Start / Stop irrigation",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 330,
+        "y": 1260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3d9188caf7a1198a",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "TODO",
+        "info": "creare logica che attivi irrigazione manuale (da incastrare con la logica sotto inserendo o aggiungendo un altra logica)",
+        "x": 550,
+        "y": 1260,
+        "wires": []
     }
 ]

@@ -1343,7 +1343,7 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "TODO generale",
-        "info": "controllare che i reset dei campi di input non facciano casino in giro\nfai logica\nV fai una tabella con i log delle irrigazioni fatte FATTO da ricevere da logica di irrigazione\nfai irr manuali",
+        "info": "controllare che i reset dei campi di input non facciano casino in giro\nfai irr manuali",
         "x": 720,
         "y": 20,
         "wires": []

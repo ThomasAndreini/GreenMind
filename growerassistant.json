@@ -1697,20 +1697,20 @@
         "name": "",
         "props": [
             {
-                "p": "payload"
+                "p": "topic",
+                "vt": "str"
             }
         ],
         "repeat": "",
         "crontab": "",
         "once": true,
         "onceDelay": "0.5",
-        "topic": "",
-        "payloadType": "date",
-        "x": 110,
+        "topic": "SELECT id, label, value FROM system WHERE label = \"version\";",
+        "x": 90,
         "y": 140,
         "wires": [
             [
-                "eb57c242dd6101db"
+                "933295d7c80380ff"
             ]
         ]
     },
@@ -1719,13 +1719,13 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Initialize context and table of db at first start",
-        "func": "if (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);\nif (global.get(\"irrigation.init\") === 0){\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.irrprgact.id\", 0);\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msg.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 300ms and create table irrigationdone\n    }, 300);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized\n}\nreturn;",
+        "func": "if (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);\nif (global.get(\"irrigation.init\") === 0){\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.irrprgact.id\", 0);\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 400ms and insert record\n    }, 400);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 390,
+        "x": 710,
         "y": 140,
         "wires": [
             [
@@ -1741,7 +1741,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 740,
+        "x": 1060,
         "y": 140,
         "wires": [
             []
@@ -1913,5 +1913,38 @@
         "x": 990,
         "y": 1340,
         "wires": []
+    },
+    {
+        "id": "933295d7c80380ff",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 360,
+        "y": 140,
+        "wires": [
+            [
+                "eb57c242dd6101db"
+            ]
+        ]
+    },
+    {
+        "id": "a2796602413ba064",
+        "type": "catch",
+        "z": "9cfee97fb9e96644",
+        "name": "error from db",
+        "scope": [
+            "933295d7c80380ff"
+        ],
+        "uncaught": false,
+        "x": 430,
+        "y": 200,
+        "wires": [
+            [
+                "eb57c242dd6101db"
+            ]
+        ]
     }
 ]

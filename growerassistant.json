@@ -1545,12 +1545,12 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 540,
-        "y": 1020,
+        "x": 560,
+        "y": 1060,
         "wires": [
             [
-                "cafd7de47d246249",
-                "a33e202302b5ec28"
+                "a33e202302b5ec28",
+                "67664147b8c31f79"
             ]
         ]
     },
@@ -1597,8 +1597,8 @@
         ],
         "outputs": 0,
         "cts": false,
-        "x": 770,
-        "y": 1020,
+        "x": 990,
+        "y": 1060,
         "wires": []
     },
     {
@@ -1777,50 +1777,6 @@
         ]
     },
     {
-        "id": "fb841caa8169791b",
-        "type": "complete",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "scope": [
-            "1d73c5dce4d38372"
-        ],
-        "uncaught": false,
-        "x": 110,
-        "y": 1020,
-        "wires": [
-            [
-                "a481d8bf714374bb"
-            ]
-        ]
-    },
-    {
-        "id": "a481d8bf714374bb",
-        "type": "change",
-        "z": "9cfee97fb9e96644",
-        "name": "refresh table",
-        "rules": [
-            {
-                "t": "set",
-                "p": "topic",
-                "pt": "msg",
-                "to": "SELECT id, time, duration FROM irrigationdone ORDER BY time;",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 290,
-        "y": 1020,
-        "wires": [
-            [
-                "c478e8f4d3a24c0c"
-            ]
-        ]
-    },
-    {
         "id": "753b11787971f0df",
         "type": "ui_button",
         "z": "9cfee97fb9e96644",
@@ -1860,7 +1816,7 @@
         "id": "2f10e39feee3c095",
         "type": "inject",
         "z": "9cfee97fb9e96644",
-        "name": "",
+        "name": "delete irrigation done at midnight",
         "props": [
             {
                 "p": "topic",
@@ -1868,12 +1824,12 @@
             }
         ],
         "repeat": "",
-        "crontab": "",
+        "crontab": "00 00 * * *",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "SELECT id, time, duration FROM irrigationdone ORDER BY time;",
-        "x": 140,
-        "y": 960,
+        "topic": "DELETE FROM irrigationdone;",
+        "x": 240,
+        "y": 1000,
         "wires": [
             [
                 "c478e8f4d3a24c0c"
@@ -1893,8 +1849,8 @@
         "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 780,
-        "y": 980,
+        "x": 790,
+        "y": 1000,
         "wires": []
     },
     {
@@ -1944,6 +1900,63 @@
         "wires": [
             [
                 "eb57c242dd6101db"
+            ]
+        ]
+    },
+    {
+        "id": "08f49e173f72a25f",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 110,
+        "y": 1060,
+        "wires": [
+            [
+                "af730aace9973dff"
+            ]
+        ]
+    },
+    {
+        "id": "af730aace9973dff",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, time, duration FROM irrigationdone ORDER BY time;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1060,
+        "wires": [
+            [
+                "c478e8f4d3a24c0c"
+            ]
+        ]
+    },
+    {
+        "id": "67664147b8c31f79",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "epoch to time",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].time = moment(msg.payload[i].time).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 820,
+        "y": 1060,
+        "wires": [
+            [
+                "cafd7de47d246249"
             ]
         ]
     }

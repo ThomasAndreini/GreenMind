@@ -48,14 +48,6 @@
         "env": []
     },
     {
-        "id": "374517790ad73be7",
-        "type": "tab",
-        "label": "Heating",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "3093b5dc65ba7357",
         "type": "tab",
         "label": "Settings",

@@ -1343,7 +1343,7 @@
         "type": "comment",
         "z": "9cfee97fb9e96644",
         "name": "TODO generale",
-        "info": "controllare che i reset dei campi di input non facciano casino in giro\nfai irr manuali",
+        "info": "controllare che i reset dei campi di input non facciano casino in giro\nvedi se irrigazioni manuali è ben incastrato con le irrigazioni programmate",
         "x": 720,
         "y": 20,
         "wires": []

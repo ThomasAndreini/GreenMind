@@ -1531,9 +1531,9 @@
         "id": "7489810a9a80d4a5",
         "type": "comment",
         "z": "9cfee97fb9e96644",
-        "name": "Irrigation done dashboard",
+        "name": "Irrigation done dashboard and logic",
         "info": "",
-        "x": 410,
+        "x": 440,
         "y": 940,
         "wires": []
     },
@@ -1605,9 +1605,9 @@
         "id": "0463b6ba55aa7acd",
         "type": "comment",
         "z": "9cfee97fb9e96644",
-        "name": "Manual irrigation dashboard",
+        "name": "Manual irrigation dashboard and logic",
         "info": "",
-        "x": 360,
+        "x": 390,
         "y": 1160,
         "wires": []
     },
@@ -1656,7 +1656,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "check irrigation program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif (global.get(\"irrigation.irrprgact.id\") === 0) {//if irrprgact is equal than 0 therefore no program is active\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode set the value to null\n                global.set(\"irrigation.irrprgact.totime\", null);\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program\n    var msgout = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        //node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + global.get(\"irrigation.irrprgact.duration\") + \");\";\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            //node.warn(\"fermata irr os\");\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program\n    var msgout = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    //let testvar = (global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\");\n    //node.warn(\"millcurrentday\" + millcurrentday);\n    //node.warn(\"everytimer\" + testvar);\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= global.get(\"irrigation.irrprgact.duration\")) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n            if (millcurrentday < msg.payload[global.get(\"irrigation.irrprgact.id\")].fromtime && millcurrentday >= msg.payload[global.get(\"irrigation.irrprgact.id\")].totime) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + global.get(\"irrigation.irrprgact.duration\") + \");\";\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr\");\n        }\n    }\n    return;\n}\n\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode set the value to null\n                global.set(\"irrigation.irrprgact.totime\", null);\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgout = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        //node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + global.get(\"irrigation.irrprgact.duration\") + \");\";\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            //node.warn(\"fermata irr os\");\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgout = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    //let testvar = (global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\");\n    //node.warn(\"millcurrentday\" + millcurrentday);\n    //node.warn(\"everytimer\" + testvar);\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= global.get(\"irrigation.irrprgact.duration\")) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n            if (millcurrentday < msg.payload[global.get(\"irrigation.irrprgact.id\")].fromtime && millcurrentday >= msg.payload[global.get(\"irrigation.irrprgact.id\")].totime) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + global.get(\"irrigation.irrprgact.duration\") + \");\";\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr\");\n        }\n    }\n    return;\n}\n\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1671,13 +1671,15 @@
         "y": 1500,
         "wires": [
             [
-                "4a69bffa8e947aef",
-                "96ef277b51a5896d"
+                "387e19c91a449350"
             ],
             [
-                "1d73c5dce4d38372",
-                "96ef277b51a5896d"
+                "c3f6ec405cb69b1e"
             ]
+        ],
+        "outputLabels": [
+            "to pin",
+            "to db"
         ]
     },
     {
@@ -1719,7 +1721,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Initialize context and table of db at first start",
-        "func": "if (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);\nif (global.get(\"irrigation.init\") === 0){\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.irrprgact.id\", 0);\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 400ms and insert record\n    }, 400);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized\n}\nreturn msg;",
+        "func": "if (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);\nif (global.get(\"irrigation.init\") === 0){\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.irrprgact.id\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 400ms and insert record\n    }, 400);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1758,8 +1760,8 @@
         "freq": "",
         "out": "out",
         "bcm": true,
-        "x": 980,
-        "y": 1460,
+        "x": 1120,
+        "y": 1340,
         "wires": []
     },
     {
@@ -1770,8 +1772,8 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "to table irrigationdone",
-        "x": 1020,
-        "y": 1540,
+        "x": 1160,
+        "y": 1400,
         "wires": [
             []
         ]
@@ -1796,21 +1798,13 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 350,
+        "x": 300,
         "y": 1260,
         "wires": [
-            []
+            [
+                "4ea9c0c1480a4972"
+            ]
         ]
-    },
-    {
-        "id": "3d9188caf7a1198a",
-        "type": "comment",
-        "z": "9cfee97fb9e96644",
-        "name": "TODO",
-        "info": "creare logica che attivi irrigazione manuale (da incastrare con la logica sotto inserendo o aggiungendo un altra logica)",
-        "x": 550,
-        "y": 1260,
-        "wires": []
     },
     {
         "id": "2f10e39feee3c095",
@@ -1851,23 +1845,6 @@
         "statusType": "auto",
         "x": 790,
         "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "96ef277b51a5896d",
-        "type": "debug",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 990,
-        "y": 1340,
         "wires": []
     },
     {
@@ -1957,6 +1934,123 @@
         "wires": [
             [
                 "cafd7de47d246249"
+            ]
+        ]
+    },
+    {
+        "id": "4ea9c0c1480a4972",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "Check irrisact status and modify",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    msgtopin.payload = 0;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    msgtopin.payload = 1;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", 0);\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 590,
+        "y": 1260,
+        "wires": [
+            [
+                "1ec6d8ef6a0f0d9a"
+            ],
+            [
+                "c20e373a96837ca1"
+            ]
+        ],
+        "outputLabels": [
+            "to pin",
+            "to db"
+        ]
+    },
+    {
+        "id": "1ec6d8ef6a0f0d9a",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from manual irrigation to pin",
+        "mode": "link",
+        "links": [
+            "5153195b2cf4939f"
+        ],
+        "x": 795,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "387e19c91a449350",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from irrigation schedule to pin",
+        "mode": "link",
+        "links": [
+            "5153195b2cf4939f"
+        ],
+        "x": 935,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "5153195b2cf4939f",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "to pin",
+        "links": [
+            "1ec6d8ef6a0f0d9a",
+            "387e19c91a449350"
+        ],
+        "x": 1015,
+        "y": 1340,
+        "wires": [
+            [
+                "4a69bffa8e947aef"
+            ]
+        ]
+    },
+    {
+        "id": "c20e373a96837ca1",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from manual irrigation to db",
+        "mode": "link",
+        "links": [
+            "f8f73f3e7876a923"
+        ],
+        "x": 795,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "c3f6ec405cb69b1e",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from irrigation schedule to db",
+        "mode": "link",
+        "links": [
+            "f8f73f3e7876a923"
+        ],
+        "x": 935,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "f8f73f3e7876a923",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "to db",
+        "links": [
+            "c20e373a96837ca1",
+            "c3f6ec405cb69b1e"
+        ],
+        "x": 1015,
+        "y": 1400,
+        "wires": [
+            [
+                "1d73c5dce4d38372"
             ]
         ]
     }

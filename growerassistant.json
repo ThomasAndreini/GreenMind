@@ -210,7 +210,7 @@
         "tab": "c9196ab76e307349",
         "order": 1,
         "disp": true,
-        "width": "20",
+        "width": 14,
         "collapse": true,
         "className": ""
     },
@@ -221,7 +221,7 @@
         "tab": "c9196ab76e307349",
         "order": 2,
         "disp": true,
-        "width": "20",
+        "width": 14,
         "collapse": true,
         "className": ""
     },
@@ -232,48 +232,148 @@
         "tab": "c9196ab76e307349",
         "order": 3,
         "disp": true,
-        "width": "20",
+        "width": 14,
         "collapse": true,
         "className": ""
     },
     {
-        "id": "3554415ed1d97095",
+        "id": "02846b4cc5558f7e",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
         "group": "25572f3b22faabc8",
         "order": 1,
-        "width": 4,
+        "width": 1,
         "height": 1
     },
     {
-        "id": "22dcf2570162878d",
+        "id": "e27a4639dafe7164",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
         "group": "25572f3b22faabc8",
         "order": 3,
-        "width": 4,
+        "width": 1,
         "height": 1
     },
     {
-        "id": "898ac06143bcc9cc",
+        "id": "6c393be6834aed11",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 4,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "7d85d36f6c06fbb2",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "df7840ae25995d6d",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "19b92ba2c1625b95",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "01ed1015771f42c3",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2cd81053f5567717",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c57522eb3b23fea7",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1dc40777aadfaac8",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1a9c87403f17b34b",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d2274f4f4ff8c56b",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1b33eab4773e9acf",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
         "group": "2b2b4e4e8122d74f",
         "order": 1,
-        "width": 5,
+        "width": 2,
         "height": 1
     },
     {
-        "id": "7079d27de42b415a",
+        "id": "206fe160a1168157",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
         "group": "2b2b4e4e8122d74f",
         "order": 3,
-        "width": 5,
+        "width": 2,
         "height": 1
     },
     {
@@ -491,18 +591,15 @@
         "height": "0",
         "lineColors": [
             {
-                "statusColor": "#002aff",
-                "statusValue": "Irrigation"
-            },
-            {
-                "statusColor": "#001eff",
-                "statusValue": "Irrigation"
+                "statusColor": "#0084ff",
+                "statusValue": ""
             }
         ],
         "xTickFormat": "HH:mm",
-        "startDateTime": "2021-01-01T00:00",
-        "endDateTime": "2021-01-01T23:59",
+        "startDateTime": "1970-01-01T00:00",
+        "endDateTime": "1970-01-01T23:59",
         "maxLineHeight": "20",
+        "topMargin": "",
         "xAxisLabelsFontSize": "14",
         "xAxisLabelslColor": "#000000",
         "yAxisLabelsFontSize": "16",
@@ -512,74 +609,11 @@
         "enableAnimations": true,
         "enableDateMarker": true,
         "forwardInputMessages": false,
-        "x": 460,
-        "y": 200,
-        "wires": [
-            [
-                "2f40eb1e65f95f8f"
-            ]
-        ]
-    },
-    {
-        "id": "a0c1de3745bd1f68",
-        "type": "inject",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;",
-        "x": 90,
+        "x": 980,
         "y": 220,
         "wires": [
-            [
-                "a49933558f887776",
-                "cbf17221b4974b57"
-            ]
+            []
         ]
-    },
-    {
-        "id": "a49933558f887776",
-        "type": "function",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "func": "msg.payload = {\n    \"dataItems\": [\n        {\n            \"group\": \"Irrigation\",\n            \"data\": [\n                {\n                    \"label\": \"Repeat\",\n                    \"data\": [\n                        {\n                            \"timeRange\": [\"2021-01-01 01:00:00\", \"2021-01-01 10:00:00\"],\n                                \"val\": \"every 5min 20 sec\"\n                        }\n                    ]\n                },\n                {\n                    \"label\": \"One shoot\",\n                    \"data\": [\n                        {\n                            \"timeRange\": [\"2021-01-01 10:00:00\", \"2021-01-01 10:10:00\"],\n                            \"val\": \"50 sec\"\n                        }\n                    ]\n                },\n            ]    \n        }\n    ]    \n}\n        \n                    \nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 240,
-        "y": 220,
-        "wires": [
-            [
-                "2f40eb1e65f95f8f"
-            ]
-        ]
-    },
-    {
-        "id": "2f40eb1e65f95f8f",
-        "type": "debug",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 220,
-        "wires": []
     },
     {
         "id": "cbf17221b4974b57",
@@ -589,8 +623,8 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 320,
-        "y": 80,
+        "x": 560,
+        "y": 220,
         "wires": [
             [
                 "a6b7472a7e43b83b"
@@ -598,37 +632,25 @@
         ]
     },
     {
-        "id": "b7a511a73350c773",
-        "type": "debug",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 830,
-        "y": 80,
-        "wires": []
-    },
-    {
         "id": "a6b7472a7e43b83b",
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "",
-        "func": "//ATTENZIONE, vedere se oneshoot o ripetute non ha programmazioni attive se appare comunque nel timeline chart\nvar msgout = {\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//qui il ciclo per inserire i dati dal db all'oggetto sopra\n    var objecttoarray = {\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (msg.payload[i].oneshoot === 0){\n        objecttoarray.label = \"Repeat\";\n        objecttoarray.data.push({ \"timeRange\": [msg.payload[i].fromtime, msg.payload[i].totime], \"val\": \"every \" + msg.payload[i].every + \"min, duration \" + msg.payload[i].duration });\n        msgout.payload.dataItems[0].data.push(objecttoarray);\n    }\n    if (msg.payload[i].oneshoot === 1) {\n        objecttoarray.label = \"One shoot\";\n        objecttoarray.data.push({ \"timeRange\": [msg.payload[i].fromtime, msg.payload[i].totime], \"val\": \"One shoot, duration \" + msg.payload[i].duration});\n        msgout.payload.dataItems[0].data.push(objecttoarray);\n    }\n}\nreturn msgout;",
+        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//search every active irrigation schedule\n    let fromtime = moment(msg.payload[i].fromtime).format(\"YYYY-MM-DD HH:mm:ss\");//format date and time \n    let totime = moment(msg.payload[i].totime).format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (msg.payload[i].oneshoot === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"every \" + msg.payload[i].every + \"min, duration \" + msg.payload[i].duration });\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (msg.payload[i].oneshoot === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + msg.payload[i].duration});\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nreturn msgout;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [],
-        "x": 610,
-        "y": 120,
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 800,
+        "y": 220,
         "wires": [
             [
-                "b7a511a73350c773",
                 "44ad992ef7e50aa6"
             ]
         ]
@@ -642,6 +664,39 @@
         "x": 640,
         "y": 60,
         "wires": []
+    },
+    {
+        "id": "a49933558f887776",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "query if tab is loaded",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    let msgout = { \"topic\": \"\" }\n    msgout.topic = \"SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 220,
+        "wires": [
+            [
+                "cbf17221b4974b57"
+            ]
+        ]
+    },
+    {
+        "id": "bd541d756dceeb68",
+        "type": "ui_ui_control",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "events": "all",
+        "x": 80,
+        "y": 220,
+        "wires": [
+            [
+                "a49933558f887776"
+            ]
+        ]
     },
     {
         "id": "be7cbfc514e81423",
@@ -658,15 +713,15 @@
         "type": "ui_table",
         "z": "9cfee97fb9e96644",
         "group": "fa9ccf2e0cfb5c02",
-        "name": "",
+        "name": "irrschedule",
         "order": 1,
-        "width": 0,
-        "height": 0,
+        "width": 14,
+        "height": 6,
         "columns": [
             {
                 "field": "id",
                 "title": "ID",
-                "width": "80",
+                "width": "50",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -676,7 +731,7 @@
             {
                 "field": "active",
                 "title": "Active",
-                "width": "100",
+                "width": "90",
                 "align": "center",
                 "formatter": "tickCross",
                 "formatterParams": {
@@ -686,7 +741,7 @@
             {
                 "field": "fromtime",
                 "title": "From",
-                "width": "",
+                "width": "130",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -696,7 +751,7 @@
             {
                 "field": "totime",
                 "title": "To",
-                "width": "",
+                "width": "130",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -705,8 +760,8 @@
             },
             {
                 "field": "every",
-                "title": "Every minutes",
-                "width": "",
+                "title": "Every min",
+                "width": "120",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -716,7 +771,7 @@
             {
                 "field": "duration",
                 "title": "Duration",
-                "width": "",
+                "width": "120",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -726,7 +781,7 @@
             {
                 "field": "oneshoot",
                 "title": "One shoot",
-                "width": "100",
+                "width": "110",
                 "align": "center",
                 "formatter": "tickCross",
                 "formatterParams": {
@@ -736,11 +791,12 @@
         ],
         "outputs": 1,
         "cts": true,
-        "x": 1000,
+        "x": 1020,
         "y": 500,
         "wires": [
             [
-                "4258efc5d0dbfd62"
+                "4258efc5d0dbfd62",
+                "89aba65cf701d58d"
             ]
         ]
     },
@@ -803,7 +859,7 @@
         "tooltip": "Enable or disable this programming row",
         "group": "fa9ccf2e0cfb5c02",
         "order": 2,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "passthru": true,
         "decouple": "false",
@@ -837,7 +893,7 @@
         "tooltip": "Start time of programming",
         "group": "fa9ccf2e0cfb5c02",
         "order": 3,
-        "width": 4,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "mode": "time",
@@ -863,7 +919,7 @@
         "tooltip": "End time of programming",
         "group": "fa9ccf2e0cfb5c02",
         "order": 4,
-        "width": 4,
+        "width": 3,
         "height": 1,
         "passthru": true,
         "mode": "time",
@@ -889,7 +945,7 @@
         "tooltip": "Run irrigation every (minutes)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 5,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -915,7 +971,7 @@
         "tooltip": "Duration of irrigation (seconds)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 6,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "passthru": true,
         "mode": "number",
@@ -941,7 +997,7 @@
         "tooltip": "Run irrigation once (disable the Every field and the To field)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 7,
-        "width": 3,
+        "width": 2,
         "height": 1,
         "passthru": true,
         "decouple": "false",
@@ -974,7 +1030,7 @@
         "name": "",
         "group": "fa9ccf2e0cfb5c02",
         "order": 8,
-        "width": 7,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "Edit",
@@ -1002,7 +1058,7 @@
         "name": "",
         "group": "fa9ccf2e0cfb5c02",
         "order": 9,
-        "width": 7,
+        "width": 5,
         "height": 1,
         "passthru": false,
         "label": "New",
@@ -1396,7 +1452,7 @@
         "name": "",
         "group": "fa9ccf2e0cfb5c02",
         "order": 10,
-        "width": 6,
+        "width": 4,
         "height": 1,
         "passthru": false,
         "label": "Delete",
@@ -1519,7 +1575,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "epoch to time",
-        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\n//msg.ui_control = {\"tabulator\" : {\"hideColumn\" : \"id\"}};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1534,7 +1590,8 @@
         "y": 500,
         "wires": [
             [
-                "f8e099d3825a6ece"
+                "f8e099d3825a6ece",
+                "89aba65cf701d58d"
             ]
         ]
     },
@@ -1554,7 +1611,7 @@
                 "module": "moment"
             }
         ],
-        "x": 1170,
+        "x": 1200,
         "y": 500,
         "wires": [
             [
@@ -1603,7 +1660,7 @@
         "name": "",
         "order": 2,
         "width": 12,
-        "height": 1,
+        "height": 6,
         "columns": [
             {
                 "field": "id",
@@ -1940,7 +1997,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "sqlite query",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, time, duration FROM irrigationdone ORDER BY time;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    let msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, time, duration FROM irrigationdone ORDER BY time;\";\n    node.send(msgout);\n}\nreturn;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2094,5 +2151,32 @@
                 "1d73c5dce4d38372"
             ]
         ]
+    },
+    {
+        "id": "89aba65cf701d58d",
+        "type": "debug",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "cfdd8063c033d022",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "TODO",
+        "info": "Da rivedere la funzione come nascondere la colonna id",
+        "x": 830,
+        "y": 460,
+        "wires": []
     }
 ]

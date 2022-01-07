@@ -636,7 +636,7 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "",
-        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//search every active irrigation schedule\n    let fromtime = moment(msg.payload[i].fromtime).format(\"YYYY-MM-DD HH:mm:ss\");//format date and time \n    let totime = moment(msg.payload[i].totime).format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (msg.payload[i].oneshoot === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"every \" + msg.payload[i].every + \"min, duration \" + msg.payload[i].duration });\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (msg.payload[i].oneshoot === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + msg.payload[i].duration});\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nreturn msgout;",
+        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                }\n            ],\n        \"settings\" : {\n            \"chart\": {\n                \"topMargin\": 0\n                }\n            }\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//search every active irrigation schedule\n    let fromtime = moment(msg.payload[i].fromtime).format(\"YYYY-MM-DD HH:mm:ss\");//format date and time \n    let totime = moment(msg.payload[i].totime).format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (msg.payload[i].oneshoot === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"every \" + msg.payload[i].every + \"min, duration \" + msg.payload[i].duration });\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (msg.payload[i].oneshoot === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + msg.payload[i].duration});\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nreturn msgout;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -653,7 +653,8 @@
             [
                 "44ad992ef7e50aa6"
             ]
-        ]
+        ],
+        "info": "    settings:{\r\n        \"chart\":{\r\n          \"topMargin\": 0)>\r\n        }\r\n    }"
     },
     {
         "id": "e81c23a046503b4c",

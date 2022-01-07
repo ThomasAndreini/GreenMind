@@ -512,8 +512,8 @@
         "enableAnimations": true,
         "enableDateMarker": true,
         "forwardInputMessages": false,
-        "x": 440,
-        "y": 240,
+        "x": 460,
+        "y": 200,
         "wires": [
             [
                 "2f40eb1e65f95f8f"
@@ -560,7 +560,6 @@
         "y": 220,
         "wires": [
             [
-                "44ad992ef7e50aa6",
                 "2f40eb1e65f95f8f"
             ]
         ]
@@ -570,7 +569,7 @@
         "type": "debug",
         "z": "473af4e9135bb6f3",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -594,7 +593,7 @@
         "y": 80,
         "wires": [
             [
-                "b7a511a73350c773"
+                "a6b7472a7e43b83b"
             ]
         ]
     },
@@ -610,8 +609,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 700,
-        "y": 60,
+        "x": 830,
+        "y": 80,
         "wires": []
     },
     {
@@ -619,7 +618,7 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "",
-        "func": "//ATTENZIONE, vedere se oneshoot o ripetute non ha programmazioni attive se appare comunque nel timeline chart\nvar msgout = {\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                        {\n                            \"label\": \"Repeat\",\n                            \"data\": [\n                                {\n                                    \"timeRange\": [\"2021-01-01 01:00:00\", \"2021-01-01 10:00:00\"],//qui va inserito fromtime e totime delle irrigazioni ripetute\n                                    \"val\": \"every 5min 20 sec\"//qui va inserito every e duration delle irrigazioni ripetute\n                                }\n                            ]\n                        },\n                        {\n                            \"label\": \"One shoot\",\n                            \"data\": [\n                                {\n                                    \"timeRange\": [\"2021-01-01 10:00:00\", \"2021-01-01 10:10:00\"],//qui va inserito fromtime e totime delle irrigazioni one shoot\n                                    \"val\": \"50 sec\" //qui va inserito duration delle irrigazioni one shoot\n                                }\n                            ]\n                        },\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//qui il ciclo per inserire i dati dal db all'oggetto sopra\n    msg.payload.dataItems[0].data[0].data\n\n}\n\nreturn;",
+        "func": "//ATTENZIONE, vedere se oneshoot o ripetute non ha programmazioni attive se appare comunque nel timeline chart\nvar msgout = {\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//qui il ciclo per inserire i dati dal db all'oggetto sopra\n    var objecttoarray = {\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (msg.payload[i].oneshoot === 0){\n        objecttoarray.label = \"Repeat\";\n        objecttoarray.data.push({ \"timeRange\": [msg.payload[i].fromtime, msg.payload[i].totime], \"val\": \"every \" + msg.payload[i].every + \"min, duration \" + msg.payload[i].duration });\n        msgout.payload.dataItems[0].data.push(objecttoarray);\n    }\n    if (msg.payload[i].oneshoot === 1) {\n        objecttoarray.label = \"One shoot\";\n        objecttoarray.data.push({ \"timeRange\": [msg.payload[i].fromtime, msg.payload[i].totime], \"val\": \"One shoot, duration \" + msg.payload[i].duration});\n        msgout.payload.dataItems[0].data.push(objecttoarray);\n    }\n}\nreturn msgout;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -628,8 +627,21 @@
         "x": 610,
         "y": 120,
         "wires": [
-            []
+            [
+                "b7a511a73350c773",
+                "44ad992ef7e50aa6"
+            ]
         ]
+    },
+    {
+        "id": "e81c23a046503b4c",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "funzione da rivedere",
+        "info": "Da rivedere funzione, su msgout.payload.dataItems[0].data[x] va fatto il push di un oggetto (obj)\ncon obj.label = repeat o one shoot\nobj.data[x].timeRange = [data inizio, data fine]\nobj.data[x].val = every x (se ripetuto altrimenti one shoot) duration x\nda modificare timestamp con dataora con moment",
+        "x": 640,
+        "y": 60,
+        "wires": []
     },
     {
         "id": "be7cbfc514e81423",

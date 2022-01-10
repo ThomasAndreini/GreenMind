@@ -609,7 +609,7 @@
         "enableAnimations": true,
         "enableDateMarker": true,
         "forwardInputMessages": false,
-        "x": 980,
+        "x": 1160,
         "y": 220,
         "wires": [
             []
@@ -623,7 +623,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 560,
+        "x": 740,
         "y": 220,
         "wires": [
             [
@@ -647,7 +647,7 @@
                 "module": "moment"
             }
         ],
-        "x": 800,
+        "x": 980,
         "y": 220,
         "wires": [
             [
@@ -657,27 +657,17 @@
         "info": "    settings:{\r\n        \"chart\":{\r\n          \"topMargin\": 0)>\r\n        }\r\n    }"
     },
     {
-        "id": "e81c23a046503b4c",
-        "type": "comment",
-        "z": "473af4e9135bb6f3",
-        "name": "funzione da rivedere",
-        "info": "Da rivedere funzione, su msgout.payload.dataItems[0].data[x] va fatto il push di un oggetto (obj)\ncon obj.label = repeat o one shoot\nobj.data[x].timeRange = [data inizio, data fine]\nobj.data[x].val = every x (se ripetuto altrimenti one shoot) duration x\nda modificare timestamp con dataora con moment",
-        "x": 640,
-        "y": 60,
-        "wires": []
-    },
-    {
         "id": "a49933558f887776",
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "query if tab is loaded",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    let msgout = { \"topic\": \"\" }\n    msgout.topic = \"SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Home\") {\n    let msgout = { \"topic\": \"\" }\n    msgout.topic = \"SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 280,
+        "x": 460,
         "y": 220,
         "wires": [
             [
@@ -692,6 +682,31 @@
         "name": "",
         "events": "all",
         "x": 80,
+        "y": 220,
+        "wires": [
+            [
+                "86c83b88f241d12c"
+            ]
+        ]
+    },
+    {
+        "id": "86c83b88f241d12c",
+        "type": "delay",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 250,
         "y": 220,
         "wires": [
             [

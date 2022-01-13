@@ -150,7 +150,7 @@
         "id": "6691e9ed50dfc4a2",
         "type": "ui_tab",
         "name": "Home",
-        "icon": "dashboard",
+        "icon": "home",
         "order": 1,
         "disabled": false,
         "hidden": false
@@ -169,7 +169,7 @@
     {
         "id": "273b4a3829d447ed",
         "type": "sqlitedb",
-        "db": "/home/pi/opengreenhouse/main.db",
+        "db": "/home/pi/growerassistant/main.db",
         "mode": "RWC"
     },
     {
@@ -198,7 +198,7 @@
         "id": "c9196ab76e307349",
         "type": "ui_tab",
         "name": "Irrigation",
-        "icon": "dashboard",
+        "icon": "mi-water_drop",
         "order": 2,
         "disabled": false,
         "hidden": false
@@ -375,6 +375,15 @@
         "order": 3,
         "width": 2,
         "height": 1
+    },
+    {
+        "id": "75cd50c30ea27a6d",
+        "type": "ui_tab",
+        "name": "Climate",
+        "icon": "mi-public",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
     },
     {
         "id": "6d1fd696c4bf8db1",

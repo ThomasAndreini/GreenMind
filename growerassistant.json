@@ -1,13 +1,5 @@
 [
     {
-        "id": "d131706f99a3b080",
-        "type": "tab",
-        "label": "Database",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "473af4e9135bb6f3",
         "type": "tab",
         "label": "Home",
@@ -19,30 +11,6 @@
         "id": "9cfee97fb9e96644",
         "type": "tab",
         "label": "Irrigation",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "c1ad51cd7c1f6f30",
-        "type": "tab",
-        "label": "Climate",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "6e05f7e6b67e985d",
-        "type": "tab",
-        "label": "Artificial light",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
-        "id": "3093b5dc65ba7357",
-        "type": "tab",
-        "label": "Settings",
         "disabled": false,
         "info": "",
         "env": []
@@ -171,28 +139,6 @@
         "type": "sqlitedb",
         "db": "/home/pi/growerassistant/main.db",
         "mode": "RWC"
-    },
-    {
-        "id": "5e17e0da459b8444",
-        "type": "ui_group",
-        "name": "Temperature",
-        "tab": "6691e9ed50dfc4a2",
-        "order": 2,
-        "disp": false,
-        "width": "20",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "76b62dcf392e0c7d",
-        "type": "ui_group",
-        "name": "Humidity",
-        "tab": "6691e9ed50dfc4a2",
-        "order": 3,
-        "disp": false,
-        "width": "20",
-        "collapse": false,
-        "className": ""
     },
     {
         "id": "c9196ab76e307349",
@@ -377,216 +323,15 @@
         "height": 1
     },
     {
-        "id": "75cd50c30ea27a6d",
-        "type": "ui_tab",
-        "name": "Climate",
-        "icon": "mi-public",
-        "order": 3,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "6d1fd696c4bf8db1",
-        "type": "sqlite",
-        "z": "d131706f99a3b080",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "main",
-        "x": 470,
-        "y": 180,
-        "wires": [
-            [
-                "2a65702819994012"
-            ]
-        ]
-    },
-    {
-        "id": "4731039f2e9ee849",
-        "type": "comment",
-        "z": "d131706f99a3b080",
-        "name": "Tables description",
-        "info": "Tables:\n- Irrigation - active integer, fromtime integer, totime integer, every integer, duration integer, oneshoot integer.  ",
-        "x": 240,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "a76d28be768bf6fd",
-        "type": "inject",
-        "z": "d131706f99a3b080",
-        "name": "CREATE TABLE irrigation",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER)",
-        "x": 210,
-        "y": 140,
-        "wires": [
-            [
-                "6d1fd696c4bf8db1"
-            ]
-        ]
-    },
-    {
-        "id": "8ba8fcbcc89d2716",
-        "type": "inject",
-        "z": "d131706f99a3b080",
-        "name": "drop table",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "DROP TABLE irrigationmade",
-        "x": 480,
-        "y": 100,
-        "wires": [
-            [
-                "6d1fd696c4bf8db1"
-            ]
-        ]
-    },
-    {
-        "id": "2a65702819994012",
-        "type": "debug",
-        "z": "d131706f99a3b080",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 660,
-        "y": 180,
-        "wires": []
-    },
-    {
-        "id": "dedef65710f4f7e7",
-        "type": "inject",
-        "z": "d131706f99a3b080",
-        "name": "CREATE TABLE irrigationdone",
-        "props": [
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER)",
-        "x": 230,
-        "y": 200,
-        "wires": [
-            [
-                "6d1fd696c4bf8db1"
-            ]
-        ],
-        "info": "records the daily irrigations done"
-    },
-    {
-        "id": "318caacaa77f998d",
-        "type": "ui_chart",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "group": "5e17e0da459b8444",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "label": "Temperature",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "-10",
-        "ymax": "50",
-        "removeOlder": "24",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 430,
-        "y": 320,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "075a1b22708c87eb",
-        "type": "ui_chart",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "group": "76b62dcf392e0c7d",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "label": "Humidity",
-        "chartType": "line",
-        "legend": "false",
-        "xformat": "HH:mm:ss",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "0",
-        "ymax": "100",
-        "removeOlder": "24",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 420,
-        "y": 400,
-        "wires": [
-            []
-        ]
+        "id": "f668e2ddd7534d1b",
+        "type": "ui_group",
+        "name": "Announce",
+        "tab": "6691e9ed50dfc4a2",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": true,
+        "className": ""
     },
     {
         "id": "44ad992ef7e50aa6",
@@ -618,7 +363,7 @@
         "enableAnimations": true,
         "enableDateMarker": true,
         "forwardInputMessages": false,
-        "x": 1160,
+        "x": 1200,
         "y": 220,
         "wires": [
             []
@@ -644,7 +389,7 @@
         "id": "a6b7472a7e43b83b",
         "type": "function",
         "z": "473af4e9135bb6f3",
-        "name": "",
+        "name": "format values",
         "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                }\n            ],\n        \"settings\" : {\n            \"chart\": {\n                \"topMargin\": 0\n                }\n            }\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//search every active irrigation schedule\n    let fromtime = moment(msg.payload[i].fromtime).format(\"YYYY-MM-DD HH:mm:ss\");//format date and time \n    let totime = moment(msg.payload[i].totime).format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (msg.payload[i].oneshoot === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"every \" + msg.payload[i].every + \"min, duration \" + msg.payload[i].duration });\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (msg.payload[i].oneshoot === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + msg.payload[i].duration});\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nreturn msgout;",
         "outputs": 1,
         "noerr": 0,
@@ -656,7 +401,7 @@
                 "module": "moment"
             }
         ],
-        "x": 980,
+        "x": 1000,
         "y": 220,
         "wires": [
             [
@@ -670,7 +415,7 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "query if tab is loaded",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Home\") {\n    let msgout = { \"topic\": \"\" }\n    msgout.topic = \"SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Home\") {//if home tab is loaded then send a query to db\n    let msgout = { \"topic\": \"\" }\n    msgout.topic = \"SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -694,7 +439,8 @@
         "y": 220,
         "wires": [
             [
-                "86c83b88f241d12c"
+                "86c83b88f241d12c",
+                "43783318f3f6408b"
             ]
         ]
     },
@@ -721,6 +467,28 @@
             [
                 "a49933558f887776"
             ]
+        ],
+        "info": "Wait for page loading is complete"
+    },
+    {
+        "id": "43783318f3f6408b",
+        "type": "ui_template",
+        "z": "473af4e9135bb6f3",
+        "group": "f668e2ddd7534d1b",
+        "name": "",
+        "order": 1,
+        "width": "20",
+        "height": "4",
+        "format": "<div <p>This is the first release of a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GrowerAssistant\">https://github.com/ThomasAndreini/GrowerAssistant</a>.</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 240,
+        "y": 300,
+        "wires": [
+            []
         ]
     },
     {
@@ -729,8 +497,8 @@
         "z": "9cfee97fb9e96644",
         "name": "Irrigation schedule dashboard",
         "info": "",
-        "x": 400,
-        "y": 280,
+        "x": 520,
+        "y": 300,
         "wires": []
     },
     {
@@ -816,7 +584,7 @@
         ],
         "outputs": 1,
         "cts": true,
-        "x": 1020,
+        "x": 1030,
         "y": 500,
         "wires": [
             [
@@ -832,7 +600,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 570,
+        "x": 580,
         "y": 500,
         "wires": [
             [
@@ -846,7 +614,7 @@
         "z": "9cfee97fb9e96644",
         "name": "load irrigation notify",
         "events": "change",
-        "x": 120,
+        "x": 130,
         "y": 500,
         "wires": [
             [
@@ -865,7 +633,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 330,
         "y": 500,
         "wires": [
             [
@@ -900,7 +668,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1890,
+        "x": 1730,
         "y": 540,
         "wires": [
             [
@@ -926,7 +694,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1890,
+        "x": 1730,
         "y": 580,
         "wires": [
             [
@@ -952,7 +720,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1890,
+        "x": 1730,
         "y": 620,
         "wires": [
             [
@@ -978,7 +746,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1890,
+        "x": 1730,
         "y": 660,
         "wires": [
             [
@@ -1004,7 +772,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1800,
+        "x": 1740,
         "y": 820,
         "wires": [
             [
@@ -1038,7 +806,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1810,
+        "x": 1750,
         "y": 780,
         "wires": [
             [
@@ -1067,7 +835,7 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 80,
+        "x": 90,
         "y": 360,
         "wires": [
             [
@@ -1095,7 +863,7 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 80,
+        "x": 90,
         "y": 400,
         "wires": [
             [
@@ -1149,7 +917,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2250,
+        "x": 1940,
         "y": 540,
         "wires": [
             []
@@ -1174,7 +942,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2260,
+        "x": 1950,
         "y": 580,
         "wires": [
             []
@@ -1199,7 +967,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2250,
+        "x": 1940,
         "y": 620,
         "wires": [
             []
@@ -1224,7 +992,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2250,
+        "x": 1940,
         "y": 660,
         "wires": [
             []
@@ -1249,7 +1017,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2030,
+        "x": 1970,
         "y": 820,
         "wires": [
             []
@@ -1274,7 +1042,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2050,
+        "x": 1990,
         "y": 780,
         "wires": [
             []
@@ -1451,23 +1219,13 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 320,
+        "x": 330,
         "y": 400,
         "wires": [
             [
                 "5d4434152352be75"
             ]
         ]
-    },
-    {
-        "id": "9e3cc02ba788f699",
-        "type": "comment",
-        "z": "9cfee97fb9e96644",
-        "name": "TODO generale",
-        "info": "controllare che i reset dei campi di input non facciano casino in giro\nvedi se irrigazioni manuali è ben incastrato con le irrigazioni programmate",
-        "x": 720,
-        "y": 20,
-        "wires": []
     },
     {
         "id": "35245eb2fa31ffbd",
@@ -1489,7 +1247,7 @@
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
-        "x": 80,
+        "x": 90,
         "y": 440,
         "wires": [
             [
@@ -1551,7 +1309,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 530,
+        "x": 960,
         "y": 660,
         "wires": [
             [
@@ -1570,7 +1328,7 @@
         "z": "9cfee97fb9e96644",
         "name": "Irrigation schedule logic",
         "info": "",
-        "x": 310,
+        "x": 520,
         "y": 1400,
         "wires": []
     },
@@ -1578,14 +1336,14 @@
         "id": "37a971ed9a826349",
         "type": "function",
         "z": "9cfee97fb9e96644",
-        "name": "",
+        "name": "toggle respect one shoot",
         "func": "if (msg.payload === 1){\n    msg.payload = null;\n    msg.enabled = false;\n    node.send(msg);\n}\nif (msg.payload === 0) {\n    msg.payload = undefined;\n    msg.enabled = true;\n    node.send(msg);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1580,
+        "x": 1530,
         "y": 720,
         "wires": [
             [
@@ -1599,7 +1357,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "epoch to time",
-        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\n//msg.ui_control = {\"tabulator\" : {\"hideColumn\" : \"id\"}};\nreturn msg;",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1610,7 +1368,7 @@
                 "module": "moment"
             }
         ],
-        "x": 830,
+        "x": 840,
         "y": 500,
         "wires": [
             [
@@ -1634,7 +1392,7 @@
                 "module": "moment"
             }
         ],
-        "x": 1200,
+        "x": 1220,
         "y": 500,
         "wires": [
             [
@@ -1654,7 +1412,7 @@
         "z": "9cfee97fb9e96644",
         "name": "Irrigation done dashboard and logic",
         "info": "",
-        "x": 440,
+        "x": 560,
         "y": 940,
         "wires": []
     },
@@ -1727,8 +1485,8 @@
         "z": "9cfee97fb9e96644",
         "name": "Manual irrigation dashboard and logic",
         "info": "",
-        "x": 390,
-        "y": 1160,
+        "x": 570,
+        "y": 1180,
         "wires": []
     },
     {
@@ -1808,7 +1566,7 @@
         "z": "9cfee97fb9e96644",
         "name": "Initialize context on first start",
         "info": "",
-        "x": 410,
+        "x": 520,
         "y": 80,
         "wires": []
     },
@@ -1847,7 +1605,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 710,
+        "x": 670,
         "y": 140,
         "wires": [
             [
@@ -1863,7 +1621,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 1060,
+        "x": 1020,
         "y": 140,
         "wires": [
             []
@@ -1881,7 +1639,7 @@
         "out": "out",
         "bcm": true,
         "x": 1120,
-        "y": 1340,
+        "y": 1320,
         "wires": []
     },
     {
@@ -1893,7 +1651,7 @@
         "sql": "",
         "name": "to table irrigationdone",
         "x": 1160,
-        "y": 1400,
+        "y": 1380,
         "wires": [
             []
         ]
@@ -1958,7 +1716,7 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 360,
+        "x": 320,
         "y": 140,
         "wires": [
             [
@@ -1975,7 +1733,7 @@
             "933295d7c80380ff"
         ],
         "uncaught": false,
-        "x": 430,
+        "x": 390,
         "y": 200,
         "wires": [
             [
@@ -2108,7 +1866,7 @@
             "387e19c91a449350"
         ],
         "x": 1015,
-        "y": 1340,
+        "y": 1320,
         "wires": [
             [
                 "4a69bffa8e947aef"
@@ -2151,7 +1909,7 @@
             "c3f6ec405cb69b1e"
         ],
         "x": 1015,
-        "y": 1400,
+        "y": 1380,
         "wires": [
             [
                 "1d73c5dce4d38372"
@@ -2159,13 +1917,13 @@
         ]
     },
     {
-        "id": "cfdd8063c033d022",
+        "id": "0f3587f40168fa9f",
         "type": "comment",
         "z": "9cfee97fb9e96644",
-        "name": "TODO",
-        "info": "Da rivedere la funzione come nascondere la colonna id",
-        "x": 830,
-        "y": 460,
+        "name": "Output",
+        "info": "",
+        "x": 1110,
+        "y": 1240,
         "wires": []
     }
 ]

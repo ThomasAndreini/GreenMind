@@ -16,6 +16,14 @@
         "env": []
     },
     {
+        "id": "4215ef7ad32b1858",
+        "type": "tab",
+        "label": "Climate",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "30310abcb724f80d",
         "type": "ui_base",
         "theme": {

@@ -1924,5 +1924,15 @@
         "x": 1110,
         "y": 1240,
         "wires": []
+    },
+    {
+        "id": "93c80ccfe12a3084",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "TODO",
+        "info": "aggiungere il controllo della versione su inizializza context, quindi if version = 0.0.1 allora aggiungi inizializzazione context 0.1.0 e imposta version come 0.1.0",
+        "x": 800,
+        "y": 80,
+        "wires": []
     }
 ]

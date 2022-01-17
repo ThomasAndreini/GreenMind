@@ -3,7 +3,7 @@ Grower Assistant
 
 ### About
 
-Grower Assistant is a software designed for the management of a private crop. The intent is to allow complete control of a small greenhouse or an indoor crop that can be managed from a web interface accessible from both PC and smartphone.
+Grower Assistant is a software designed for the management of a indoor crop. The intent is to allow complete control of a small greenhouse or an indoor crop that can be managed from a web interface accessible from both PC and smartphone.
 Through Grower Assistant it is possible to manage irrigation, climate, artificial lighting, heating and ventilation of the environment. Each operation performed and data detected is recorded and shown as a graph and table.
 Grower Assistant is a ready-to-use product but it was created with the intention of being as open as possible, it is therefore developed through Node Red, a visual language that is very simple to learn and modify if the user wants to adapt it to specifics. needs.
 The platform is the popular Raspberry pi, a low-cost board with great potential.

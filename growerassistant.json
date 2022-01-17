@@ -1,8 +1,16 @@
 [
     {
-        "id": "3093b5dc65ba7357",
+        "id": "473af4e9135bb6f3",
         "type": "tab",
-        "label": "Settings",
+        "label": "Home",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9cfee97fb9e96644",
+        "type": "tab",
+        "label": "Irrigation",
         "disabled": false,
         "info": "",
         "env": []
@@ -40,7 +48,7 @@
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#001eff",
+                    "value": "#0094CE",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -48,11 +56,11 @@
                     "edited": false
                 },
                 "page-sidebar-backgroundColor": {
-                    "value": "#333333",
+                    "value": "#ffffff",
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#4d61ff",
+                    "value": "#1bbfff",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -68,7 +76,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#001eff",
+                    "value": "#0094ce",
                     "edited": false
                 },
                 "widget-borderColor": {
@@ -105,5 +113,1817 @@
                 "py": 0
             }
         }
+    },
+    {
+        "id": "6691e9ed50dfc4a2",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "home",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "f83273088eb193ee",
+        "type": "ui_group",
+        "name": "Schedule summary",
+        "tab": "6691e9ed50dfc4a2",
+        "order": 1,
+        "disp": false,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "273b4a3829d447ed",
+        "type": "sqlitedb",
+        "db": "/home/pi/growerassistant/main.db",
+        "mode": "RWC"
+    },
+    {
+        "id": "c9196ab76e307349",
+        "type": "ui_tab",
+        "name": "Irrigation",
+        "icon": "mi-water_drop",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "fa9ccf2e0cfb5c02",
+        "type": "ui_group",
+        "name": "Schedule",
+        "tab": "c9196ab76e307349",
+        "order": 1,
+        "disp": true,
+        "width": 14,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "25572f3b22faabc8",
+        "type": "ui_group",
+        "name": "Irrigation done",
+        "tab": "c9196ab76e307349",
+        "order": 2,
+        "disp": true,
+        "width": 14,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "2b2b4e4e8122d74f",
+        "type": "ui_group",
+        "name": "Manual irrigation",
+        "tab": "c9196ab76e307349",
+        "order": 3,
+        "disp": true,
+        "width": 14,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "02846b4cc5558f7e",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "e27a4639dafe7164",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "6c393be6834aed11",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 4,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "7d85d36f6c06fbb2",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "df7840ae25995d6d",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "19b92ba2c1625b95",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "01ed1015771f42c3",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2cd81053f5567717",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c57522eb3b23fea7",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1dc40777aadfaac8",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1a9c87403f17b34b",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d2274f4f4ff8c56b",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "1b33eab4773e9acf",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "2b2b4e4e8122d74f",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "206fe160a1168157",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "2b2b4e4e8122d74f",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f668e2ddd7534d1b",
+        "type": "ui_group",
+        "name": "Announce",
+        "tab": "6691e9ed50dfc4a2",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "44ad992ef7e50aa6",
+        "type": "ui_timelines_chart",
+        "z": "473af4e9135bb6f3",
+        "group": "f83273088eb193ee",
+        "name": "",
+        "order": 2,
+        "label": "Schedule summary",
+        "width": "0",
+        "height": "0",
+        "lineColors": [
+            {
+                "statusColor": "#0084ff",
+                "statusValue": ""
+            }
+        ],
+        "xTickFormat": "HH:mm",
+        "startDateTime": "1970-01-01T00:00",
+        "endDateTime": "1970-01-01T23:59",
+        "maxLineHeight": "15",
+        "topMargin": "0",
+        "xAxisLabelsFontSize": "14",
+        "xAxisLabelslColor": "#000000",
+        "yAxisLabelsFontSize": "16",
+        "yAxisLabelslColor": "#000000",
+        "resetZoomLabelFontSize": 24,
+        "resetZoomLabelColor": "#000000",
+        "enableAnimations": true,
+        "enableDateMarker": true,
+        "forwardInputMessages": false,
+        "x": 1200,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cbf17221b4974b57",
+        "type": "sqlite",
+        "z": "473af4e9135bb6f3",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 740,
+        "y": 220,
+        "wires": [
+            [
+                "a6b7472a7e43b83b"
+            ]
+        ]
+    },
+    {
+        "id": "a6b7472a7e43b83b",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "format values",
+        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                }\n            ],\n        \"settings\" : {\n            \"chart\": {\n                \"topMargin\": 0\n                }\n            }\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//search every active irrigation schedule\n    let fromtime = moment(msg.payload[i].fromtime).format(\"YYYY-MM-DD HH:mm:ss\");//format date and time \n    let totime = moment(msg.payload[i].totime).format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (msg.payload[i].oneshoot === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"every \" + msg.payload[i].every + \"min, duration \" + msg.payload[i].duration });\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (msg.payload[i].oneshoot === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + msg.payload[i].duration});\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nreturn msgout;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 1000,
+        "y": 220,
+        "wires": [
+            [
+                "44ad992ef7e50aa6"
+            ]
+        ],
+        "info": "    settings:{\r\n        \"chart\":{\r\n          \"topMargin\": 0)>\r\n        }\r\n    }"
+    },
+    {
+        "id": "a49933558f887776",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "query if tab is loaded",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Home\") {//if home tab is loaded then send a query to db\n    let msgout = { \"topic\": \"\" }\n    msgout.topic = \"SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 220,
+        "wires": [
+            [
+                "cbf17221b4974b57"
+            ]
+        ]
+    },
+    {
+        "id": "bd541d756dceeb68",
+        "type": "ui_ui_control",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "events": "all",
+        "x": 80,
+        "y": 220,
+        "wires": [
+            [
+                "86c83b88f241d12c",
+                "43783318f3f6408b"
+            ]
+        ]
+    },
+    {
+        "id": "86c83b88f241d12c",
+        "type": "delay",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 220,
+        "wires": [
+            [
+                "a49933558f887776"
+            ]
+        ],
+        "info": "Wait for page loading is complete"
+    },
+    {
+        "id": "43783318f3f6408b",
+        "type": "ui_template",
+        "z": "473af4e9135bb6f3",
+        "group": "f668e2ddd7534d1b",
+        "name": "",
+        "order": 1,
+        "width": "20",
+        "height": "4",
+        "format": "<div <p>This is the first release of a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GrowerAssistant\">https://github.com/ThomasAndreini/GrowerAssistant</a>.</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 240,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "be7cbfc514e81423",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Irrigation schedule dashboard",
+        "info": "",
+        "x": 520,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "f8e099d3825a6ece",
+        "type": "ui_table",
+        "z": "9cfee97fb9e96644",
+        "group": "fa9ccf2e0cfb5c02",
+        "name": "irrschedule",
+        "order": 1,
+        "width": 14,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "50",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "active",
+                "title": "Active",
+                "width": "90",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "fromtime",
+                "title": "From",
+                "width": "130",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "totime",
+                "title": "To",
+                "width": "130",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "every",
+                "title": "Every min",
+                "width": "120",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "duration",
+                "title": "Duration",
+                "width": "120",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "oneshoot",
+                "title": "One shoot",
+                "width": "110",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1030,
+        "y": 500,
+        "wires": [
+            [
+                "4258efc5d0dbfd62"
+            ]
+        ]
+    },
+    {
+        "id": "5d4434152352be75",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
+                "a7ae236536372f97"
+            ]
+        ]
+    },
+    {
+        "id": "09cf0f0ca103e47e",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "d69ce2da8441ec24"
+            ]
+        ]
+    },
+    {
+        "id": "d69ce2da8441ec24",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 500,
+        "wires": [
+            [
+                "5d4434152352be75",
+                "9b96e90fe4a26a8a"
+            ]
+        ]
+    },
+    {
+        "id": "0ec6e2279f40fc7b",
+        "type": "ui_switch",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Active",
+        "tooltip": "Enable or disable this programming row",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1730,
+        "y": 540,
+        "wires": [
+            [
+                "fc57f377ec280935"
+            ]
+        ]
+    },
+    {
+        "id": "1ac85274d91d1f6b",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "From",
+        "tooltip": "Start time of programming",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1730,
+        "y": 580,
+        "wires": [
+            [
+                "abbba47230890ecb"
+            ]
+        ]
+    },
+    {
+        "id": "8be6109a5cbe938b",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "To",
+        "tooltip": "End time of programming",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1730,
+        "y": 620,
+        "wires": [
+            [
+                "81761520c7dc5aef"
+            ]
+        ]
+    },
+    {
+        "id": "35b1cb8d9c5604fd",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Every",
+        "tooltip": "Run irrigation every (minutes)",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1730,
+        "y": 660,
+        "wires": [
+            [
+                "9f7002438e1ab4ea"
+            ]
+        ]
+    },
+    {
+        "id": "77490e9a5b6a8097",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Duration",
+        "tooltip": "Duration of irrigation (seconds)",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 6,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1740,
+        "y": 820,
+        "wires": [
+            [
+                "16869e0b8315f42c"
+            ]
+        ]
+    },
+    {
+        "id": "3051c6860a0e394c",
+        "type": "ui_switch",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "One Shoot",
+        "tooltip": "Run irrigation once (disable the Every field and the To field)",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 7,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1750,
+        "y": 780,
+        "wires": [
+            [
+                "1f65ef9f4a1665a6",
+                "37a971ed9a826349"
+            ]
+        ]
+    },
+    {
+        "id": "aff7013e00bc8f63",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Edit",
+        "tooltip": "Edit the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "edit",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "b2727c05738a4afa"
+            ]
+        ]
+    },
+    {
+        "id": "ddde992c6bf0e4ba",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 9,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "New",
+        "tooltip": "Add a schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "new",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "b2727c05738a4afa"
+            ]
+        ]
+    },
+    {
+        "id": "71206f6b9df1f514",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.active",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 540,
+        "wires": [
+            [
+                "0ec6e2279f40fc7b"
+            ]
+        ]
+    },
+    {
+        "id": "fc57f377ec280935",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.active",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "abbba47230890ecb",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.fromtime",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1950,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "81761520c7dc5aef",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.totime",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9f7002438e1ab4ea",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.every",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "16869e0b8315f42c",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.duration",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1970,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1f65ef9f4a1665a6",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.oneshoot",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1990,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dcf96c4280814575",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.id",
+                "pt": "flow",
+                "to": "payload.id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1510,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ec1ebd7a220d51b4",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.fromtime",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 580,
+        "wires": [
+            [
+                "1ac85274d91d1f6b"
+            ]
+        ]
+    },
+    {
+        "id": "5bfb44d232689676",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.totime",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 620,
+        "wires": [
+            [
+                "8be6109a5cbe938b"
+            ]
+        ]
+    },
+    {
+        "id": "82b221ac92059b34",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.every",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 660,
+        "wires": [
+            [
+                "35b1cb8d9c5604fd"
+            ]
+        ]
+    },
+    {
+        "id": "b4efc86f44c4e2da",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.duration",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 820,
+        "wires": [
+            [
+                "77490e9a5b6a8097"
+            ]
+        ]
+    },
+    {
+        "id": "3e27331e70384ee0",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.oneshoot",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 780,
+        "wires": [
+            [
+                "3051c6860a0e394c"
+            ]
+        ]
+    },
+    {
+        "id": "b2727c05738a4afa",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n    if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n    if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nif (msg.payload === \"new\") {\n    if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n    \n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "5d4434152352be75"
+            ]
+        ]
+    },
+    {
+        "id": "35245eb2fa31ffbd",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "Remove the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "delete",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "b2727c05738a4afa"
+            ]
+        ]
+    },
+    {
+        "id": "9b96e90fe4a26a8a",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "reset at loading page",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.active",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.fromtime",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.totime",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.every",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.duration",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.oneshoot",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 660,
+        "wires": [
+            [
+                "71206f6b9df1f514",
+                "ec1ebd7a220d51b4",
+                "5bfb44d232689676",
+                "82b221ac92059b34",
+                "b4efc86f44c4e2da",
+                "3e27331e70384ee0"
+            ]
+        ]
+    },
+    {
+        "id": "f5b7956e546e6e1f",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Irrigation schedule logic",
+        "info": "",
+        "x": 520,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "37a971ed9a826349",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "toggle respect one shoot",
+        "func": "if (msg.payload === 1){\n    msg.payload = null;\n    msg.enabled = false;\n    node.send(msg);\n}\nif (msg.payload === 0) {\n    msg.payload = undefined;\n    msg.enabled = true;\n    node.send(msg);\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1530,
+        "y": 720,
+        "wires": [
+            [
+                "8be6109a5cbe938b",
+                "35b1cb8d9c5604fd"
+            ]
+        ]
+    },
+    {
+        "id": "a7ae236536372f97",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "epoch to time",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 840,
+        "y": 500,
+        "wires": [
+            [
+                "f8e099d3825a6ece"
+            ]
+        ]
+    },
+    {
+        "id": "4258efc5d0dbfd62",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "time to epoch",
+        "func": "msg.payload.fromtime = parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nmsg.payload.totime = parseInt(moment(\"01/01/1970 \" + msg.payload.totime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 1220,
+        "y": 500,
+        "wires": [
+            [
+                "dcf96c4280814575",
+                "71206f6b9df1f514",
+                "ec1ebd7a220d51b4",
+                "5bfb44d232689676",
+                "82b221ac92059b34",
+                "3e27331e70384ee0",
+                "b4efc86f44c4e2da"
+            ]
+        ]
+    },
+    {
+        "id": "7489810a9a80d4a5",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Irrigation done dashboard and logic",
+        "info": "",
+        "x": 560,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "c478e8f4d3a24c0c",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 560,
+        "y": 1060,
+        "wires": [
+            [
+                "67664147b8c31f79"
+            ]
+        ]
+    },
+    {
+        "id": "cafd7de47d246249",
+        "type": "ui_table",
+        "z": "9cfee97fb9e96644",
+        "group": "25572f3b22faabc8",
+        "name": "",
+        "order": 2,
+        "width": 12,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "80",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "time",
+                "title": "Time",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "duration",
+                "title": "Duration",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 990,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "0463b6ba55aa7acd",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Manual irrigation dashboard and logic",
+        "info": "",
+        "x": 570,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "31b7d3097f0df449",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 390,
+        "y": 1500,
+        "wires": [
+            [
+                "b0a9b08b0a502a9e"
+            ]
+        ]
+    },
+    {
+        "id": "b1d5ca956a4e5bbd",
+        "type": "inject",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;",
+        "x": 170,
+        "y": 1500,
+        "wires": [
+            [
+                "31b7d3097f0df449"
+            ]
+        ]
+    },
+    {
+        "id": "b0a9b08b0a502a9e",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "check irrigation program and execute it",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        //node.warn(\"fromtime \" + i + \" \" + msg.payload[i].fromtime);\n        //node.warn(\"totime \" + i + \" \" + msg.payload[i].totime);\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgout = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgout = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= global.get(\"irrigation.irrprgact.duration\")) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 710,
+        "y": 1500,
+        "wires": [
+            [
+                "387e19c91a449350"
+            ],
+            [
+                "c3f6ec405cb69b1e"
+            ]
+        ],
+        "outputLabels": [
+            "to pin",
+            "to db"
+        ]
+    },
+    {
+        "id": "0357f13b7e1543e0",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Initialize context on first start",
+        "info": "",
+        "x": 520,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "80b88dccb016df1d",
+        "type": "inject",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "SELECT id, label, value FROM system WHERE label = \"version\";",
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "933295d7c80380ff"
+            ]
+        ]
+    },
+    {
+        "id": "eb57c242dd6101db",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "Initialize context and table of db at first start",
+        "func": "if (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0){\n    global.set(\"irrigation.irrisact\", 0);//0 irrigation in inactive 1 is active\n    global.set(\"irrigation.irrtime\", 0);//start time of irrigation duration timer (timestamp in ms)\n    global.set(\"irrigation.manualirrigation\", 0);//0 manual irrigation in inactive 1 is active\n    global.set(\"irrigation.irrprgact.id\", 0);//notity what irrigation program is active (0 nothing)\n    global.set(\"irrigation.irrprgact.fromtime\", 0);//start time of active irrigation program\n    global.set(\"irrigation.irrprgact.duration\", 0);//duration in second ofirrigation of active irrigation program\n    global.set(\"irrigation.irrprgact.oneshoot\", 0);//notify if one shoot irrigation is active in active irrigation program\n    global.set(\"irrigation.irrprgact.totime\", 0);//end time of active irrigation program\n    global.set(\"irrigation.irrprgact.every\", 0);//if one shoot irrigation is not active then repeat irrigation every (minutes)\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 670,
+        "y": 140,
+        "wires": [
+            [
+                "d1436ddcad8a9e8f"
+            ]
+        ]
+    },
+    {
+        "id": "d1436ddcad8a9e8f",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1020,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4a69bffa8e947aef",
+        "type": "rpi-gpio out",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "pin": "4",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1120,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "1d73c5dce4d38372",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "to table irrigationdone",
+        "x": 1160,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "753b11787971f0df",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "2b2b4e4e8122d74f",
+        "order": 2,
+        "width": 10,
+        "height": 1,
+        "passthru": false,
+        "label": "Start / Stop manual irrigation",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 300,
+        "y": 1260,
+        "wires": [
+            [
+                "4ea9c0c1480a4972"
+            ]
+        ]
+    },
+    {
+        "id": "2f10e39feee3c095",
+        "type": "inject",
+        "z": "9cfee97fb9e96644",
+        "name": "delete irrigation done at midnight",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 00 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DELETE FROM irrigationdone;",
+        "x": 240,
+        "y": 1000,
+        "wires": [
+            [
+                "c478e8f4d3a24c0c"
+            ]
+        ]
+    },
+    {
+        "id": "933295d7c80380ff",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 320,
+        "y": 140,
+        "wires": [
+            [
+                "eb57c242dd6101db"
+            ]
+        ]
+    },
+    {
+        "id": "a2796602413ba064",
+        "type": "catch",
+        "z": "9cfee97fb9e96644",
+        "name": "error from db",
+        "scope": [
+            "933295d7c80380ff"
+        ],
+        "uncaught": false,
+        "x": 390,
+        "y": 200,
+        "wires": [
+            [
+                "eb57c242dd6101db"
+            ]
+        ],
+        "info": "If system table is not created then error trigger function for create it"
+    },
+    {
+        "id": "08f49e173f72a25f",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 110,
+        "y": 1060,
+        "wires": [
+            [
+                "af730aace9973dff"
+            ]
+        ]
+    },
+    {
+        "id": "af730aace9973dff",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Irrigation\") {\n    let msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id, time, duration FROM irrigationdone ORDER BY time;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1060,
+        "wires": [
+            [
+                "c478e8f4d3a24c0c"
+            ]
+        ]
+    },
+    {
+        "id": "67664147b8c31f79",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "epoch to time",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].time = moment(msg.payload[i].time).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 820,
+        "y": 1060,
+        "wires": [
+            [
+                "cafd7de47d246249"
+            ]
+        ]
+    },
+    {
+        "id": "4ea9c0c1480a4972",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "Check irrisact status and modify",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    msgtopin.payload = 0;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    msgtopin.payload = 1;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", 0);\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 590,
+        "y": 1260,
+        "wires": [
+            [
+                "1ec6d8ef6a0f0d9a"
+            ],
+            [
+                "c20e373a96837ca1"
+            ]
+        ],
+        "outputLabels": [
+            "to pin",
+            "to db"
+        ]
+    },
+    {
+        "id": "1ec6d8ef6a0f0d9a",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from manual irrigation to pin",
+        "mode": "link",
+        "links": [
+            "5153195b2cf4939f"
+        ],
+        "x": 795,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "387e19c91a449350",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from irrigation schedule to pin",
+        "mode": "link",
+        "links": [
+            "5153195b2cf4939f"
+        ],
+        "x": 935,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "5153195b2cf4939f",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "to pin",
+        "links": [
+            "1ec6d8ef6a0f0d9a",
+            "387e19c91a449350"
+        ],
+        "x": 1015,
+        "y": 1320,
+        "wires": [
+            [
+                "4a69bffa8e947aef"
+            ]
+        ]
+    },
+    {
+        "id": "c20e373a96837ca1",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from manual irrigation to db",
+        "mode": "link",
+        "links": [
+            "f8f73f3e7876a923"
+        ],
+        "x": 795,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "c3f6ec405cb69b1e",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from irrigation schedule to db",
+        "mode": "link",
+        "links": [
+            "f8f73f3e7876a923"
+        ],
+        "x": 935,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "f8f73f3e7876a923",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "to db",
+        "links": [
+            "c20e373a96837ca1",
+            "c3f6ec405cb69b1e"
+        ],
+        "x": 1015,
+        "y": 1380,
+        "wires": [
+            [
+                "1d73c5dce4d38372"
+            ]
+        ]
+    },
+    {
+        "id": "0f3587f40168fa9f",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Output",
+        "info": "",
+        "x": 1110,
+        "y": 1240,
+        "wires": []
     }
 ]

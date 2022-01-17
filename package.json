@@ -3,8 +3,8 @@
     "description": "A Grower Assistant for small crop",
     "version": "0.1.0",
     "dependencies": {
-        "node-red-dashboard": "3.1.2",
-        "node-red-node-sqlite": "1.0.1",
+        "node-red-dashboard": "3.1.4",
+        "node-red-node-sqlite": "1.0.3",
         "node-red-contrib-ui-timelines-chart": "0.1.4",
         "node-red-node-pi-gpio": "2.0.1",
         "node-red-node-ui-table": "0.3.11"

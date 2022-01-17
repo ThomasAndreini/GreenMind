@@ -1,7 +1,7 @@
 {
     "name": "GrowerAssistant",
     "description": "A Grower Assistant for small crop",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "dependencies": {
         "node-red-dashboard": "3.1.2",
         "node-red-node-sqlite": "1.0.1",

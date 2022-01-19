@@ -335,10 +335,21 @@
         "type": "ui_group",
         "name": "Announce",
         "tab": "6691e9ed50dfc4a2",
-        "order": 2,
+        "order": 3,
         "disp": true,
         "width": "20",
         "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "c3238d4fed871bde",
+        "type": "ui_group",
+        "name": "Climate",
+        "tab": "6691e9ed50dfc4a2",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
         "className": ""
     },
     {
@@ -499,6 +510,60 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "01a35cb9f68f28fb",
+        "type": "ui_chart",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "group": "c3238d4fed871bde",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Climate detected",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-10",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ffae00",
+            "#006af5",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1010,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "473217ff8dc1c1f9",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "TODO",
+        "info": "Dopo aver creato la tabella climate utilizzare la funzione query sopra per estrarre tempertura e umidità dal database e inviarle al grafico",
+        "x": 830,
+        "y": 280,
+        "wires": []
     },
     {
         "id": "be7cbfc514e81423",
@@ -1943,6 +2008,117 @@
         "info": "aggiungere il controllo della versione su inizializza context, quindi if version = 0.0.1 allora aggiungi inizializzazione context 0.1.0 e imposta version come 0.1.0",
         "x": 800,
         "y": 80,
+        "wires": []
+    },
+    {
+        "id": "cb99007aad076d23",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Initialize context on first start",
+        "info": "",
+        "x": 540,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "441d21fe62c23e98",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "0.5",
+        "topic": "SELECT id, label, value FROM system WHERE label = \"version\";",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "0fedf38b0906fe88"
+            ]
+        ]
+    },
+    {
+        "id": "244e654b22e4cf1a",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "Initialize context and table of db at first start",
+        "func": "if (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    global.set(\"climate.temperatureget\", 0);//temperature detected\n    global.set(\"climate.humidityget\", 0);//humidity detected\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, temperature REAL NOT NULL, humidity INTEGER NOT  NULL);\"}\n    node.send(msgout);//create table climate detected\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 100,
+        "wires": [
+            [
+                "0ba7eb63be3fec20"
+            ]
+        ]
+    },
+    {
+        "id": "0ba7eb63be3fec20",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1040,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0fedf38b0906fe88",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "244e654b22e4cf1a"
+            ]
+        ]
+    },
+    {
+        "id": "edf8e16a86e67838",
+        "type": "catch",
+        "z": "4215ef7ad32b1858",
+        "name": "error from db",
+        "scope": [
+            "0fedf38b0906fe88"
+        ],
+        "uncaught": false,
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "244e654b22e4cf1a"
+            ]
+        ],
+        "info": "If system table is not created then error trigger function for create it"
+    },
+    {
+        "id": "094b2d022240c2dd",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "TODO",
+        "info": "attiva inject quando impostato il map dei context e database",
+        "x": 820,
+        "y": 40,
         "wires": []
     }
 ]

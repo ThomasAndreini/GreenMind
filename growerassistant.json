@@ -356,7 +356,7 @@
         "id": "abac10b9eadb5bc0",
         "type": "ui_tab",
         "name": "Climate",
-        "icon": "dashboard",
+        "icon": "fa-leaf",
         "order": 3,
         "disabled": false,
         "hidden": false

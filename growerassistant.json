@@ -164,7 +164,7 @@
         "tab": "c9196ab76e307349",
         "order": 1,
         "disp": true,
-        "width": 14,
+        "width": "14",
         "collapse": true,
         "className": ""
     },
@@ -349,6 +349,48 @@
         "order": 2,
         "disp": true,
         "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "abac10b9eadb5bc0",
+        "type": "ui_tab",
+        "name": "Climate",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "5cbd1b6fdfe2459d",
+        "type": "ui_group",
+        "name": "Schedule",
+        "tab": "abac10b9eadb5bc0",
+        "order": 1,
+        "disp": true,
+        "width": "14",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "cc3a2eefb8aff812",
+        "type": "ui_group",
+        "name": "Climate actions",
+        "tab": "abac10b9eadb5bc0",
+        "order": 2,
+        "disp": true,
+        "width": "14",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "138fe263b9fbdc51",
+        "type": "ui_group",
+        "name": "Manual commands",
+        "tab": "abac10b9eadb5bc0",
+        "order": 3,
+        "disp": true,
+        "width": "14",
         "collapse": false,
         "className": ""
     },
@@ -2049,7 +2091,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Initialize context and table of db at first start",
-        "func": "if (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    global.set(\"climate.temperatureget\", 0);//temperature detected\n    global.set(\"climate.humidityget\", 0);//humidity detected\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, temperature REAL NOT NULL, humidity INTEGER NOT  NULL);\"}\n    node.send(msgout);//create table climate detected\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn msg;",
+        "func": "if (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    global.set(\"climate.temperatureget\", 0);//temperature detected\n    global.set(\"climate.humidityget\", 0);//humidity detected\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL NOT NULL, inhumidity INTEGER NOT  NULL, exttemperature REAL NOT NULL, exthumidity INTEGER NOT  NULL);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER, enable INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, temperature INTEGER, humidity INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2120,5 +2162,1427 @@
         "x": 820,
         "y": 40,
         "wires": []
+    },
+    {
+        "id": "00858106fdcb9d4d",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Climate schedule dashboard",
+        "info": "",
+        "x": 520,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "ebf8ac9a567a7529",
+        "type": "ui_table",
+        "z": "4215ef7ad32b1858",
+        "group": "5cbd1b6fdfe2459d",
+        "name": "clmschedule",
+        "order": 1,
+        "width": 14,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "50",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "active",
+                "title": "Active",
+                "width": "90",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "fromtime",
+                "title": "From",
+                "width": "130",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "totime",
+                "title": "To",
+                "width": "130",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "tempmin",
+                "title": "Minimum temperature",
+                "width": "120",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "tempmax",
+                "title": "Maximum temperature",
+                "width": "120",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "hummin",
+                "title": "Minimum Humidity",
+                "width": "120",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "hummax",
+                "title": "Maximum Humidity",
+                "width": "120",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1030,
+        "y": 500,
+        "wires": [
+            [
+                "8fdc234f672b8e41"
+            ]
+        ]
+    },
+    {
+        "id": "f8c6e9924f9b113e",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
+                "bc29218e5b2fdb7a"
+            ]
+        ]
+    },
+    {
+        "id": "9a5733b7dc678a1c",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "35cf8c389803fcbd"
+            ]
+        ]
+    },
+    {
+        "id": "35cf8c389803fcbd",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id , fromtime, totime, tempmin, tempmax, hummin, hummax, enable FROM climate_set ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 500,
+        "wires": [
+            [
+                "f8c6e9924f9b113e",
+                "3491f083cfdea07a"
+            ]
+        ]
+    },
+    {
+        "id": "639c3c659b2eae0b",
+        "type": "ui_switch",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Active",
+        "tooltip": "Enable or disable this programming row",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1730,
+        "y": 540,
+        "wires": [
+            [
+                "393594e25b8c7985"
+            ]
+        ]
+    },
+    {
+        "id": "bf7a442b4b8d2e74",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "From",
+        "tooltip": "Start time of programming",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1730,
+        "y": 580,
+        "wires": [
+            [
+                "5c44af7d64f4a2fc"
+            ]
+        ]
+    },
+    {
+        "id": "fef75a7a1b91590a",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "To",
+        "tooltip": "End time of programming",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1730,
+        "y": 620,
+        "wires": [
+            [
+                "2019e4d56cde4447"
+            ]
+        ]
+    },
+    {
+        "id": "0549c84591625fc3",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Temp min",
+        "tooltip": "Minimum temperature allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1740,
+        "y": 660,
+        "wires": [
+            [
+                "4280c757ee36cbaf"
+            ]
+        ]
+    },
+    {
+        "id": "75cecd7f8ff0f75f",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Edit",
+        "tooltip": "Edit the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "edit",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "93785d1d5015625e"
+            ]
+        ]
+    },
+    {
+        "id": "e25d768af86b3752",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 9,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "New",
+        "tooltip": "Add a schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "new",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "93785d1d5015625e"
+            ]
+        ]
+    },
+    {
+        "id": "43270c5ff2d90750",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.active",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 540,
+        "wires": [
+            [
+                "639c3c659b2eae0b"
+            ]
+        ]
+    },
+    {
+        "id": "393594e25b8c7985",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.active",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c44af7d64f4a2fc",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.fromtime",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1950,
+        "y": 580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2019e4d56cde4447",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.totime",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1940,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4280c757ee36cbaf",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.tempmin",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1970,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "215f1ffca113dd1b",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.id",
+                "pt": "flow",
+                "to": "payload.id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1510,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7f0c29d7b7ba936f",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.fromtime",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 580,
+        "wires": [
+            [
+                "bf7a442b4b8d2e74"
+            ]
+        ]
+    },
+    {
+        "id": "f17011b6d1eb9ab2",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.totime",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 620,
+        "wires": [
+            [
+                "fef75a7a1b91590a"
+            ]
+        ]
+    },
+    {
+        "id": "3acda5dcedcfa711",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.tempmin",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 660,
+        "wires": [
+            [
+                "0549c84591625fc3"
+            ]
+        ]
+    },
+    {
+        "id": "93785d1d5015625e",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is changed, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//update schedule selected\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nif (msg.payload === \"new\") {\n    if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n    \n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "f8c6e9924f9b113e"
+            ]
+        ]
+    },
+    {
+        "id": "4a75e44ec050fa5e",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "Remove the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "delete",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "93785d1d5015625e"
+            ]
+        ]
+    },
+    {
+        "id": "3491f083cfdea07a",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "reset at loading page",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.active",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.fromtime",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.totime",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.tempmin",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.tempmax",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.hummin",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            },
+            {
+                "t": "set",
+                "p": "payload.hummax",
+                "pt": "msg",
+                "to": "false",
+                "tot": "bool"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 660,
+        "wires": [
+            [
+                "43270c5ff2d90750",
+                "7f0c29d7b7ba936f",
+                "f17011b6d1eb9ab2",
+                "3acda5dcedcfa711",
+                "06f06b7cc7e3f5ad",
+                "04fbd2665495d68a",
+                "7149659b0ad3359d"
+            ]
+        ]
+    },
+    {
+        "id": "aae614797bf97391",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Irrigation schedule logic",
+        "info": "",
+        "x": 520,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "bc29218e5b2fdb7a",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "epoch to time",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 840,
+        "y": 500,
+        "wires": [
+            [
+                "ebf8ac9a567a7529"
+            ]
+        ]
+    },
+    {
+        "id": "8fdc234f672b8e41",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "time to epoch",
+        "func": "msg.payload.fromtime = parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nmsg.payload.totime = parseInt(moment(\"01/01/1970 \" + msg.payload.totime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 1220,
+        "y": 500,
+        "wires": [
+            [
+                "215f1ffca113dd1b",
+                "43270c5ff2d90750",
+                "7f0c29d7b7ba936f",
+                "f17011b6d1eb9ab2",
+                "3acda5dcedcfa711",
+                "06f06b7cc7e3f5ad",
+                "04fbd2665495d68a",
+                "7149659b0ad3359d"
+            ]
+        ]
+    },
+    {
+        "id": "237e3258eecfb151",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Climate actions dashboard and logic",
+        "info": "",
+        "x": 560,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "41a11d6b6bc4eeb4",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 560,
+        "y": 1060,
+        "wires": [
+            [
+                "bc6c12ed10b83c45"
+            ]
+        ]
+    },
+    {
+        "id": "29e59a53102e38b5",
+        "type": "ui_table",
+        "z": "4215ef7ad32b1858",
+        "group": "cc3a2eefb8aff812",
+        "name": "",
+        "order": 2,
+        "width": 12,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "80",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "time",
+                "title": "Time",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "temperature",
+                "title": "Temperature",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "humidity",
+                "title": "Humidity",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "action",
+                "title": "Action",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 990,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "0dbd7c4ec090c7a9",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Manual commands dashboard and logic",
+        "info": "",
+        "x": 570,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "5226a70e7304af6c",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 390,
+        "y": 1500,
+        "wires": [
+            [
+                "aa7ff6772acf6be4"
+            ]
+        ]
+    },
+    {
+        "id": "e11dacf9398aba6b",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;",
+        "x": 170,
+        "y": 1500,
+        "wires": [
+            [
+                "5226a70e7304af6c"
+            ]
+        ]
+    },
+    {
+        "id": "aa7ff6772acf6be4",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "check irrigation program and execute it",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        //node.warn(\"fromtime \" + i + \" \" + msg.payload[i].fromtime);\n        //node.warn(\"totime \" + i + \" \" + msg.payload[i].totime);\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgout = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgout = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= global.get(\"irrigation.irrprgact.duration\")) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 710,
+        "y": 1500,
+        "wires": [
+            [
+                "ac91a48349b3a7cb"
+            ],
+            [
+                "5368c5346cb7ca08"
+            ]
+        ],
+        "outputLabels": [
+            "to pin",
+            "to db"
+        ]
+    },
+    {
+        "id": "5e07112cb9dc6a04",
+        "type": "rpi-gpio out",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "pin": "17",
+        "set": true,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1120,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "c7c7076229e7fdf7",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "to table climate_actions",
+        "x": 1170,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bef38285d1a4c78",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "138fe263b9fbdc51",
+        "order": 2,
+        "width": 10,
+        "height": 1,
+        "passthru": false,
+        "label": "Start / Stop manual heating",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 300,
+        "y": 1260,
+        "wires": [
+            [
+                "93ea57e432b87c2d"
+            ]
+        ]
+    },
+    {
+        "id": "9a6b8c01fdac9ce0",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "delete irrigation done at midnight",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 00 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DELETE FROM climate_detected;",
+        "x": 240,
+        "y": 1000,
+        "wires": [
+            [
+                "41a11d6b6bc4eeb4"
+            ]
+        ]
+    },
+    {
+        "id": "95eb86564f73fc6a",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 110,
+        "y": 1060,
+        "wires": [
+            [
+                "6fc0e5feec84aec1"
+            ]
+        ]
+    },
+    {
+        "id": "6fc0e5feec84aec1",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    let msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id , time, temperature, humidity, action FROM climate_actions ORDER BY time;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1060,
+        "wires": [
+            [
+                "41a11d6b6bc4eeb4"
+            ]
+        ]
+    },
+    {
+        "id": "bc6c12ed10b83c45",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "epoch to time",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].time = moment(msg.payload[i].time).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 820,
+        "y": 1060,
+        "wires": [
+            [
+                "29e59a53102e38b5"
+            ]
+        ]
+    },
+    {
+        "id": "93ea57e432b87c2d",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "Check irrisact status and modify",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    msgtopin.payload = 0;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    msgtopin.payload = 1;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", 0);\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 590,
+        "y": 1260,
+        "wires": [
+            [
+                "19964f308df7ed8b"
+            ],
+            [
+                "b3a68f82fe10c92a"
+            ]
+        ],
+        "outputLabels": [
+            "to pin",
+            "to db"
+        ]
+    },
+    {
+        "id": "19964f308df7ed8b",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from manual irrigation to pin",
+        "mode": "link",
+        "links": [
+            "031929141abe569e"
+        ],
+        "x": 795,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "ac91a48349b3a7cb",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from irrigation schedule to pin",
+        "mode": "link",
+        "links": [
+            "031929141abe569e"
+        ],
+        "x": 935,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "031929141abe569e",
+        "type": "link in",
+        "z": "4215ef7ad32b1858",
+        "name": "to pin",
+        "links": [
+            "19964f308df7ed8b",
+            "ac91a48349b3a7cb"
+        ],
+        "x": 1015,
+        "y": 1320,
+        "wires": [
+            [
+                "5e07112cb9dc6a04"
+            ]
+        ]
+    },
+    {
+        "id": "b3a68f82fe10c92a",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from manual irrigation to db",
+        "mode": "link",
+        "links": [
+            "5bd1ba98aafda274"
+        ],
+        "x": 795,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "5368c5346cb7ca08",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from irrigation schedule to db",
+        "mode": "link",
+        "links": [
+            "5bd1ba98aafda274"
+        ],
+        "x": 935,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "5bd1ba98aafda274",
+        "type": "link in",
+        "z": "4215ef7ad32b1858",
+        "name": "to db",
+        "links": [
+            "b3a68f82fe10c92a",
+            "5368c5346cb7ca08"
+        ],
+        "x": 1015,
+        "y": 1380,
+        "wires": [
+            [
+                "c7c7076229e7fdf7"
+            ]
+        ]
+    },
+    {
+        "id": "3396ade5f98c3d76",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Output",
+        "info": "",
+        "x": 1110,
+        "y": 1240,
+        "wires": []
+    },
+    {
+        "id": "b1bdf7aa032ca4dd",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Temp max",
+        "tooltip": "Maximum temperature allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1750,
+        "y": 700,
+        "wires": [
+            [
+                "06ae93c10168d8d6"
+            ]
+        ]
+    },
+    {
+        "id": "06ae93c10168d8d6",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.tempmax",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1990,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "06f06b7cc7e3f5ad",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.tempmax",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 700,
+        "wires": [
+            [
+                "b1bdf7aa032ca4dd"
+            ]
+        ]
+    },
+    {
+        "id": "3d9bb0efbe2047b2",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Hum min",
+        "tooltip": "Minimum humidity allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1740,
+        "y": 740,
+        "wires": [
+            [
+                "da4684500c106992"
+            ]
+        ]
+    },
+    {
+        "id": "da4684500c106992",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.hummin",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1970,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04fbd2665495d68a",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hummin",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 740,
+        "wires": [
+            [
+                "3d9bb0efbe2047b2"
+            ]
+        ]
+    },
+    {
+        "id": "3aae0239f6650d5c",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Hum max",
+        "tooltip": "Maximum humidity allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1740,
+        "y": 780,
+        "wires": [
+            [
+                "a4bb1a85552c2970"
+            ]
+        ]
+    },
+    {
+        "id": "a4bb1a85552c2970",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.hummax",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1970,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7149659b0ad3359d",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hummax",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 780,
+        "wires": [
+            [
+                "3aae0239f6650d5c"
+            ]
+        ]
     }
 ]

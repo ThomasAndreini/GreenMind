@@ -366,9 +366,9 @@
         "type": "ui_group",
         "name": "Schedule",
         "tab": "abac10b9eadb5bc0",
-        "order": 1,
+        "order": 2,
         "disp": true,
-        "width": "14",
+        "width": "16",
         "collapse": true,
         "className": ""
     },
@@ -377,9 +377,9 @@
         "type": "ui_group",
         "name": "Climate actions",
         "tab": "abac10b9eadb5bc0",
-        "order": 2,
+        "order": 3,
         "disp": true,
-        "width": "14",
+        "width": 16,
         "collapse": true,
         "className": ""
     },
@@ -388,11 +388,172 @@
         "type": "ui_group",
         "name": "Manual commands",
         "tab": "abac10b9eadb5bc0",
-        "order": 3,
+        "order": 4,
         "disp": true,
-        "width": "14",
+        "width": 16,
         "collapse": false,
         "className": ""
+    },
+    {
+        "id": "40009fbec210236c",
+        "type": "ui_group",
+        "name": "Current data",
+        "tab": "abac10b9eadb5bc0",
+        "order": 1,
+        "disp": true,
+        "width": "15",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "faaa6fcdf1fc8bf6",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "40009fbec210236c",
+        "order": 3,
+        "width": 5,
+        "height": 1
+    },
+    {
+        "id": "fd81f0845dce2877",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "17a649c32c942843",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "cc800cb5a3a92c26",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "9059c3b2f8799dc7",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "30ad1c47fd7b82ec",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "ea5f9ca12b0ed2a8",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "350e3a4b387f66bb",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 8,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7523f9c056db3704",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 9,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "9f268cc83d920b38",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 10,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "d82f16d12c8bfca8",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 11,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "b23e30af9668ba8e",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 12,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f9a5119f7a4a53e9",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 13,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "bca897a3dc2d0301",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "138fe263b9fbdc51",
+        "order": 1,
+        "width": 3,
+        "height": 1
+    },
+    {
+        "id": "a082a8811e0f4d63",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "138fe263b9fbdc51",
+        "order": 3,
+        "width": 3,
+        "height": 1
     },
     {
         "id": "44ad992ef7e50aa6",
@@ -2091,7 +2252,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Initialize context and table of db at first start",
-        "func": "if (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    global.set(\"climate.temperatureget\", 0);//temperature detected\n    global.set(\"climate.humidityget\", 0);//humidity detected\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL NOT NULL, inhumidity INTEGER NOT  NULL, exttemperature REAL NOT NULL, exthumidity INTEGER NOT  NULL);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER, enable INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, temperature INTEGER, humidity INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn msg;",
+        "func": "if (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    global.set(\"climate.inttemp\", 0);//internal temperature detected\n    global.set(\"climate.inthum\", 0);//internal humidity detected\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL NOT NULL, inhumidity INTEGER NOT  NULL, exttemperature REAL NOT NULL, exthumidity INTEGER NOT  NULL);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER, enable INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, temperature INTEGER, humidity INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2170,7 +2331,7 @@
         "name": "Climate schedule dashboard",
         "info": "",
         "x": 520,
-        "y": 300,
+        "y": 800,
         "wires": []
     },
     {
@@ -2180,7 +2341,7 @@
         "group": "5cbd1b6fdfe2459d",
         "name": "clmschedule",
         "order": 1,
-        "width": 14,
+        "width": 16,
         "height": 6,
         "columns": [
             {
@@ -2206,7 +2367,7 @@
             {
                 "field": "fromtime",
                 "title": "From",
-                "width": "130",
+                "width": "",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2216,7 +2377,7 @@
             {
                 "field": "totime",
                 "title": "To",
-                "width": "130",
+                "width": "",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2225,8 +2386,8 @@
             },
             {
                 "field": "tempmin",
-                "title": "Minimum temperature",
-                "width": "120",
+                "title": "Temp min",
+                "width": "110",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2235,8 +2396,8 @@
             },
             {
                 "field": "tempmax",
-                "title": "Maximum temperature",
-                "width": "120",
+                "title": "Temp max",
+                "width": "110",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2245,8 +2406,8 @@
             },
             {
                 "field": "hummin",
-                "title": "Minimum Humidity",
-                "width": "120",
+                "title": "Hum min",
+                "width": "110",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2255,8 +2416,8 @@
             },
             {
                 "field": "hummax",
-                "title": "Maximum Humidity",
-                "width": "120",
+                "title": "Hum max",
+                "width": "110",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2267,7 +2428,7 @@
         "outputs": 1,
         "cts": true,
         "x": 1030,
-        "y": 500,
+        "y": 1000,
         "wires": [
             [
                 "8fdc234f672b8e41"
@@ -2283,7 +2444,7 @@
         "sql": "",
         "name": "",
         "x": 580,
-        "y": 500,
+        "y": 1000,
         "wires": [
             [
                 "bc29218e5b2fdb7a"
@@ -2297,7 +2458,7 @@
         "name": "load irrigation notify",
         "events": "change",
         "x": 130,
-        "y": 500,
+        "y": 1000,
         "wires": [
             [
                 "35cf8c389803fcbd"
@@ -2316,7 +2477,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 500,
+        "y": 1000,
         "wires": [
             [
                 "f8c6e9924f9b113e",
@@ -2351,7 +2512,7 @@
         "animate": false,
         "className": "",
         "x": 1730,
-        "y": 540,
+        "y": 1040,
         "wires": [
             [
                 "393594e25b8c7985"
@@ -2377,7 +2538,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1730,
-        "y": 580,
+        "y": 1080,
         "wires": [
             [
                 "5c44af7d64f4a2fc"
@@ -2403,7 +2564,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1730,
-        "y": 620,
+        "y": 1120,
         "wires": [
             [
                 "2019e4d56cde4447"
@@ -2429,7 +2590,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1740,
-        "y": 660,
+        "y": 1160,
         "wires": [
             [
                 "4280c757ee36cbaf"
@@ -2457,7 +2618,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 90,
-        "y": 360,
+        "y": 860,
         "wires": [
             [
                 "93785d1d5015625e"
@@ -2485,7 +2646,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 90,
-        "y": 400,
+        "y": 900,
         "wires": [
             [
                 "93785d1d5015625e"
@@ -2512,7 +2673,7 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 540,
+        "y": 1040,
         "wires": [
             [
                 "639c3c659b2eae0b"
@@ -2539,7 +2700,7 @@
         "to": "",
         "reg": false,
         "x": 1940,
-        "y": 540,
+        "y": 1040,
         "wires": [
             []
         ]
@@ -2564,7 +2725,7 @@
         "to": "",
         "reg": false,
         "x": 1950,
-        "y": 580,
+        "y": 1080,
         "wires": [
             []
         ]
@@ -2589,7 +2750,7 @@
         "to": "",
         "reg": false,
         "x": 1940,
-        "y": 620,
+        "y": 1120,
         "wires": [
             []
         ]
@@ -2614,7 +2775,7 @@
         "to": "",
         "reg": false,
         "x": 1970,
-        "y": 660,
+        "y": 1160,
         "wires": [
             []
         ]
@@ -2639,7 +2800,7 @@
         "to": "",
         "reg": false,
         "x": 1510,
-        "y": 480,
+        "y": 980,
         "wires": [
             []
         ]
@@ -2664,7 +2825,7 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 580,
+        "y": 1080,
         "wires": [
             [
                 "bf7a442b4b8d2e74"
@@ -2691,7 +2852,7 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 620,
+        "y": 1120,
         "wires": [
             [
                 "fef75a7a1b91590a"
@@ -2718,7 +2879,7 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 660,
+        "y": 1160,
         "wires": [
             [
                 "0549c84591625fc3"
@@ -2737,7 +2898,7 @@
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 400,
+        "y": 900,
         "wires": [
             [
                 "f8c6e9924f9b113e"
@@ -2765,7 +2926,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 90,
-        "y": 440,
+        "y": 940,
         "wires": [
             [
                 "93785d1d5015625e"
@@ -2834,7 +2995,7 @@
         "to": "",
         "reg": false,
         "x": 960,
-        "y": 660,
+        "y": 1160,
         "wires": [
             [
                 "43270c5ff2d90750",
@@ -2854,7 +3015,7 @@
         "name": "Irrigation schedule logic",
         "info": "",
         "x": 520,
-        "y": 1400,
+        "y": 1900,
         "wires": []
     },
     {
@@ -2874,7 +3035,7 @@
             }
         ],
         "x": 840,
-        "y": 500,
+        "y": 1000,
         "wires": [
             [
                 "ebf8ac9a567a7529"
@@ -2898,7 +3059,7 @@
             }
         ],
         "x": 1220,
-        "y": 500,
+        "y": 1000,
         "wires": [
             [
                 "215f1ffca113dd1b",
@@ -2919,7 +3080,7 @@
         "name": "Climate actions dashboard and logic",
         "info": "",
         "x": 560,
-        "y": 940,
+        "y": 1440,
         "wires": []
     },
     {
@@ -2931,7 +3092,7 @@
         "sql": "",
         "name": "",
         "x": 560,
-        "y": 1060,
+        "y": 1560,
         "wires": [
             [
                 "bc6c12ed10b83c45"
@@ -3002,7 +3163,7 @@
         "outputs": 0,
         "cts": false,
         "x": 990,
-        "y": 1060,
+        "y": 1560,
         "wires": []
     },
     {
@@ -3012,7 +3173,7 @@
         "name": "Manual commands dashboard and logic",
         "info": "",
         "x": 570,
-        "y": 1180,
+        "y": 1680,
         "wires": []
     },
     {
@@ -3024,7 +3185,7 @@
         "sql": "",
         "name": "",
         "x": 390,
-        "y": 1500,
+        "y": 2000,
         "wires": [
             [
                 "aa7ff6772acf6be4"
@@ -3042,13 +3203,13 @@
                 "vt": "str"
             }
         ],
-        "repeat": "1",
+        "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;",
         "x": 170,
-        "y": 1500,
+        "y": 2000,
         "wires": [
             [
                 "5226a70e7304af6c"
@@ -3072,7 +3233,7 @@
             }
         ],
         "x": 710,
-        "y": 1500,
+        "y": 2000,
         "wires": [
             [
                 "ac91a48349b3a7cb"
@@ -3098,7 +3259,7 @@
         "out": "out",
         "bcm": true,
         "x": 1120,
-        "y": 1320,
+        "y": 1820,
         "wires": []
     },
     {
@@ -3110,7 +3271,7 @@
         "sql": "",
         "name": "to table climate_actions",
         "x": 1170,
-        "y": 1380,
+        "y": 1880,
         "wires": [
             []
         ]
@@ -3136,7 +3297,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 300,
-        "y": 1260,
+        "y": 1760,
         "wires": [
             [
                 "93ea57e432b87c2d"
@@ -3160,7 +3321,7 @@
         "onceDelay": 0.1,
         "topic": "DELETE FROM climate_detected;",
         "x": 240,
-        "y": 1000,
+        "y": 1500,
         "wires": [
             [
                 "41a11d6b6bc4eeb4"
@@ -3174,7 +3335,7 @@
         "name": "load irrigation notify",
         "events": "change",
         "x": 110,
-        "y": 1060,
+        "y": 1560,
         "wires": [
             [
                 "6fc0e5feec84aec1"
@@ -3193,7 +3354,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 1060,
+        "y": 1560,
         "wires": [
             [
                 "41a11d6b6bc4eeb4"
@@ -3217,7 +3378,7 @@
             }
         ],
         "x": 820,
-        "y": 1060,
+        "y": 1560,
         "wires": [
             [
                 "29e59a53102e38b5"
@@ -3241,7 +3402,7 @@
             }
         ],
         "x": 590,
-        "y": 1260,
+        "y": 1760,
         "wires": [
             [
                 "19964f308df7ed8b"
@@ -3265,7 +3426,7 @@
             "031929141abe569e"
         ],
         "x": 795,
-        "y": 1240,
+        "y": 1740,
         "wires": []
     },
     {
@@ -3278,7 +3439,7 @@
             "031929141abe569e"
         ],
         "x": 935,
-        "y": 1480,
+        "y": 1980,
         "wires": []
     },
     {
@@ -3291,7 +3452,7 @@
             "ac91a48349b3a7cb"
         ],
         "x": 1015,
-        "y": 1320,
+        "y": 1820,
         "wires": [
             [
                 "5e07112cb9dc6a04"
@@ -3308,7 +3469,7 @@
             "5bd1ba98aafda274"
         ],
         "x": 795,
-        "y": 1280,
+        "y": 1780,
         "wires": []
     },
     {
@@ -3321,7 +3482,7 @@
             "5bd1ba98aafda274"
         ],
         "x": 935,
-        "y": 1520,
+        "y": 2020,
         "wires": []
     },
     {
@@ -3334,7 +3495,7 @@
             "5368c5346cb7ca08"
         ],
         "x": 1015,
-        "y": 1380,
+        "y": 1880,
         "wires": [
             [
                 "c7c7076229e7fdf7"
@@ -3348,7 +3509,7 @@
         "name": "Output",
         "info": "",
         "x": 1110,
-        "y": 1240,
+        "y": 1740,
         "wires": []
     },
     {
@@ -3359,7 +3520,7 @@
         "label": "Temp max",
         "tooltip": "Maximum temperature allowed",
         "group": "5cbd1b6fdfe2459d",
-        "order": 5,
+        "order": 6,
         "width": 2,
         "height": 1,
         "passthru": true,
@@ -3370,7 +3531,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1750,
-        "y": 700,
+        "y": 1200,
         "wires": [
             [
                 "06ae93c10168d8d6"
@@ -3397,7 +3558,7 @@
         "to": "",
         "reg": false,
         "x": 1990,
-        "y": 700,
+        "y": 1200,
         "wires": [
             []
         ]
@@ -3422,7 +3583,7 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 700,
+        "y": 1200,
         "wires": [
             [
                 "b1bdf7aa032ca4dd"
@@ -3437,7 +3598,7 @@
         "label": "Hum min",
         "tooltip": "Minimum humidity allowed",
         "group": "5cbd1b6fdfe2459d",
-        "order": 5,
+        "order": 7,
         "width": 2,
         "height": 1,
         "passthru": true,
@@ -3448,7 +3609,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1740,
-        "y": 740,
+        "y": 1240,
         "wires": [
             [
                 "da4684500c106992"
@@ -3475,7 +3636,7 @@
         "to": "",
         "reg": false,
         "x": 1970,
-        "y": 740,
+        "y": 1240,
         "wires": [
             []
         ]
@@ -3500,7 +3661,7 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 740,
+        "y": 1240,
         "wires": [
             [
                 "3d9bb0efbe2047b2"
@@ -3515,7 +3676,7 @@
         "label": "Hum max",
         "tooltip": "Maximum humidity allowed",
         "group": "5cbd1b6fdfe2459d",
-        "order": 5,
+        "order": 8,
         "width": 2,
         "height": 1,
         "passthru": true,
@@ -3526,7 +3687,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1740,
-        "y": 780,
+        "y": 1280,
         "wires": [
             [
                 "a4bb1a85552c2970"
@@ -3553,7 +3714,7 @@
         "to": "",
         "reg": false,
         "x": 1970,
-        "y": 780,
+        "y": 1280,
         "wires": [
             []
         ]
@@ -3578,11 +3739,99 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 780,
+        "y": 1280,
         "wires": [
             [
                 "3aae0239f6650d5c"
             ]
         ]
+    },
+    {
+        "id": "35da8ee79d876352",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "TODO",
+        "info": "aggiungere tasto start stop manual ventilation",
+        "x": 540,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "9083a9fbe2ec8daf",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Current data TODO",
+        "info": "",
+        "x": 640,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "cc72a8c1f368cf4e",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 130,
+        "y": 360,
+        "wires": [
+            [
+                "4f72dc7988fc49fd"
+            ]
+        ]
+    },
+    {
+        "id": "4f72dc7988fc49fd",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "data inject",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    var msgout = {\"payload\" : \"\"}\n    msgout.payload.inttemp = global.get(\"climate.inttemp\");\n    msgout.payload.inthum = global.get(\"climate.inthum\");\n    node.send(msgout);\n}\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 360,
+        "wires": [
+            [
+                "0d7e7068d0e78b70",
+                "fdc8a361eb52c6f6"
+            ]
+        ]
+    },
+    {
+        "id": "0d7e7068d0e78b70",
+        "type": "ui_text",
+        "z": "4215ef7ad32b1858",
+        "group": "40009fbec210236c",
+        "order": 1,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload.inttemp}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 510,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "fdc8a361eb52c6f6",
+        "type": "ui_text",
+        "z": "4215ef7ad32b1858",
+        "group": "40009fbec210236c",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Humidity",
+        "format": "{{msg.payload.inthum}}",
+        "layout": "row-center",
+        "className": "",
+        "x": 500,
+        "y": 380,
+        "wires": []
     }
 ]

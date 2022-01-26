@@ -3015,7 +3015,7 @@
         "name": "Climate schedule logic",
         "info": "",
         "x": 520,
-        "y": 1600,
+        "y": 1560,
         "wires": []
     },
     {
@@ -3080,7 +3080,7 @@
         "name": "Climate actions dashboard and logic",
         "info": "",
         "x": 560,
-        "y": 1140,
+        "y": 1100,
         "wires": []
     },
     {
@@ -3092,7 +3092,7 @@
         "sql": "",
         "name": "",
         "x": 560,
-        "y": 1260,
+        "y": 1220,
         "wires": [
             [
                 "bc6c12ed10b83c45"
@@ -3163,7 +3163,7 @@
         "outputs": 0,
         "cts": false,
         "x": 990,
-        "y": 1260,
+        "y": 1220,
         "wires": []
     },
     {
@@ -3173,7 +3173,7 @@
         "name": "Manual commands dashboard and logic",
         "info": "",
         "x": 570,
-        "y": 1380,
+        "y": 1340,
         "wires": []
     },
     {
@@ -3185,7 +3185,7 @@
         "sql": "",
         "name": "",
         "x": 390,
-        "y": 1700,
+        "y": 1660,
         "wires": [
             [
                 "aa7ff6772acf6be4"
@@ -3209,7 +3209,7 @@
         "onceDelay": 0.1,
         "topic": "SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;",
         "x": 170,
-        "y": 1700,
+        "y": 1660,
         "wires": [
             [
                 "5226a70e7304af6c"
@@ -3233,7 +3233,7 @@
             }
         ],
         "x": 710,
-        "y": 1700,
+        "y": 1660,
         "wires": [
             [
                 "ac91a48349b3a7cb"
@@ -3263,7 +3263,7 @@
         "out": "out",
         "bcm": true,
         "x": 1120,
-        "y": 1500,
+        "y": 1460,
         "wires": []
     },
     {
@@ -3275,7 +3275,7 @@
         "sql": "",
         "name": "to table climate_actions",
         "x": 1170,
-        "y": 1620,
+        "y": 1580,
         "wires": [
             []
         ]
@@ -3301,7 +3301,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 200,
-        "y": 1440,
+        "y": 1400,
         "wires": [
             [
                 "93ea57e432b87c2d"
@@ -3325,7 +3325,7 @@
         "onceDelay": 0.1,
         "topic": "DELETE FROM climate_detected;",
         "x": 240,
-        "y": 1200,
+        "y": 1160,
         "wires": [
             [
                 "41a11d6b6bc4eeb4"
@@ -3339,7 +3339,7 @@
         "name": "load irrigation notify",
         "events": "change",
         "x": 110,
-        "y": 1260,
+        "y": 1220,
         "wires": [
             [
                 "6fc0e5feec84aec1"
@@ -3358,7 +3358,7 @@
         "finalize": "",
         "libs": [],
         "x": 310,
-        "y": 1260,
+        "y": 1220,
         "wires": [
             [
                 "41a11d6b6bc4eeb4"
@@ -3382,7 +3382,7 @@
             }
         ],
         "x": 820,
-        "y": 1260,
+        "y": 1220,
         "wires": [
             [
                 "29e59a53102e38b5"
@@ -3406,7 +3406,7 @@
             }
         ],
         "x": 550,
-        "y": 1460,
+        "y": 1420,
         "wires": [
             [
                 "19964f308df7ed8b"
@@ -3434,7 +3434,7 @@
             "031929141abe569e"
         ],
         "x": 855,
-        "y": 1420,
+        "y": 1380,
         "wires": []
     },
     {
@@ -3447,7 +3447,7 @@
             "031929141abe569e"
         ],
         "x": 935,
-        "y": 1660,
+        "y": 1620,
         "wires": []
     },
     {
@@ -3460,7 +3460,7 @@
             "ac91a48349b3a7cb"
         ],
         "x": 1015,
-        "y": 1500,
+        "y": 1460,
         "wires": [
             [
                 "5e07112cb9dc6a04"
@@ -3477,7 +3477,7 @@
             "5bd1ba98aafda274"
         ],
         "x": 855,
-        "y": 1500,
+        "y": 1460,
         "wires": []
     },
     {
@@ -3490,7 +3490,7 @@
             "5bd1ba98aafda274"
         ],
         "x": 935,
-        "y": 1740,
+        "y": 1700,
         "wires": []
     },
     {
@@ -3503,7 +3503,7 @@
             "5368c5346cb7ca08"
         ],
         "x": 1015,
-        "y": 1620,
+        "y": 1580,
         "wires": [
             [
                 "c7c7076229e7fdf7"
@@ -3517,7 +3517,7 @@
         "name": "Output",
         "info": "",
         "x": 1110,
-        "y": 1440,
+        "y": 1400,
         "wires": []
     },
     {
@@ -3761,7 +3761,7 @@
         "name": "TODO",
         "info": "da controllare funzione",
         "x": 460,
-        "y": 1420,
+        "y": 1380,
         "wires": []
     },
     {
@@ -3854,7 +3854,7 @@
         "out": "out",
         "bcm": true,
         "x": 1120,
-        "y": 1560,
+        "y": 1520,
         "wires": []
     },
     {
@@ -3867,7 +3867,7 @@
             "101062a0b28273a9"
         ],
         "x": 1015,
-        "y": 1560,
+        "y": 1520,
         "wires": [
             [
                 "0a49932d761e1ea9"
@@ -3884,7 +3884,7 @@
             "5ab80269f33d6aa2"
         ],
         "x": 855,
-        "y": 1460,
+        "y": 1420,
         "wires": []
     },
     {
@@ -3897,7 +3897,7 @@
             "5ab80269f33d6aa2"
         ],
         "x": 935,
-        "y": 1700,
+        "y": 1660,
         "wires": []
     },
     {
@@ -3921,7 +3921,7 @@
         "topic": "topic",
         "topicType": "msg",
         "x": 220,
-        "y": 1480,
+        "y": 1440,
         "wires": [
             [
                 "93ea57e432b87c2d"
@@ -3935,7 +3935,7 @@
         "name": "TODO",
         "info": "da rifare funzione, cambiare logica",
         "x": 670,
-        "y": 1660,
+        "y": 1620,
         "wires": []
     }
 ]

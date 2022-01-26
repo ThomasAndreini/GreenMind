@@ -401,22 +401,42 @@
         "tab": "abac10b9eadb5bc0",
         "order": 1,
         "disp": true,
-        "width": "15",
+        "width": 16,
         "collapse": true,
         "className": ""
     },
     {
-        "id": "faaa6fcdf1fc8bf6",
+        "id": "3ef67c6cb8d5103c",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "40009fbec210236c",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "378fa5d09954e007",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
         "group": "40009fbec210236c",
         "order": 3,
-        "width": 5,
+        "width": 2,
         "height": 1
     },
     {
-        "id": "fd81f0845dce2877",
+        "id": "756d3f933f5a761f",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "40009fbec210236c",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "b7b279f5247a28a9",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -426,7 +446,7 @@
         "height": 1
     },
     {
-        "id": "17a649c32c942843",
+        "id": "82245dca05b3845b",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -436,7 +456,7 @@
         "height": 1
     },
     {
-        "id": "cc800cb5a3a92c26",
+        "id": "122ddb6c20db612a",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -446,7 +466,7 @@
         "height": 1
     },
     {
-        "id": "9059c3b2f8799dc7",
+        "id": "ff7b6a504025a675",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -456,7 +476,7 @@
         "height": 1
     },
     {
-        "id": "30ad1c47fd7b82ec",
+        "id": "93a89a5a9853e082",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -466,7 +486,7 @@
         "height": 1
     },
     {
-        "id": "ea5f9ca12b0ed2a8",
+        "id": "513772a953a8c122",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -476,7 +496,7 @@
         "height": 1
     },
     {
-        "id": "350e3a4b387f66bb",
+        "id": "96921867eb9fc6a8",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -486,7 +506,7 @@
         "height": 1
     },
     {
-        "id": "7523f9c056db3704",
+        "id": "76f4c53eb4e3d865",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -496,7 +516,7 @@
         "height": 1
     },
     {
-        "id": "9f268cc83d920b38",
+        "id": "f9bfc4e0a40dc0f1",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -506,7 +526,7 @@
         "height": 1
     },
     {
-        "id": "d82f16d12c8bfca8",
+        "id": "4144609dc4d2c1fd",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -516,7 +536,7 @@
         "height": 1
     },
     {
-        "id": "b23e30af9668ba8e",
+        "id": "1a02e7e20e5e4450",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -526,33 +546,13 @@
         "height": 1
     },
     {
-        "id": "f9a5119f7a4a53e9",
+        "id": "7cd4d592726b3844",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
         "group": "cc3a2eefb8aff812",
         "order": 13,
         "width": 2,
-        "height": 1
-    },
-    {
-        "id": "bca897a3dc2d0301",
-        "type": "ui_spacer",
-        "z": "4215ef7ad32b1858",
-        "name": "spacer",
-        "group": "138fe263b9fbdc51",
-        "order": 1,
-        "width": 3,
-        "height": 1
-    },
-    {
-        "id": "a082a8811e0f4d63",
-        "type": "ui_spacer",
-        "z": "4215ef7ad32b1858",
-        "name": "spacer",
-        "group": "138fe263b9fbdc51",
-        "order": 3,
-        "width": 3,
         "height": 1
     },
     {
@@ -702,7 +702,7 @@
         "order": 1,
         "width": "20",
         "height": "4",
-        "format": "<div <p>This is the first release of a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GrowerAssistant\">https://github.com/ThomasAndreini/GrowerAssistant</a>.</div>",
+        "format": "<div <p>This is a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GrowerAssistant\">https://github.com/ThomasAndreini/GrowerAssistant</a>.</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -752,8 +752,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 1010,
-        "y": 340,
+        "x": 890,
+        "y": 320,
         "wires": [
             []
         ]
@@ -3286,8 +3286,8 @@
         "z": "4215ef7ad32b1858",
         "name": "",
         "group": "138fe263b9fbdc51",
-        "order": 2,
-        "width": 10,
+        "order": 1,
+        "width": 8,
         "height": 1,
         "passthru": false,
         "label": "Start / Stop manual heating",
@@ -3813,7 +3813,7 @@
         "type": "ui_text",
         "z": "4215ef7ad32b1858",
         "group": "40009fbec210236c",
-        "order": 1,
+        "order": 2,
         "width": 5,
         "height": 1,
         "name": "",
@@ -3830,7 +3830,7 @@
         "type": "ui_text",
         "z": "4215ef7ad32b1858",
         "group": "40009fbec210236c",
-        "order": 2,
+        "order": 4,
         "width": 5,
         "height": 1,
         "name": "",
@@ -3907,7 +3907,7 @@
         "name": "",
         "group": "138fe263b9fbdc51",
         "order": 2,
-        "width": 10,
+        "width": 8,
         "height": 1,
         "passthru": false,
         "label": "Start / Stop manual fan",

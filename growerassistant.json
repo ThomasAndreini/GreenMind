@@ -824,6 +824,23 @@
         ]
     },
     {
+        "id": "5dddf9dfc813f177",
+        "type": "rpi-dht22",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "topic": "rpi-dht22",
+        "dht": 22,
+        "pintype": "2",
+        "pin": "7",
+        "x": 340,
+        "y": 1900,
+        "wires": [
+            [
+                "7f4a650e33e45e7e"
+            ]
+        ]
+    },
+    {
         "id": "be7cbfc514e81423",
         "type": "comment",
         "z": "9cfee97fb9e96644",
@@ -4004,23 +4021,6 @@
         "wires": []
     },
     {
-        "id": "fd1cfe75d7b1428a",
-        "type": "rpi-dht22",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "topic": "rpi-dht22",
-        "dht": 22,
-        "pintype": "2",
-        "pin": 7,
-        "x": 360,
-        "y": 1900,
-        "wires": [
-            [
-                "7f4a650e33e45e7e"
-            ]
-        ]
-    },
-    {
         "id": "bce83a130879bec7",
         "type": "inject",
         "z": "4215ef7ad32b1858",
@@ -4045,7 +4045,8 @@
         "y": 1900,
         "wires": [
             [
-                "fd1cfe75d7b1428a"
+                "5dddf9dfc813f177",
+                "b8aa610cca36cd38"
             ]
         ]
     },
@@ -4078,6 +4079,23 @@
         "wires": [
             [
                 "ccf65ec643039010"
+            ]
+        ]
+    },
+    {
+        "id": "b8aa610cca36cd38",
+        "type": "rpi-dht22",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "topic": "rpi-dht22",
+        "dht": 22,
+        "pintype": "2",
+        "pin": "7",
+        "x": 340,
+        "y": 1900,
+        "wires": [
+            [
+                "7f4a650e33e45e7e"
             ]
         ]
     }

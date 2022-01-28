@@ -752,8 +752,8 @@
         "outputs": 1,
         "useDifferentColor": false,
         "className": "",
-        "x": 890,
-        "y": 320,
+        "x": 790,
+        "y": 400,
         "wires": [
             []
         ]
@@ -767,6 +767,61 @@
         "x": 830,
         "y": 280,
         "wires": []
+    },
+    {
+        "id": "f82df9be90653a7d",
+        "type": "link in",
+        "z": "473af4e9135bb6f3",
+        "name": "from dht22 to chart",
+        "links": [
+            "ccf65ec643039010"
+        ],
+        "x": 275,
+        "y": 400,
+        "wires": [
+            [
+                "03016bb266140401",
+                "bddd6b77fe91dca1"
+            ]
+        ]
+    },
+    {
+        "id": "03016bb266140401",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "format temperature",
+        "func": "msg.payload = parseFloat(msg.payload);\nmsg.topic = \"Temperature\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 380,
+        "wires": [
+            [
+                "01a35cb9f68f28fb"
+            ]
+        ]
+    },
+    {
+        "id": "bddd6b77fe91dca1",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "format humidity",
+        "func": "msg.payload = parseFloat(msg.humidity);\nmsg.topic = \"Humidity\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 420,
+        "wires": [
+            [
+                "01a35cb9f68f28fb"
+            ]
+        ]
     },
     {
         "id": "be7cbfc514e81423",
@@ -1909,7 +1964,7 @@
         "type": "rpi-gpio out",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "pin": "4",
+        "pin": "22",
         "set": true,
         "level": "1",
         "freq": "",
@@ -2236,8 +2291,8 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": "0.5",
+        "once": true,
+        "onceDelay": "1.5",
         "topic": "SELECT id, label, value FROM system WHERE label = \"version\";",
         "x": 110,
         "y": 100,
@@ -2319,7 +2374,7 @@
         "type": "comment",
         "z": "4215ef7ad32b1858",
         "name": "TODO",
-        "info": "attiva gli inject quando impostato il map dei context e database",
+        "info": "inserisci le programmazioni di climate su time chart",
         "x": 820,
         "y": 40,
         "wires": []
@@ -3203,7 +3258,7 @@
                 "vt": "str"
             }
         ],
-        "repeat": "",
+        "repeat": "1",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
@@ -3793,7 +3848,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "data inject",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    var msgout = {\"payload\" : \"\"}\n    msgout.payload.inttemp = global.get(\"climate.inttemp\");\n    msgout.payload.inthum = global.get(\"climate.inthum\");\n    node.send(msgout);\n}\nreturn;\n",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    var msgout = { \"payload\": { \"inttemp\": 0, \"inthum\": 0}}\n    msgout.payload.inttemp = global.get(\"climate.inttemp\");\n    msgout.payload.inthum = global.get(\"climate.inthum\");\n    node.send(msgout);\n}\nreturn;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3818,7 +3873,7 @@
         "height": 1,
         "name": "",
         "label": "Temperature",
-        "format": "{{msg.payload.inttemp}}",
+        "format": "{{msg.payload.inttemp}} °C",
         "layout": "row-center",
         "className": "",
         "x": 510,
@@ -3835,7 +3890,7 @@
         "height": 1,
         "name": "",
         "label": "Humidity",
-        "format": "{{msg.payload.inthum}}",
+        "format": "{{msg.payload.inthum}} %",
         "layout": "row-center",
         "className": "",
         "x": 500,
@@ -3947,5 +4002,83 @@
         "x": 560,
         "y": 1800,
         "wires": []
+    },
+    {
+        "id": "fd1cfe75d7b1428a",
+        "type": "rpi-dht22",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "topic": "rpi-dht22",
+        "dht": 22,
+        "pintype": "2",
+        "pin": 7,
+        "x": 360,
+        "y": 1900,
+        "wires": [
+            [
+                "7f4a650e33e45e7e"
+            ]
+        ]
+    },
+    {
+        "id": "bce83a130879bec7",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "inject",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 1900,
+        "wires": [
+            [
+                "fd1cfe75d7b1428a"
+            ]
+        ]
+    },
+    {
+        "id": "ccf65ec643039010",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "to dashboard chart",
+        "mode": "link",
+        "links": [
+            "f82df9be90653a7d"
+        ],
+        "x": 695,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "7f4a650e33e45e7e",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "format temperature",
+        "func": "global.set(\"climate.inttemp\", parseFloat(msg.payload));\nglobal.set(\"climate.inthum\", parseFloat(msg.humidity));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 1900,
+        "wires": [
+            [
+                "ccf65ec643039010"
+            ]
+        ]
     }
 ]

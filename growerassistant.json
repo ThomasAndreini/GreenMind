@@ -835,9 +835,7 @@
         "x": 340,
         "y": 1900,
         "wires": [
-            [
-                "7f4a650e33e45e7e"
-            ]
+            []
         ]
     },
     {
@@ -2552,8 +2550,7 @@
         "y": 700,
         "wires": [
             [
-                "f8c6e9924f9b113e",
-                "3491f083cfdea07a"
+                "f8c6e9924f9b113e"
             ]
         ]
     },
@@ -2674,7 +2671,7 @@
         "type": "ui_button",
         "z": "4215ef7ad32b1858",
         "name": "",
-        "group": "fa9ccf2e0cfb5c02",
+        "group": "5cbd1b6fdfe2459d",
         "order": 8,
         "width": 5,
         "height": 1,
@@ -2702,7 +2699,7 @@
         "type": "ui_button",
         "z": "4215ef7ad32b1858",
         "name": "",
-        "group": "fa9ccf2e0cfb5c02",
+        "group": "5cbd1b6fdfe2459d",
         "order": 9,
         "width": 5,
         "height": 1,
@@ -2982,7 +2979,7 @@
         "type": "ui_button",
         "z": "4215ef7ad32b1858",
         "name": "",
-        "group": "fa9ccf2e0cfb5c02",
+        "group": "5cbd1b6fdfe2459d",
         "order": 10,
         "width": 4,
         "height": 1,
@@ -3002,81 +2999,6 @@
         "wires": [
             [
                 "93785d1d5015625e"
-            ]
-        ]
-    },
-    {
-        "id": "3491f083cfdea07a",
-        "type": "change",
-        "z": "4215ef7ad32b1858",
-        "name": "reset at loading page",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload.active",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "payload.fromtime",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "payload.totime",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "payload.tempmin",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "payload.tempmax",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "payload.hummin",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            },
-            {
-                "t": "set",
-                "p": "payload.hummax",
-                "pt": "msg",
-                "to": "false",
-                "tot": "bool"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 960,
-        "y": 860,
-        "wires": [
-            [
-                "43270c5ff2d90750",
-                "7f0c29d7b7ba936f",
-                "f17011b6d1eb9ab2",
-                "3acda5dcedcfa711",
-                "06f06b7cc7e3f5ad",
-                "04fbd2665495d68a",
-                "7149659b0ad3359d"
             ]
         ]
     },
@@ -3384,7 +3306,7 @@
         "id": "9a6b8c01fdac9ce0",
         "type": "inject",
         "z": "4215ef7ad32b1858",
-        "name": "delete irrigation done at midnight",
+        "name": "delete actions at midnight",
         "props": [
             {
                 "p": "topic",
@@ -3392,11 +3314,11 @@
             }
         ],
         "repeat": "",
-        "crontab": "00 00 * * *",
+        "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "topic": "DELETE FROM climate_detected;",
-        "x": 240,
+        "x": 210,
         "y": 1160,
         "wires": [
             [
@@ -4045,7 +3967,6 @@
         "y": 1900,
         "wires": [
             [
-                "5dddf9dfc813f177",
                 "b8aa610cca36cd38"
             ]
         ]

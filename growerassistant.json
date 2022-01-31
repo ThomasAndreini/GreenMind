@@ -406,7 +406,7 @@
         "className": ""
     },
     {
-        "id": "3ef67c6cb8d5103c",
+        "id": "3c1e175d0c3dfc72",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -416,7 +416,7 @@
         "height": 1
     },
     {
-        "id": "378fa5d09954e007",
+        "id": "1496f89f6cc34430",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -426,7 +426,7 @@
         "height": 1
     },
     {
-        "id": "756d3f933f5a761f",
+        "id": "2f813393580695df",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -436,7 +436,27 @@
         "height": 1
     },
     {
-        "id": "b7b279f5247a28a9",
+        "id": "3b7a20d55d6bf5f8",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 13,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f30f388f219364dc",
+        "type": "ui_spacer",
+        "z": "4215ef7ad32b1858",
+        "name": "spacer",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 15,
+        "width": 12,
+        "height": 1
+    },
+    {
+        "id": "f7e741ae8234542f",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -446,7 +466,7 @@
         "height": 1
     },
     {
-        "id": "82245dca05b3845b",
+        "id": "8d9ece2e8db8b829",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -456,7 +476,7 @@
         "height": 1
     },
     {
-        "id": "122ddb6c20db612a",
+        "id": "6bf6dd1120e71f12",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -466,7 +486,7 @@
         "height": 1
     },
     {
-        "id": "ff7b6a504025a675",
+        "id": "dee1b3577d45d9c4",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -476,7 +496,7 @@
         "height": 1
     },
     {
-        "id": "93a89a5a9853e082",
+        "id": "78136e2eafac9541",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -486,7 +506,7 @@
         "height": 1
     },
     {
-        "id": "513772a953a8c122",
+        "id": "5926b6038a50b596",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -496,7 +516,7 @@
         "height": 1
     },
     {
-        "id": "96921867eb9fc6a8",
+        "id": "23d1fe2083a22ac2",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -506,7 +526,7 @@
         "height": 1
     },
     {
-        "id": "76f4c53eb4e3d865",
+        "id": "bce328193ba38509",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -516,7 +536,7 @@
         "height": 1
     },
     {
-        "id": "f9bfc4e0a40dc0f1",
+        "id": "ef38d0a6590a3e34",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -526,7 +546,7 @@
         "height": 1
     },
     {
-        "id": "4144609dc4d2c1fd",
+        "id": "b4d5043f755ea605",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -536,7 +556,7 @@
         "height": 1
     },
     {
-        "id": "1a02e7e20e5e4450",
+        "id": "4bef6d3dc8021e30",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -546,7 +566,7 @@
         "height": 1
     },
     {
-        "id": "7cd4d592726b3844",
+        "id": "7b575756f6a952e7",
         "type": "ui_spacer",
         "z": "4215ef7ad32b1858",
         "name": "spacer",
@@ -2322,7 +2342,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Initialize context and table of db at first start",
-        "func": "if (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    global.set(\"climate.inttemp\", 0);//internal temperature detected\n    global.set(\"climate.inthum\", 0);//internal humidity detected\n    global.set(\"climate.heatisact\", 0);//notitfy if heat is active\n    global.set(\"climate.fanisact\", 0);//notify if fan is active\n    global.set(\"climate.manualheat\", 0);//notitfy if manual heat is active\n    global.set(\"climate.manualfan\", 0);//notitfy if manual fan is active\n    global.set(\"climate.clmprgact.id\", 0);//id of active program\n    global.set(\"climate.clmprgact.fromtime\", 0);//start time of active program\n    global.set(\"climate.clmprgact.totime\", 0);//end time of active program\n    global.set(\"climate.clmprgact.tempmin\", 0);//minimum temperature of active program\n    global.set(\"climate.clmprgact.tempmax\", 0);//maximum temperature of active program\n    global.set(\"climate.clmprgact.hummin\", 0);//minimum humidity of active program\n    global.set(\"climate.clmprgact.hummax\", 0);//maximum humidity of active program\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
+        "func": "if (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    global.set(\"climate.inttemp\", 0);//internal temperature detected\n    global.set(\"climate.inthum\", 0);//internal humidity detected\n    global.set(\"climate.heatisact\", 0);//notitfy if heat is active\n    global.set(\"climate.fanisact\", 0);//notify if fan is active\n    global.set(\"climate.manualheat\", 0);//notitfy if manual heat is active\n    global.set(\"climate.manualfan\", 0);//notitfy if manual fan is active\n    global.set(\"climate.clmprgact.id\", 0);//id of active program\n    global.set(\"climate.clmprgact.fromtime\", 0);//start time of active program\n    global.set(\"climate.clmprgact.totime\", 0);//end time of active program\n    global.set(\"climate.clmprgact.tempmin\", 0);//minimum temperature of active program\n    global.set(\"climate.clmprgact.tempmax\", 0);//maximum temperature of active program\n    global.set(\"climate.clmprgact.hummin\", 0);//minimum humidity of active program\n    global.set(\"climate.clmprgact.hummax\", 0);//maximum humidity of active program\n    flow.set(\"programming.fromtime\", 0);//initialize interface context\n    flow.set(\"programming.totime\", 0);//initialize interface context\n    flow.set(\"programming.tempmin\", 0);//initialize interface context\n    flow.set(\"programming.tempmax\", 0);//initialize interface context\n    flow.set(\"programming.temptarget\", 0);//initialize interface context\n    flow.set(\"programming.hummin\", 0);//initialize interface context\n    flow.set(\"programming.hummax\", 0);//initialize interface context\n    flow.set(\"programming.humtarget\", 0);//initialize interface context\n    flow.set(\"programming.active\", 0);//initialize interface context\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, temptarget INTEGER, hummin INTEGER, hummax INTEGER, humtarget INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2427,7 +2447,7 @@
             {
                 "field": "active",
                 "title": "Active",
-                "width": "90",
+                "width": "80",
                 "align": "center",
                 "formatter": "tickCross",
                 "formatterParams": {
@@ -2455,9 +2475,19 @@
                 }
             },
             {
+                "field": "temptarget",
+                "title": "T target",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
                 "field": "tempmin",
-                "title": "Temp min",
-                "width": "110",
+                "title": "T min",
+                "width": "90",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2466,8 +2496,18 @@
             },
             {
                 "field": "tempmax",
-                "title": "Temp max",
-                "width": "110",
+                "title": "T max",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "humtarget",
+                "title": "H target",
+                "width": "90",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2476,8 +2516,8 @@
             },
             {
                 "field": "hummin",
-                "title": "Hum min",
-                "width": "110",
+                "title": "H min",
+                "width": "90",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2486,8 +2526,8 @@
             },
             {
                 "field": "hummax",
-                "title": "Hum max",
-                "width": "110",
+                "title": "H max",
+                "width": "90",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -2540,7 +2580,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "sqlite query",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id , active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id , active, fromtime, totime, temptarget, tempmin, tempmax, humtarget, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2672,7 +2712,7 @@
         "z": "4215ef7ad32b1858",
         "name": "",
         "group": "5cbd1b6fdfe2459d",
-        "order": 8,
+        "order": 9,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -2700,7 +2740,7 @@
         "z": "4215ef7ad32b1858",
         "name": "",
         "group": "5cbd1b6fdfe2459d",
-        "order": 9,
+        "order": 12,
         "width": 5,
         "height": 1,
         "passthru": false,
@@ -2960,7 +3000,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "sqlite query",
-        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is changed, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"UPDATE climate_set SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", tempmin = \" + flow.get(\"programming.tempmin\") + \", tempmax = \" + flow.get(\"programming.tempmax\") + \", hummin = \" + flow.get(\"programming.hummin\") + \", hummax = \" + flow.get(\"programming.hummax\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//update schedule selected\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nif (msg.payload === \"new\") {\n    msg.topic = \"INSERT INTO climate_set(id, active, fromtime, totime, tempmin, tempmax, hummin, hummax) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.tempmin\") + \", \" + flow.get(\"programming.tempmax\") + \", \" + flow.get(\"programming.hummin\") + \", \" + flow.get(\"programming.hummax\") + \");\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n    \n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is deleted, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM climate_set WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is changed, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"UPDATE climate_set SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", temptarget = \" + flow.get(\"programming.temptarget\") + \", tempmin = \" + flow.get(\"programming.tempmin\") + \", tempmax = \" + flow.get(\"programming.tempmax\") + \", humtarget = \" + flow.get(\"programming.humtarget\") +\", hummin = \" + flow.get(\"programming.hummin\") + \", hummax = \" + flow.get(\"programming.hummax\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//update schedule selected\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, temptarget, tempmin, tempmax, humtarget, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nif (msg.payload === \"new\") {\n    msg.topic = \"INSERT INTO climate_set(id, active, fromtime, totime, temptarget, tempmin, tempmax, humtarget, hummin, hummax) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.tempmin\") + \", \" + flow.get(\"programming.temptarget\") + \", \" + flow.get(\"programming.tempmax\") + \", \" + flow.get(\"programming.humtarget\") + \", \" + flow.get(\"programming.hummin\") + \", \" + flow.get(\"programming.hummax\") + \");\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, temptarget, tempmin, tempmax, humtarget, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n    \n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is deleted, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM climate_set WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, temptarget, tempmin, tempmax, humtarget,hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2980,7 +3020,7 @@
         "z": "4215ef7ad32b1858",
         "name": "",
         "group": "5cbd1b6fdfe2459d",
-        "order": 10,
+        "order": 14,
         "width": 4,
         "height": 1,
         "passthru": false,
@@ -3063,7 +3103,9 @@
                 "3acda5dcedcfa711",
                 "06f06b7cc7e3f5ad",
                 "04fbd2665495d68a",
-                "7149659b0ad3359d"
+                "7149659b0ad3359d",
+                "a21fc906095f660c",
+                "41c27475f75b7a46"
             ]
         ]
     },
@@ -3215,7 +3257,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "check climate program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\")){//if heating is not active and temperature detected is lower than minimum temperature set\n        global.set(\"climate.heatisact\",1);//active heating\n        msgheatpin.payload = 0;//set payload to low, active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"avviato riscaldamento\");\n    }\n    if (global.get(\"climate.fanisact\") === 0 && (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") || global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\"))) {//if fan is not active and temperature detected is greater than maximum temperature set or humidity detected is greater than maximum humidity set\n        global.set(\"climate.fanisact\", 1);//active fan\n        msgfanpin.payload = 0;//set payload to low, active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"avviata ventilazione\");\n    }\n    if (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.inttemp\") >= global.get(\"climate.clmprgact.tempmax\")) {//if heating is active and temperature detected is greater or equal than maximum temperature set\n        global.set(\"climate.heatisact\", 0);//deactive heating\n        msgheatpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stopped\");';//insert in to db heating stop\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"fermato riscaldamento\");\n    }\n    if (global.get(\"climate.fanisact\") === 1 && (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") || global.get(\"climate.inthum\") <= global.get(\"climate.clmprgact.hummin\"))) {//if fan is active and temperature detected is lower than minimum temperature set or humidity detected is lower than minimum humidity set\n        global.set(\"climate.fanisact\", 0);//deactive fan\n        msgfanpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stopped\");';//insert in to db fan stop\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"fermata ventilazione\");\n    }\n    return;\n}\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\")){//if heating is not active and temperature detected is lower than minimum temperature set\n        global.set(\"climate.heatisact\",1);//active heating\n        msgheatpin.payload = 0;//set payload to low, active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"avviato riscaldamento\");\n    }\n    if (global.get(\"climate.fanisact\") === 0 && (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") || global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\"))) {//if fan is not active and temperature detected is greater than maximum temperature set or humidity detected is greater than maximum humidity set\n        global.set(\"climate.fanisact\", 1);//active fan\n        msgfanpin.payload = 0;//set payload to low, active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"avviata ventilazione\");\n    }\n    if (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.inttemp\") >= global.get(\"climate.clmprgact.temptarget\")) {//if heating is active and temperature detected is greater or equal than target temperature set\n        global.set(\"climate.heatisact\", 0);//deactive heating\n        msgheatpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stopped\");';//insert in to db heating stop\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"fermato riscaldamento\");\n    }\n    if (global.get(\"climate.fanisact\") === 1 && (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") || global.get(\"climate.inthum\") <= global.get(\"climate.clmprgact.humtarget\"))) {//if fan is active and temperature detected is lower than minimum temperature set or humidity detected is lower than target humidity set\n        global.set(\"climate.fanisact\", 0);//deactive fan\n        msgfanpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stopped\");';//insert in to db fan stop\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"fermata ventilazione\");\n    }\n    return;\n}\nreturn;",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -3600,7 +3642,7 @@
         "label": "Hum min",
         "tooltip": "Minimum humidity allowed",
         "group": "5cbd1b6fdfe2459d",
-        "order": 7,
+        "order": 8,
         "width": 2,
         "height": 1,
         "passthru": true,
@@ -3611,7 +3653,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1740,
-        "y": 940,
+        "y": 980,
         "wires": [
             [
                 "da4684500c106992"
@@ -3638,7 +3680,7 @@
         "to": "",
         "reg": false,
         "x": 1970,
-        "y": 940,
+        "y": 980,
         "wires": [
             []
         ]
@@ -3663,7 +3705,7 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 940,
+        "y": 980,
         "wires": [
             [
                 "3d9bb0efbe2047b2"
@@ -3678,7 +3720,7 @@
         "label": "Hum max",
         "tooltip": "Maximum humidity allowed",
         "group": "5cbd1b6fdfe2459d",
-        "order": 8,
+        "order": 10,
         "width": 2,
         "height": 1,
         "passthru": true,
@@ -3689,7 +3731,7 @@
         "className": "",
         "topicType": "msg",
         "x": 1740,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "a4bb1a85552c2970"
@@ -3716,7 +3758,7 @@
         "to": "",
         "reg": false,
         "x": 1970,
-        "y": 980,
+        "y": 1020,
         "wires": [
             []
         ]
@@ -3741,7 +3783,7 @@
         "to": "",
         "reg": false,
         "x": 1480,
-        "y": 980,
+        "y": 1020,
         "wires": [
             [
                 "3aae0239f6650d5c"
@@ -4047,6 +4089,162 @@
         "wires": [
             [
                 "41a11d6b6bc4eeb4"
+            ]
+        ]
+    },
+    {
+        "id": "b15b87b59b31213b",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Temp target",
+        "tooltip": "Target temperature to reach",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 7,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1750,
+        "y": 940,
+        "wires": [
+            [
+                "0bc8192e7f9641b7"
+            ]
+        ]
+    },
+    {
+        "id": "0bc8192e7f9641b7",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.temptarget",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2000,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a21fc906095f660c",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.temptarget",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 940,
+        "wires": [
+            [
+                "b15b87b59b31213b"
+            ]
+        ]
+    },
+    {
+        "id": "bc35e8a4f973e967",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Hum target",
+        "tooltip": "Target humidity to reach",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 11,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1750,
+        "y": 1060,
+        "wires": [
+            [
+                "1d936d2bcb63c8ef"
+            ]
+        ]
+    },
+    {
+        "id": "1d936d2bcb63c8ef",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.humtarget",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1990,
+        "y": 1060,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "41c27475f75b7a46",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.humtarget",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1480,
+        "y": 1060,
+        "wires": [
+            [
+                "bc35e8a4f973e967"
             ]
         ]
     }

@@ -1270,13 +1270,13 @@
         "icon": "",
         "payload": "edit",
         "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
+        "topic": "SELECT id, fromtime, totime FROM irrigation;",
+        "topicType": "str",
         "x": 90,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
-                "b2727c05738a4afa"
+                "1dee4a5b0f066976"
             ]
         ]
     },
@@ -1298,13 +1298,13 @@
         "icon": "",
         "payload": "new",
         "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
+        "topic": "SELECT id, fromtime, totime FROM irrigation;",
+        "topicType": "str",
         "x": 90,
-        "y": 400,
+        "y": 360,
         "wires": [
             [
-                "b2727c05738a4afa"
+                "1dee4a5b0f066976"
             ]
         ]
     },
@@ -1650,13 +1650,13 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "sqlite query",
-        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n        if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n        if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n        if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n        node.send([null, msg]);\n        setTimeout(function () {\n            msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n            node.send([null, msg]);\n        }, 200);\n    }\n    else {\n        msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"new\") {\n    if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n        if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n        if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n        node.send([null, msg]);\n        setTimeout(function () {\n            msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n            node.send([null, msg]);\n        }, 200);\n    }\n    else {\n        msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined) {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"new\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
+        "x": 830,
         "y": 400,
         "wires": [
             [
@@ -1695,7 +1695,7 @@
         "y": 440,
         "wires": [
             [
-                "b2727c05738a4afa"
+                "1dee4a5b0f066976"
             ]
         ]
     },
@@ -2043,7 +2043,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Initialize context and table of db at first start",
-        "func": "if (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0){\n    global.set(\"irrigation.irrisact\", 0);//0 irrigation in inactive 1 is active\n    global.set(\"irrigation.irrtime\", 0);//start time of irrigation duration timer (timestamp in ms)\n    global.set(\"irrigation.manualirrigation\", 0);//0 manual irrigation in inactive 1 is active\n    global.set(\"irrigation.irrprgact.id\", 0);//notity what irrigation program is active (0 nothing)\n    global.set(\"irrigation.irrprgact.fromtime\", 0);//start time of active irrigation program\n    global.set(\"irrigation.irrprgact.duration\", 0);//duration in second ofirrigation of active irrigation program\n    global.set(\"irrigation.irrprgact.oneshoot\", 0);//notify if one shoot irrigation is active in active irrigation program\n    global.set(\"irrigation.irrprgact.totime\", 0);//end time of active irrigation program\n    global.set(\"irrigation.irrprgact.every\", 0);//if one shoot irrigation is not active then repeat irrigation every (minutes)\n    flow.set(\"programming.fromtime\", 0);//initialize interface context\n    flow.set(\"programming.totime\", 0);//initialize interface context\n    flow.set(\"programming.every\", 0);//initialize interface context\n    flow.set(\"programming.duration\", 0);//initialize interface context\n    flow.set(\"programming.oneshoot\", 0);//initialize interface context\n    flow.set(\"programming.active\", 0);//initialize interface context\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn;",
+        "func": "if (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0){\n    global.set(\"irrigation.irrisact\", 0);//0 irrigation in inactive 1 is active\n    global.set(\"irrigation.irrtime\", 0);//start time of irrigation duration timer (timestamp in ms)\n    global.set(\"irrigation.manualirrigation\", 0);//0 manual irrigation in inactive 1 is active\n    global.set(\"irrigation.irrprgact.id\", 0);//notity what irrigation program is active (0 nothing)\n    global.set(\"irrigation.irrprgact.fromtime\", 0);//start time of active irrigation program\n    global.set(\"irrigation.irrprgact.duration\", 0);//duration in second ofirrigation of active irrigation program\n    global.set(\"irrigation.irrprgact.oneshoot\", 0);//notify if one shoot irrigation is active in active irrigation program\n    global.set(\"irrigation.irrprgact.totime\", 0);//end time of active irrigation program\n    global.set(\"irrigation.irrprgact.every\", 0);//if one shoot irrigation is not active then repeat irrigation every (minutes)\n    flow.set(\"programming.fromtime\", 0);//initialize interface context\n    flow.set(\"programming.totime\", 0);//initialize interface context\n    flow.set(\"programming.every\", 0);//initialize interface context\n    flow.set(\"programming.duration\", 0);//initialize interface context\n    flow.set(\"programming.oneshoot\", 0);//initialize interface context\n    flow.set(\"programming.active\", 0);//initialize interface context\n    flow.set(\"programming.cmd\", \"\");//initialize interface context\n    flow.set(\"programming.conflict\", \"\");//initialize interface context\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2395,9 +2395,53 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 540,
+        "x": 1020,
         "y": 400,
         "wires": []
+    },
+    {
+        "id": "1dee4a5b0f066976",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.cmd",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "ab45d3b99e0771c9"
+            ]
+        ]
+    },
+    {
+        "id": "ab45d3b99e0771c9",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "b2727c05738a4afa"
+            ]
+        ]
     },
     {
         "id": "cb99007aad076d23",
@@ -4366,7 +4410,7 @@
         "className": "",
         "topic": "",
         "name": "",
-        "x": 1040,
+        "x": 1020,
         "y": 600,
         "wires": []
     },

@@ -616,7 +616,7 @@
         "enableAnimations": true,
         "enableDateMarker": true,
         "forwardInputMessages": false,
-        "x": 1280,
+        "x": 1320,
         "y": 180,
         "wires": [
             []
@@ -655,7 +655,7 @@
                 "module": "moment"
             }
         ],
-        "x": 1080,
+        "x": 1120,
         "y": 180,
         "wires": [
             [
@@ -850,8 +850,8 @@
         "z": "473af4e9135bb6f3",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
+        "timeout": "1500",
+        "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -861,7 +861,7 @@
         "drop": false,
         "allowrate": false,
         "outputs": 1,
-        "x": 900,
+        "x": 920,
         "y": 180,
         "wires": [
             [

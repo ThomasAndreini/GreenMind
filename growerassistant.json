@@ -586,6 +586,28 @@
         "height": 1
     },
     {
+        "id": "696d740b65c6837c",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "c9196ab76e307349",
+        "order": 4,
+        "disp": true,
+        "width": "14",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "bd1454c9fe3a5dbc",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "abac10b9eadb5bc0",
+        "order": 5,
+        "disp": true,
+        "width": "16",
+        "collapse": true,
+        "className": ""
+    },
+    {
         "id": "44ad992ef7e50aa6",
         "type": "ui_timelines_chart",
         "z": "473af4e9135bb6f3",
@@ -1978,7 +2000,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "check irrigation program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgout = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgout = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= global.get(\"irrigation.irrprgact.duration\")) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgtopin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;// active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgtopin = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;//active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= global.get(\"irrigation.irrprgact.duration\")) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2043,7 +2065,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Initialize context and table of db at first start",
-        "func": "var globalcontextarray = [\"irrigation.irrisact\", \"irrigation.irrtime\", \"irrigation.manualirrigation\", \"irrigation.irrprgact.id\", \"irrigation.irrprgact.fromtime\", \"irrigation.irrprgact.totime\", \"irrigation.irrprgact.duration\", \"irrigation.irrprgact.oneshoot\", \"irrigation.irrprgact.every\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.every\", \"programming.duration\", \"programming.oneshoot\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextarray.length; i++) {//initialize global context\n    if (global.get(globalcontextarray[i]) === undefined) global.set(globalcontextarray[i], 0);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 6) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 6) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0) {\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn;",
+        "func": "var globalcontextarray = [\"irrigation.irrisact\", \"irrigation.irrtime\", \"irrigation.manualirrigation\", \"irrigation.irrprgact.id\", \"irrigation.irrprgact.fromtime\", \"irrigation.irrprgact.totime\", \"irrigation.irrprgact.duration\", \"irrigation.irrprgact.oneshoot\", \"irrigation.irrprgact.every\", \"irrigation.output.levelirr\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.every\", \"programming.duration\", \"programming.oneshoot\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextarray.length; i++) {//initialize global context\n    if (global.get(globalcontextarray[i]) === undefined) global.set(globalcontextarray[i], 0);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 6) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 6) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0) {\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2077,7 +2099,7 @@
         "z": "9cfee97fb9e96644",
         "name": "",
         "pin": "22",
-        "set": true,
+        "set": false,
         "level": "1",
         "freq": "",
         "out": "out",
@@ -2248,7 +2270,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Check irrisact status and modify",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    msgtopin.payload = 0;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    msgtopin.payload = 1;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", 0);\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", 0);\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2304,10 +2326,11 @@
         "id": "5153195b2cf4939f",
         "type": "link in",
         "z": "9cfee97fb9e96644",
-        "name": "to pin",
+        "name": "to irr rele pin",
         "links": [
             "1ec6d8ef6a0f0d9a",
-            "387e19c91a449350"
+            "387e19c91a449350",
+            "84d67a810e7cf451"
         ],
         "x": 1015,
         "y": 1320,
@@ -2444,6 +2467,195 @@
         ]
     },
     {
+        "id": "ba769c6ac1f13eb8",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Output pin initialization",
+        "info": "",
+        "x": 520,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "efb00399bd629c06",
+        "type": "inject",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "irrigation.output.levelirr",
+        "payloadType": "global",
+        "x": 390,
+        "y": 1680,
+        "wires": [
+            [
+                "84d67a810e7cf451"
+            ]
+        ]
+    },
+    {
+        "id": "84d67a810e7cf451",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from \"irrigation.output.levelirr\" inject",
+        "mode": "link",
+        "links": [
+            "5153195b2cf4939f"
+        ],
+        "x": 575,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "a7d6bd9f74ba9928",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Settings dashboard",
+        "info": "",
+        "x": 530,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "292d8fffde5edb8b",
+        "type": "ui_dropdown",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Logic level irrigation inactive",
+        "tooltip": "Set logic level of relay of irrigation when irrigation is inactive",
+        "place": "Select option",
+        "group": "696d740b65c6837c",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "0",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "1",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 680,
+        "y": 1820,
+        "wires": [
+            [
+                "c99e2796c931fd81"
+            ]
+        ]
+    },
+    {
+        "id": "23dd997edef37d48",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "irrigation.output.levelirr",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 1820,
+        "wires": [
+            [
+                "292d8fffde5edb8b"
+            ]
+        ]
+    },
+    {
+        "id": "c99e2796c931fd81",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "irrigation.output.levelirr",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 980,
+        "y": 1820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0a78e609b54d3cea",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 1820,
+        "wires": [
+            [
+                "205cab230529817b"
+            ]
+        ]
+    },
+    {
+        "id": "205cab230529817b",
+        "type": "switch",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "property": "name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Irrigation",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 1820,
+        "wires": [
+            [
+                "23dd997edef37d48"
+            ]
+        ]
+    },
+    {
         "id": "cb99007aad076d23",
         "type": "comment",
         "z": "4215ef7ad32b1858",
@@ -2482,7 +2694,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Initialize context and table of db at first start",
-        "func": "var globalcontextarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.temptarget\", \"programming.hummin\", \"programming.hummax\", \"programming.humtarget\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextarray.length; i++) {//initialize global context\n    if (global.get(globalcontextarray[i]) === undefined) global.set(globalcontextarray[i], 0);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, temptarget INTEGER, hummin INTEGER, hummax INTEGER, humtarget INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
+        "func": "var globalcontextarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.temptarget\", \"programming.hummin\", \"programming.hummax\", \"programming.humtarget\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextarray.length; i++) {//initialize global context\n    if (global.get(globalcontextarray[i]) === undefined) global.set(globalcontextarray[i], 0);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, temptarget INTEGER, hummin INTEGER, hummax INTEGER, humtarget INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3404,7 +3616,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "check climate program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\")){//if heating is not active and temperature detected is lower than minimum temperature set\n        global.set(\"climate.heatisact\",1);//active heating\n        msgheatpin.payload = 0;//set payload to low, active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"avviato riscaldamento\");\n    }\n    if (global.get(\"climate.fanisact\") === 0 && (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") || global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\"))) {//if fan is not active and temperature detected is greater than maximum temperature set or humidity detected is greater than maximum humidity set\n        global.set(\"climate.fanisact\", 1);//active fan\n        msgfanpin.payload = 0;//set payload to low, active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"avviata ventilazione\");\n    }\n    if (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.inttemp\") >= global.get(\"climate.clmprgact.temptarget\")) {//if heating is active and temperature detected is greater or equal than target temperature set\n        global.set(\"climate.heatisact\", 0);//deactive heating\n        msgheatpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stopped\");';//insert in to db heating stop\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"fermato riscaldamento\");\n    }\n    if (global.get(\"climate.fanisact\") === 1 && (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") || global.get(\"climate.inthum\") <= global.get(\"climate.clmprgact.humtarget\"))) {//if fan is active and temperature detected is lower than minimum temperature set or humidity detected is lower than target humidity set\n        global.set(\"climate.fanisact\", 0);//deactive fan\n        msgfanpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stopped\");';//insert in to db fan stop\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"fermata ventilazione\");\n    }\n    return;\n}\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\")){//if heating is not active and temperature detected is lower than minimum temperature set\n        global.set(\"climate.heatisact\",1);//active heating\n        if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n        if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"avviato riscaldamento\");\n    }\n    if (global.get(\"climate.fanisact\") === 0 && (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") || global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\"))) {//if fan is not active and temperature detected is greater than maximum temperature set or humidity detected is greater than maximum humidity set\n        global.set(\"climate.fanisact\", 1);//active fan\n        if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n        if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"avviata ventilazione\");\n    }\n    if (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.inttemp\") >= global.get(\"climate.clmprgact.temptarget\")) {//if heating is active and temperature detected is greater or equal than target temperature set\n        if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n        if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive heating\n        msgheatpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stopped\");';//insert in to db heating stop\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"fermato riscaldamento\");\n    }\n    if (global.get(\"climate.fanisact\") === 1 && (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") || global.get(\"climate.inthum\") <= global.get(\"climate.clmprgact.humtarget\"))) {//if fan is active and temperature detected is lower than minimum temperature set or humidity detected is lower than target humidity set\n        if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n        if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive fan\n        msgfanpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stopped\");';//insert in to db fan stop\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"fermata ventilazione\");\n    }\n    return;\n}\nreturn;",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -3440,7 +3652,7 @@
         "z": "4215ef7ad32b1858",
         "name": "",
         "pin": "17",
-        "set": true,
+        "set": false,
         "level": "1",
         "freq": "",
         "out": "out",
@@ -3577,7 +3789,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Check heatisact or fanisact status and modify",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtodb = {\"topic\" : \"\"};\nif (msg.payload === \"heat\"){\n    var msgtoheatpin = { \"payload\": null };\n    if (global.get(\"climate.heatisact\") === 0) {//If no heating is active, activate heating\n        global.set(\"climate.heatisact\", 1);\n        global.set(\"climate.manualheat\", 1);\n        msgtoheatpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual heat start\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.heatisact\", 0);\n        global.set(\"climate.manualheat\", 0);\n        msgtoheatpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") +', \"Manual heat stop\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n}\nif (msg.payload === \"fan\") {\n    var msgtofanpin = { \"payload\": null };\n    if (global.get(\"climate.fanisact\") === 0) {//If no fan is active, activate fan\n        global.set(\"climate.fanisact\", 1);\n        global.set(\"climate.manualfan\", 1);\n        msgtofanpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan start\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.fanisact\", 0);\n        global.set(\"climate.manualfan\", 0);\n        msgtofanpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan stop\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n}\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtodb = {\"topic\" : \"\"};\nif (msg.payload === \"heat\"){\n    var msgtoheatpin = { \"payload\": null };\n    if (global.get(\"climate.heatisact\") === 0) {//If no heating is active, activate heating\n        global.set(\"climate.heatisact\", 1);\n        global.set(\"climate.manualheat\", 1);\n        if (global.get(\"climate.output.levelheat\") === 1) msgtoheatpin.payload = 0;\n        if (global.get(\"climate.output.levelheat\") === 0) msgtoheatpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual heat start\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.heatisact\", 0);\n        global.set(\"climate.manualheat\", 0);\n        if (global.get(\"climate.output.levelheat\") === 1) msgtoheatpin.payload = 1;\n        if (global.get(\"climate.output.levelheat\") === 0) msgtoheatpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") +', \"Manual heat stop\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n}\nif (msg.payload === \"fan\") {\n    var msgtofanpin = { \"payload\": null };\n    if (global.get(\"climate.fanisact\") === 0) {//If no fan is active, activate fan\n        global.set(\"climate.fanisact\", 1);\n        global.set(\"climate.manualfan\", 1);\n        if (global.get(\"climate.output.levelfan\") === 1) msgtofanpin.payload = 0;\n        if (global.get(\"climate.output.levelfan\") === 0) msgtofanpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan start\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.fanisact\", 0);\n        global.set(\"climate.manualfan\", 0);\n        if (global.get(\"climate.output.levelfan\") === 1) msgtofanpin.payload = 1;\n        if (global.get(\"climate.output.levelfan\") === 0) msgtofanpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan stop\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n}\nreturn;",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -3640,7 +3852,8 @@
         "name": "to heat pin",
         "links": [
             "19964f308df7ed8b",
-            "ac91a48349b3a7cb"
+            "ac91a48349b3a7cb",
+            "b2e71553a3b04dd0"
         ],
         "x": 1015,
         "y": 1460,
@@ -4021,7 +4234,7 @@
         "z": "4215ef7ad32b1858",
         "name": "",
         "pin": "27",
-        "set": true,
+        "set": false,
         "level": "1",
         "freq": "",
         "out": "out",
@@ -4037,7 +4250,8 @@
         "name": "to fan pin",
         "links": [
             "101062a0b28273a9",
-            "3169b1189051872e"
+            "3169b1189051872e",
+            "68f902d93e5e4006"
         ],
         "x": 1015,
         "y": 1520,
@@ -4456,6 +4670,326 @@
             [
                 "fc4d0086b9ab34c4"
             ]
+        ]
+    },
+    {
+        "id": "0898742cac166323",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Output pin initialization",
+        "info": "",
+        "x": 520,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "ad9faddbb589850f",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "climate.output.levelheat",
+        "payloadType": "global",
+        "x": 390,
+        "y": 2060,
+        "wires": [
+            [
+                "b2e71553a3b04dd0"
+            ]
+        ]
+    },
+    {
+        "id": "b2e71553a3b04dd0",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from \"climate.output.levelheat\" inject",
+        "mode": "link",
+        "links": [
+            "031929141abe569e"
+        ],
+        "x": 575,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "339ad123532fbbde",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "climate.output.levelfan",
+        "payloadType": "global",
+        "x": 390,
+        "y": 2100,
+        "wires": [
+            [
+                "68f902d93e5e4006"
+            ]
+        ]
+    },
+    {
+        "id": "68f902d93e5e4006",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from \"climate.output.levelfan\" inject",
+        "mode": "link",
+        "links": [
+            "5ab80269f33d6aa2"
+        ],
+        "x": 575,
+        "y": 2100,
+        "wires": []
+    },
+    {
+        "id": "29a893bec7a9fb58",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Settings dashboard",
+        "info": "",
+        "x": 530,
+        "y": 2180,
+        "wires": []
+    },
+    {
+        "id": "ce2c6648051932d5",
+        "type": "ui_dropdown",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Logic level heat inactive",
+        "tooltip": "Set logic level of relay of heating when heating is inactive",
+        "place": "Select option",
+        "group": "bd1454c9fe3a5dbc",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "0",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "1",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 670,
+        "y": 2240,
+        "wires": [
+            [
+                "a90603dd48b92c7a"
+            ]
+        ]
+    },
+    {
+        "id": "d88bd07acacb178c",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "climate.output.levelheat",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 2240,
+        "wires": [
+            [
+                "ce2c6648051932d5"
+            ]
+        ]
+    },
+    {
+        "id": "a90603dd48b92c7a",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.output.levelheat",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 2240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca61b97da0623ef0",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 2260,
+        "wires": [
+            [
+                "194029e47b5996c0"
+            ]
+        ]
+    },
+    {
+        "id": "194029e47b5996c0",
+        "type": "switch",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "property": "name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Climate",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 2260,
+        "wires": [
+            [
+                "d88bd07acacb178c",
+                "bfe41399db5d9f88"
+            ]
+        ]
+    },
+    {
+        "id": "ba84192f3b6431ab",
+        "type": "ui_dropdown",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Logic level fan inactive",
+        "tooltip": "Set logic level of relay of fan when ventilation is inactive",
+        "place": "Select option",
+        "group": "bd1454c9fe3a5dbc",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "0",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "1",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 670,
+        "y": 2280,
+        "wires": [
+            [
+                "7c0eb6baa7e9f452"
+            ]
+        ]
+    },
+    {
+        "id": "bfe41399db5d9f88",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "climate.output.levelfan",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 2280,
+        "wires": [
+            [
+                "ba84192f3b6431ab"
+            ]
+        ]
+    },
+    {
+        "id": "7c0eb6baa7e9f452",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.output.levelfan",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 2280,
+        "wires": [
+            []
         ]
     }
 ]

@@ -191,146 +191,6 @@
         "className": ""
     },
     {
-        "id": "02846b4cc5558f7e",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 1,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "e27a4639dafe7164",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 3,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "6c393be6834aed11",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 4,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "7d85d36f6c06fbb2",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "df7840ae25995d6d",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 6,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "19b92ba2c1625b95",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 7,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "01ed1015771f42c3",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 8,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "2cd81053f5567717",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 9,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "c57522eb3b23fea7",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 10,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "1dc40777aadfaac8",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 11,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "1a9c87403f17b34b",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 12,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "d2274f4f4ff8c56b",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 13,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "1b33eab4773e9acf",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "2b2b4e4e8122d74f",
-        "order": 1,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "206fe160a1168157",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "2b2b4e4e8122d74f",
-        "order": 3,
-        "width": 2,
-        "height": 1
-    },
-    {
         "id": "f668e2ddd7534d1b",
         "type": "ui_group",
         "name": "Announce",
@@ -608,41 +468,214 @@
         "className": ""
     },
     {
-        "id": "44ad992ef7e50aa6",
-        "type": "ui_timelines_chart",
-        "z": "473af4e9135bb6f3",
-        "group": "f83273088eb193ee",
-        "name": "",
-        "order": 2,
-        "label": "Schedule summary",
-        "width": "0",
-        "height": "0",
-        "lineColors": [
-            {
-                "statusColor": "#ffd500",
-                "statusValue": ""
-            }
-        ],
-        "xTickFormat": "HH:mm",
-        "startDateTime": "1970-01-01T00:00",
-        "endDateTime": "1970-01-01T23:59",
-        "maxLineHeight": "20",
-        "topMargin": "0",
-        "xAxisLabelsFontSize": "14",
-        "xAxisLabelslColor": "#000000",
-        "yAxisLabelsFontSize": "16",
-        "yAxisLabelslColor": "#000000",
-        "timeFormat": "%H:%M",
-        "resetZoomLabelFontSize": 24,
-        "resetZoomLabelColor": "#000000",
-        "enableAnimations": true,
-        "enableDateMarker": true,
-        "forwardInputMessages": false,
-        "x": 1320,
-        "y": 180,
-        "wires": [
-            []
-        ]
+        "id": "cfe5c1bd45978670",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "238d44d1f81165fd",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "2ecc3741e7cf475a",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 4,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "fe3299024616f3b2",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "aa0762f12a981987",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 6,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "60886fe8fa79762b",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 7,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "05f1dcf5d865e05d",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "c8628e4cc373fb07",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "95464bae1b322052",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 10,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "b408c85b90e79d42",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 11,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "5431c19edc17cf12",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 12,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d00d2fb3196d3347",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "25572f3b22faabc8",
+        "order": 13,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "8817ae07505a0505",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "2b2b4e4e8122d74f",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "4131abab41623da1",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "2b2b4e4e8122d74f",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f8eeec95a70ac19c",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 1,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "2776460faa312a1f",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 3,
+        "width": 4,
+        "height": 1
+    },
+    {
+        "id": "a71b122bf723af2b",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 4,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "d6e9188c6d592a16",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "11d35c5a89842b2e",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 8,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "359da7fb65bb7607",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "170413d1220619e8",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 12,
+        "width": 1,
+        "height": 1
     },
     {
         "id": "cbf17221b4974b57",
@@ -681,7 +714,7 @@
         "y": 180,
         "wires": [
             [
-                "44ad992ef7e50aa6"
+                "88fbd738e723d538"
             ]
         ],
         "info": "moment(msg.payload[i].fromtime).utc().format(\"HH:mm\")"
@@ -742,50 +775,6 @@
         ]
     },
     {
-        "id": "01a35cb9f68f28fb",
-        "type": "ui_chart",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "group": "c3238d4fed871bde",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "label": "Climate detected",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "-10",
-        "ymax": "100",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#ffae00",
-            "#006af5",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
-        "x": 790,
-        "y": 400,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "f82df9be90653a7d",
         "type": "link in",
         "z": "473af4e9135bb6f3",
@@ -794,7 +783,7 @@
             "ccf65ec643039010"
         ],
         "x": 275,
-        "y": 400,
+        "y": 460,
         "wires": [
             [
                 "03016bb266140401",
@@ -814,7 +803,7 @@
         "finalize": "",
         "libs": [],
         "x": 470,
-        "y": 380,
+        "y": 440,
         "wires": [
             [
                 "01a35cb9f68f28fb"
@@ -833,7 +822,7 @@
         "finalize": "",
         "libs": [],
         "x": 460,
-        "y": 420,
+        "y": 480,
         "wires": [
             [
                 "01a35cb9f68f28fb"
@@ -949,6 +938,107 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "01a35cb9f68f28fb",
+        "type": "ui_chart",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "group": "c3238d4fed871bde",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Climate detected",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-10",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ffae00",
+            "#006af5",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 790,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88fbd738e723d538",
+        "type": "ui_timelines_chart",
+        "z": "473af4e9135bb6f3",
+        "group": "f83273088eb193ee",
+        "name": "",
+        "order": 2,
+        "label": "Schedule summary",
+        "width": "0",
+        "height": "0",
+        "lineColors": [
+            {
+                "statusColor": "#ffd500",
+                "statusValue": ""
+            }
+        ],
+        "xTickFormat": "HH:mm",
+        "startDateTime": "1970-01-01T00:00",
+        "endDateTime": "1970-01-01T23:59",
+        "maxLineHeight": "20",
+        "topMargin": "0",
+        "xAxisLabelsFontSize": "14",
+        "xAxisLabelslColor": "#000000",
+        "yAxisLabelsFontSize": "16",
+        "yAxisLabelslColor": "#000000",
+        "timeFormat": "%H:%M",
+        "resetZoomLabelFontSize": 24,
+        "resetZoomLabelColor": "#000000",
+        "enableAnimations": true,
+        "enableDateMarker": true,
+        "forwardInputMessages": false,
+        "x": 1320,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d9ff05eb817cd328",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "Timeline chart and announce",
+        "info": "",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b3b9cb7b431cdb1b",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "Climate graphic",
+        "info": "",
+        "x": 560,
+        "y": 380,
+        "wires": []
     },
     {
         "id": "be7cbfc514e81423",
@@ -2065,7 +2155,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Initialize context and table of db at first start",
-        "func": "var globalcontextarray = [\"irrigation.irrisact\", \"irrigation.irrtime\", \"irrigation.manualirrigation\", \"irrigation.irrprgact.id\", \"irrigation.irrprgact.fromtime\", \"irrigation.irrprgact.totime\", \"irrigation.irrprgact.duration\", \"irrigation.irrprgact.oneshoot\", \"irrigation.irrprgact.every\", \"irrigation.output.levelirr\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.every\", \"programming.duration\", \"programming.oneshoot\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextarray.length; i++) {//initialize global context\n    if (global.get(globalcontextarray[i]) === undefined) global.set(globalcontextarray[i], 0);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 6) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 6) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0) {\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn;",
+        "func": "var globalcontextarray = [\"irrigation.irrisact\", \"irrigation.irrtime\", \"irrigation.manualirrigation\", \"irrigation.irrprgact.id\", \"irrigation.irrprgact.fromtime\", \"irrigation.irrprgact.totime\", \"irrigation.irrprgact.duration\", \"irrigation.irrprgact.oneshoot\", \"irrigation.irrprgact.every\", \"irrigation.output.levelirr\", \"irrigation.config.flowrate\", \"irrigation.config.plantqty\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.every\", \"programming.duration\", \"programming.oneshoot\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextarray.length; i++) {//initialize global context\n    if (global.get(globalcontextarray[i]) === undefined) global.set(globalcontextarray[i], 0);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 6) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 6) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0) {\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2533,9 +2623,9 @@
         "tooltip": "Set logic level of relay of irrigation when irrigation is inactive",
         "place": "Select option",
         "group": "696d740b65c6837c",
-        "order": 1,
-        "width": "6",
-        "height": "1",
+        "order": 2,
+        "width": 6,
+        "height": 1,
         "passthru": true,
         "multiple": false,
         "options": [
@@ -2554,7 +2644,7 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 680,
+        "x": 660,
         "y": 1820,
         "wires": [
             [
@@ -2582,7 +2672,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 430,
+        "x": 420,
         "y": 1820,
         "wires": [
             [
@@ -2610,7 +2700,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 980,
+        "x": 960,
         "y": 1820,
         "wires": [
             []
@@ -2623,7 +2713,7 @@
         "name": "",
         "events": "all",
         "x": 100,
-        "y": 1820,
+        "y": 1880,
         "wires": [
             [
                 "205cab230529817b"
@@ -2648,11 +2738,253 @@
         "repair": false,
         "outputs": 1,
         "x": 250,
-        "y": 1820,
+        "y": 1880,
         "wires": [
             [
-                "23dd997edef37d48"
+                "23dd997edef37d48",
+                "139670989fd83a50",
+                "e56078b4849db177"
             ]
+        ]
+    },
+    {
+        "id": "5c5465a79ddb89e8",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Flow rate lt/h",
+        "tooltip": "Enter the flow rate in liters / hour or calculate it with the utility nearby",
+        "group": "696d740b65c6837c",
+        "order": 5,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 610,
+        "y": 1940,
+        "wires": [
+            [
+                "13d2995b4374b418"
+            ]
+        ]
+    },
+    {
+        "id": "139670989fd83a50",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "irrigation.config.flowrate",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1940,
+        "wires": [
+            [
+                "5c5465a79ddb89e8"
+            ]
+        ]
+    },
+    {
+        "id": "13d2995b4374b418",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "irrigation.config.flowrate",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de9356205b76bc90",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "696d740b65c6837c",
+        "order": 10,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Start flow rate calculation timer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "start",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 2040,
+        "wires": [
+            [
+                "7c4d9208737888d5"
+            ]
+        ]
+    },
+    {
+        "id": "7c4d9208737888d5",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "func": "if (msg.payload === \"start\"){\n    flow.set(\"utility.starttimerflowrate\", moment().unix());\n    flow.set(\"utility.stoptimerflowrate\", 0);\n}\nnode.warn(flow.get(\"utility.starttimerflowrate\"));\nif (msg.payload === \"stop\"){\n    flow.set(\"utility.stoptimerflowrate\", moment().unix());\n    node.warn(flow.get(\"utility.stoptimerflowrate\"));\n    global.set(\"irrigation.config.flowrate\", (1 / (flow.get(\"utility.stoptimerflowrate\") - flow.get(\"utility.starttimerflowrate\"))) * 3600);\n    node.warn(global.get(\"irrigation.config.flowrate\"));\n    msg.payload = global.get(\"irrigation.config.flowrate\");\n    node.send(msg);\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 420,
+        "y": 2060,
+        "wires": [
+            [
+                "5c5465a79ddb89e8"
+            ]
+        ]
+    },
+    {
+        "id": "58c12d0c308cc752",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "696d740b65c6837c",
+        "order": 11,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Stop flow rate calculation timer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 2080,
+        "wires": [
+            [
+                "7c4d9208737888d5"
+            ]
+        ]
+    },
+    {
+        "id": "1299ba7d326c34fd",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Plant numbers",
+        "tooltip": "Insert quantity of plant to irrigate for calculate water distribution",
+        "group": "696d740b65c6837c",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 620,
+        "y": 1880,
+        "wires": [
+            [
+                "35c2a7ecb76bdb13"
+            ]
+        ]
+    },
+    {
+        "id": "e56078b4849db177",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "irrigation.config.plantqty",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1880,
+        "wires": [
+            [
+                "1299ba7d326c34fd"
+            ]
+        ]
+    },
+    {
+        "id": "35c2a7ecb76bdb13",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "irrigation.config.plantqty",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 1880,
+        "wires": [
+            []
         ]
     },
     {

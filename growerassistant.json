@@ -30,7 +30,7 @@
             "name": "theme-light",
             "lightTheme": {
                 "default": "#0094CE",
-                "baseColor": "#0094CE",
+                "baseColor": "#00cc58",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
                 "edited": true,
                 "reset": false
@@ -52,11 +52,11 @@
             "themeState": {
                 "base-color": {
                     "default": "#0094CE",
-                    "value": "#001eff",
+                    "value": "#00cc58",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "#00cc58",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -68,7 +68,7 @@
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#1bbfff",
+                    "value": "#1aff7d",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -84,7 +84,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#00cc58",
                     "edited": false
                 },
                 "widget-borderColor": {
@@ -104,7 +104,7 @@
             }
         },
         "site": {
-            "name": "Node-RED Dashboard",
+            "name": "Grower Assistant",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",

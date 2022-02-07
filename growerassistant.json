@@ -24,13 +24,21 @@
         "env": []
     },
     {
+        "id": "4d9548a7a9fa8f5b",
+        "type": "tab",
+        "label": "Test",
+        "disabled": false,
+        "info": "Testing stuff",
+        "env": []
+    },
+    {
         "id": "30310abcb724f80d",
         "type": "ui_base",
         "theme": {
             "name": "theme-light",
             "lightTheme": {
                 "default": "#0094CE",
-                "baseColor": "#00cc58",
+                "baseColor": "#018e3e",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
                 "edited": true,
                 "reset": false
@@ -52,11 +60,11 @@
             "themeState": {
                 "base-color": {
                     "default": "#0094CE",
-                    "value": "#00cc58",
+                    "value": "#018e3e",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#00cc58",
+                    "value": "#018e3e",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -68,7 +76,7 @@
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#1aff7d",
+                    "value": "#02da5f",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -84,7 +92,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#00cc58",
+                    "value": "#018e3e",
                     "edited": false
                 },
                 "widget-borderColor": {

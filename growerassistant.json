@@ -1051,7 +1051,7 @@
             {
                 "field": "fromtime",
                 "title": "From",
-                "width": "130",
+                "width": "125",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -1061,7 +1061,7 @@
             {
                 "field": "totime",
                 "title": "To",
-                "width": "130",
+                "width": "125",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -1070,7 +1070,7 @@
             },
             {
                 "field": "every",
-                "title": "Every min",
+                "title": "Every (min)",
                 "width": "120",
                 "align": "center",
                 "formatter": "plaintext",
@@ -1080,8 +1080,8 @@
             },
             {
                 "field": "duration",
-                "title": "Duration",
-                "width": "120",
+                "title": "Duration (ml)",
+                "width": "130",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -1251,7 +1251,7 @@
         "type": "ui_text_input",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "label": "Every",
+        "label": "Every (min)",
         "tooltip": "Run irrigation every (minutes)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 5,
@@ -1264,7 +1264,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1690,
+        "x": 1710,
         "y": 780,
         "wires": [
             [
@@ -1991,7 +1991,7 @@
             },
             {
                 "field": "duration",
-                "title": "Duration",
+                "title": "Duration (ml)",
                 "width": "",
                 "align": "center",
                 "formatter": "plaintext",
@@ -2331,7 +2331,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Check irrisact status and modify",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", 0);\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    flow.set(\"utility.starttimermanual\", parseInt(parseInt(moment().format(\"x\")) / 1000));\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    let durationmanirr = parseInt(((global.get(\"irrigation.config.flowrate\") / 3600) * 1000) * ((parseInt(parseInt(moment().format(\"x\")) / 1000)) - flow.get(\"utility.starttimermanual\")));\n    node.warn(flow.get(\"utility.starttimermanual\"));\n    node.warn(durationmanirr);\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + durationmanirr + \");\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2349,7 +2349,8 @@
                 "1ec6d8ef6a0f0d9a"
             ],
             [
-                "c20e373a96837ca1"
+                "c20e373a96837ca1",
+                "ca22bf16e62fa7ec"
             ]
         ],
         "outputLabels": [
@@ -2934,6 +2935,23 @@
                 "35b1cb8d9c5604fd"
             ]
         ]
+    },
+    {
+        "id": "ca22bf16e62fa7ec",
+        "type": "debug",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 1340,
+        "wires": []
     },
     {
         "id": "cb99007aad076d23",

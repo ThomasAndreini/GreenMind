@@ -1185,7 +1185,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1730,
+        "x": 1690,
         "y": 540,
         "wires": [
             [
@@ -1211,11 +1211,12 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1730,
+        "x": 1690,
         "y": 580,
         "wires": [
             [
-                "abbba47230890ecb"
+                "abbba47230890ecb",
+                "37a971ed9a826349"
             ]
         ]
     },
@@ -1237,8 +1238,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1730,
-        "y": 620,
+        "x": 1690,
+        "y": 740,
         "wires": [
             [
                 "81761520c7dc5aef"
@@ -1263,8 +1264,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1730,
-        "y": 660,
+        "x": 1690,
+        "y": 780,
         "wires": [
             [
                 "9f7002438e1ab4ea"
@@ -1289,7 +1290,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1750,
+        "x": 1710,
         "y": 820,
         "wires": [
             [
@@ -1323,8 +1324,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1750,
-        "y": 780,
+        "x": 1710,
+        "y": 620,
         "wires": [
             [
                 "1f65ef9f4a1665a6",
@@ -1370,13 +1371,13 @@
         "width": 5,
         "height": 1,
         "passthru": false,
-        "label": "New",
+        "label": "Add",
         "tooltip": "Add a schedule",
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "new",
+        "payload": "add",
         "payloadType": "str",
         "topic": "SELECT id, fromtime, totime FROM irrigation;",
         "topicType": "str",
@@ -1407,7 +1408,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 540,
         "wires": [
             [
@@ -1434,7 +1435,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
+        "x": 1920,
         "y": 540,
         "wires": [
             []
@@ -1459,7 +1460,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1950,
+        "x": 1930,
         "y": 580,
         "wires": [
             []
@@ -1484,8 +1485,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
-        "y": 620,
+        "x": 1920,
+        "y": 740,
         "wires": [
             []
         ]
@@ -1509,8 +1510,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
-        "y": 660,
+        "x": 1920,
+        "y": 780,
         "wires": [
             []
         ]
@@ -1559,8 +1560,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1990,
-        "y": 780,
+        "x": 1970,
+        "y": 620,
         "wires": [
             []
         ]
@@ -1609,7 +1610,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 580,
         "wires": [
             [
@@ -1636,8 +1637,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 620,
+        "x": 1490,
+        "y": 740,
         "wires": [
             [
                 "8be6109a5cbe938b"
@@ -1663,8 +1664,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 660,
+        "x": 1490,
+        "y": 780,
         "wires": [
             [
                 "35b1cb8d9c5604fd"
@@ -1690,7 +1691,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 820,
         "wires": [
             [
@@ -1717,8 +1718,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 780,
+        "x": 1490,
+        "y": 620,
         "wires": [
             [
                 "3051c6860a0e394c"
@@ -1730,7 +1731,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "sqlite query",
-        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined) {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"new\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined) {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n            let durationsec = (flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"add\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1796,15 +1797,15 @@
                 "t": "set",
                 "p": "payload.fromtime",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             },
             {
                 "t": "set",
                 "p": "payload.totime",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             },
             {
                 "t": "set",
@@ -1824,8 +1825,8 @@
                 "t": "set",
                 "p": "payload.oneshoot",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -1861,18 +1862,20 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "toggle respect one shoot",
-        "func": "if (msg.payload === 1){\n    msg.payload = null;\n    msg.enabled = false;\n    node.send(msg);\n}\nif (msg.payload === 0) {\n    msg.payload = undefined;\n    msg.enabled = true;\n    node.send(msg);\n}\nreturn;",
-        "outputs": 1,
+        "func": "if (flow.get(\"programming.oneshoot\") === 1){\n    let msgout1 = {};\n    let msgout2 = {};\n    let durationsec = ((flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600) * 1000);//convert ml of duration in milliseconds\n    msgout1.payload = flow.get(\"programming.fromtime\") + durationsec;\n    msgout1.enabled = false;\n    msgout2.payload = null;\n    msgout2.enabled = false;\n    node.send([msgout1, msgout2]);\n}\nif (flow.get(\"programming.oneshoot\") === 0) {\n    msg.payload = undefined;\n    msg.enabled = true;\n    node.send([msg, msg]);\n}\nreturn;",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1530,
-        "y": 720,
+        "x": 1990,
+        "y": 680,
         "wires": [
             [
-                "8be6109a5cbe938b",
-                "35b1cb8d9c5604fd"
+                "a2e3dbd22da45a3f"
+            ],
+            [
+                "a90c5b4a5e428928"
             ]
         ]
     },
@@ -2058,7 +2061,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "check irrigation program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgtopin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;// active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= durationsec){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + (global.get(\"irrigation.config.flowrate\") / 3600) * parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgtopin = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;//active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= durationsec) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + (global.get(\"irrigation.config.flowrate\") / 3600) * parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgtopin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;// active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= durationsec){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((global.get(\"irrigation.config.flowrate\") / 3600) * parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) * 1000) + \");\";//insert in to db irrigation just done in ml integer\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgtopin = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;//active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= durationsec) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((global.get(\"irrigation.config.flowrate\") / 3600) * parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) * 1000) + \");\";//insert in to db irrigation just done in ml integer\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2069,7 +2072,7 @@
                 "module": "moment"
             }
         ],
-        "x": 710,
+        "x": 720,
         "y": 1500,
         "wires": [
             [
@@ -2871,6 +2874,64 @@
         "wires": [
             [
                 "7c4d9208737888d5"
+            ]
+        ]
+    },
+    {
+        "id": "a2e3dbd22da45a3f",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from toggle to to",
+        "mode": "link",
+        "links": [
+            "30a0f6bcad069e8d"
+        ],
+        "x": 2195,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "a90c5b4a5e428928",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from toggle to every",
+        "mode": "link",
+        "links": [
+            "f0dda0ed1ea2b6cb"
+        ],
+        "x": 2195,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "30a0f6bcad069e8d",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "from to to toggle",
+        "links": [
+            "a2e3dbd22da45a3f"
+        ],
+        "x": 1555,
+        "y": 660,
+        "wires": [
+            [
+                "8be6109a5cbe938b"
+            ]
+        ]
+    },
+    {
+        "id": "f0dda0ed1ea2b6cb",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "from every to toggle",
+        "links": [
+            "a90c5b4a5e428928"
+        ],
+        "x": 1545,
+        "y": 700,
+        "wires": [
+            [
+                "35b1cb8d9c5604fd"
             ]
         ]
     },

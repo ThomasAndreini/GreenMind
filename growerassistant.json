@@ -4622,7 +4622,7 @@
         "links": [
             "f82df9be90653a7d"
         ],
-        "x": 865,
+        "x": 1025,
         "y": 1900,
         "wires": []
     },
@@ -4637,7 +4637,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 720,
+        "x": 880,
         "y": 1900,
         "wires": [
             [
@@ -4654,7 +4654,7 @@
         "dht": 22,
         "pintype": "2",
         "pin": "7",
-        "x": 500,
+        "x": 660,
         "y": 1920,
         "wires": [
             [
@@ -5256,13 +5256,13 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Sim t & h",
-        "func": "const tmin = 0;\nconst tmax = 0;\nconst hmin = 0;\nconst hmax = 0;\n\nreturn msg;",
+        "func": "if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 0 && global.get(\"climate.inttemp\") <= global.get(\"climate.clmprgact.tempmax\")) global.set(\"climate.inttemp\", (global.get(\"climate.inttemp\") + 0.1)); //increase 0.1 °C temp and hum if heat and fan are inactive and if tempmax of active program is higher than inttemp\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 500,
+        "x": 660,
         "y": 1880,
         "wires": [
             [
@@ -5293,10 +5293,35 @@
         "y": 1900,
         "wires": [
             [
-                "4b8889351a94bb67"
+                "ec8897ce10750e10"
             ],
             [
                 "b8aa610cca36cd38"
+            ]
+        ]
+    },
+    {
+        "id": "ec8897ce10750e10",
+        "type": "delay",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "2",
+        "rateUnits": "minute",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 480,
+        "y": 1880,
+        "wires": [
+            [
+                "4b8889351a94bb67"
             ]
         ]
     },

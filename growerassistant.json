@@ -667,7 +667,7 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "format values",
-        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                },\n                {\n                    \"group\": \"Climate\",\n                    \"data\": [\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < flow.get(\"timechart.irrigationschedule\").length; i++) {//search every active irrigation schedule\n    let fromtime = moment(flow.get(\"timechart.irrigationschedule[\" + i + \"].fromtime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");//format date and time\n    let totime = moment(flow.get(\"timechart.irrigationschedule[\" + i + \"].totime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (flow.get(\"timechart.irrigationschedule[\" + i + \"].oneshoot\") === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ 'timeRange': [fromtime, totime], 'val': 'every ' + flow.get(\"timechart.irrigationschedule[\" + i + \"].every\") + 'min, duration ' + flow.get(\"timechart.irrigationschedule[\" + i + \"].duration\")});\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (flow.get(\"timechart.irrigationschedule[\" + i + \"].oneshoot\") === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + flow.get(\"timechart.irrigationschedule[\" + i + \"].duration\")});\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nfor (let i = 0; i < flow.get(\"timechart.climateschedule\").length; i++) {//search every active climate schedule\n    let fromtime = moment(flow.get(\"timechart.climateschedule[\" + i + \"].fromtime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");//format date and time\n    let totime = moment(flow.get(\"timechart.climateschedule[\" + i + \"].totime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    objecttoarray.label = \"\";//Fill the subject with the label, start date and end date\n    objecttoarray.data.push({ 'timeRange': [fromtime, totime], 'val': 'tmin ' + flow.get(\"timechart.climateschedule[\" + i + \"].tempmin\") + ', ' + 'tmax ' + flow.get(\"timechart.climateschedule[\" + i + \"].tempmax\") + ', ' + 'ttarget ' + flow.get(\"timechart.climateschedule[\" + i + \"].temptarget\") + ', ' + 'hmin ' + flow.get(\"timechart.climateschedule[\" + i + \"].hummin\") + ', ' + 'hmax ' + flow.get(\"timechart.climateschedule[\" + i + \"].hummax\") + ', ' + 'htarget ' + flow.get(\"timechart.climateschedule[\" + i + \"].humtarget\")});\n    msgout.payload.dataItems[1].data.push(objecttoarray);//insert objecttoarray in to msgout object    \n}\nreturn msgout;",
+        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                },\n                {\n                    \"group\": \"Climate\",\n                    \"data\": [\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < flow.get(\"timechart.irrigationschedule\").length; i++) {//search every active irrigation schedule\n    let fromtime = moment(flow.get(\"timechart.irrigationschedule[\" + i + \"].fromtime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");//format date and time\n    let totime = moment(flow.get(\"timechart.irrigationschedule[\" + i + \"].totime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (flow.get(\"timechart.irrigationschedule[\" + i + \"].oneshoot\") === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ 'timeRange': [fromtime, totime], 'val': 'every ' + flow.get(\"timechart.irrigationschedule[\" + i + \"].every\") + 'min, duration ' + flow.get(\"timechart.irrigationschedule[\" + i + \"].duration\")});//push object in to array\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (flow.get(\"timechart.irrigationschedule[\" + i + \"].oneshoot\") === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + flow.get(\"timechart.irrigationschedule[\" + i + \"].duration\")});//push object to array\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nfor (let i = 0; i < flow.get(\"timechart.climateschedule\").length; i++) {//search every active climate schedule\n    let fromtime = moment(flow.get(\"timechart.climateschedule[\" + i + \"].fromtime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");//format date and time\n    let totime = moment(flow.get(\"timechart.climateschedule[\" + i + \"].totime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    objecttoarray.label = \"\";//Fill the subject with the label, start date and end date\n    objecttoarray.data.push({ 'timeRange': [fromtime, totime], 'val': 'tmin ' + flow.get(\"timechart.climateschedule[\" + i + \"].tempmin\") + ', ' + 'tmax ' + flow.get(\"timechart.climateschedule[\" + i + \"].tempmax\") + ', ' + 'ttarget ' + flow.get(\"timechart.climateschedule[\" + i + \"].temptarget\") + ', ' + 'hmin ' + flow.get(\"timechart.climateschedule[\" + i + \"].hummin\") + ', ' + 'hmax ' + flow.get(\"timechart.climateschedule[\" + i + \"].hummax\") + ', ' + 'htarget ' + flow.get(\"timechart.climateschedule[\" + i + \"].humtarget\") });//push object to array\n    msgout.payload.dataItems[1].data.push(objecttoarray);//insert objecttoarray in to msgout object    \n}\nreturn msgout;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -685,7 +685,7 @@
                 "88fbd738e723d538"
             ]
         ],
-        "info": "moment(msg.payload[i].fromtime).utc().format(\"HH:mm\")"
+        "info": "Format values accord to Timeline chart documentation"
     },
     {
         "id": "a49933558f887776",
@@ -704,7 +704,8 @@
             [
                 "cbf17221b4974b57"
             ]
-        ]
+        ],
+        "info": "This function send a query if tab Home is loaded"
     },
     {
         "id": "bd541d756dceeb68",
@@ -846,7 +847,8 @@
             [
                 "a6b7472a7e43b83b"
             ]
-        ]
+        ],
+        "info": "Delay for give time to Timeline chart to load and accept payload in"
     },
     {
         "id": "1defbad0c68534d2",
@@ -993,7 +995,7 @@
         "type": "comment",
         "z": "473af4e9135bb6f3",
         "name": "Timeline chart and announce",
-        "info": "",
+        "info": "This section show schedule set in to module",
         "x": 600,
         "y": 100,
         "wires": []
@@ -1003,7 +1005,7 @@
         "type": "comment",
         "z": "473af4e9135bb6f3",
         "name": "Climate graphic",
-        "info": "",
+        "info": "Graphic that show temperature and humidity",
         "x": 560,
         "y": 380,
         "wires": []
@@ -1731,7 +1733,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "sqlite query",
-        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined) {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n            let durationsec = (flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"add\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined) {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n            let durationsec = (flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n            node.send([null, msg]);\n            setTimeout(function () {//send second query after 200 ms for not overload sqlite\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"add\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -2138,7 +2140,8 @@
             [
                 "d1436ddcad8a9e8f"
             ]
-        ]
+        ],
+        "info": "Initialize all global and flow context and db"
     },
     {
         "id": "d1436ddcad8a9e8f",
@@ -2452,16 +2455,6 @@
         "info": "",
         "x": 1110,
         "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "93c80ccfe12a3084",
-        "type": "comment",
-        "z": "9cfee97fb9e96644",
-        "name": "TODO",
-        "info": "aggiungere il controllo della versione su inizializza context, quindi if version = 0.0.1 allora aggiungi inizializzazione context 0.1.0 e imposta version come 0.1.0",
-        "x": 800,
-        "y": 80,
         "wires": []
     },
     {
@@ -2974,7 +2967,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Initialize context and table of db at first start",
-        "func": "var globalcontextarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.temptarget\", \"programming.hummin\", \"programming.hummax\", \"programming.humtarget\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextarray.length; i++) {//initialize global context\n    if (global.get(globalcontextarray[i]) === undefined) global.set(globalcontextarray[i], 0);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, temptarget INTEGER, hummin INTEGER, hummax INTEGER, humtarget INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
+        "func": "var globalcontextnumberarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar globalcontextbooleanarray = [\"climate.testmode\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.temptarget\", \"programming.hummin\", \"programming.hummax\", \"programming.humtarget\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextnumberarray.length; i++) {//initialize global context\n    if (global.get(globalcontextnumberarray[i]) === undefined) global.set(globalcontextnumberarray[i], 0);\n}\nfor (let i = 0; i < globalcontextbooleanarray.length; i++) {//initialize global context\n    if (global.get(globalcontextbooleanarray[i]) === undefined) global.set(globalcontextbooleanarray[i], false);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, temptarget INTEGER, hummin INTEGER, hummax INTEGER, humtarget INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3035,16 +3028,6 @@
             ]
         ],
         "info": "If system table is not created then error trigger function for create it"
-    },
-    {
-        "id": "094b2d022240c2dd",
-        "type": "comment",
-        "z": "4215ef7ad32b1858",
-        "name": "TODO",
-        "info": "inserisci le programmazioni di climate su time chart",
-        "x": 820,
-        "y": 40,
-        "wires": []
     },
     {
         "id": "00858106fdcb9d4d",
@@ -4613,10 +4596,6 @@
         "props": [
             {
                 "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
             }
         ],
         "repeat": "60",
@@ -4624,13 +4603,13 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "",
-        "payloadType": "date",
+        "payload": "climate.testmode",
+        "payloadType": "global",
         "x": 170,
         "y": 1900,
         "wires": [
             [
-                "b8aa610cca36cd38"
+                "a81a49a51c5334e3"
             ]
         ]
     },
@@ -4643,7 +4622,7 @@
         "links": [
             "f82df9be90653a7d"
         ],
-        "x": 695,
+        "x": 865,
         "y": 1900,
         "wires": []
     },
@@ -4658,7 +4637,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 550,
+        "x": 720,
         "y": 1900,
         "wires": [
             [
@@ -4675,8 +4654,8 @@
         "dht": 22,
         "pintype": "2",
         "pin": "7",
-        "x": 340,
-        "y": 1900,
+        "x": 500,
+        "y": 1920,
         "wires": [
             [
                 "7f4a650e33e45e7e"
@@ -5271,5 +5250,140 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "4b8889351a94bb67",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "Sim t & h",
+        "func": "const tmin = 0;\nconst tmax = 0;\nconst hmin = 0;\nconst hmax = 0;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1880,
+        "wires": [
+            [
+                "7f4a650e33e45e7e"
+            ]
+        ],
+        "info": "Simulate temperature and humidity for testing"
+    },
+    {
+        "id": "a81a49a51c5334e3",
+        "type": "switch",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 1900,
+        "wires": [
+            [
+                "4b8889351a94bb67"
+            ],
+            [
+                "b8aa610cca36cd38"
+            ]
+        ]
+    },
+    {
+        "id": "bc29d906b9e4136a",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Activate test climate",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "720e72d4ce2265f2"
+            ]
+        ]
+    },
+    {
+        "id": "6c9eee72742751ec",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Deactivate test climate",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "720e72d4ce2265f2"
+            ]
+        ]
+    },
+    {
+        "id": "720e72d4ce2265f2",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.testmode",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8168d6f434dc3843",
+        "type": "comment",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Trigger climate testmode",
+        "info": "",
+        "x": 490,
+        "y": 40,
+        "wires": []
     }
 ]

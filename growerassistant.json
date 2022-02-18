@@ -5256,13 +5256,13 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Sim t & h TODO",
-        "func": "const tmax = 25;\nconst tmin = 14;\nconst hmax = 90;\nconst hmin = 50; \nif (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 0 && global.get(\"climate.inttemp\") <= tmax) global.set(\"climate.inttemp\", (global.get(\"climate.inttemp\") + 0.1)); //increase 0.1 °C temp and hum if heat and fan are inactive and if tmax is higher than inttemp\n\nreturn msg;",
+        "func": "if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 0) {\n    msg.payload = global.get(\"climate.inttemp\") + 0.1;//increase 0.1 °C temperature if heat and fan are inactive\n    msg.humidity = global.get(\"climate.inthum\") + 0.5;//increase 0.5% humidity if heat and fan are inactive\n}\nif (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.fanisact\") === 0) {\n    msg.payload = global.get(\"climate.inttemp\") + 0.2;//increase 0.2 °C temperature if heat is active and fan is inactive\n    msg.humidity = global.get(\"climate.inthum\") + 0.7;//increase 0.7% humidity if heat is active and fan is inactive\n}\nif (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 1) {\n    msg.payload = global.get(\"climate.inttemp\") - 0.1;//decrease 0.1 °C temperature if heat is inactive and fan is active\n    msg.humidity = global.get(\"climate.inthum\") - 0.5;//increase 0.5% humidity if heat is inactive and fan is active\n}\nif (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.fanisact\") === 1) {\n    msg.payload = parseFloat(global.get(\"climate.inttemp\") + 0.05);//increase 0.1 °C temperature if heat and fan are active\n    msg.humidity = parseFloat(global.get(\"climate.inthum\") - 0.5);//increase 0.5% humidity if heat and fan are active\n}\n\n\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 690,
+        "x": 680,
         "y": 1880,
         "wires": [
             [
@@ -5293,35 +5293,10 @@
         "y": 1900,
         "wires": [
             [
-                "ec8897ce10750e10"
+                "4b8889351a94bb67"
             ],
             [
                 "b8aa610cca36cd38"
-            ]
-        ]
-    },
-    {
-        "id": "ec8897ce10750e10",
-        "type": "delay",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "pauseType": "rate",
-        "timeout": "5",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "2",
-        "rateUnits": "minute",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": true,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 480,
-        "y": 1880,
-        "wires": [
-            [
-                "4b8889351a94bb67"
             ]
         ]
     },

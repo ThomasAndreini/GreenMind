@@ -5255,14 +5255,14 @@
         "id": "4b8889351a94bb67",
         "type": "function",
         "z": "4215ef7ad32b1858",
-        "name": "Sim t & h",
+        "name": "Sim t & h TODO",
         "func": "const tmax = 25;\nconst tmin = 14;\nconst hmax = 90;\nconst hmin = 50; \nif (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 0 && global.get(\"climate.inttemp\") <= tmax) global.set(\"climate.inttemp\", (global.get(\"climate.inttemp\") + 0.1)); //increase 0.1 °C temp and hum if heat and fan are inactive and if tmax is higher than inttemp\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 660,
+        "x": 690,
         "y": 1880,
         "wires": [
             [

@@ -4430,7 +4430,7 @@
         "name": "load irrigation notify",
         "events": "change",
         "x": 130,
-        "y": 360,
+        "y": 380,
         "wires": [
             [
                 "4f72dc7988fc49fd"
@@ -4442,18 +4442,24 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "data inject",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    var msgout = { \"payload\": { \"inttemp\": 0, \"inthum\": 0}}\n    msgout.payload.inttemp = global.get(\"climate.inttemp\");\n    msgout.payload.inthum = global.get(\"climate.inthum\");\n    node.send(msgout);\n}\nreturn;\n",
-        "outputs": 1,
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    var msgout1 = { \"payload\": { \"inttemp\": 0, \"inthum\": 0}};\n    var msgout2 = { \"payload\": 0 };\n    var msgout3 = { \"payload\": 0 };\n    msgout1.payload.inttemp = global.get(\"climate.inttemp\");\n    msgout1.payload.inthum = global.get(\"climate.inthum\");\n    msgout2.payload = global.get(\"climate.heatisact\");\n    msgout3.payload = global.get(\"climate.fanisact\");\n    node.send([msgout1, msgout2, msgout3]);\n}\nreturn;\n",
+        "outputs": 3,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 330,
-        "y": 360,
+        "y": 380,
         "wires": [
             [
                 "0d7e7068d0e78b70",
                 "fdc8a361eb52c6f6"
+            ],
+            [
+                "b55361425e16765b"
+            ],
+            [
+                "138643c44ca31cf8"
             ]
         ]
     },
@@ -4470,8 +4476,8 @@
         "format": "{{msg.payload.inttemp}} °C",
         "layout": "row-center",
         "className": "",
-        "x": 510,
-        "y": 340,
+        "x": 530,
+        "y": 320,
         "wires": []
     },
     {
@@ -4487,8 +4493,8 @@
         "format": "{{msg.payload.inthum}} %",
         "layout": "row-center",
         "className": "",
-        "x": 500,
-        "y": 380,
+        "x": 520,
+        "y": 360,
         "wires": []
     },
     {
@@ -5299,6 +5305,68 @@
                 "b8aa610cca36cd38"
             ]
         ]
+    },
+    {
+        "id": "b55361425e16765b",
+        "type": "ui_led",
+        "z": "4215ef7ad32b1858",
+        "order": 5,
+        "group": "40009fbec210236c",
+        "width": "3",
+        "height": "1",
+        "label": "Heating",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "",
+        "x": 510,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "138643c44ca31cf8",
+        "type": "ui_led",
+        "z": "4215ef7ad32b1858",
+        "order": 5,
+        "group": "40009fbec210236c",
+        "width": "3",
+        "height": "1",
+        "label": "Fan",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "",
+        "x": 510,
+        "y": 440,
+        "wires": []
     },
     {
         "id": "bc29d906b9e4136a",

@@ -2967,7 +2967,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Initialize context and table of db at first start",
-        "func": "var globalcontextnumberarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar globalcontextbooleanarray = [\"climate.testmode\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.temptarget\", \"programming.hummin\", \"programming.hummax\", \"programming.humtarget\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextnumberarray.length; i++) {//initialize global context\n    if (global.get(globalcontextnumberarray[i]) === undefined) global.set(globalcontextnumberarray[i], 0);\n}\nfor (let i = 0; i < globalcontextbooleanarray.length; i++) {//initialize global context\n    if (global.get(globalcontextbooleanarray[i]) === undefined) global.set(globalcontextbooleanarray[i], false);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, temptarget INTEGER, hummin INTEGER, hummax INTEGER, humtarget INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
+        "func": "var globalcontextnumberarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar globalcontextbooleanarray = [\"climate.testmode\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.hummin\", \"programming.hummax\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextnumberarray.length; i++) {//initialize global context\n    if (global.get(globalcontextnumberarray[i]) === undefined) global.set(globalcontextnumberarray[i], 0);\n}\nfor (let i = 0; i < globalcontextbooleanarray.length; i++) {//initialize global context\n    if (global.get(globalcontextbooleanarray[i]) === undefined) global.set(globalcontextbooleanarray[i], false);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3090,16 +3090,6 @@
                 }
             },
             {
-                "field": "temptarget",
-                "title": "T target",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
                 "field": "tempmin",
                 "title": "T min",
                 "width": "90",
@@ -3112,16 +3102,6 @@
             {
                 "field": "tempmax",
                 "title": "T max",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "humtarget",
-                "title": "H target",
                 "width": "90",
                 "align": "center",
                 "formatter": "plaintext",
@@ -3195,7 +3175,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "sqlite query",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id , active, fromtime, totime, temptarget, tempmin, tempmax, humtarget, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id , active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -3235,7 +3215,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1730,
+        "x": 1670,
         "y": 740,
         "wires": [
             [
@@ -3261,7 +3241,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1730,
+        "x": 1670,
         "y": 780,
         "wires": [
             [
@@ -3287,7 +3267,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1730,
+        "x": 1670,
         "y": 820,
         "wires": [
             [
@@ -3313,7 +3293,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1740,
+        "x": 1680,
         "y": 860,
         "wires": [
             [
@@ -3396,7 +3376,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 740,
         "wires": [
             [
@@ -3423,7 +3403,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
+        "x": 1920,
         "y": 740,
         "wires": [
             []
@@ -3448,7 +3428,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1950,
+        "x": 1930,
         "y": 780,
         "wires": [
             []
@@ -3473,7 +3453,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
+        "x": 1920,
         "y": 820,
         "wires": [
             []
@@ -3498,7 +3478,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1970,
+        "x": 1930,
         "y": 860,
         "wires": [
             []
@@ -3548,7 +3528,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 780,
         "wires": [
             [
@@ -3575,7 +3555,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 820,
         "wires": [
             [
@@ -3602,7 +3582,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 860,
         "wires": [
             [
@@ -3615,7 +3595,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "sqlite query",
-        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined){\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \" );//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\"){\n        if (flow.get(\"programming.fromtime\") < flow.get(\"programming.totime\") && flow.get(\"programming.temptarget\") > flow.get(\"programming.tempmin\") && flow.get(\"programming.temptarget\") < flow.get(\"programming.tempmax\") && flow.get(\"programming.humtarget\") > flow.get(\"programming.hummin\") && flow.get(\"programming.humtarget\") < flow.get(\"programming.hummax\")) {//check if fromtime is minor than totime, temptarget is minor that tempmax and greater than tempmin and hum target is minor that hummax and greater than hummin else notify an error\n            if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is changed, climate.clmprgact.id is set to zero in order to update the parameters\n            msg.topic = \"UPDATE climate_set SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", temptarget = \" + flow.get(\"programming.temptarget\") + \", tempmin = \" + flow.get(\"programming.tempmin\") + \", tempmax = \" + flow.get(\"programming.tempmax\") + \", humtarget = \" + flow.get(\"programming.humtarget\") +\", hummin = \" + flow.get(\"programming.hummin\") + \", hummax = \" + flow.get(\"programming.hummax\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//update schedule selected\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, temptarget, tempmin, tempmax, humtarget, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time or temptarget is minor that tempmin or greater that tempmax or humtarget is minor that hummin or greater than hummax, the program will not be recorded\";\n            msg.topic =\"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"new\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") < flow.get(\"programming.totime\") && flow.get(\"programming.temptarget\") > flow.get(\"programming.tempmin\") && flow.get(\"programming.temptarget\") < flow.get(\"programming.tempmax\") && flow.get(\"programming.humtarget\") > flow.get(\"programming.hummin\") && flow.get(\"programming.humtarget\") < flow.get(\"programming.hummax\")) {//check if fromtime is minor than totime, temptarget is minor that tempmax and greater than tempmin and hum target is minor that hummax and greater than hummin else notify an error\n            msg.topic = \"INSERT INTO climate_set(id, active, fromtime, totime, temptarget, tempmin, tempmax, humtarget, hummin, hummax) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.temptarget\") + \", \" + flow.get(\"programming.tempmin\") + \", \" + flow.get(\"programming.tempmax\") + \", \" + flow.get(\"programming.humtarget\") + \", \" + flow.get(\"programming.hummin\") + \", \" + flow.get(\"programming.hummax\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, temptarget, tempmin, tempmax, humtarget, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.topic = \"Error\"\n            msg.payload = \"From time cannot be greater than To time or temptarget is minor that tempmin or greater that tempmax or humtarget is minor that hummin or greater than hummax, the program will not be recorded\";\n            node.send([msg, null]);\n        }  \n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is deleted, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM climate_set WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send([null, msg]);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, temptarget, tempmin, tempmax, humtarget,hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send([null, msg]);\n    }, 200);\n}\nreturn;",
+        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined){\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \" );//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\"){\n        if (flow.get(\"programming.fromtime\") < flow.get(\"programming.totime\")) {//check if fromtime is minor than totime else notify an error\n            if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is changed, climate.clmprgact.id is set to zero in order to update the parameters\n            msg.topic = \"UPDATE climate_set SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", tempmin = \" + flow.get(\"programming.tempmin\") + \", tempmax = \" + flow.get(\"programming.tempmax\") + \", hummin = \" + flow.get(\"programming.hummin\") + \", hummax = \" + flow.get(\"programming.hummax\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//update schedule selected\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic =\"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"new\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") < flow.get(\"programming.totime\")) {//check if fromtime is minor than totime, else notify an error\n            msg.topic = \"INSERT INTO climate_set(id, active, fromtime, totime, tempmin, tempmax, hummin, hummax) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.tempmin\") + \", \" + flow.get(\"programming.tempmax\") + \", \" + flow.get(\"programming.hummin\") + \", \" + flow.get(\"programming.hummax\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.topic = \"Error\"\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            node.send([msg, null]);\n        }  \n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is deleted, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM climate_set WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send([null, msg]);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send([null, msg]);\n    }, 200);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -3725,9 +3705,7 @@
                 "3acda5dcedcfa711",
                 "06f06b7cc7e3f5ad",
                 "04fbd2665495d68a",
-                "7149659b0ad3359d",
-                "a21fc906095f660c",
-                "41c27475f75b7a46"
+                "7149659b0ad3359d"
             ]
         ]
     },
@@ -3879,8 +3857,8 @@
         "id": "aa7ff6772acf6be4",
         "type": "function",
         "z": "4215ef7ad32b1858",
-        "name": "check climate program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.temptarget\", msg.payload[i].temptarget);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            global.set(\"climate.clmprgact.humtarget\", msg.payload[i].humtarget);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\")){//if heating is not active and temperature detected is lower than minimum temperature set\n        global.set(\"climate.heatisact\",1);//active heating\n        if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n        if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"avviato riscaldamento\");\n        return;\n    }\n    if (global.get(\"climate.fanisact\") === 0 && (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") || global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\"))) {//if fan is not active and temperature detected is greater than maximum temperature set or humidity detected is greater than maximum humidity set\n        global.set(\"climate.fanisact\", 1);//active fan\n        if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n        if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"avviata ventilazione\");\n        return;\n    }\n    if (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.inttemp\") >= global.get(\"climate.clmprgact.temptarget\")) {//if heating is active and temperature detected is greater or equal than target temperature set\n        global.set(\"climate.heatisact\", 0);//deactive heating\n        if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n        if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive heating\n        msgheatpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stopped\");';//insert in to db heating stop\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"fermato riscaldamento\");\n        return;\n    }\n    if (global.get(\"climate.fanisact\") === 1 && (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") || global.get(\"climate.inthum\") <= global.get(\"climate.clmprgact.humtarget\"))) {//if fan is active and temperature detected is lower than minimum temperature set or humidity detected is lower than target humidity set\n        global.set(\"climate.fanisact\", 0);//deactive fan\n        if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n        if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive fan\n        msgfanpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stopped\");';//insert in to db fan stop\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"fermata ventilazione\");\n        return;\n    }\n    return;\n}\nreturn;",
+        "name": "check climate program and execute it TODO",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\")){//if heating is not active and temperature detected is lower than minimum temperature set\n        global.set(\"climate.heatisact\",1);//active heating\n        if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n        if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"avviato riscaldamento\");\n        return;\n    }\n    if (global.get(\"climate.fanisact\") === 0 && (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") || global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\"))) {//if fan is not active and temperature detected is greater than maximum temperature set or humidity detected is greater than maximum humidity set\n        global.set(\"climate.fanisact\", 1);//active fan\n        if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n        if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"avviata ventilazione\");\n        return;\n    }\n    if (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.inttemp\") >= global.get(\"climate.clmprgact.tempmax\")) {//if heating is active and temperature detected is greater or equal than max temperature set\n        global.set(\"climate.heatisact\", 0);//deactive heating\n        if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n        if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive heating\n        msgheatpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stopped\");';//insert in to db heating stop\n        node.send([msgheatpin, null, msgtodb]);\n        node.warn(\"fermato riscaldamento\");\n        return;\n    }\n    if (global.get(\"climate.fanisact\") === 1 && (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") || global.get(\"climate.inthum\") >= global.get(\"climate.clmprgact.hummax\"))) {//if fan is active and temperature detected is lower than minimum temperature set or humidity detected is lower than target humidity set\n        global.set(\"climate.fanisact\", 0);//deactive fan\n        if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n        if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive fan\n        msgfanpin.payload = 1;//set payload to high, deactive relay\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stopped\");';//insert in to db fan stop\n        node.send([null, msgfanpin, msgtodb]);\n        node.warn(\"fermata ventilazione\");\n        return;\n    }\n    return;\n}\nreturn;",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -3891,7 +3869,7 @@
                 "module": "moment"
             }
         ],
-        "x": 710,
+        "x": 730,
         "y": 1660,
         "wires": [
             [
@@ -4198,7 +4176,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1750,
+        "x": 1690,
         "y": 900,
         "wires": [
             [
@@ -4225,7 +4203,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1990,
+        "x": 1930,
         "y": 900,
         "wires": [
             []
@@ -4250,7 +4228,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 900,
         "wires": [
             [
@@ -4276,8 +4254,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1740,
-        "y": 980,
+        "x": 1680,
+        "y": 940,
         "wires": [
             [
                 "da4684500c106992"
@@ -4303,8 +4281,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1970,
-        "y": 980,
+        "x": 1930,
+        "y": 940,
         "wires": [
             []
         ]
@@ -4328,8 +4306,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 980,
+        "x": 1490,
+        "y": 940,
         "wires": [
             [
                 "3d9bb0efbe2047b2"
@@ -4354,8 +4332,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1740,
-        "y": 1020,
+        "x": 1680,
+        "y": 980,
         "wires": [
             [
                 "a4bb1a85552c2970"
@@ -4381,8 +4359,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1970,
-        "y": 1020,
+        "x": 1930,
+        "y": 980,
         "wires": [
             []
         ]
@@ -4406,8 +4384,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 1020,
+        "x": 1490,
+        "y": 980,
         "wires": [
             [
                 "3aae0239f6650d5c"
@@ -4716,162 +4694,6 @@
         "wires": [
             [
                 "41a11d6b6bc4eeb4"
-            ]
-        ]
-    },
-    {
-        "id": "b15b87b59b31213b",
-        "type": "ui_text_input",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Temp target",
-        "tooltip": "Target temperature to reach",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 8,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1750,
-        "y": 940,
-        "wires": [
-            [
-                "0bc8192e7f9641b7"
-            ]
-        ]
-    },
-    {
-        "id": "0bc8192e7f9641b7",
-        "type": "change",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "programming.temptarget",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 2000,
-        "y": 940,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "a21fc906095f660c",
-        "type": "change",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.temptarget",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1480,
-        "y": 940,
-        "wires": [
-            [
-                "b15b87b59b31213b"
-            ]
-        ]
-    },
-    {
-        "id": "bc35e8a4f973e967",
-        "type": "ui_text_input",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Hum target",
-        "tooltip": "Target humidity to reach",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 15,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1750,
-        "y": 1060,
-        "wires": [
-            [
-                "1d936d2bcb63c8ef"
-            ]
-        ]
-    },
-    {
-        "id": "1d936d2bcb63c8ef",
-        "type": "change",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "programming.humtarget",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1990,
-        "y": 1060,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "41c27475f75b7a46",
-        "type": "change",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.humtarget",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1480,
-        "y": 1060,
-        "wires": [
-            [
-                "bc35e8a4f973e967"
             ]
         ]
     },

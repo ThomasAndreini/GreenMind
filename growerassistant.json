@@ -32,6 +32,87 @@
         "env": []
     },
     {
+        "id": "6b8182068d6abfd6",
+        "type": "group",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Temp low Hum variable",
+        "style": {
+            "fill": "#7fb7df",
+            "label": true,
+            "color": "#001f60",
+            "stroke": "#0070c0"
+        },
+        "nodes": [
+            "e142f28d574d6e54",
+            "04b414ce3ab7512b",
+            "20f9ce4977e0fb0d",
+            "916c885a68155c4d",
+            "db9e804019cdd8fc",
+            "3cf18eb8ddea1105",
+            "93742f9bf7246ac6",
+            "942f23069070a4d2",
+            "b5e9de3c9b7941b3"
+        ],
+        "x": 54,
+        "y": 239,
+        "w": 852,
+        "h": 202
+    },
+    {
+        "id": "1ac17858d68d7df5",
+        "type": "group",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Temp ok Hum variable",
+        "style": {
+            "stroke": "#92d04f",
+            "fill": "#c8e7a7",
+            "label": true,
+            "color": "#001f60"
+        },
+        "nodes": [
+            "8809c117477282eb",
+            "3cd15866f585fb41",
+            "cffbc94582883590",
+            "4155f62a0a0e3a89",
+            "8509cf8299c76c68",
+            "6fb8ba5f648ef160",
+            "4b7443d5108e12fb",
+            "8267e632b75285b5",
+            "6b9583160ff4bd40"
+        ],
+        "x": 54,
+        "y": 439,
+        "w": 852,
+        "h": 202
+    },
+    {
+        "id": "541282b885da4683",
+        "type": "group",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Temp high Hum variable",
+        "style": {
+            "label": true,
+            "stroke": "#ffC000",
+            "fill": "#ffcf3f",
+            "color": "#001f60"
+        },
+        "nodes": [
+            "d7cb22917e5abf9b",
+            "5de75f87b2a1327e",
+            "83364a243a7aee14",
+            "7cd0a5bf5507abf2",
+            "e3d1c0312f8007d1",
+            "5b6ea2820faff17a",
+            "aa70f6aeb17ae819",
+            "8e12f020117cfb0f",
+            "1dd6eed27ccf2cf0"
+        ],
+        "x": 54,
+        "y": 639,
+        "w": 852,
+        "h": 202
+    },
+    {
         "id": "30310abcb724f80d",
         "type": "ui_base",
         "theme": {
@@ -3956,11 +4037,11 @@
             }
         ],
         "repeat": "",
-        "crontab": "",
+        "crontab": "00 00 * * *",
         "once": false,
         "onceDelay": 0.1,
         "topic": "DELETE FROM climate_actions;",
-        "x": 210,
+        "x": 220,
         "y": 1160,
         "wires": [
             [
@@ -5328,5 +5409,762 @@
         "x": 490,
         "y": 60,
         "wires": []
+    },
+    {
+        "id": "5c29921d35d57000",
+        "type": "comment",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Inject temperature and humidity in testmode enabled",
+        "info": "",
+        "x": 510,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e142f28d574d6e54",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Inject at 00:01",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "01 00 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "04b414ce3ab7512b"
+            ]
+        ]
+    },
+    {
+        "id": "04b414ce3ab7512b",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "20f9ce4977e0fb0d"
+            ]
+        ]
+    },
+    {
+        "id": "20f9ce4977e0fb0d",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "15",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "916c885a68155c4d",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Inject at 02:30",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 02 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 340,
+        "wires": [
+            [
+                "db9e804019cdd8fc"
+            ]
+        ]
+    },
+    {
+        "id": "db9e804019cdd8fc",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "3cf18eb8ddea1105"
+            ]
+        ]
+    },
+    {
+        "id": "3cf18eb8ddea1105",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "15",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "50",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "93742f9bf7246ac6",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Inject at 05:00",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 05 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "942f23069070a4d2"
+            ]
+        ]
+    },
+    {
+        "id": "942f23069070a4d2",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "b5e9de3c9b7941b3"
+            ]
+        ]
+    },
+    {
+        "id": "b5e9de3c9b7941b3",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "15",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "80",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8809c117477282eb",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Inject at 07:30",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 07 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "3cd15866f585fb41"
+            ]
+        ]
+    },
+    {
+        "id": "3cd15866f585fb41",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "cffbc94582883590"
+            ]
+        ]
+    },
+    {
+        "id": "cffbc94582883590",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "18",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4155f62a0a0e3a89",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Inject at 10:00",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 10 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 540,
+        "wires": [
+            [
+                "8509cf8299c76c68"
+            ]
+        ]
+    },
+    {
+        "id": "8509cf8299c76c68",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 540,
+        "wires": [
+            [
+                "6fb8ba5f648ef160"
+            ]
+        ]
+    },
+    {
+        "id": "6fb8ba5f648ef160",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "18",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "50",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b7443d5108e12fb",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Inject at 12:30",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 12 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 600,
+        "wires": [
+            [
+                "8267e632b75285b5"
+            ]
+        ]
+    },
+    {
+        "id": "8267e632b75285b5",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 600,
+        "wires": [
+            [
+                "6b9583160ff4bd40"
+            ]
+        ]
+    },
+    {
+        "id": "6b9583160ff4bd40",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "18",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "80",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d7cb22917e5abf9b",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Inject at 15:00",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 15 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 680,
+        "wires": [
+            [
+                "5de75f87b2a1327e"
+            ]
+        ]
+    },
+    {
+        "id": "5de75f87b2a1327e",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 680,
+        "wires": [
+            [
+                "83364a243a7aee14"
+            ]
+        ]
+    },
+    {
+        "id": "83364a243a7aee14",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "21",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7cd0a5bf5507abf2",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Inject at 17:30",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 17 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 740,
+        "wires": [
+            [
+                "e3d1c0312f8007d1"
+            ]
+        ]
+    },
+    {
+        "id": "e3d1c0312f8007d1",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 740,
+        "wires": [
+            [
+                "5b6ea2820faff17a"
+            ]
+        ]
+    },
+    {
+        "id": "5b6ea2820faff17a",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "21",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "50",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa70f6aeb17ae819",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Inject 20:00",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 20 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "8e12f020117cfb0f"
+            ]
+        ]
+    },
+    {
+        "id": "8e12f020117cfb0f",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 800,
+        "wires": [
+            [
+                "1dd6eed27ccf2cf0"
+            ]
+        ]
+    },
+    {
+        "id": "1dd6eed27ccf2cf0",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "21",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "80",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 800,
+        "wires": [
+            []
+        ]
     }
 ]

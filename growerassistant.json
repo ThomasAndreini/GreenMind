@@ -4407,8 +4407,8 @@
         "z": "4215ef7ad32b1858",
         "name": "load irrigation notify",
         "events": "change",
-        "x": 130,
-        "y": 380,
+        "x": 140,
+        "y": 360,
         "wires": [
             [
                 "4f72dc7988fc49fd"
@@ -4426,7 +4426,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
+        "x": 430,
         "y": 380,
         "wires": [
             [
@@ -4454,7 +4454,7 @@
         "format": "{{msg.payload.inttemp}} °C",
         "layout": "row-center",
         "className": "",
-        "x": 530,
+        "x": 650,
         "y": 320,
         "wires": []
     },
@@ -4471,7 +4471,7 @@
         "format": "{{msg.payload.inthum}} %",
         "layout": "row-center",
         "className": "",
-        "x": 520,
+        "x": 640,
         "y": 360,
         "wires": []
     },
@@ -5155,7 +5155,7 @@
         "shape": "circle",
         "showGlow": false,
         "name": "",
-        "x": 510,
+        "x": 630,
         "y": 400,
         "wires": []
     },
@@ -5186,9 +5186,62 @@
         "shape": "circle",
         "showGlow": false,
         "name": "",
-        "x": 510,
+        "x": 630,
         "y": 440,
         "wires": []
+    },
+    {
+        "id": "85297554fafe1bb9",
+        "type": "complete",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "scope": [
+            "5e07112cb9dc6a04",
+            "0a49932d761e1ea9",
+            "7f4a650e33e45e7e"
+        ],
+        "uncaught": false,
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "d02002a112e35aee"
+            ]
+        ]
+    },
+    {
+        "id": "d02002a112e35aee",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "trigger",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "name",
+                "pt": "msg",
+                "to": "Climate",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 420,
+        "wires": [
+            [
+                "4f72dc7988fc49fd"
+            ]
+        ]
     },
     {
         "id": "bc29d906b9e4136a",

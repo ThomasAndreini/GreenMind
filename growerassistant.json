@@ -4871,12 +4871,12 @@
         "multiple": false,
         "options": [
             {
-                "label": "0",
+                "label": "Low",
                 "value": 0,
                 "type": "num"
             },
             {
-                "label": "1",
+                "label": "High",
                 "value": 1,
                 "type": "num"
             }
@@ -5003,12 +5003,12 @@
         "multiple": false,
         "options": [
             {
-                "label": "0",
+                "label": "Low",
                 "value": 0,
                 "type": "num"
             },
             {
-                "label": "1",
+                "label": "High",
                 "value": 1,
                 "type": "num"
             }
@@ -5154,8 +5154,8 @@
         "allowColorForValueInMessage": false,
         "shape": "circle",
         "showGlow": false,
-        "name": "",
-        "x": 630,
+        "name": "Heating led",
+        "x": 650,
         "y": 400,
         "wires": []
     },
@@ -5185,8 +5185,8 @@
         "allowColorForValueInMessage": false,
         "shape": "circle",
         "showGlow": false,
-        "name": "",
-        "x": 630,
+        "name": "Fan led",
+        "x": 640,
         "y": 440,
         "wires": []
     },

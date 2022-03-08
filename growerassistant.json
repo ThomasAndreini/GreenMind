@@ -16,13 +16,110 @@
         "env": []
     },
     {
+        "id": "4215ef7ad32b1858",
+        "type": "tab",
+        "label": "Climate",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "4d9548a7a9fa8f5b",
+        "type": "tab",
+        "label": "Test",
+        "disabled": false,
+        "info": "Testing stuff",
+        "env": []
+    },
+    {
+        "id": "6b8182068d6abfd6",
+        "type": "group",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Temp low Hum variable",
+        "style": {
+            "fill": "#7fb7df",
+            "label": true,
+            "color": "#001f60",
+            "stroke": "#0070c0"
+        },
+        "nodes": [
+            "e142f28d574d6e54",
+            "04b414ce3ab7512b",
+            "20f9ce4977e0fb0d",
+            "916c885a68155c4d",
+            "db9e804019cdd8fc",
+            "3cf18eb8ddea1105",
+            "93742f9bf7246ac6",
+            "942f23069070a4d2",
+            "b5e9de3c9b7941b3"
+        ],
+        "x": 54,
+        "y": 239,
+        "w": 852,
+        "h": 202
+    },
+    {
+        "id": "1ac17858d68d7df5",
+        "type": "group",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Temp ok Hum variable",
+        "style": {
+            "stroke": "#92d04f",
+            "fill": "#c8e7a7",
+            "label": true,
+            "color": "#001f60"
+        },
+        "nodes": [
+            "8809c117477282eb",
+            "3cd15866f585fb41",
+            "cffbc94582883590",
+            "4155f62a0a0e3a89",
+            "8509cf8299c76c68",
+            "6fb8ba5f648ef160",
+            "4b7443d5108e12fb",
+            "8267e632b75285b5",
+            "6b9583160ff4bd40"
+        ],
+        "x": 54,
+        "y": 439,
+        "w": 852,
+        "h": 202
+    },
+    {
+        "id": "541282b885da4683",
+        "type": "group",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Temp high Hum variable",
+        "style": {
+            "label": true,
+            "stroke": "#ffC000",
+            "fill": "#ffcf3f",
+            "color": "#001f60"
+        },
+        "nodes": [
+            "d7cb22917e5abf9b",
+            "5de75f87b2a1327e",
+            "83364a243a7aee14",
+            "7cd0a5bf5507abf2",
+            "e3d1c0312f8007d1",
+            "5b6ea2820faff17a",
+            "aa70f6aeb17ae819",
+            "8e12f020117cfb0f",
+            "1dd6eed27ccf2cf0"
+        ],
+        "x": 54,
+        "y": 639,
+        "w": 852,
+        "h": 202
+    },
+    {
         "id": "30310abcb724f80d",
         "type": "ui_base",
         "theme": {
             "name": "theme-light",
             "lightTheme": {
                 "default": "#0094CE",
-                "baseColor": "#0094CE",
+                "baseColor": "#018e3e",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
                 "edited": true,
                 "reset": false
@@ -44,11 +141,11 @@
             "themeState": {
                 "base-color": {
                     "default": "#0094CE",
-                    "value": "#001eff",
+                    "value": "#018e3e",
                     "edited": true
                 },
                 "page-titlebar-backgroundColor": {
-                    "value": "#0094CE",
+                    "value": "#018e3e",
                     "edited": false
                 },
                 "page-backgroundColor": {
@@ -60,7 +157,7 @@
                     "edited": false
                 },
                 "group-textColor": {
-                    "value": "#1bbfff",
+                    "value": "#02da5f",
                     "edited": false
                 },
                 "group-borderColor": {
@@ -76,7 +173,7 @@
                     "edited": false
                 },
                 "widget-backgroundColor": {
-                    "value": "#0094ce",
+                    "value": "#018e3e",
                     "edited": false
                 },
                 "widget-borderColor": {
@@ -96,7 +193,7 @@
             }
         },
         "site": {
-            "name": "Node-RED Dashboard",
+            "name": "Grower Assistant",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",
@@ -156,7 +253,7 @@
         "tab": "c9196ab76e307349",
         "order": 1,
         "disp": true,
-        "width": 14,
+        "width": "14",
         "collapse": true,
         "className": ""
     },
@@ -183,7 +280,284 @@
         "className": ""
     },
     {
-        "id": "02846b4cc5558f7e",
+        "id": "f668e2ddd7534d1b",
+        "type": "ui_group",
+        "name": "Announce",
+        "tab": "6691e9ed50dfc4a2",
+        "order": 3,
+        "disp": true,
+        "width": "20",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "c3238d4fed871bde",
+        "type": "ui_group",
+        "name": "Climate",
+        "tab": "6691e9ed50dfc4a2",
+        "order": 2,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "abac10b9eadb5bc0",
+        "type": "ui_tab",
+        "name": "Climate",
+        "icon": "fa-leaf",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "5cbd1b6fdfe2459d",
+        "type": "ui_group",
+        "name": "Schedule",
+        "tab": "abac10b9eadb5bc0",
+        "order": 2,
+        "disp": true,
+        "width": "16",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "cc3a2eefb8aff812",
+        "type": "ui_group",
+        "name": "Climate actions",
+        "tab": "abac10b9eadb5bc0",
+        "order": 3,
+        "disp": true,
+        "width": 16,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "138fe263b9fbdc51",
+        "type": "ui_group",
+        "name": "Manual commands",
+        "tab": "abac10b9eadb5bc0",
+        "order": 4,
+        "disp": true,
+        "width": 16,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "40009fbec210236c",
+        "type": "ui_group",
+        "name": "Current data",
+        "tab": "abac10b9eadb5bc0",
+        "order": 1,
+        "disp": true,
+        "width": 16,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "3b4ec14f0ce1f48a",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "40009fbec210236c",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7dabedd0bcddc473",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "40009fbec210236c",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "383392ae94ea4363",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "40009fbec210236c",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "5afe47ddcf55a1b0",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 5,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "96c9658d19c28737",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 9,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "3bb3a4afd7374de9",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 16,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "52eefa205de8e885",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 1,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "727f2e8cab3ef5e3",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 3,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "0fc48b1853a2d9c1",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 4,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "85b5ab3d126c05ef",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 5,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f3a2eb19d0ab0c9d",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 6,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "b687a120390458f1",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 7,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "7c81f5f9f5e1adf9",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 8,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "b3c243eee8a957bc",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 9,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "1b9025de99192111",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 10,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "51347577de15116a",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 11,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "99767f4155535324",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 12,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "f82acf669583cfd6",
+        "type": "ui_spacer",
+        "z": "473af4e9135bb6f3",
+        "name": "spacer",
+        "group": "cc3a2eefb8aff812",
+        "order": 13,
+        "width": 2,
+        "height": 1
+    },
+    {
+        "id": "696d740b65c6837c",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "c9196ab76e307349",
+        "order": 4,
+        "disp": true,
+        "width": "14",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "bd1454c9fe3a5dbc",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "abac10b9eadb5bc0",
+        "order": 5,
+        "disp": true,
+        "width": "16",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "d390524ada203dc1",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -193,7 +567,7 @@
         "height": 1
     },
     {
-        "id": "e27a4639dafe7164",
+        "id": "112b994495383181",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -203,7 +577,7 @@
         "height": 1
     },
     {
-        "id": "6c393be6834aed11",
+        "id": "75cc0e5dc597c915",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -213,7 +587,7 @@
         "height": 1
     },
     {
-        "id": "7d85d36f6c06fbb2",
+        "id": "33fc269fe52bad2b",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -223,7 +597,7 @@
         "height": 1
     },
     {
-        "id": "df7840ae25995d6d",
+        "id": "23ad0cf5711d7eac",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -233,7 +607,7 @@
         "height": 1
     },
     {
-        "id": "19b92ba2c1625b95",
+        "id": "2df87595f91bc94a",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -243,7 +617,7 @@
         "height": 1
     },
     {
-        "id": "01ed1015771f42c3",
+        "id": "356d39afc0e66ebf",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -253,7 +627,7 @@
         "height": 1
     },
     {
-        "id": "2cd81053f5567717",
+        "id": "fe268e992dc25d7a",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -263,7 +637,7 @@
         "height": 1
     },
     {
-        "id": "c57522eb3b23fea7",
+        "id": "d0245a3c41a0507d",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -273,7 +647,7 @@
         "height": 1
     },
     {
-        "id": "1dc40777aadfaac8",
+        "id": "2dcf926fcfcd0b2e",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -283,7 +657,7 @@
         "height": 1
     },
     {
-        "id": "1a9c87403f17b34b",
+        "id": "6d3fb6c57422581f",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -293,7 +667,7 @@
         "height": 1
     },
     {
-        "id": "d2274f4f4ff8c56b",
+        "id": "fdd68ff1a4d84009",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -303,7 +677,7 @@
         "height": 1
     },
     {
-        "id": "1b33eab4773e9acf",
+        "id": "2a7cd9fb9f53f18d",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -313,7 +687,7 @@
         "height": 1
     },
     {
-        "id": "206fe160a1168157",
+        "id": "fac1e30a191a52ef",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
         "name": "spacer",
@@ -323,50 +697,34 @@
         "height": 1
     },
     {
-        "id": "f668e2ddd7534d1b",
-        "type": "ui_group",
-        "name": "Announce",
-        "tab": "6691e9ed50dfc4a2",
-        "order": 2,
-        "disp": true,
-        "width": "20",
-        "collapse": true,
-        "className": ""
+        "id": "ee19e399a85fd39a",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 1,
+        "width": 1,
+        "height": 1
     },
     {
-        "id": "44ad992ef7e50aa6",
-        "type": "ui_timelines_chart",
-        "z": "473af4e9135bb6f3",
-        "group": "f83273088eb193ee",
-        "name": "",
-        "order": 2,
-        "label": "Schedule summary",
-        "width": "0",
-        "height": "0",
-        "lineColors": [
-            {
-                "statusColor": "#0084ff",
-                "statusValue": ""
-            }
-        ],
-        "xTickFormat": "HH:mm",
-        "startDateTime": "1970-01-01T00:00",
-        "endDateTime": "1970-01-01T23:59",
-        "maxLineHeight": "15",
-        "xAxisLabelsFontSize": "14",
-        "xAxisLabelslColor": "#000000",
-        "yAxisLabelsFontSize": "16",
-        "yAxisLabelslColor": "#000000",
-        "resetZoomLabelFontSize": 24,
-        "resetZoomLabelColor": "#000000",
-        "enableAnimations": true,
-        "enableDateMarker": true,
-        "forwardInputMessages": false,
-        "x": 1200,
-        "y": 220,
-        "wires": [
-            []
-        ]
+        "id": "0c982df2d0f1c930",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "4f8844c52fa57bf5",
+        "type": "ui_spacer",
+        "z": "9cfee97fb9e96644",
+        "name": "spacer",
+        "group": "696d740b65c6837c",
+        "order": 5,
+        "width": 1,
+        "height": 1
     },
     {
         "id": "cbf17221b4974b57",
@@ -376,11 +734,12 @@
         "sqlquery": "msg.topic",
         "sql": "",
         "name": "",
-        "x": 740,
+        "x": 600,
         "y": 220,
         "wires": [
             [
-                "a6b7472a7e43b83b"
+                "cabbfb27625993b3",
+                "1defbad0c68534d2"
             ]
         ]
     },
@@ -389,7 +748,7 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "format values",
-        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                }\n            ],\n        \"settings\" : {\n            \"chart\": {\n                \"topMargin\": 0\n                }\n            }\n        }\n    };\nfor (let i = 0; i < msg.payload.length; i++) {//search every active irrigation schedule\n    let fromtime = moment(msg.payload[i].fromtime).format(\"YYYY-MM-DD HH:mm:ss\");//format date and time \n    let totime = moment(msg.payload[i].totime).format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (msg.payload[i].oneshoot === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"every \" + msg.payload[i].every + \"min, duration \" + msg.payload[i].duration });\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (msg.payload[i].oneshoot === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + msg.payload[i].duration});\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nreturn msgout;",
+        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                },\n                {\n                    \"group\": \"Climate\",\n                    \"data\": [\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < flow.get(\"timechart.irrigationschedule\").length; i++) {//search every active irrigation schedule\n    let fromtime = moment(flow.get(\"timechart.irrigationschedule[\" + i + \"].fromtime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");//format date and time\n    let totime = moment(flow.get(\"timechart.irrigationschedule[\" + i + \"].totime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (flow.get(\"timechart.irrigationschedule[\" + i + \"].oneshoot\") === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ 'timeRange': [fromtime, totime], 'val': 'every ' + flow.get(\"timechart.irrigationschedule[\" + i + \"].every\") + 'min, duration ' + flow.get(\"timechart.irrigationschedule[\" + i + \"].duration\")});//push object in to array\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (flow.get(\"timechart.irrigationschedule[\" + i + \"].oneshoot\") === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + flow.get(\"timechart.irrigationschedule[\" + i + \"].duration\")});//push object to array\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nfor (let i = 0; i < flow.get(\"timechart.climateschedule\").length; i++) {//search every active climate schedule\n    let fromtime = moment(flow.get(\"timechart.climateschedule[\" + i + \"].fromtime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");//format date and time\n    let totime = moment(flow.get(\"timechart.climateschedule[\" + i + \"].totime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    objecttoarray.label = \"\";//Fill the subject with the label, start date and end date\n    objecttoarray.data.push({ 'timeRange': [fromtime, totime], 'val': 'tmin ' + flow.get(\"timechart.climateschedule[\" + i + \"].tempmin\") + ', ' + 'tmax ' + flow.get(\"timechart.climateschedule[\" + i + \"].tempmax\") + ', ' + 'ttarget ' + flow.get(\"timechart.climateschedule[\" + i + \"].temptarget\") + ', ' + 'hmin ' + flow.get(\"timechart.climateschedule[\" + i + \"].hummin\") + ', ' + 'hmax ' + flow.get(\"timechart.climateschedule[\" + i + \"].hummax\") + ', ' + 'htarget ' + flow.get(\"timechart.climateschedule[\" + i + \"].humtarget\") });//push object to array\n    msgout.payload.dataItems[1].data.push(objecttoarray);//insert objecttoarray in to msgout object    \n}\nreturn msgout;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -400,33 +759,34 @@
                 "module": "moment"
             }
         ],
-        "x": 1000,
-        "y": 220,
+        "x": 1120,
+        "y": 180,
         "wires": [
             [
-                "44ad992ef7e50aa6"
+                "88fbd738e723d538"
             ]
         ],
-        "info": "    settings:{\r\n        \"chart\":{\r\n          \"topMargin\": 0)>\r\n        }\r\n    }"
+        "info": "Format values accord to Timeline chart documentation"
     },
     {
         "id": "a49933558f887776",
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "query if tab is loaded",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Home\") {//if home tab is loaded then send a query to db\n    let msgout = { \"topic\": \"\" }\n    msgout.topic = \"SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Home\") {//if home tab is loaded then send a query to db\n    let msgout = { \"topic\": \"\" }\n    msgout.topic = \"SELECT fromtime, totime, every, duration, oneshoot FROM irrigation WHERE active = 1 ORDER BY fromtime;\";\n    node.send(msgout);\n    setTimeout(function () {\n        msgout.topic = \"SELECT fromtime, totime, tempmin, tempmax, temptarget, hummin, hummax, humtarget FROM climate_set WHERE active = 1 ORDER BY fromtime;\";\n        node.send(msgout);//wait 500ms and query climate_set\n    }, 500);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 460,
+        "x": 320,
         "y": 220,
         "wires": [
             [
                 "cbf17221b4974b57"
             ]
-        ]
+        ],
+        "info": "This function send a query if tab Home is loaded"
     },
     {
         "id": "bd541d756dceeb68",
@@ -438,36 +798,10 @@
         "y": 220,
         "wires": [
             [
-                "86c83b88f241d12c",
-                "43783318f3f6408b"
-            ]
-        ]
-    },
-    {
-        "id": "86c83b88f241d12c",
-        "type": "delay",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "500",
-        "timeoutUnits": "milliseconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "allowrate": false,
-        "outputs": 1,
-        "x": 250,
-        "y": 220,
-        "wires": [
-            [
+                "43783318f3f6408b",
                 "a49933558f887776"
             ]
-        ],
-        "info": "Wait for page loading is complete"
+        ]
     },
     {
         "id": "43783318f3f6408b",
@@ -478,17 +812,284 @@
         "order": 1,
         "width": "20",
         "height": "4",
-        "format": "<div <p>This is the first release of a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GrowerAssistant\">https://github.com/ThomasAndreini/GrowerAssistant</a>.</div>",
+        "format": "<div <p>This is a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GrowerAssistant\">https://github.com/ThomasAndreini/GrowerAssistant</a>.</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
         "x": 240,
-        "y": 300,
+        "y": 280,
         "wires": [
             []
         ]
+    },
+    {
+        "id": "f82df9be90653a7d",
+        "type": "link in",
+        "z": "473af4e9135bb6f3",
+        "name": "from dht22 to chart",
+        "links": [
+            "ccf65ec643039010"
+        ],
+        "x": 275,
+        "y": 460,
+        "wires": [
+            [
+                "03016bb266140401",
+                "bddd6b77fe91dca1"
+            ]
+        ]
+    },
+    {
+        "id": "03016bb266140401",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "format temperature",
+        "func": "msg.payload = parseFloat(msg.payload);\nmsg.topic = \"Temperature\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 440,
+        "wires": [
+            [
+                "01a35cb9f68f28fb"
+            ]
+        ]
+    },
+    {
+        "id": "bddd6b77fe91dca1",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "format humidity",
+        "func": "msg.payload = parseFloat(msg.humidity);\nmsg.topic = \"Humidity\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 480,
+        "wires": [
+            [
+                "01a35cb9f68f28fb"
+            ]
+        ]
+    },
+    {
+        "id": "26caed5416949746",
+        "type": "change",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timechart.irrigationschedule",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cabbfb27625993b3",
+        "type": "delay",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1500",
+        "timeoutUnits": "milliseconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 920,
+        "y": 180,
+        "wires": [
+            [
+                "a6b7472a7e43b83b"
+            ]
+        ],
+        "info": "Delay for give time to Timeline chart to load and accept payload in"
+    },
+    {
+        "id": "1defbad0c68534d2",
+        "type": "switch",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "irrigation",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": "climate_set",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "repair": false,
+        "outputs": 2,
+        "x": 890,
+        "y": 260,
+        "wires": [
+            [
+                "26caed5416949746"
+            ],
+            [
+                "cd3a6b2d2b2f7077"
+            ]
+        ]
+    },
+    {
+        "id": "cd3a6b2d2b2f7077",
+        "type": "change",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timechart.climateschedule",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1120,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "01a35cb9f68f28fb",
+        "type": "ui_chart",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "group": "c3238d4fed871bde",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Climate detected",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-10",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "86400",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#ffae00",
+            "#006af5",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 790,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88fbd738e723d538",
+        "type": "ui_timelines_chart",
+        "z": "473af4e9135bb6f3",
+        "group": "f83273088eb193ee",
+        "name": "",
+        "order": 2,
+        "label": "Schedule summary",
+        "width": "0",
+        "height": "0",
+        "lineColors": [
+            {
+                "statusColor": "#ffd500",
+                "statusValue": ""
+            }
+        ],
+        "xTickFormat": "HH:mm",
+        "startDateTime": "1970-01-01T00:00",
+        "endDateTime": "1970-01-01T23:59",
+        "maxLineHeight": "20",
+        "topMargin": "0",
+        "xAxisLabelsFontSize": "14",
+        "xAxisLabelslColor": "#000000",
+        "yAxisLabelsFontSize": "16",
+        "yAxisLabelslColor": "#000000",
+        "timeFormat": "%H:%M",
+        "resetZoomLabelFontSize": 24,
+        "resetZoomLabelColor": "#000000",
+        "enableAnimations": true,
+        "enableDateMarker": true,
+        "forwardInputMessages": false,
+        "x": 1320,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d9ff05eb817cd328",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "Timeline chart and announce",
+        "info": "This section show schedule set in to module",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b3b9cb7b431cdb1b",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "Climate graphic",
+        "info": "Graphic that show temperature and humidity",
+        "x": 560,
+        "y": 380,
+        "wires": []
     },
     {
         "id": "be7cbfc514e81423",
@@ -533,7 +1134,7 @@
             {
                 "field": "fromtime",
                 "title": "From",
-                "width": "130",
+                "width": "125",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -543,7 +1144,7 @@
             {
                 "field": "totime",
                 "title": "To",
-                "width": "130",
+                "width": "125",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -552,7 +1153,7 @@
             },
             {
                 "field": "every",
-                "title": "Every min",
+                "title": "Every (min)",
                 "width": "120",
                 "align": "center",
                 "formatter": "plaintext",
@@ -562,8 +1163,8 @@
             },
             {
                 "field": "duration",
-                "title": "Duration",
-                "width": "120",
+                "title": "Duration (ml)",
+                "width": "130",
                 "align": "center",
                 "formatter": "plaintext",
                 "formatterParams": {
@@ -667,7 +1268,7 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1730,
+        "x": 1690,
         "y": 540,
         "wires": [
             [
@@ -693,11 +1294,12 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1730,
+        "x": 1690,
         "y": 580,
         "wires": [
             [
-                "abbba47230890ecb"
+                "abbba47230890ecb",
+                "37a971ed9a826349"
             ]
         ]
     },
@@ -719,8 +1321,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1730,
-        "y": 620,
+        "x": 1690,
+        "y": 740,
         "wires": [
             [
                 "81761520c7dc5aef"
@@ -732,7 +1334,7 @@
         "type": "ui_text_input",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "label": "Every",
+        "label": "Every (min)",
         "tooltip": "Run irrigation every (minutes)",
         "group": "fa9ccf2e0cfb5c02",
         "order": 5,
@@ -745,8 +1347,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1730,
-        "y": 660,
+        "x": 1710,
+        "y": 780,
         "wires": [
             [
                 "9f7002438e1ab4ea"
@@ -758,8 +1360,8 @@
         "type": "ui_text_input",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "label": "Duration",
-        "tooltip": "Duration of irrigation (seconds)",
+        "label": "Duration (ml)",
+        "tooltip": "Duration of irrigation in ml for plant",
         "group": "fa9ccf2e0cfb5c02",
         "order": 6,
         "width": 2,
@@ -771,7 +1373,7 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 1740,
+        "x": 1710,
         "y": 820,
         "wires": [
             [
@@ -805,8 +1407,8 @@
         "offcolor": "",
         "animate": false,
         "className": "",
-        "x": 1750,
-        "y": 780,
+        "x": 1710,
+        "y": 620,
         "wires": [
             [
                 "1f65ef9f4a1665a6",
@@ -832,13 +1434,13 @@
         "icon": "",
         "payload": "edit",
         "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
+        "topic": "SELECT id, fromtime, totime FROM irrigation;",
+        "topicType": "str",
         "x": 90,
-        "y": 360,
+        "y": 400,
         "wires": [
             [
-                "b2727c05738a4afa"
+                "1dee4a5b0f066976"
             ]
         ]
     },
@@ -852,21 +1454,21 @@
         "width": 5,
         "height": 1,
         "passthru": false,
-        "label": "New",
+        "label": "Add",
         "tooltip": "Add a schedule",
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "new",
+        "payload": "add",
         "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
+        "topic": "SELECT id, fromtime, totime FROM irrigation;",
+        "topicType": "str",
         "x": 90,
-        "y": 400,
+        "y": 360,
         "wires": [
             [
-                "b2727c05738a4afa"
+                "1dee4a5b0f066976"
             ]
         ]
     },
@@ -889,7 +1491,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 540,
         "wires": [
             [
@@ -916,7 +1518,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
+        "x": 1920,
         "y": 540,
         "wires": [
             []
@@ -941,7 +1543,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1950,
+        "x": 1930,
         "y": 580,
         "wires": [
             []
@@ -966,8 +1568,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
-        "y": 620,
+        "x": 1920,
+        "y": 740,
         "wires": [
             []
         ]
@@ -991,8 +1593,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1940,
-        "y": 660,
+        "x": 1920,
+        "y": 780,
         "wires": [
             []
         ]
@@ -1041,8 +1643,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1990,
-        "y": 780,
+        "x": 1970,
+        "y": 620,
         "wires": [
             []
         ]
@@ -1091,7 +1693,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 580,
         "wires": [
             [
@@ -1118,8 +1720,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 620,
+        "x": 1490,
+        "y": 740,
         "wires": [
             [
                 "8be6109a5cbe938b"
@@ -1145,8 +1747,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 660,
+        "x": 1490,
+        "y": 780,
         "wires": [
             [
                 "35b1cb8d9c5604fd"
@@ -1172,7 +1774,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
+        "x": 1490,
         "y": 820,
         "wires": [
             [
@@ -1199,8 +1801,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1480,
-        "y": 780,
+        "x": 1490,
+        "y": 620,
         "wires": [
             [
                 "3051c6860a0e394c"
@@ -1212,18 +1814,25 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "sqlite query",
-        "func": "if (msg.payload === \"edit\" && flow.get(\"programming.id\") != undefined){\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n    if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n    if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nif (msg.payload === \"new\") {\n    if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (flow.get(\"programming.duration\") * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n    \n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
-        "outputs": 1,
+        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined) {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n            let durationsec = (flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n            node.send([null, msg]);\n            setTimeout(function () {//send second query after 200 ms for not overload sqlite\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"add\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 330,
+        "x": 830,
         "y": 400,
         "wires": [
             [
+                "a25c098d2bc1a3a7"
+            ],
+            [
                 "5d4434152352be75"
             ]
+        ],
+        "outputLabels": [
+            "to notifiy",
+            "to db"
         ]
     },
     {
@@ -1250,7 +1859,7 @@
         "y": 440,
         "wires": [
             [
-                "b2727c05738a4afa"
+                "1dee4a5b0f066976"
             ]
         ]
     },
@@ -1271,15 +1880,15 @@
                 "t": "set",
                 "p": "payload.fromtime",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             },
             {
                 "t": "set",
                 "p": "payload.totime",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             },
             {
                 "t": "set",
@@ -1299,8 +1908,8 @@
                 "t": "set",
                 "p": "payload.oneshoot",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             }
         ],
         "action": "",
@@ -1336,18 +1945,20 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "toggle respect one shoot",
-        "func": "if (msg.payload === 1){\n    msg.payload = null;\n    msg.enabled = false;\n    node.send(msg);\n}\nif (msg.payload === 0) {\n    msg.payload = undefined;\n    msg.enabled = true;\n    node.send(msg);\n}\nreturn;",
-        "outputs": 1,
+        "func": "if (flow.get(\"programming.oneshoot\") === 1){\n    let msgout1 = {};\n    let msgout2 = {};\n    let durationsec = ((flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600) * 1000);//convert ml of duration in milliseconds\n    msgout1.payload = flow.get(\"programming.fromtime\") + durationsec;\n    msgout1.enabled = false;\n    msgout2.payload = null;\n    msgout2.enabled = false;\n    node.send([msgout1, msgout2]);\n}\nif (flow.get(\"programming.oneshoot\") === 0) {\n    msg.payload = undefined;\n    msg.enabled = true;\n    node.send([msg, msg]);\n}\nreturn;",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1530,
-        "y": 720,
+        "x": 1990,
+        "y": 680,
         "wires": [
             [
-                "8be6109a5cbe938b",
-                "35b1cb8d9c5604fd"
+                "a2e3dbd22da45a3f"
+            ],
+            [
+                "a90c5b4a5e428928"
             ]
         ]
     },
@@ -1463,7 +2074,7 @@
             },
             {
                 "field": "duration",
-                "title": "Duration",
+                "title": "Duration (ml)",
                 "width": "",
                 "align": "center",
                 "formatter": "plaintext",
@@ -1533,7 +2144,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "check irrigation program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        //node.warn(\"fromtime \" + i + \" \" + msg.payload[i].fromtime);\n        //node.warn(\"totime \" + i + \" \" + msg.payload[i].totime);\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgout = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= global.get(\"irrigation.irrprgact.duration\")){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgout = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        msgout.payload = 0;//set payload to low, active relay\n        node.send([msgout, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= global.get(\"irrigation.irrprgact.duration\")) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) + \");\";//insert in to db irrigation just done\n            msgout.payload = 1;//set payload to high, deactive relay\n            node.send([msgout, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgtopin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;// active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= durationsec){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((global.get(\"irrigation.config.flowrate\") / 3600) * parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) * 1000) + \");\";//insert in to db irrigation just done in ml integer\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgtopin = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;//active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= durationsec) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((global.get(\"irrigation.config.flowrate\") / 3600) * parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) * 1000) + \");\";//insert in to db irrigation just done in ml integer\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1544,7 +2155,7 @@
                 "module": "moment"
             }
         ],
-        "x": 710,
+        "x": 720,
         "y": 1500,
         "wires": [
             [
@@ -1598,7 +2209,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Initialize context and table of db at first start",
-        "func": "if (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0){\n    global.set(\"irrigation.irrisact\", 0);//0 irrigation in inactive 1 is active\n    global.set(\"irrigation.irrtime\", 0);//start time of irrigation duration timer (timestamp in ms)\n    global.set(\"irrigation.manualirrigation\", 0);//0 manual irrigation in inactive 1 is active\n    global.set(\"irrigation.irrprgact.id\", 0);//notity what irrigation program is active (0 nothing)\n    global.set(\"irrigation.irrprgact.fromtime\", 0);//start time of active irrigation program\n    global.set(\"irrigation.irrprgact.duration\", 0);//duration in second ofirrigation of active irrigation program\n    global.set(\"irrigation.irrprgact.oneshoot\", 0);//notify if one shoot irrigation is active in active irrigation program\n    global.set(\"irrigation.irrprgact.totime\", 0);//end time of active irrigation program\n    global.set(\"irrigation.irrprgact.every\", 0);//if one shoot irrigation is not active then repeat irrigation every (minutes)\n    flow.set(\"programming.fromtime\", 0);//initialize interface context\n    flow.set(\"programming.totime\", 0);//initialize interface context\n    flow.set(\"programming.every\", 0);//initialize interface context\n    flow.set(\"programming.duration\", 0);//initialize interface context\n    flow.set(\"programming.oneshoot\", 0);//initialize interface context\n    flow.set(\"programming.active\", 0);//initialize interface context\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn msg;",
+        "func": "var globalcontextarray = [\"irrigation.irrisact\", \"irrigation.irrtime\", \"irrigation.manualirrigation\", \"irrigation.irrprgact.id\", \"irrigation.irrprgact.fromtime\", \"irrigation.irrprgact.totime\", \"irrigation.irrprgact.duration\", \"irrigation.irrprgact.oneshoot\", \"irrigation.irrprgact.every\", \"irrigation.output.levelirr\", \"irrigation.config.flowrate\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.every\", \"programming.duration\", \"programming.oneshoot\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextarray.length; i++) {//initialize global context\n    if (global.get(globalcontextarray[i]) === undefined) global.set(globalcontextarray[i], 0);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 6) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 6) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"irrigation.init\") === undefined) global.set(\"irrigation.init\", 0);//on first run set context for initialize all context\nif (global.get(\"irrigation.init\") === 0) {\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS irrigation (id INTEGER PRIMARY KEY, active INTEGER NOT NULL, fromtime INTEGER, totime INTEGER, every INTEGER, duration INTEGER, oneshoot INTEGER);\"}\n    node.send(msgout);//create table irrigation\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS irrigationdone (id INTEGER PRIMARY KEY, time INTEGER, duration INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 200);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS system (id INTEGER PRIMARY KEY, label TEXT, value TEXT);\";\n        node.send(msgout);//wait 400ms and create table system\n    }, 400);\n    setTimeout(function () {\n        msgout.topic = 'INSERT INTO system(id, label, value) VALUES(1, \"version\", \"0.0.1\");'//Create the record containing the software version, indicating the id, if the record is already present it is not added and duplicates are avoided\n        node.send(msgout);//wait 600ms and insert record\n    }, 600);\n    global.set(\"irrigation.init\", 1);//set irrinit to 1, context and db table are created and initialized at version 0.0.1\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1610,7 +2221,8 @@
             [
                 "d1436ddcad8a9e8f"
             ]
-        ]
+        ],
+        "info": "Initialize all global and flow context and db"
     },
     {
         "id": "d1436ddcad8a9e8f",
@@ -1631,8 +2243,8 @@
         "type": "rpi-gpio out",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "pin": "4",
-        "set": true,
+        "pin": "22",
+        "set": false,
         "level": "1",
         "freq": "",
         "out": "out",
@@ -1803,7 +2415,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Check irrisact status and modify",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    msgtopin.payload = 0;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    msgtopin.payload = 1;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", 0);\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    flow.set(\"utility.starttimermanual\", parseInt(moment().format(\"X\")));\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    let durationmanirr = parseInt(((global.get(\"irrigation.config.flowrate\") / 3600) * 1000) * ((parseInt(moment().format(\"X\"))) - flow.get(\"utility.starttimermanual\")));//Calculate irrigation flow in ml\n    node.warn(flow.get(\"utility.starttimermanual\"));\n    node.warn(durationmanirr);\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + durationmanirr + \");\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1859,10 +2471,11 @@
         "id": "5153195b2cf4939f",
         "type": "link in",
         "z": "9cfee97fb9e96644",
-        "name": "to pin",
+        "name": "to irr rele pin",
         "links": [
             "1ec6d8ef6a0f0d9a",
-            "387e19c91a449350"
+            "387e19c91a449350",
+            "84d67a810e7cf451"
         ],
         "x": 1015,
         "y": 1320,
@@ -1924,5 +2537,3634 @@
         "x": 1110,
         "y": 1240,
         "wires": []
+    },
+    {
+        "id": "a25c098d2bc1a3a7",
+        "type": "ui_toast",
+        "z": "9cfee97fb9e96644",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1020,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "1dee4a5b0f066976",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.cmd",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "ab45d3b99e0771c9"
+            ]
+        ]
+    },
+    {
+        "id": "ab45d3b99e0771c9",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "b2727c05738a4afa"
+            ]
+        ]
+    },
+    {
+        "id": "ba769c6ac1f13eb8",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Output pin initialization",
+        "info": "",
+        "x": 520,
+        "y": 1600,
+        "wires": []
+    },
+    {
+        "id": "efb00399bd629c06",
+        "type": "inject",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "irrigation.output.levelirr",
+        "payloadType": "global",
+        "x": 390,
+        "y": 1680,
+        "wires": [
+            [
+                "84d67a810e7cf451"
+            ]
+        ]
+    },
+    {
+        "id": "84d67a810e7cf451",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from \"irrigation.output.levelirr\" inject",
+        "mode": "link",
+        "links": [
+            "5153195b2cf4939f"
+        ],
+        "x": 575,
+        "y": 1680,
+        "wires": []
+    },
+    {
+        "id": "a7d6bd9f74ba9928",
+        "type": "comment",
+        "z": "9cfee97fb9e96644",
+        "name": "Settings dashboard",
+        "info": "",
+        "x": 530,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "292d8fffde5edb8b",
+        "type": "ui_dropdown",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Logic level irrigation inactive",
+        "tooltip": "Set logic level of relay of irrigation when irrigation is inactive",
+        "place": "Select option",
+        "group": "696d740b65c6837c",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "0",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "1",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 660,
+        "y": 1840,
+        "wires": [
+            [
+                "c99e2796c931fd81"
+            ]
+        ]
+    },
+    {
+        "id": "23dd997edef37d48",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "irrigation.output.levelirr",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1840,
+        "wires": [
+            [
+                "292d8fffde5edb8b"
+            ]
+        ]
+    },
+    {
+        "id": "c99e2796c931fd81",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "irrigation.output.levelirr",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 1840,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0a78e609b54d3cea",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 1880,
+        "wires": [
+            [
+                "205cab230529817b"
+            ]
+        ]
+    },
+    {
+        "id": "205cab230529817b",
+        "type": "switch",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "property": "name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Irrigation",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 1880,
+        "wires": [
+            [
+                "23dd997edef37d48",
+                "139670989fd83a50"
+            ]
+        ]
+    },
+    {
+        "id": "5c5465a79ddb89e8",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Flow rate lt/h",
+        "tooltip": "Enter the flow rate in liters / hour or calculate it with the utility nearby",
+        "group": "696d740b65c6837c",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 610,
+        "y": 1920,
+        "wires": [
+            [
+                "13d2995b4374b418"
+            ]
+        ]
+    },
+    {
+        "id": "139670989fd83a50",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "irrigation.config.flowrate",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 420,
+        "y": 1920,
+        "wires": [
+            [
+                "5c5465a79ddb89e8"
+            ]
+        ]
+    },
+    {
+        "id": "13d2995b4374b418",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "irrigation.config.flowrate",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 1920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "de9356205b76bc90",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "696d740b65c6837c",
+        "order": 6,
+        "width": 7,
+        "height": 1,
+        "passthru": false,
+        "label": "Start flow rate calculation timer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "start",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 2040,
+        "wires": [
+            [
+                "7c4d9208737888d5"
+            ]
+        ]
+    },
+    {
+        "id": "7c4d9208737888d5",
+        "type": "function",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "func": "if (msg.payload === \"start\"){\n    flow.set(\"utility.starttimerflowrate\", moment().unix());\n    flow.set(\"utility.stoptimerflowrate\", 0);\n}\nnode.warn(flow.get(\"utility.starttimerflowrate\"));\nif (msg.payload === \"stop\"){\n    flow.set(\"utility.stoptimerflowrate\", moment().unix());\n    node.warn(flow.get(\"utility.stoptimerflowrate\"));\n    global.set(\"irrigation.config.flowrate\", (1 / (flow.get(\"utility.stoptimerflowrate\") - flow.get(\"utility.starttimerflowrate\"))) * 3600);\n    node.warn(global.get(\"irrigation.config.flowrate\"));\n    msg.payload = global.get(\"irrigation.config.flowrate\");\n    node.send(msg);\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 420,
+        "y": 2060,
+        "wires": [
+            [
+                "5c5465a79ddb89e8"
+            ]
+        ]
+    },
+    {
+        "id": "58c12d0c308cc752",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "696d740b65c6837c",
+        "order": 7,
+        "width": 7,
+        "height": 1,
+        "passthru": false,
+        "label": "Stop flow rate calculation timer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 2080,
+        "wires": [
+            [
+                "7c4d9208737888d5"
+            ]
+        ]
+    },
+    {
+        "id": "a2e3dbd22da45a3f",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from toggle to to",
+        "mode": "link",
+        "links": [
+            "30a0f6bcad069e8d"
+        ],
+        "x": 2195,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "a90c5b4a5e428928",
+        "type": "link out",
+        "z": "9cfee97fb9e96644",
+        "name": "from toggle to every",
+        "mode": "link",
+        "links": [
+            "f0dda0ed1ea2b6cb"
+        ],
+        "x": 2195,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "30a0f6bcad069e8d",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "from to to toggle",
+        "links": [
+            "a2e3dbd22da45a3f"
+        ],
+        "x": 1555,
+        "y": 660,
+        "wires": [
+            [
+                "8be6109a5cbe938b"
+            ]
+        ]
+    },
+    {
+        "id": "f0dda0ed1ea2b6cb",
+        "type": "link in",
+        "z": "9cfee97fb9e96644",
+        "name": "from every to toggle",
+        "links": [
+            "a90c5b4a5e428928"
+        ],
+        "x": 1545,
+        "y": 700,
+        "wires": [
+            [
+                "35b1cb8d9c5604fd"
+            ]
+        ]
+    },
+    {
+        "id": "cb99007aad076d23",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Initialize context on first start",
+        "info": "",
+        "x": 540,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "441d21fe62c23e98",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1.5",
+        "topic": "SELECT id, label, value FROM system WHERE label = \"version\";",
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "0fedf38b0906fe88"
+            ]
+        ]
+    },
+    {
+        "id": "244e654b22e4cf1a",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "Initialize context and table of db at first start",
+        "func": "var globalcontextnumberarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar globalcontextbooleanarray = [\"climate.testmode\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.hummin\", \"programming.hummax\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextnumberarray.length; i++) {//initialize global context\n    if (global.get(globalcontextnumberarray[i]) === undefined) global.set(globalcontextnumberarray[i], 0);\n}\nfor (let i = 0; i < globalcontextbooleanarray.length; i++) {//initialize global context\n    if (global.get(globalcontextbooleanarray[i]) === undefined) global.set(globalcontextbooleanarray[i], false);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 690,
+        "y": 100,
+        "wires": [
+            [
+                "0ba7eb63be3fec20"
+            ]
+        ]
+    },
+    {
+        "id": "0ba7eb63be3fec20",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1040,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0fedf38b0906fe88",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "244e654b22e4cf1a"
+            ]
+        ]
+    },
+    {
+        "id": "edf8e16a86e67838",
+        "type": "catch",
+        "z": "4215ef7ad32b1858",
+        "name": "error from db",
+        "scope": [
+            "0fedf38b0906fe88"
+        ],
+        "uncaught": false,
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "244e654b22e4cf1a"
+            ]
+        ],
+        "info": "If system table is not created then error trigger function for create it"
+    },
+    {
+        "id": "00858106fdcb9d4d",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Climate schedule dashboard",
+        "info": "",
+        "x": 520,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "ebf8ac9a567a7529",
+        "type": "ui_table",
+        "z": "4215ef7ad32b1858",
+        "group": "5cbd1b6fdfe2459d",
+        "name": "clmschedule",
+        "order": 1,
+        "width": 16,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "50",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "active",
+                "title": "Active",
+                "width": "80",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "fromtime",
+                "title": "From",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "totime",
+                "title": "To",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "tempmin",
+                "title": "T min",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "tempmax",
+                "title": "T max",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "hummin",
+                "title": "H min",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "hummax",
+                "title": "H max",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1030,
+        "y": 700,
+        "wires": [
+            [
+                "8fdc234f672b8e41"
+            ]
+        ]
+    },
+    {
+        "id": "f8c6e9924f9b113e",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 700,
+        "wires": [
+            [
+                "bc29218e5b2fdb7a"
+            ]
+        ]
+    },
+    {
+        "id": "9a5733b7dc678a1c",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation tab",
+        "events": "change",
+        "x": 120,
+        "y": 700,
+        "wires": [
+            [
+                "35cf8c389803fcbd"
+            ]
+        ]
+    },
+    {
+        "id": "35cf8c389803fcbd",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    flow.set(\"programming.id\", undefined);\n    var msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id , active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 330,
+        "y": 700,
+        "wires": [
+            [
+                "f8c6e9924f9b113e"
+            ]
+        ]
+    },
+    {
+        "id": "639c3c659b2eae0b",
+        "type": "ui_switch",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Active",
+        "tooltip": "Enable or disable this programming row",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1670,
+        "y": 740,
+        "wires": [
+            [
+                "393594e25b8c7985"
+            ]
+        ]
+    },
+    {
+        "id": "bf7a442b4b8d2e74",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "From",
+        "tooltip": "Start time of programming",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1670,
+        "y": 780,
+        "wires": [
+            [
+                "5c44af7d64f4a2fc"
+            ]
+        ]
+    },
+    {
+        "id": "fef75a7a1b91590a",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "To",
+        "tooltip": "End time of programming",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1670,
+        "y": 820,
+        "wires": [
+            [
+                "2019e4d56cde4447"
+            ]
+        ]
+    },
+    {
+        "id": "0549c84591625fc3",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Temp min",
+        "tooltip": "Minimum temperature allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 6,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1680,
+        "y": 860,
+        "wires": [
+            [
+                "4280c757ee36cbaf"
+            ]
+        ]
+    },
+    {
+        "id": "75cecd7f8ff0f75f",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 11,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Edit",
+        "tooltip": "Edit the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "edit",
+        "payloadType": "str",
+        "topic": "SELECT id, fromtime, totime FROM climate_set;",
+        "topicType": "str",
+        "x": 90,
+        "y": 600,
+        "wires": [
+            [
+                "45ceacc3ef7b1824"
+            ]
+        ]
+    },
+    {
+        "id": "e25d768af86b3752",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "New",
+        "tooltip": "Add a schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "new",
+        "payloadType": "str",
+        "topic": "SELECT id, fromtime, totime FROM climate_set;",
+        "topicType": "str",
+        "x": 90,
+        "y": 560,
+        "wires": [
+            [
+                "45ceacc3ef7b1824"
+            ]
+        ]
+    },
+    {
+        "id": "43270c5ff2d90750",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.active",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 740,
+        "wires": [
+            [
+                "639c3c659b2eae0b"
+            ]
+        ]
+    },
+    {
+        "id": "393594e25b8c7985",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.active",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1920,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c44af7d64f4a2fc",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.fromtime",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1930,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2019e4d56cde4447",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.totime",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1920,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4280c757ee36cbaf",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.tempmin",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1930,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "215f1ffca113dd1b",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.id",
+                "pt": "flow",
+                "to": "payload.id",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1510,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7f0c29d7b7ba936f",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.fromtime",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 780,
+        "wires": [
+            [
+                "bf7a442b4b8d2e74"
+            ]
+        ]
+    },
+    {
+        "id": "f17011b6d1eb9ab2",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.totime",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 820,
+        "wires": [
+            [
+                "fef75a7a1b91590a"
+            ]
+        ]
+    },
+    {
+        "id": "3acda5dcedcfa711",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.tempmin",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 860,
+        "wires": [
+            [
+                "0549c84591625fc3"
+            ]
+        ]
+    },
+    {
+        "id": "93785d1d5015625e",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "sqlite query",
+        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined){\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \" );//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\"){\n        if (flow.get(\"programming.fromtime\") < flow.get(\"programming.totime\")) {//check if fromtime is minor than totime else notify an error\n            if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is changed, climate.clmprgact.id is set to zero in order to update the parameters\n            msg.topic = \"UPDATE climate_set SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", tempmin = \" + flow.get(\"programming.tempmin\") + \", tempmax = \" + flow.get(\"programming.tempmax\") + \", hummin = \" + flow.get(\"programming.hummin\") + \", hummax = \" + flow.get(\"programming.hummax\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//update schedule selected\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic =\"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"new\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") < flow.get(\"programming.totime\")) {//check if fromtime is minor than totime, else notify an error\n            msg.topic = \"INSERT INTO climate_set(id, active, fromtime, totime, tempmin, tempmax, hummin, hummax) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.tempmin\") + \", \" + flow.get(\"programming.tempmax\") + \", \" + flow.get(\"programming.hummin\") + \", \" + flow.get(\"programming.hummax\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.topic = \"Error\"\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            node.send([msg, null]);\n        }  \n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"climate.clmprgact.id\") === flow.get(\"programming.id\")) global.set(\"climate.clmprgact.id\", 0); //If the currently active program is deleted, climate.clmprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM climate_set WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send([null, msg]);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;\";\n        node.send([null, msg]);\n    }, 200);\n}\nreturn;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 830,
+        "y": 600,
+        "wires": [
+            [
+                "b846e7ff492a97fc"
+            ],
+            [
+                "f8c6e9924f9b113e"
+            ]
+        ],
+        "outputLabels": [
+            "to notification",
+            "to db"
+        ]
+    },
+    {
+        "id": "4a75e44ec050fa5e",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 12,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "Remove the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "delete",
+        "payloadType": "str",
+        "topic": "SELECT id, fromtime, totime FROM climate_set;",
+        "topicType": "str",
+        "x": 90,
+        "y": 640,
+        "wires": [
+            [
+                "45ceacc3ef7b1824"
+            ]
+        ]
+    },
+    {
+        "id": "aae614797bf97391",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Climate schedule logic",
+        "info": "",
+        "x": 520,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "bc29218e5b2fdb7a",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "epoch to time",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 840,
+        "y": 700,
+        "wires": [
+            [
+                "ebf8ac9a567a7529"
+            ]
+        ]
+    },
+    {
+        "id": "8fdc234f672b8e41",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "time to epoch",
+        "func": "msg.payload.fromtime = parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nmsg.payload.totime = parseInt(moment(\"01/01/1970 \" + msg.payload.totime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 1220,
+        "y": 700,
+        "wires": [
+            [
+                "215f1ffca113dd1b",
+                "43270c5ff2d90750",
+                "7f0c29d7b7ba936f",
+                "f17011b6d1eb9ab2",
+                "3acda5dcedcfa711",
+                "06f06b7cc7e3f5ad",
+                "04fbd2665495d68a",
+                "7149659b0ad3359d"
+            ]
+        ]
+    },
+    {
+        "id": "237e3258eecfb151",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Climate actions dashboard and logic",
+        "info": "",
+        "x": 560,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "41a11d6b6bc4eeb4",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 560,
+        "y": 1220,
+        "wires": [
+            [
+                "bc6c12ed10b83c45"
+            ]
+        ]
+    },
+    {
+        "id": "29e59a53102e38b5",
+        "type": "ui_table",
+        "z": "4215ef7ad32b1858",
+        "group": "cc3a2eefb8aff812",
+        "name": "",
+        "order": 2,
+        "width": 12,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "80",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "time",
+                "title": "Time",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "inttemp",
+                "title": "Temperature",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "inthum",
+                "title": "Humidity",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "action",
+                "title": "Action",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 990,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "0dbd7c4ec090c7a9",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Manual commands dashboard and logic",
+        "info": "",
+        "x": 570,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "5226a70e7304af6c",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 390,
+        "y": 1660,
+        "wires": [
+            [
+                "aa7ff6772acf6be4"
+            ]
+        ]
+    },
+    {
+        "id": "e11dacf9398aba6b",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "SELECT id, active, fromtime, totime, tempmin, tempmax, temptarget, hummin, hummax, humtarget FROM climate_set ORDER BY fromtime;",
+        "x": 170,
+        "y": 1660,
+        "wires": [
+            [
+                "5226a70e7304af6c"
+            ]
+        ]
+    },
+    {
+        "id": "aa7ff6772acf6be4",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "check climate program and execute it",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")){//if temperature is minor than tempmin set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0){//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is between tempmin and tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\")  && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is greater than tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n}\nreturn;",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 710,
+        "y": 1660,
+        "wires": [
+            [
+                "ac91a48349b3a7cb"
+            ],
+            [
+                "101062a0b28273a9"
+            ],
+            [
+                "5368c5346cb7ca08"
+            ]
+        ],
+        "outputLabels": [
+            "to heat pin",
+            "to fan pin",
+            "to db"
+        ]
+    },
+    {
+        "id": "5e07112cb9dc6a04",
+        "type": "rpi-gpio out",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "pin": "17",
+        "set": false,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1120,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "c7c7076229e7fdf7",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "to table climate_actions",
+        "x": 1170,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6bef38285d1a4c78",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "138fe263b9fbdc51",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Start / Stop manual heating",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "heat",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 200,
+        "y": 1400,
+        "wires": [
+            [
+                "93ea57e432b87c2d"
+            ]
+        ]
+    },
+    {
+        "id": "9a6b8c01fdac9ce0",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "delete actions at midnight",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 00 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DELETE FROM climate_actions;",
+        "x": 220,
+        "y": 1160,
+        "wires": [
+            [
+                "41a11d6b6bc4eeb4"
+            ]
+        ]
+    },
+    {
+        "id": "95eb86564f73fc6a",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 110,
+        "y": 1220,
+        "wires": [
+            [
+                "6fc0e5feec84aec1"
+            ]
+        ]
+    },
+    {
+        "id": "6fc0e5feec84aec1",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "sqlite query",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    let msgout = {\"topic\" : \"\"}\n    msgout.topic = \"SELECT id , time, inttemp, inthum, action FROM climate_actions ORDER BY time;\";\n    node.send(msgout);\n}\nreturn;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 1220,
+        "wires": [
+            [
+                "41a11d6b6bc4eeb4"
+            ]
+        ]
+    },
+    {
+        "id": "bc6c12ed10b83c45",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "epoch to time",
+        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].time = moment(msg.payload[i].time).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 820,
+        "y": 1220,
+        "wires": [
+            [
+                "29e59a53102e38b5"
+            ]
+        ]
+    },
+    {
+        "id": "93ea57e432b87c2d",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "Check heatisact or fanisact status and modify",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtodb = {\"topic\" : \"\"};\nif (msg.payload === \"heat\"){\n    var msgtoheatpin = { \"payload\": null };\n    if (global.get(\"climate.heatisact\") === 0) {//If no heating is active, activate heating\n        global.set(\"climate.heatisact\", 1);\n        global.set(\"climate.manualheat\", 1);\n        if (global.get(\"climate.output.levelheat\") === 1) msgtoheatpin.payload = 0;\n        if (global.get(\"climate.output.levelheat\") === 0) msgtoheatpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual heat start\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.heatisact\", 0);\n        global.set(\"climate.manualheat\", 0);\n        if (global.get(\"climate.output.levelheat\") === 1) msgtoheatpin.payload = 1;\n        if (global.get(\"climate.output.levelheat\") === 0) msgtoheatpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") +', \"Manual heat stop\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n}\nif (msg.payload === \"fan\") {\n    var msgtofanpin = { \"payload\": null };\n    if (global.get(\"climate.fanisact\") === 0) {//If no fan is active, activate fan\n        global.set(\"climate.fanisact\", 1);\n        global.set(\"climate.manualfan\", 1);\n        if (global.get(\"climate.output.levelfan\") === 1) msgtofanpin.payload = 0;\n        if (global.get(\"climate.output.levelfan\") === 0) msgtofanpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan start\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.fanisact\", 0);\n        global.set(\"climate.manualfan\", 0);\n        if (global.get(\"climate.output.levelfan\") === 1) msgtofanpin.payload = 1;\n        if (global.get(\"climate.output.levelfan\") === 0) msgtofanpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan stop\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n}\nreturn;",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "moment",
+                "module": "moment"
+            }
+        ],
+        "x": 550,
+        "y": 1420,
+        "wires": [
+            [
+                "19964f308df7ed8b"
+            ],
+            [
+                "3169b1189051872e"
+            ],
+            [
+                "b3a68f82fe10c92a"
+            ]
+        ],
+        "outputLabels": [
+            "to heat pin",
+            "to fan pin",
+            "to db"
+        ]
+    },
+    {
+        "id": "19964f308df7ed8b",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from manual climate to heat pin",
+        "mode": "link",
+        "links": [
+            "031929141abe569e"
+        ],
+        "x": 855,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "ac91a48349b3a7cb",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from climate schedule to heat pin",
+        "mode": "link",
+        "links": [
+            "031929141abe569e"
+        ],
+        "x": 935,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "031929141abe569e",
+        "type": "link in",
+        "z": "4215ef7ad32b1858",
+        "name": "to heat pin",
+        "links": [
+            "19964f308df7ed8b",
+            "ac91a48349b3a7cb",
+            "b2e71553a3b04dd0"
+        ],
+        "x": 1015,
+        "y": 1460,
+        "wires": [
+            [
+                "5e07112cb9dc6a04"
+            ]
+        ]
+    },
+    {
+        "id": "b3a68f82fe10c92a",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from manual climate to db",
+        "mode": "link",
+        "links": [
+            "5bd1ba98aafda274"
+        ],
+        "x": 855,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "5368c5346cb7ca08",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from climate schedule to db",
+        "mode": "link",
+        "links": [
+            "5bd1ba98aafda274"
+        ],
+        "x": 935,
+        "y": 1700,
+        "wires": []
+    },
+    {
+        "id": "5bd1ba98aafda274",
+        "type": "link in",
+        "z": "4215ef7ad32b1858",
+        "name": "to db",
+        "links": [
+            "b3a68f82fe10c92a",
+            "5368c5346cb7ca08"
+        ],
+        "x": 1015,
+        "y": 1580,
+        "wires": [
+            [
+                "c7c7076229e7fdf7"
+            ]
+        ]
+    },
+    {
+        "id": "3396ade5f98c3d76",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Output",
+        "info": "",
+        "x": 1110,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "b1bdf7aa032ca4dd",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Temp max",
+        "tooltip": "Maximum temperature allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 7,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1690,
+        "y": 900,
+        "wires": [
+            [
+                "06ae93c10168d8d6"
+            ]
+        ]
+    },
+    {
+        "id": "06ae93c10168d8d6",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.tempmax",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1930,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "06f06b7cc7e3f5ad",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.tempmax",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 900,
+        "wires": [
+            [
+                "b1bdf7aa032ca4dd"
+            ]
+        ]
+    },
+    {
+        "id": "3d9bb0efbe2047b2",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Hum min",
+        "tooltip": "Minimum humidity allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 13,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1680,
+        "y": 940,
+        "wires": [
+            [
+                "da4684500c106992"
+            ]
+        ]
+    },
+    {
+        "id": "da4684500c106992",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.hummin",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1930,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "04fbd2665495d68a",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hummin",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 940,
+        "wires": [
+            [
+                "3d9bb0efbe2047b2"
+            ]
+        ]
+    },
+    {
+        "id": "3aae0239f6650d5c",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Hum max",
+        "tooltip": "Maximum humidity allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 14,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1680,
+        "y": 980,
+        "wires": [
+            [
+                "a4bb1a85552c2970"
+            ]
+        ]
+    },
+    {
+        "id": "a4bb1a85552c2970",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.hummax",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1930,
+        "y": 980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7149659b0ad3359d",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.hummax",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1490,
+        "y": 980,
+        "wires": [
+            [
+                "3aae0239f6650d5c"
+            ]
+        ]
+    },
+    {
+        "id": "9083a9fbe2ec8daf",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Current data",
+        "info": "",
+        "x": 510,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "cc72a8c1f368cf4e",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 140,
+        "y": 360,
+        "wires": [
+            [
+                "4f72dc7988fc49fd"
+            ]
+        ]
+    },
+    {
+        "id": "4f72dc7988fc49fd",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "data inject",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    var msgout1 = { \"payload\": { \"inttemp\": 0, \"inthum\": 0}};\n    var msgout2 = { \"payload\": 0 };\n    var msgout3 = { \"payload\": 0 };\n    msgout1.payload.inttemp = global.get(\"climate.inttemp\");\n    msgout1.payload.inthum = global.get(\"climate.inthum\");\n    msgout2.payload = global.get(\"climate.heatisact\");\n    msgout3.payload = global.get(\"climate.fanisact\");\n    node.send([msgout1, msgout2, msgout3]);\n}\nreturn;\n",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 380,
+        "wires": [
+            [
+                "0d7e7068d0e78b70",
+                "fdc8a361eb52c6f6"
+            ],
+            [
+                "b55361425e16765b"
+            ],
+            [
+                "138643c44ca31cf8"
+            ]
+        ]
+    },
+    {
+        "id": "0d7e7068d0e78b70",
+        "type": "ui_text",
+        "z": "4215ef7ad32b1858",
+        "group": "40009fbec210236c",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload.inttemp}} °C",
+        "layout": "row-center",
+        "className": "",
+        "x": 650,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "fdc8a361eb52c6f6",
+        "type": "ui_text",
+        "z": "4215ef7ad32b1858",
+        "group": "40009fbec210236c",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Humidity",
+        "format": "{{msg.payload.inthum}} %",
+        "layout": "row-center",
+        "className": "",
+        "x": 640,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "0a49932d761e1ea9",
+        "type": "rpi-gpio out",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "pin": "27",
+        "set": false,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1120,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "5ab80269f33d6aa2",
+        "type": "link in",
+        "z": "4215ef7ad32b1858",
+        "name": "to fan pin",
+        "links": [
+            "101062a0b28273a9",
+            "3169b1189051872e",
+            "68f902d93e5e4006"
+        ],
+        "x": 1015,
+        "y": 1520,
+        "wires": [
+            [
+                "0a49932d761e1ea9"
+            ]
+        ]
+    },
+    {
+        "id": "3169b1189051872e",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from manual climate to fan pin",
+        "mode": "link",
+        "links": [
+            "5ab80269f33d6aa2"
+        ],
+        "x": 855,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "101062a0b28273a9",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from climate schedule to fan pin",
+        "mode": "link",
+        "links": [
+            "5ab80269f33d6aa2"
+        ],
+        "x": 935,
+        "y": 1660,
+        "wires": []
+    },
+    {
+        "id": "63a275ed1cfb4644",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "138fe263b9fbdc51",
+        "order": 2,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Start / Stop manual fan",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "fan",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 220,
+        "y": 1440,
+        "wires": [
+            [
+                "93ea57e432b87c2d"
+            ]
+        ]
+    },
+    {
+        "id": "86147b941d08452e",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Get temperature and humidity",
+        "info": "",
+        "x": 540,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "bce83a130879bec7",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "inject",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "climate.testmode",
+        "payloadType": "global",
+        "x": 170,
+        "y": 1900,
+        "wires": [
+            [
+                "a81a49a51c5334e3"
+            ]
+        ]
+    },
+    {
+        "id": "ccf65ec643039010",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "to dashboard chart",
+        "mode": "link",
+        "links": [
+            "f82df9be90653a7d"
+        ],
+        "x": 875,
+        "y": 1900,
+        "wires": []
+    },
+    {
+        "id": "7f4a650e33e45e7e",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "format temperature",
+        "func": "if (typeof msg.payload === \"string\") global.set(\"climate.inttemp\", parseFloat(msg.payload));\nelse global.set(\"climate.inttemp\", msg.payload);\nif (typeof msg.humidity === \"string\") global.set(\"climate.inthum\", parseFloat(msg.humidity));\nelse global.set(\"climate.inthum\", msg.humidity);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 730,
+        "y": 1900,
+        "wires": [
+            [
+                "ccf65ec643039010"
+            ]
+        ]
+    },
+    {
+        "id": "b8aa610cca36cd38",
+        "type": "rpi-dht22",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "topic": "rpi-dht22",
+        "dht": 22,
+        "pintype": "2",
+        "pin": "7",
+        "x": 480,
+        "y": 1920,
+        "wires": [
+            [
+                "7f4a650e33e45e7e"
+            ]
+        ]
+    },
+    {
+        "id": "a01d2634f4362758",
+        "type": "complete",
+        "z": "4215ef7ad32b1858",
+        "name": "change trigger",
+        "scope": [
+            "c7c7076229e7fdf7",
+            "5bd1ba98aafda274"
+        ],
+        "uncaught": false,
+        "x": 90,
+        "y": 1280,
+        "wires": [
+            [
+                "c35fa7d2248c261a"
+            ]
+        ]
+    },
+    {
+        "id": "c35fa7d2248c261a",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "set query",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "SELECT id , time, inttemp, inthum, action FROM climate_actions ORDER BY time;",
+                "tot": "str"
+            },
+            {
+                "t": "delete",
+                "p": "payload",
+                "pt": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 260,
+        "y": 1280,
+        "wires": [
+            [
+                "41a11d6b6bc4eeb4"
+            ]
+        ]
+    },
+    {
+        "id": "b846e7ff492a97fc",
+        "type": "ui_toast",
+        "z": "4215ef7ad32b1858",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1020,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "fc4d0086b9ab34c4",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 600,
+        "wires": [
+            [
+                "93785d1d5015625e"
+            ]
+        ]
+    },
+    {
+        "id": "45ceacc3ef7b1824",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "programming.cmd",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 290,
+        "y": 600,
+        "wires": [
+            [
+                "fc4d0086b9ab34c4"
+            ]
+        ]
+    },
+    {
+        "id": "0898742cac166323",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Output pin initialization",
+        "info": "",
+        "x": 520,
+        "y": 1980,
+        "wires": []
+    },
+    {
+        "id": "ad9faddbb589850f",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "climate.output.levelheat",
+        "payloadType": "global",
+        "x": 390,
+        "y": 2060,
+        "wires": [
+            [
+                "b2e71553a3b04dd0"
+            ]
+        ]
+    },
+    {
+        "id": "b2e71553a3b04dd0",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from \"climate.output.levelheat\" inject",
+        "mode": "link",
+        "links": [
+            "031929141abe569e"
+        ],
+        "x": 575,
+        "y": 2060,
+        "wires": []
+    },
+    {
+        "id": "339ad123532fbbde",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "climate.output.levelfan",
+        "payloadType": "global",
+        "x": 390,
+        "y": 2100,
+        "wires": [
+            [
+                "68f902d93e5e4006"
+            ]
+        ]
+    },
+    {
+        "id": "68f902d93e5e4006",
+        "type": "link out",
+        "z": "4215ef7ad32b1858",
+        "name": "from \"climate.output.levelfan\" inject",
+        "mode": "link",
+        "links": [
+            "5ab80269f33d6aa2"
+        ],
+        "x": 575,
+        "y": 2100,
+        "wires": []
+    },
+    {
+        "id": "29a893bec7a9fb58",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "Settings dashboard",
+        "info": "",
+        "x": 530,
+        "y": 2180,
+        "wires": []
+    },
+    {
+        "id": "ce2c6648051932d5",
+        "type": "ui_dropdown",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Logic level heat inactive",
+        "tooltip": "Set logic level of relay of heating when heating is inactive",
+        "place": "Select option",
+        "group": "bd1454c9fe3a5dbc",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Low",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "High",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 670,
+        "y": 2240,
+        "wires": [
+            [
+                "a90603dd48b92c7a"
+            ]
+        ]
+    },
+    {
+        "id": "d88bd07acacb178c",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "climate.output.levelheat",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 2240,
+        "wires": [
+            [
+                "ce2c6648051932d5"
+            ]
+        ]
+    },
+    {
+        "id": "a90603dd48b92c7a",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.output.levelheat",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 2240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ca61b97da0623ef0",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 2260,
+        "wires": [
+            [
+                "194029e47b5996c0"
+            ]
+        ]
+    },
+    {
+        "id": "194029e47b5996c0",
+        "type": "switch",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "property": "name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Climate",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 2260,
+        "wires": [
+            [
+                "d88bd07acacb178c",
+                "bfe41399db5d9f88"
+            ]
+        ]
+    },
+    {
+        "id": "ba84192f3b6431ab",
+        "type": "ui_dropdown",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Logic level fan inactive",
+        "tooltip": "Set logic level of relay of fan when ventilation is inactive",
+        "place": "Select option",
+        "group": "bd1454c9fe3a5dbc",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Low",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "High",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 670,
+        "y": 2280,
+        "wires": [
+            [
+                "7c0eb6baa7e9f452"
+            ]
+        ]
+    },
+    {
+        "id": "bfe41399db5d9f88",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "climate.output.levelfan",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 2280,
+        "wires": [
+            [
+                "ba84192f3b6431ab"
+            ]
+        ]
+    },
+    {
+        "id": "7c0eb6baa7e9f452",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.output.levelfan",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 960,
+        "y": 2280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b8889351a94bb67",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "Sim t & h",
+        "func": "if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 0) {\n    msg.payload = global.get(\"climate.inttemp\") + 0.1;//increase 0.1 °C temperature if heat and fan are inactive\n    msg.humidity = global.get(\"climate.inthum\") + 0.5;//increase 0.5% humidity if heat and fan are inactive\n}\nif (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.fanisact\") === 0) {\n    msg.payload = global.get(\"climate.inttemp\") + 0.2;//increase 0.2 °C temperature if heat is active and fan is inactive\n    msg.humidity = global.get(\"climate.inthum\") + 0.7;//increase 0.7% humidity if heat is active and fan is inactive\n}\nif (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 1) {\n    msg.payload = global.get(\"climate.inttemp\") - 0.1;//decrease 0.1 °C temperature if heat is inactive and fan is active\n    msg.humidity = global.get(\"climate.inthum\") - 0.5;//increase 0.5% humidity if heat is inactive and fan is active\n}\nif (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.fanisact\") === 1) {\n    msg.payload = global.get(\"climate.inttemp\") + 0.05;//increase 0.05 °C temperature if heat and fan are active\n    msg.humidity = global.get(\"climate.inthum\") - 0.5;//decrease 0.5% humidity if heat and fan are active\n}\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1880,
+        "wires": [
+            [
+                "7f4a650e33e45e7e"
+            ]
+        ],
+        "info": "Simulate temperature and humidity for testing"
+    },
+    {
+        "id": "a81a49a51c5334e3",
+        "type": "switch",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 310,
+        "y": 1900,
+        "wires": [
+            [
+                "4b8889351a94bb67"
+            ],
+            [
+                "b8aa610cca36cd38"
+            ]
+        ]
+    },
+    {
+        "id": "b55361425e16765b",
+        "type": "ui_led",
+        "z": "4215ef7ad32b1858",
+        "order": 5,
+        "group": "40009fbec210236c",
+        "width": "3",
+        "height": "1",
+        "label": "Heating",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "Heating led",
+        "x": 650,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "138643c44ca31cf8",
+        "type": "ui_led",
+        "z": "4215ef7ad32b1858",
+        "order": 5,
+        "group": "40009fbec210236c",
+        "width": "3",
+        "height": "1",
+        "label": "Fan",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "0",
+                "valueType": "num"
+            },
+            {
+                "color": "#00ff00",
+                "value": "1",
+                "valueType": "num"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": false,
+        "name": "Fan led",
+        "x": 640,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "85297554fafe1bb9",
+        "type": "complete",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "scope": [
+            "5e07112cb9dc6a04",
+            "0a49932d761e1ea9",
+            "7f4a650e33e45e7e"
+        ],
+        "uncaught": false,
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "d02002a112e35aee"
+            ]
+        ]
+    },
+    {
+        "id": "d02002a112e35aee",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "trigger",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "name",
+                "pt": "msg",
+                "to": "Climate",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 420,
+        "wires": [
+            [
+                "4f72dc7988fc49fd"
+            ]
+        ]
+    },
+    {
+        "id": "bc29d906b9e4136a",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Activate test climate",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "720e72d4ce2265f2"
+            ]
+        ]
+    },
+    {
+        "id": "6c9eee72742751ec",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Deactivate test climate",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 200,
+        "y": 140,
+        "wires": [
+            [
+                "720e72d4ce2265f2"
+            ]
+        ]
+    },
+    {
+        "id": "720e72d4ce2265f2",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.testmode",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8168d6f434dc3843",
+        "type": "comment",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Trigger climate testmode",
+        "info": "",
+        "x": 490,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "5c29921d35d57000",
+        "type": "comment",
+        "z": "4d9548a7a9fa8f5b",
+        "name": "Inject temperature and humidity in testmode enabled",
+        "info": "",
+        "x": 510,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "e142f28d574d6e54",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Inject at 00:01",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "01 00 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "04b414ce3ab7512b"
+            ]
+        ]
+    },
+    {
+        "id": "04b414ce3ab7512b",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 280,
+        "wires": [
+            [
+                "20f9ce4977e0fb0d"
+            ]
+        ]
+    },
+    {
+        "id": "20f9ce4977e0fb0d",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "15",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "916c885a68155c4d",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Inject at 02:30",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 02 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 340,
+        "wires": [
+            [
+                "db9e804019cdd8fc"
+            ]
+        ]
+    },
+    {
+        "id": "db9e804019cdd8fc",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "3cf18eb8ddea1105"
+            ]
+        ]
+    },
+    {
+        "id": "3cf18eb8ddea1105",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "15",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "50",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "93742f9bf7246ac6",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Inject at 05:00",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 05 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 400,
+        "wires": [
+            [
+                "942f23069070a4d2"
+            ]
+        ]
+    },
+    {
+        "id": "942f23069070a4d2",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 400,
+        "wires": [
+            [
+                "b5e9de3c9b7941b3"
+            ]
+        ]
+    },
+    {
+        "id": "b5e9de3c9b7941b3",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "6b8182068d6abfd6",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "15",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "80",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8809c117477282eb",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Inject at 07:30",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 07 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 480,
+        "wires": [
+            [
+                "3cd15866f585fb41"
+            ]
+        ]
+    },
+    {
+        "id": "3cd15866f585fb41",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 480,
+        "wires": [
+            [
+                "cffbc94582883590"
+            ]
+        ]
+    },
+    {
+        "id": "cffbc94582883590",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "18",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4155f62a0a0e3a89",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Inject at 10:00",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 10 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 540,
+        "wires": [
+            [
+                "8509cf8299c76c68"
+            ]
+        ]
+    },
+    {
+        "id": "8509cf8299c76c68",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 540,
+        "wires": [
+            [
+                "6fb8ba5f648ef160"
+            ]
+        ]
+    },
+    {
+        "id": "6fb8ba5f648ef160",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "18",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "50",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4b7443d5108e12fb",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Inject at 12:30",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 12 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 600,
+        "wires": [
+            [
+                "8267e632b75285b5"
+            ]
+        ]
+    },
+    {
+        "id": "8267e632b75285b5",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 600,
+        "wires": [
+            [
+                "6b9583160ff4bd40"
+            ]
+        ]
+    },
+    {
+        "id": "6b9583160ff4bd40",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "1ac17858d68d7df5",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "18",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "80",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d7cb22917e5abf9b",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Inject at 15:00",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 15 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 680,
+        "wires": [
+            [
+                "5de75f87b2a1327e"
+            ]
+        ]
+    },
+    {
+        "id": "5de75f87b2a1327e",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 680,
+        "wires": [
+            [
+                "83364a243a7aee14"
+            ]
+        ]
+    },
+    {
+        "id": "83364a243a7aee14",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "21",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "20",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 680,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7cd0a5bf5507abf2",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Inject at 17:30",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "30 17 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 740,
+        "wires": [
+            [
+                "e3d1c0312f8007d1"
+            ]
+        ]
+    },
+    {
+        "id": "e3d1c0312f8007d1",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 740,
+        "wires": [
+            [
+                "5b6ea2820faff17a"
+            ]
+        ]
+    },
+    {
+        "id": "5b6ea2820faff17a",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "21",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "50",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 740,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aa70f6aeb17ae819",
+        "type": "inject",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Inject 20:00",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "00 20 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 800,
+        "wires": [
+            [
+                "8e12f020117cfb0f"
+            ]
+        ]
+    },
+    {
+        "id": "8e12f020117cfb0f",
+        "type": "switch",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Pass if climate.testmode = true",
+        "property": "climate.testmode",
+        "propertyType": "global",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 450,
+        "y": 800,
+        "wires": [
+            [
+                "1dd6eed27ccf2cf0"
+            ]
+        ]
+    },
+    {
+        "id": "1dd6eed27ccf2cf0",
+        "type": "change",
+        "z": "4d9548a7a9fa8f5b",
+        "g": "541282b885da4683",
+        "name": "Set temperature and humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.inttemp",
+                "pt": "global",
+                "to": "21",
+                "tot": "num"
+            },
+            {
+                "t": "set",
+                "p": "climate.inthum",
+                "pt": "global",
+                "to": "80",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 800,
+        "wires": [
+            []
+        ]
     }
 ]

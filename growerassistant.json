@@ -54,9 +54,7 @@
             "b5e9de3c9b7941b3"
         ],
         "x": 54,
-        "y": 239,
-        "w": 852,
-        "h": 202
+        "y": 239
     },
     {
         "id": "1ac17858d68d7df5",
@@ -81,9 +79,7 @@
             "6b9583160ff4bd40"
         ],
         "x": 54,
-        "y": 439,
-        "w": 852,
-        "h": 202
+        "y": 439
     },
     {
         "id": "541282b885da4683",
@@ -108,9 +104,7 @@
             "1dd6eed27ccf2cf0"
         ],
         "x": 54,
-        "y": 639,
-        "w": 852,
-        "h": 202
+        "y": 639
     },
     {
         "id": "30310abcb724f80d",
@@ -234,7 +228,7 @@
     {
         "id": "273b4a3829d447ed",
         "type": "sqlitedb",
-        "db": "/home/pi/growerassistant/main.db",
+        "db": "/home/pi/grower-assistant/main.db",
         "mode": "RWC"
     },
     {

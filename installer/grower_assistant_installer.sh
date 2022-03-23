@@ -1,7 +1,5 @@
 #!/bin/bash
 #
-#!/bin/bash
-#
 # This script include node-red script installer for deb systems
 # Make a backup of /home/pi/grower-assistant folder if you make an update
 

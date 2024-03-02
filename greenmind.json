@@ -187,7 +187,7 @@
             }
         },
         "site": {
-            "name": "Grower Assistant",
+            "name": "GreenMind",
             "hideToolbar": "false",
             "allowSwipe": "false",
             "lockMenu": "false",
@@ -228,7 +228,7 @@
     {
         "id": "273b4a3829d447ed",
         "type": "sqlitedb",
-        "db": "/home/pi/grower-assistant/main.db",
+        "db": "/home/pi/greenmind/main.db",
         "mode": "RWC"
     },
     {
@@ -806,7 +806,7 @@
         "order": 1,
         "width": "20",
         "height": "4",
-        "format": "<div <p>This is a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GrowerAssistant\">https://github.com/ThomasAndreini/GrowerAssistant</a>.</div>",
+        "format": "<div <p>This is a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GreenMind\">https://github.com/ThomasAndreini/GreenMind</a>.</div>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,

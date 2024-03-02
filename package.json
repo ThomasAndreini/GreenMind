@@ -1,6 +1,6 @@
 {
-    "name": "GrowerAssistant",
-    "description": "A Grower Assistant for small crop",
+    "name": "GreenMind",
+    "description": "A green mind for small crop",
     "version": "0.1.0",
     "dependencies": {
         "node-red-dashboard": "3.1.5",
@@ -13,8 +13,8 @@
     },
     "node-red": {
         "settings": {
-            "flowFile": "growerassistant.json",
-            "credentialsFile": "growerassistant_cred.json"
+            "flowFile": "greenmind.json",
+            "credentialsFile": "greenmind_cred.json"
         }
     }
 }

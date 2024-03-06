@@ -31,12 +31,6 @@ else
 	echo "cannot download settings.js, check your internet connection, exit"
 	exit 1
 fi
-if npm install --unsafe-perm -g node-dht-sensor ; then
-	echo "dht library installed, download package.json"
-else
-	echo "dht library not installed, check your internet connection, exit"
-	exit 1
-fi
 if wget https://github.com/ThomasAndreini/GreenMind/blob/master/package.json ; then
 	echo "package.json downloaded, install it"
 else

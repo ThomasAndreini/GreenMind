@@ -228,7 +228,7 @@
     {
         "id": "273b4a3829d447ed",
         "type": "sqlitedb",
-        "db": "/home/pi/greenmind/main.db",
+        "db": "greenmind/main.db",
         "mode": "RWC"
     },
     {

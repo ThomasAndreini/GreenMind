@@ -44,4 +44,3 @@ else
 	exit 1
 fi
 node-red-start
-fi

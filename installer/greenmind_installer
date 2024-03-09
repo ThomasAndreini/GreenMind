@@ -3,16 +3,16 @@
 # GreenMind Installer for Raspberry Pi OS Lite
 #
 
-# Install Node-RED
-if bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) --confirm-install --confirm-pi --nodered-version="3.1.5" --node16 ; then
-    echo "Node-RED installed, creating GreenMind folder"
+# Create nodered folder
+if mkdir -p ~.node-red ; then
+    echo ".node-red folder created, downloading files"
 else
-    echo "Node-RED installation failed, check Node-RED log for more details"
+    echo "Failed to create .node-red folder, check permissions or reboot, exiting"
     exit 1
 fi
 
 # Create GreenMind folder
-if mkdir -p /home/pi/greenmind/ ; then
+if mkdir -p ~/greenmind/ ; then
     echo "GreenMind folder created, downloading files"
 else
     echo "Failed to create GreenMind folder, check permissions or reboot, exiting"
@@ -20,7 +20,7 @@ else
 fi
 
 # Download GreenMind files
-cd /home/pi/greenmind/
+cd ~/greenmind/
 if wget -O greenmind.json https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/greenmind.json ; then
     echo "greenmind.json downloaded, downloading modified settings.js"
 else
@@ -28,7 +28,7 @@ else
     exit 1
 fi
 
-cd /home/pi/.node-red
+cd ~/.node-red
 if wget -O settings.js https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/installer/settings.js ; then
     echo "settings.js downloaded, downloading package.json"
 else
@@ -40,6 +40,14 @@ if wget -O package.json https://raw.githubusercontent.com/ThomasAndreini/GreenMi
     echo "package.json downloaded, installing it"
 else
     echo "Failed to download package.json, check your internet connection, exiting"
+    exit 1
+fi
+
+# Install Node-RED
+if bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) --confirm-install --confirm-pi --nodered-version="3.1.5" --node16 ; then
+    echo "Node-RED installed, creating GreenMind folder"
+else
+    echo "Node-RED installation failed, check Node-RED log for more details"
     exit 1
 fi
 

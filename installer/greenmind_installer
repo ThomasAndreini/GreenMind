@@ -58,6 +58,8 @@ else
     echo "Can't install extra nodes, exiting"
     exit 1
 fi
+#Run Node-Red at startup
+sudo systemctl enable nodered.service
 
 # Start Node-RED
 node-red-start

@@ -43,4 +43,5 @@ else
 	echo "can't install extra nodes, exit"
 	exit 1
 fi
+
 node-red-start

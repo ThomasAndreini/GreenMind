@@ -12,7 +12,7 @@ else
 fi
 
 # Create GreenMind folder
-if mkdir -p ~/greenmind/ ; then
+if mkdir -p ~/greenmind ; then
     echo "GreenMind folder created, downloading files"
 else
     echo "Failed to create GreenMind folder, check permissions or reboot, exiting"
@@ -20,7 +20,7 @@ else
 fi
 
 # Download GreenMind files
-cd ~/greenmind/
+cd ~/greenmind
 if wget -O greenmind.json https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/greenmind.json ; then
     echo "greenmind.json downloaded, downloading modified settings.js"
 else

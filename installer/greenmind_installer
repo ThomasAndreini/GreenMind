@@ -5,7 +5,7 @@
 
 # Create nodered folder
 if mkdir -p ~/.node-red ; then
-    echo ".node-red folder created, downloading files"
+    echo ".node-red folder created, create greenmind folder"
 else
     echo "Failed to create .node-red folder, check permissions or reboot, exiting"
     exit 1

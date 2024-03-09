@@ -4,7 +4,7 @@
 #
 
 # Create nodered folder
-if mkdir -p ~.node-red ; then
+if mkdir -p ~/.node-red ; then
     echo ".node-red folder created, downloading files"
 else
     echo "Failed to create .node-red folder, check permissions or reboot, exiting"

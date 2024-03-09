@@ -1,46 +1,55 @@
 #!/bin/bash
 #
-# This script include node-red script installer for deb systems
-# Make a backup of /home/pi/greenmind folder if you make an update
+# GreenMind Installer for Raspberry Pi OS Lite
 #
-# GreenMind Installer for Raspberry pi OS lite
-#
+
+# Install Node-RED
 if bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) --confirm-install --confirm-pi --nodered-version="3.1.5" --node16 ; then
-    echo "Node Red installed, now create a greenmind folder"
+    echo "Node-RED installed, creating GreenMind folder"
 else
-    echo "Node Red installation failed, check node red log for more details"
-	exit 1
+    echo "Node-RED installation failed, check Node-RED log for more details"
+    exit 1
 fi
+
+# Create GreenMind folder
 if mkdir -p /home/pi/greenmind/ ; then
-	echo "Directory create, download GreenMind files"
+    echo "GreenMind folder created, downloading files"
 else
-	echo "Failed to create download, check permission or reboot, exit"
-	exit 1
+    echo "Failed to create GreenMind folder, check permissions or reboot, exiting"
+    exit 1
 fi
+
+# Download GreenMind files
 cd /home/pi/greenmind/
-if wget https://github.com/ThomasAndreini/GreenMind/blob/master/greenmind.json ; then
-	echo "greenmind.json downloaded, download modified settings.js"
+if wget -O greenmind.json https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/greenmind.json ; then
+    echo "greenmind.json downloaded, downloading modified settings.js"
 else
-	echo "cannot download greenmind.json, check your internet connection, exit"
-	exit 1
+    echo "Failed to download greenmind.json, check your internet connection, exiting"
+    exit 1
 fi
+
 cd /home/pi/.node-red
-if wget https://github.com/ThomasAndreini/GreenMind/blob/master/installer/settings.js ; then
-	echo "settings.js downloaded, download package.json"
+if wget -O settings.js https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/installer/settings.js ; then
+    echo "settings.js downloaded, downloading package.json"
 else
-	echo "cannot download settings.js, check your internet connection, exit"
-	exit 1
+    echo "Failed to download settings.js, check your internet connection, exiting"
+    exit 1
 fi
-if wget https://github.com/ThomasAndreini/GreenMind/blob/master/package.json ; then
-	echo "package.json downloaded, install it"
+
+if wget -O package.json https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/package.json ; then
+    echo "package.json downloaded, installing it"
 else
-	echo "cannot download package.json, check your internet connection, exit"
-	exit 1
+    echo "Failed to download package.json, check your internet connection, exiting"
+    exit 1
 fi
+
+# Install extra nodes
 if npm install ; then
-	echo "extra nodes installed, GreenMind is installed succesfully, start node red"
+    echo "Extra nodes installed, GreenMind is installed successfully, starting Node-RED"
 else
-	echo "can't install extra nodes, exit"
-	exit 1
+    echo "Can't install extra nodes, exiting"
+    exit 1
 fi
+
+# Start Node-RED
 node-red-start

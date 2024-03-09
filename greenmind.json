@@ -5300,6 +5300,16 @@
         ]
     },
     {
+        "id": "466fbc6892736784",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "ex dht22",
+        "info": "c'era dht22 da sostituire con climahub",
+        "x": 480,
+        "y": 1920,
+        "wires": []
+    },
+    {
         "id": "bc29d906b9e4136a",
         "type": "inject",
         "z": "4d9548a7a9fa8f5b",

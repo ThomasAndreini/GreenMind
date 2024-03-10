@@ -5341,7 +5341,7 @@
         "type": "comment",
         "z": "4215ef7ad32b1858",
         "name": "DA FINIRE",
-        "info": "va preso il bulbo secco e bulbo umido e calcolata l'umidità con la formula di chat gpt",
+        "info": "va preso il bulbo secco e bulbo umido e calcolata l'umidità con la formula di chat gpt\ne vanno passati i valori ai context relativi\nvanno anche creati nuovi context per dewpoint, bulbo umido e quello che viene generato\nda mettere anche nell'inizializzazione ",
         "x": 780,
         "y": 1820,
         "wires": []

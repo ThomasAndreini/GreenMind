@@ -54,7 +54,9 @@
             "b5e9de3c9b7941b3"
         ],
         "x": 54,
-        "y": 239
+        "y": 239,
+        "w": 852,
+        "h": 202
     },
     {
         "id": "1ac17858d68d7df5",
@@ -79,7 +81,9 @@
             "6b9583160ff4bd40"
         ],
         "x": 54,
-        "y": 439
+        "y": 439,
+        "w": 852,
+        "h": 202
     },
     {
         "id": "541282b885da4683",
@@ -104,7 +108,9 @@
             "1dd6eed27ccf2cf0"
         ],
         "x": 54,
-        "y": 639
+        "y": 639,
+        "w": 852,
+        "h": 202
     },
     {
         "id": "30310abcb724f80d",
@@ -215,6 +221,24 @@
         "hidden": false
     },
     {
+        "id": "c9196ab76e307349",
+        "type": "ui_tab",
+        "name": "Irrigation",
+        "icon": "mi-water_drop",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "abac10b9eadb5bc0",
+        "type": "ui_tab",
+        "name": "Climate",
+        "icon": "fa-leaf",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "f83273088eb193ee",
         "type": "ui_group",
         "name": "Schedule summary",
@@ -224,21 +248,6 @@
         "width": "20",
         "collapse": false,
         "className": ""
-    },
-    {
-        "id": "273b4a3829d447ed",
-        "type": "sqlitedb",
-        "db": "greenmind/main.db",
-        "mode": "RWC"
-    },
-    {
-        "id": "c9196ab76e307349",
-        "type": "ui_tab",
-        "name": "Irrigation",
-        "icon": "mi-water_drop",
-        "order": 2,
-        "disabled": false,
-        "hidden": false
     },
     {
         "id": "fa9ccf2e0cfb5c02",
@@ -296,15 +305,6 @@
         "className": ""
     },
     {
-        "id": "abac10b9eadb5bc0",
-        "type": "ui_tab",
-        "name": "Climate",
-        "icon": "fa-leaf",
-        "order": 3,
-        "disabled": false,
-        "hidden": false
-    },
-    {
         "id": "5cbd1b6fdfe2459d",
         "type": "ui_group",
         "name": "Schedule",
@@ -345,6 +345,28 @@
         "order": 1,
         "disp": true,
         "width": 16,
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "696d740b65c6837c",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "c9196ab76e307349",
+        "order": 4,
+        "disp": true,
+        "width": "14",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "bd1454c9fe3a5dbc",
+        "type": "ui_group",
+        "name": "Settings",
+        "tab": "abac10b9eadb5bc0",
+        "order": 5,
+        "disp": true,
+        "width": "16",
         "collapse": true,
         "className": ""
     },
@@ -529,28 +551,6 @@
         "height": 1
     },
     {
-        "id": "696d740b65c6837c",
-        "type": "ui_group",
-        "name": "Settings",
-        "tab": "c9196ab76e307349",
-        "order": 4,
-        "disp": true,
-        "width": "14",
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "bd1454c9fe3a5dbc",
-        "type": "ui_group",
-        "name": "Settings",
-        "tab": "abac10b9eadb5bc0",
-        "order": 5,
-        "disp": true,
-        "width": "16",
-        "collapse": true,
-        "className": ""
-    },
-    {
         "id": "d390524ada203dc1",
         "type": "ui_spacer",
         "z": "9cfee97fb9e96644",
@@ -721,21 +721,10 @@
         "height": 1
     },
     {
-        "id": "cbf17221b4974b57",
-        "type": "sqlite",
-        "z": "473af4e9135bb6f3",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 600,
-        "y": 220,
-        "wires": [
-            [
-                "cabbfb27625993b3",
-                "1defbad0c68534d2"
-            ]
-        ]
+        "id": "273b4a3829d447ed",
+        "type": "sqlitedb",
+        "db": "greenmind/main.db",
+        "mode": "RWC"
     },
     {
         "id": "a6b7472a7e43b83b",
@@ -757,7 +746,7 @@
         "y": 180,
         "wires": [
             [
-                "88fbd738e723d538"
+                "a35cedd0a8ef43ec"
             ]
         ],
         "info": "Format values accord to Timeline chart documentation"
@@ -781,42 +770,6 @@
             ]
         ],
         "info": "This function send a query if tab Home is loaded"
-    },
-    {
-        "id": "bd541d756dceeb68",
-        "type": "ui_ui_control",
-        "z": "473af4e9135bb6f3",
-        "name": "",
-        "events": "all",
-        "x": 80,
-        "y": 220,
-        "wires": [
-            [
-                "43783318f3f6408b",
-                "a49933558f887776"
-            ]
-        ]
-    },
-    {
-        "id": "43783318f3f6408b",
-        "type": "ui_template",
-        "z": "473af4e9135bb6f3",
-        "group": "f668e2ddd7534d1b",
-        "name": "",
-        "order": 1,
-        "width": "20",
-        "height": "4",
-        "format": "<div <p>This is a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GreenMind\">https://github.com/ThomasAndreini/GreenMind</a>.</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
-        "x": 240,
-        "y": 280,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "f82df9be90653a7d",
@@ -985,6 +938,26 @@
         ]
     },
     {
+        "id": "d9ff05eb817cd328",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "Timeline chart and announce",
+        "info": "This section show schedule set in to module",
+        "x": 600,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "b3b9cb7b431cdb1b",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "Climate graphic",
+        "info": "Graphic that show temperature and humidity",
+        "x": 560,
+        "y": 380,
+        "wires": []
+    },
+    {
         "id": "01a35cb9f68f28fb",
         "type": "ui_chart",
         "z": "473af4e9135bb6f3",
@@ -1029,31 +1002,85 @@
         ]
     },
     {
-        "id": "88fbd738e723d538",
+        "id": "bd541d756dceeb68",
+        "type": "ui_ui_control",
+        "z": "473af4e9135bb6f3",
+        "name": "",
+        "events": "all",
+        "x": 80,
+        "y": 220,
+        "wires": [
+            [
+                "43783318f3f6408b",
+                "a49933558f887776"
+            ]
+        ]
+    },
+    {
+        "id": "43783318f3f6408b",
+        "type": "ui_template",
+        "z": "473af4e9135bb6f3",
+        "group": "f668e2ddd7534d1b",
+        "name": "",
+        "order": 1,
+        "width": "20",
+        "height": "4",
+        "format": "<div <p>This is a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GreenMind\">https://github.com/ThomasAndreini/GreenMind</a>.</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 240,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cbf17221b4974b57",
+        "type": "sqlite",
+        "z": "473af4e9135bb6f3",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 600,
+        "y": 220,
+        "wires": [
+            [
+                "cabbfb27625993b3",
+                "1defbad0c68534d2"
+            ]
+        ]
+    },
+    {
+        "id": "a35cedd0a8ef43ec",
         "type": "ui_timelines_chart",
         "z": "473af4e9135bb6f3",
         "group": "f83273088eb193ee",
         "name": "",
-        "order": 2,
-        "label": "Schedule summary",
-        "width": "0",
-        "height": "0",
+        "order": 0,
+        "label": "timelines_chart",
+        "width": 0,
+        "height": 0,
         "lineColors": [
             {
-                "statusColor": "#ffd500",
+                "statusColor": "#000000",
                 "statusValue": ""
             }
         ],
-        "xTickFormat": "HH:mm",
-        "startDateTime": "1970-01-01T00:00",
-        "endDateTime": "1970-01-01T23:59",
-        "maxLineHeight": "20",
-        "topMargin": "0",
-        "xAxisLabelsFontSize": "14",
+        "xTickFormat": "",
+        "startDateTime": "",
+        "endDateTime": "",
+        "maxLineHeight": 60,
+        "topMargin": 60,
+        "xAxisLabelsFontSize": 16,
         "xAxisLabelslColor": "#000000",
-        "yAxisLabelsFontSize": "16",
+        "yAxisLabelsFontSize": 16,
         "yAxisLabelslColor": "#000000",
-        "timeFormat": "%H:%M",
+        "timeFormat": "",
+        "segmentTooltipContent": "",
         "resetZoomLabelFontSize": 24,
         "resetZoomLabelColor": "#000000",
         "enableAnimations": true,
@@ -1066,26 +1093,6 @@
         ]
     },
     {
-        "id": "d9ff05eb817cd328",
-        "type": "comment",
-        "z": "473af4e9135bb6f3",
-        "name": "Timeline chart and announce",
-        "info": "This section show schedule set in to module",
-        "x": 600,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "b3b9cb7b431cdb1b",
-        "type": "comment",
-        "z": "473af4e9135bb6f3",
-        "name": "Climate graphic",
-        "info": "Graphic that show temperature and humidity",
-        "x": 560,
-        "y": 380,
-        "wires": []
-    },
-    {
         "id": "be7cbfc514e81423",
         "type": "comment",
         "z": "9cfee97fb9e96644",
@@ -1094,127 +1101,6 @@
         "x": 520,
         "y": 300,
         "wires": []
-    },
-    {
-        "id": "f8e099d3825a6ece",
-        "type": "ui_table",
-        "z": "9cfee97fb9e96644",
-        "group": "fa9ccf2e0cfb5c02",
-        "name": "irrschedule",
-        "order": 1,
-        "width": 14,
-        "height": 6,
-        "columns": [
-            {
-                "field": "id",
-                "title": "ID",
-                "width": "50",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "active",
-                "title": "Active",
-                "width": "90",
-                "align": "center",
-                "formatter": "tickCross",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "fromtime",
-                "title": "From",
-                "width": "125",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "totime",
-                "title": "To",
-                "width": "125",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "every",
-                "title": "Every (min)",
-                "width": "120",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "duration",
-                "title": "Duration (ml)",
-                "width": "130",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "oneshoot",
-                "title": "One shoot",
-                "width": "110",
-                "align": "center",
-                "formatter": "tickCross",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 1,
-        "cts": true,
-        "x": 1030,
-        "y": 500,
-        "wires": [
-            [
-                "4258efc5d0dbfd62"
-            ]
-        ]
-    },
-    {
-        "id": "5d4434152352be75",
-        "type": "sqlite",
-        "z": "9cfee97fb9e96644",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 580,
-        "y": 500,
-        "wires": [
-            [
-                "a7ae236536372f97"
-            ]
-        ]
-    },
-    {
-        "id": "09cf0f0ca103e47e",
-        "type": "ui_ui_control",
-        "z": "9cfee97fb9e96644",
-        "name": "load irrigation notify",
-        "events": "change",
-        "x": 130,
-        "y": 500,
-        "wires": [
-            [
-                "d69ce2da8441ec24"
-            ]
-        ]
     },
     {
         "id": "d69ce2da8441ec24",
@@ -1233,236 +1119,6 @@
             [
                 "5d4434152352be75",
                 "9b96e90fe4a26a8a"
-            ]
-        ]
-    },
-    {
-        "id": "0ec6e2279f40fc7b",
-        "type": "ui_switch",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Active",
-        "tooltip": "Enable or disable this programming row",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 2,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "num",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "num",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 1690,
-        "y": 540,
-        "wires": [
-            [
-                "fc57f377ec280935"
-            ]
-        ]
-    },
-    {
-        "id": "1ac85274d91d1f6b",
-        "type": "ui_text_input",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "From",
-        "tooltip": "Start time of programming",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 3,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1690,
-        "y": 580,
-        "wires": [
-            [
-                "abbba47230890ecb",
-                "37a971ed9a826349"
-            ]
-        ]
-    },
-    {
-        "id": "8be6109a5cbe938b",
-        "type": "ui_text_input",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "To",
-        "tooltip": "End time of programming",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1690,
-        "y": 740,
-        "wires": [
-            [
-                "81761520c7dc5aef"
-            ]
-        ]
-    },
-    {
-        "id": "35b1cb8d9c5604fd",
-        "type": "ui_text_input",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Every (min)",
-        "tooltip": "Run irrigation every (minutes)",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 5,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1710,
-        "y": 780,
-        "wires": [
-            [
-                "9f7002438e1ab4ea"
-            ]
-        ]
-    },
-    {
-        "id": "77490e9a5b6a8097",
-        "type": "ui_text_input",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Duration (ml)",
-        "tooltip": "Duration of irrigation in ml for plant",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 6,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1710,
-        "y": 820,
-        "wires": [
-            [
-                "16869e0b8315f42c"
-            ]
-        ]
-    },
-    {
-        "id": "3051c6860a0e394c",
-        "type": "ui_switch",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "One Shoot",
-        "tooltip": "Run irrigation once (disable the Every field and the To field)",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 7,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "num",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "num",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 1710,
-        "y": 620,
-        "wires": [
-            [
-                "1f65ef9f4a1665a6",
-                "37a971ed9a826349"
-            ]
-        ]
-    },
-    {
-        "id": "aff7013e00bc8f63",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 8,
-        "width": 5,
-        "height": 1,
-        "passthru": false,
-        "label": "Edit",
-        "tooltip": "Edit the selected schedule",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "edit",
-        "payloadType": "str",
-        "topic": "SELECT id, fromtime, totime FROM irrigation;",
-        "topicType": "str",
-        "x": 90,
-        "y": 400,
-        "wires": [
-            [
-                "1dee4a5b0f066976"
-            ]
-        ]
-    },
-    {
-        "id": "ddde992c6bf0e4ba",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 9,
-        "width": 5,
-        "height": 1,
-        "passthru": false,
-        "label": "Add",
-        "tooltip": "Add a schedule",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "add",
-        "payloadType": "str",
-        "topic": "SELECT id, fromtime, totime FROM irrigation;",
-        "topicType": "str",
-        "x": 90,
-        "y": 360,
-        "wires": [
-            [
-                "1dee4a5b0f066976"
             ]
         ]
     },
@@ -1830,34 +1486,6 @@
         ]
     },
     {
-        "id": "35245eb2fa31ffbd",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 10,
-        "width": 4,
-        "height": 1,
-        "passthru": false,
-        "label": "Delete",
-        "tooltip": "Remove the selected schedule",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "delete",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 90,
-        "y": 440,
-        "wires": [
-            [
-                "1dee4a5b0f066976"
-            ]
-        ]
-    },
-    {
         "id": "9b96e90fe4a26a8a",
         "type": "change",
         "z": "9cfee97fb9e96644",
@@ -2021,69 +1649,6 @@
         "wires": []
     },
     {
-        "id": "c478e8f4d3a24c0c",
-        "type": "sqlite",
-        "z": "9cfee97fb9e96644",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 560,
-        "y": 1060,
-        "wires": [
-            [
-                "67664147b8c31f79"
-            ]
-        ]
-    },
-    {
-        "id": "cafd7de47d246249",
-        "type": "ui_table",
-        "z": "9cfee97fb9e96644",
-        "group": "25572f3b22faabc8",
-        "name": "",
-        "order": 2,
-        "width": 12,
-        "height": 6,
-        "columns": [
-            {
-                "field": "id",
-                "title": "ID",
-                "width": "80",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "time",
-                "title": "Time",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "duration",
-                "title": "Duration (ml)",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 0,
-        "cts": false,
-        "x": 990,
-        "y": 1060,
-        "wires": []
-    },
-    {
         "id": "0463b6ba55aa7acd",
         "type": "comment",
         "z": "9cfee97fb9e96644",
@@ -2092,22 +1657,6 @@
         "x": 570,
         "y": 1180,
         "wires": []
-    },
-    {
-        "id": "31b7d3097f0df449",
-        "type": "sqlite",
-        "z": "9cfee97fb9e96644",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 390,
-        "y": 1500,
-        "wires": [
-            [
-                "b0a9b08b0a502a9e"
-            ]
-        ]
     },
     {
         "id": "b1d5ca956a4e5bbd",
@@ -2219,20 +1768,6 @@
         "info": "Initialize all global and flow context and db"
     },
     {
-        "id": "d1436ddcad8a9e8f",
-        "type": "sqlite",
-        "z": "9cfee97fb9e96644",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 1020,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "4a69bffa8e947aef",
         "type": "rpi-gpio out",
         "z": "9cfee97fb9e96644",
@@ -2246,48 +1781,6 @@
         "x": 1120,
         "y": 1320,
         "wires": []
-    },
-    {
-        "id": "1d73c5dce4d38372",
-        "type": "sqlite",
-        "z": "9cfee97fb9e96644",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "to table irrigationdone",
-        "x": 1160,
-        "y": 1380,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "753b11787971f0df",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "group": "2b2b4e4e8122d74f",
-        "order": 2,
-        "width": 10,
-        "height": 1,
-        "passthru": false,
-        "label": "Start / Stop manual irrigation",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 300,
-        "y": 1260,
-        "wires": [
-            [
-                "4ea9c0c1480a4972"
-            ]
-        ]
     },
     {
         "id": "2f10e39feee3c095",
@@ -2314,22 +1807,6 @@
         ]
     },
     {
-        "id": "933295d7c80380ff",
-        "type": "sqlite",
-        "z": "9cfee97fb9e96644",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 320,
-        "y": 140,
-        "wires": [
-            [
-                "eb57c242dd6101db"
-            ]
-        ]
-    },
-    {
         "id": "a2796602413ba064",
         "type": "catch",
         "z": "9cfee97fb9e96644",
@@ -2346,20 +1823,6 @@
             ]
         ],
         "info": "If system table is not created then error trigger function for create it"
-    },
-    {
-        "id": "08f49e173f72a25f",
-        "type": "ui_ui_control",
-        "z": "9cfee97fb9e96644",
-        "name": "load irrigation notify",
-        "events": "change",
-        "x": 110,
-        "y": 1060,
-        "wires": [
-            [
-                "af730aace9973dff"
-            ]
-        ]
     },
     {
         "id": "af730aace9973dff",
@@ -2533,25 +1996,6 @@
         "wires": []
     },
     {
-        "id": "a25c098d2bc1a3a7",
-        "type": "ui_toast",
-        "z": "9cfee97fb9e96644",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "red",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
-        "x": 1020,
-        "y": 400,
-        "wires": []
-    },
-    {
         "id": "1dee4a5b0f066976",
         "type": "change",
         "z": "9cfee97fb9e96644",
@@ -2576,22 +2020,6 @@
         "wires": [
             [
                 "ab45d3b99e0771c9"
-            ]
-        ]
-    },
-    {
-        "id": "ab45d3b99e0771c9",
-        "type": "sqlite",
-        "z": "9cfee97fb9e96644",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 580,
-        "y": 400,
-        "wires": [
-            [
-                "b2727c05738a4afa"
             ]
         ]
     },
@@ -2654,44 +2082,6 @@
         "wires": []
     },
     {
-        "id": "292d8fffde5edb8b",
-        "type": "ui_dropdown",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Logic level irrigation inactive",
-        "tooltip": "Set logic level of relay of irrigation when irrigation is inactive",
-        "place": "Select option",
-        "group": "696d740b65c6837c",
-        "order": 4,
-        "width": 6,
-        "height": 1,
-        "passthru": true,
-        "multiple": false,
-        "options": [
-            {
-                "label": "0",
-                "value": 0,
-                "type": "num"
-            },
-            {
-                "label": "1",
-                "value": 1,
-                "type": "num"
-            }
-        ],
-        "payload": "",
-        "topic": "topic",
-        "topicType": "msg",
-        "className": "",
-        "x": 660,
-        "y": 1840,
-        "wires": [
-            [
-                "c99e2796c931fd81"
-            ]
-        ]
-    },
-    {
         "id": "23dd997edef37d48",
         "type": "change",
         "z": "9cfee97fb9e96644",
@@ -2746,20 +2136,6 @@
         ]
     },
     {
-        "id": "0a78e609b54d3cea",
-        "type": "ui_ui_control",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "events": "all",
-        "x": 100,
-        "y": 1880,
-        "wires": [
-            [
-                "205cab230529817b"
-            ]
-        ]
-    },
-    {
         "id": "205cab230529817b",
         "type": "switch",
         "z": "9cfee97fb9e96644",
@@ -2782,32 +2158,6 @@
             [
                 "23dd997edef37d48",
                 "139670989fd83a50"
-            ]
-        ]
-    },
-    {
-        "id": "5c5465a79ddb89e8",
-        "type": "ui_text_input",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Flow rate lt/h",
-        "tooltip": "Enter the flow rate in liters / hour or calculate it with the utility nearby",
-        "group": "696d740b65c6837c",
-        "order": 2,
-        "width": 5,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 610,
-        "y": 1920,
-        "wires": [
-            [
-                "13d2995b4374b418"
             ]
         ]
     },
@@ -2866,34 +2216,6 @@
         ]
     },
     {
-        "id": "de9356205b76bc90",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "group": "696d740b65c6837c",
-        "order": 6,
-        "width": 7,
-        "height": 1,
-        "passthru": false,
-        "label": "Start flow rate calculation timer",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "start",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 2040,
-        "wires": [
-            [
-                "7c4d9208737888d5"
-            ]
-        ]
-    },
-    {
         "id": "7c4d9208737888d5",
         "type": "function",
         "z": "9cfee97fb9e96644",
@@ -2914,34 +2236,6 @@
         "wires": [
             [
                 "5c5465a79ddb89e8"
-            ]
-        ]
-    },
-    {
-        "id": "58c12d0c308cc752",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
-        "name": "",
-        "group": "696d740b65c6837c",
-        "order": 7,
-        "width": 7,
-        "height": 1,
-        "passthru": false,
-        "label": "Stop flow rate calculation timer",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "stop",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 170,
-        "y": 2080,
-        "wires": [
-            [
-                "7c4d9208737888d5"
             ]
         ]
     },
@@ -3004,6 +2298,719 @@
         ]
     },
     {
+        "id": "aff7013e00bc8f63",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Edit",
+        "tooltip": "Edit the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "edit",
+        "payloadType": "str",
+        "topic": "SELECT id, fromtime, totime FROM irrigation;",
+        "topicType": "str",
+        "x": 90,
+        "y": 400,
+        "wires": [
+            [
+                "1dee4a5b0f066976"
+            ]
+        ]
+    },
+    {
+        "id": "ddde992c6bf0e4ba",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 9,
+        "width": 5,
+        "height": 1,
+        "passthru": false,
+        "label": "Add",
+        "tooltip": "Add a schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "add",
+        "payloadType": "str",
+        "topic": "SELECT id, fromtime, totime FROM irrigation;",
+        "topicType": "str",
+        "x": 90,
+        "y": 360,
+        "wires": [
+            [
+                "1dee4a5b0f066976"
+            ]
+        ]
+    },
+    {
+        "id": "35245eb2fa31ffbd",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 10,
+        "width": 4,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "Remove the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "delete",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "1dee4a5b0f066976"
+            ]
+        ]
+    },
+    {
+        "id": "753b11787971f0df",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "2b2b4e4e8122d74f",
+        "order": 2,
+        "width": 10,
+        "height": 1,
+        "passthru": false,
+        "label": "Start / Stop manual irrigation",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 300,
+        "y": 1260,
+        "wires": [
+            [
+                "4ea9c0c1480a4972"
+            ]
+        ]
+    },
+    {
+        "id": "de9356205b76bc90",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "696d740b65c6837c",
+        "order": 6,
+        "width": 7,
+        "height": 1,
+        "passthru": false,
+        "label": "Start flow rate calculation timer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "start",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 2040,
+        "wires": [
+            [
+                "7c4d9208737888d5"
+            ]
+        ]
+    },
+    {
+        "id": "58c12d0c308cc752",
+        "type": "ui_button",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "group": "696d740b65c6837c",
+        "order": 7,
+        "width": 7,
+        "height": 1,
+        "passthru": false,
+        "label": "Stop flow rate calculation timer",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 170,
+        "y": 2080,
+        "wires": [
+            [
+                "7c4d9208737888d5"
+            ]
+        ]
+    },
+    {
+        "id": "292d8fffde5edb8b",
+        "type": "ui_dropdown",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Logic level irrigation inactive",
+        "tooltip": "Set logic level of relay of irrigation when irrigation is inactive",
+        "place": "Select option",
+        "group": "696d740b65c6837c",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "0",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "1",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 660,
+        "y": 1840,
+        "wires": [
+            [
+                "c99e2796c931fd81"
+            ]
+        ]
+    },
+    {
+        "id": "0ec6e2279f40fc7b",
+        "type": "ui_switch",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Active",
+        "tooltip": "Enable or disable this programming row",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1690,
+        "y": 540,
+        "wires": [
+            [
+                "fc57f377ec280935"
+            ]
+        ]
+    },
+    {
+        "id": "3051c6860a0e394c",
+        "type": "ui_switch",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "One Shoot",
+        "tooltip": "Run irrigation once (disable the Every field and the To field)",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 7,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1710,
+        "y": 620,
+        "wires": [
+            [
+                "1f65ef9f4a1665a6",
+                "37a971ed9a826349"
+            ]
+        ]
+    },
+    {
+        "id": "1ac85274d91d1f6b",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "From",
+        "tooltip": "Start time of programming",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1690,
+        "y": 580,
+        "wires": [
+            [
+                "abbba47230890ecb",
+                "37a971ed9a826349"
+            ]
+        ]
+    },
+    {
+        "id": "8be6109a5cbe938b",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "To",
+        "tooltip": "End time of programming",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1690,
+        "y": 740,
+        "wires": [
+            [
+                "81761520c7dc5aef"
+            ]
+        ]
+    },
+    {
+        "id": "35b1cb8d9c5604fd",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Every (min)",
+        "tooltip": "Run irrigation every (minutes)",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 5,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1710,
+        "y": 780,
+        "wires": [
+            [
+                "9f7002438e1ab4ea"
+            ]
+        ]
+    },
+    {
+        "id": "77490e9a5b6a8097",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Duration (ml)",
+        "tooltip": "Duration of irrigation in ml for plant",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 6,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1710,
+        "y": 820,
+        "wires": [
+            [
+                "16869e0b8315f42c"
+            ]
+        ]
+    },
+    {
+        "id": "5c5465a79ddb89e8",
+        "type": "ui_text_input",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "label": "Flow rate lt/h",
+        "tooltip": "Enter the flow rate in liters / hour or calculate it with the utility nearby",
+        "group": "696d740b65c6837c",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 610,
+        "y": 1920,
+        "wires": [
+            [
+                "13d2995b4374b418"
+            ]
+        ]
+    },
+    {
+        "id": "a25c098d2bc1a3a7",
+        "type": "ui_toast",
+        "z": "9cfee97fb9e96644",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1020,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "09cf0f0ca103e47e",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 130,
+        "y": 500,
+        "wires": [
+            [
+                "d69ce2da8441ec24"
+            ]
+        ]
+    },
+    {
+        "id": "08f49e173f72a25f",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 110,
+        "y": 1060,
+        "wires": [
+            [
+                "af730aace9973dff"
+            ]
+        ]
+    },
+    {
+        "id": "0a78e609b54d3cea",
+        "type": "ui_ui_control",
+        "z": "9cfee97fb9e96644",
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 1880,
+        "wires": [
+            [
+                "205cab230529817b"
+            ]
+        ]
+    },
+    {
+        "id": "5d4434152352be75",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 500,
+        "wires": [
+            [
+                "a7ae236536372f97"
+            ]
+        ]
+    },
+    {
+        "id": "c478e8f4d3a24c0c",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 560,
+        "y": 1060,
+        "wires": [
+            [
+                "67664147b8c31f79"
+            ]
+        ]
+    },
+    {
+        "id": "31b7d3097f0df449",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 390,
+        "y": 1500,
+        "wires": [
+            [
+                "b0a9b08b0a502a9e"
+            ]
+        ]
+    },
+    {
+        "id": "d1436ddcad8a9e8f",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1020,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1d73c5dce4d38372",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "to table irrigationdone",
+        "x": 1160,
+        "y": 1380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "933295d7c80380ff",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 320,
+        "y": 140,
+        "wires": [
+            [
+                "eb57c242dd6101db"
+            ]
+        ]
+    },
+    {
+        "id": "ab45d3b99e0771c9",
+        "type": "sqlite",
+        "z": "9cfee97fb9e96644",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "b2727c05738a4afa"
+            ]
+        ]
+    },
+    {
+        "id": "f8e099d3825a6ece",
+        "type": "ui_table",
+        "z": "9cfee97fb9e96644",
+        "group": "fa9ccf2e0cfb5c02",
+        "name": "irrschedule",
+        "order": 1,
+        "width": 14,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "50",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "active",
+                "title": "Active",
+                "width": "90",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "fromtime",
+                "title": "From",
+                "width": "125",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "totime",
+                "title": "To",
+                "width": "125",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "every",
+                "title": "Every (min)",
+                "width": "120",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "duration",
+                "title": "Duration (ml)",
+                "width": "130",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "oneshoot",
+                "title": "One shoot",
+                "width": "110",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1030,
+        "y": 500,
+        "wires": [
+            [
+                "4258efc5d0dbfd62"
+            ]
+        ]
+    },
+    {
+        "id": "cafd7de47d246249",
+        "type": "ui_table",
+        "z": "9cfee97fb9e96644",
+        "group": "25572f3b22faabc8",
+        "name": "",
+        "order": 2,
+        "width": 12,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "80",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "time",
+                "title": "Time",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "duration",
+                "title": "Duration (ml)",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 990,
+        "y": 1060,
+        "wires": []
+    },
+    {
         "id": "cb99007aad076d23",
         "type": "comment",
         "z": "4215ef7ad32b1858",
@@ -3044,6 +3051,7 @@
         "name": "Initialize context and table of db at first start",
         "func": "var globalcontextnumberarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar globalcontextbooleanarray = [\"climate.testmode\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.hummin\", \"programming.hummax\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextnumberarray.length; i++) {//initialize global context\n    if (global.get(globalcontextnumberarray[i]) === undefined) global.set(globalcontextnumberarray[i], 0);\n}\nfor (let i = 0; i < globalcontextbooleanarray.length; i++) {//initialize global context\n    if (global.get(globalcontextbooleanarray[i]) === undefined) global.set(globalcontextbooleanarray[i], false);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -3053,36 +3061,6 @@
         "wires": [
             [
                 "0ba7eb63be3fec20"
-            ]
-        ]
-    },
-    {
-        "id": "0ba7eb63be3fec20",
-        "type": "sqlite",
-        "z": "4215ef7ad32b1858",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 1040,
-        "y": 100,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "0fedf38b0906fe88",
-        "type": "sqlite",
-        "z": "4215ef7ad32b1858",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 340,
-        "y": 100,
-        "wires": [
-            [
-                "244e654b22e4cf1a"
             ]
         ]
     },
@@ -3115,137 +3093,6 @@
         "wires": []
     },
     {
-        "id": "ebf8ac9a567a7529",
-        "type": "ui_table",
-        "z": "4215ef7ad32b1858",
-        "group": "5cbd1b6fdfe2459d",
-        "name": "clmschedule",
-        "order": 1,
-        "width": 16,
-        "height": 6,
-        "columns": [
-            {
-                "field": "id",
-                "title": "ID",
-                "width": "50",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "active",
-                "title": "Active",
-                "width": "80",
-                "align": "center",
-                "formatter": "tickCross",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "fromtime",
-                "title": "From",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "totime",
-                "title": "To",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "tempmin",
-                "title": "T min",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "tempmax",
-                "title": "T max",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "hummin",
-                "title": "H min",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "hummax",
-                "title": "H max",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 1,
-        "cts": true,
-        "x": 1030,
-        "y": 700,
-        "wires": [
-            [
-                "8fdc234f672b8e41"
-            ]
-        ]
-    },
-    {
-        "id": "f8c6e9924f9b113e",
-        "type": "sqlite",
-        "z": "4215ef7ad32b1858",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 580,
-        "y": 700,
-        "wires": [
-            [
-                "bc29218e5b2fdb7a"
-            ]
-        ]
-    },
-    {
-        "id": "9a5733b7dc678a1c",
-        "type": "ui_ui_control",
-        "z": "4215ef7ad32b1858",
-        "name": "load irrigation tab",
-        "events": "change",
-        "x": 120,
-        "y": 700,
-        "wires": [
-            [
-                "35cf8c389803fcbd"
-            ]
-        ]
-    },
-    {
         "id": "35cf8c389803fcbd",
         "type": "function",
         "z": "4215ef7ad32b1858",
@@ -3261,174 +3108,6 @@
         "wires": [
             [
                 "f8c6e9924f9b113e"
-            ]
-        ]
-    },
-    {
-        "id": "639c3c659b2eae0b",
-        "type": "ui_switch",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Active",
-        "tooltip": "Enable or disable this programming row",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 2,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "num",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "num",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 1670,
-        "y": 740,
-        "wires": [
-            [
-                "393594e25b8c7985"
-            ]
-        ]
-    },
-    {
-        "id": "bf7a442b4b8d2e74",
-        "type": "ui_text_input",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "From",
-        "tooltip": "Start time of programming",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 3,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1670,
-        "y": 780,
-        "wires": [
-            [
-                "5c44af7d64f4a2fc"
-            ]
-        ]
-    },
-    {
-        "id": "fef75a7a1b91590a",
-        "type": "ui_text_input",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "To",
-        "tooltip": "End time of programming",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1670,
-        "y": 820,
-        "wires": [
-            [
-                "2019e4d56cde4447"
-            ]
-        ]
-    },
-    {
-        "id": "0549c84591625fc3",
-        "type": "ui_text_input",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Temp min",
-        "tooltip": "Minimum temperature allowed",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 6,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1680,
-        "y": 860,
-        "wires": [
-            [
-                "4280c757ee36cbaf"
-            ]
-        ]
-    },
-    {
-        "id": "75cecd7f8ff0f75f",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 11,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Edit",
-        "tooltip": "Edit the selected schedule",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "edit",
-        "payloadType": "str",
-        "topic": "SELECT id, fromtime, totime FROM climate_set;",
-        "topicType": "str",
-        "x": 90,
-        "y": 600,
-        "wires": [
-            [
-                "45ceacc3ef7b1824"
-            ]
-        ]
-    },
-    {
-        "id": "e25d768af86b3752",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 10,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "New",
-        "tooltip": "Add a schedule",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "new",
-        "payloadType": "str",
-        "topic": "SELECT id, fromtime, totime FROM climate_set;",
-        "topicType": "str",
-        "x": 90,
-        "y": 560,
-        "wires": [
-            [
-                "45ceacc3ef7b1824"
             ]
         ]
     },
@@ -3692,34 +3371,6 @@
         ]
     },
     {
-        "id": "4a75e44ec050fa5e",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 12,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Delete",
-        "tooltip": "Remove the selected schedule",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "delete",
-        "payloadType": "str",
-        "topic": "SELECT id, fromtime, totime FROM climate_set;",
-        "topicType": "str",
-        "x": 90,
-        "y": 640,
-        "wires": [
-            [
-                "45ceacc3ef7b1824"
-            ]
-        ]
-    },
-    {
         "id": "aae614797bf97391",
         "type": "comment",
         "z": "4215ef7ad32b1858",
@@ -3795,89 +3446,6 @@
         "wires": []
     },
     {
-        "id": "41a11d6b6bc4eeb4",
-        "type": "sqlite",
-        "z": "4215ef7ad32b1858",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 560,
-        "y": 1220,
-        "wires": [
-            [
-                "bc6c12ed10b83c45"
-            ]
-        ]
-    },
-    {
-        "id": "29e59a53102e38b5",
-        "type": "ui_table",
-        "z": "4215ef7ad32b1858",
-        "group": "cc3a2eefb8aff812",
-        "name": "",
-        "order": 2,
-        "width": 12,
-        "height": 6,
-        "columns": [
-            {
-                "field": "id",
-                "title": "ID",
-                "width": "80",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "time",
-                "title": "Time",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "inttemp",
-                "title": "Temperature",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "inthum",
-                "title": "Humidity",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "action",
-                "title": "Action",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 0,
-        "cts": false,
-        "x": 990,
-        "y": 1220,
-        "wires": []
-    },
-    {
         "id": "0dbd7c4ec090c7a9",
         "type": "comment",
         "z": "4215ef7ad32b1858",
@@ -3886,22 +3454,6 @@
         "x": 570,
         "y": 1340,
         "wires": []
-    },
-    {
-        "id": "5226a70e7304af6c",
-        "type": "sqlite",
-        "z": "4215ef7ad32b1858",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 390,
-        "y": 1660,
-        "wires": [
-            [
-                "aa7ff6772acf6be4"
-            ]
-        ]
     },
     {
         "id": "e11dacf9398aba6b",
@@ -3918,7 +3470,7 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "SELECT id, active, fromtime, totime, tempmin, tempmax, temptarget, hummin, hummax, humtarget FROM climate_set ORDER BY fromtime;",
+        "topic": "SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;",
         "x": 170,
         "y": 1660,
         "wires": [
@@ -3934,6 +3486,7 @@
         "name": "check climate program and execute it",
         "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")){//if temperature is minor than tempmin set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0){//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is between tempmin and tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\")  && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is greater than tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n}\nreturn;",
         "outputs": 3,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -3978,48 +3531,6 @@
         "wires": []
     },
     {
-        "id": "c7c7076229e7fdf7",
-        "type": "sqlite",
-        "z": "4215ef7ad32b1858",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "to table climate_actions",
-        "x": 1170,
-        "y": 1580,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "6bef38285d1a4c78",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "group": "138fe263b9fbdc51",
-        "order": 1,
-        "width": 8,
-        "height": 1,
-        "passthru": false,
-        "label": "Start / Stop manual heating",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "heat",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 200,
-        "y": 1400,
-        "wires": [
-            [
-                "93ea57e432b87c2d"
-            ]
-        ]
-    },
-    {
         "id": "9a6b8c01fdac9ce0",
         "type": "inject",
         "z": "4215ef7ad32b1858",
@@ -4040,20 +3551,6 @@
         "wires": [
             [
                 "41a11d6b6bc4eeb4"
-            ]
-        ]
-    },
-    {
-        "id": "95eb86564f73fc6a",
-        "type": "ui_ui_control",
-        "z": "4215ef7ad32b1858",
-        "name": "load irrigation notify",
-        "events": "change",
-        "x": 110,
-        "y": 1220,
-        "wires": [
-            [
-                "6fc0e5feec84aec1"
             ]
         ]
     },
@@ -4233,32 +3730,6 @@
         "wires": []
     },
     {
-        "id": "b1bdf7aa032ca4dd",
-        "type": "ui_text_input",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Temp max",
-        "tooltip": "Maximum temperature allowed",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 7,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1690,
-        "y": 900,
-        "wires": [
-            [
-                "06ae93c10168d8d6"
-            ]
-        ]
-    },
-    {
         "id": "06ae93c10168d8d6",
         "type": "change",
         "z": "4215ef7ad32b1858",
@@ -4311,32 +3782,6 @@
         ]
     },
     {
-        "id": "3d9bb0efbe2047b2",
-        "type": "ui_text_input",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Hum min",
-        "tooltip": "Minimum humidity allowed",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 13,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1680,
-        "y": 940,
-        "wires": [
-            [
-                "da4684500c106992"
-            ]
-        ]
-    },
-    {
         "id": "da4684500c106992",
         "type": "change",
         "z": "4215ef7ad32b1858",
@@ -4385,32 +3830,6 @@
         "wires": [
             [
                 "3d9bb0efbe2047b2"
-            ]
-        ]
-    },
-    {
-        "id": "3aae0239f6650d5c",
-        "type": "ui_text_input",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Hum max",
-        "tooltip": "Maximum humidity allowed",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 14,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
-        "x": 1680,
-        "y": 980,
-        "wires": [
-            [
-                "a4bb1a85552c2970"
             ]
         ]
     },
@@ -4477,20 +3896,6 @@
         "wires": []
     },
     {
-        "id": "cc72a8c1f368cf4e",
-        "type": "ui_ui_control",
-        "z": "4215ef7ad32b1858",
-        "name": "load irrigation notify",
-        "events": "change",
-        "x": 140,
-        "y": 360,
-        "wires": [
-            [
-                "4f72dc7988fc49fd"
-            ]
-        ]
-    },
-    {
         "id": "4f72dc7988fc49fd",
         "type": "function",
         "z": "4215ef7ad32b1858",
@@ -4515,40 +3920,6 @@
                 "138643c44ca31cf8"
             ]
         ]
-    },
-    {
-        "id": "0d7e7068d0e78b70",
-        "type": "ui_text",
-        "z": "4215ef7ad32b1858",
-        "group": "40009fbec210236c",
-        "order": 2,
-        "width": 5,
-        "height": 1,
-        "name": "",
-        "label": "Temperature",
-        "format": "{{msg.payload.inttemp}} °C",
-        "layout": "row-center",
-        "className": "",
-        "x": 650,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "fdc8a361eb52c6f6",
-        "type": "ui_text",
-        "z": "4215ef7ad32b1858",
-        "group": "40009fbec210236c",
-        "order": 4,
-        "width": 5,
-        "height": 1,
-        "name": "",
-        "label": "Humidity",
-        "format": "{{msg.payload.inthum}} %",
-        "layout": "row-center",
-        "className": "",
-        "x": 640,
-        "y": 360,
-        "wires": []
     },
     {
         "id": "0a49932d761e1ea9",
@@ -4608,34 +3979,6 @@
         "x": 935,
         "y": 1660,
         "wires": []
-    },
-    {
-        "id": "63a275ed1cfb4644",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "group": "138fe263b9fbdc51",
-        "order": 2,
-        "width": 8,
-        "height": 1,
-        "passthru": false,
-        "label": "Start / Stop manual fan",
-        "tooltip": "",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "fan",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 220,
-        "y": 1440,
-        "wires": [
-            [
-                "93ea57e432b87c2d"
-            ]
-        ]
     },
     {
         "id": "86147b941d08452e",
@@ -4751,41 +4094,6 @@
         "wires": [
             [
                 "41a11d6b6bc4eeb4"
-            ]
-        ]
-    },
-    {
-        "id": "b846e7ff492a97fc",
-        "type": "ui_toast",
-        "z": "4215ef7ad32b1858",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "red",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
-        "x": 1020,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "fc4d0086b9ab34c4",
-        "type": "sqlite",
-        "z": "4215ef7ad32b1858",
-        "mydb": "273b4a3829d447ed",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "",
-        "x": 580,
-        "y": 600,
-        "wires": [
-            [
-                "93785d1d5015625e"
             ]
         ]
     },
@@ -4914,44 +4222,6 @@
         "wires": []
     },
     {
-        "id": "ce2c6648051932d5",
-        "type": "ui_dropdown",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Logic level heat inactive",
-        "tooltip": "Set logic level of relay of heating when heating is inactive",
-        "place": "Select option",
-        "group": "bd1454c9fe3a5dbc",
-        "order": 1,
-        "width": "6",
-        "height": "1",
-        "passthru": true,
-        "multiple": false,
-        "options": [
-            {
-                "label": "Low",
-                "value": 0,
-                "type": "num"
-            },
-            {
-                "label": "High",
-                "value": 1,
-                "type": "num"
-            }
-        ],
-        "payload": "",
-        "topic": "topic",
-        "topicType": "msg",
-        "className": "",
-        "x": 670,
-        "y": 2240,
-        "wires": [
-            [
-                "a90603dd48b92c7a"
-            ]
-        ]
-    },
-    {
         "id": "d88bd07acacb178c",
         "type": "change",
         "z": "4215ef7ad32b1858",
@@ -5006,20 +4276,6 @@
         ]
     },
     {
-        "id": "ca61b97da0623ef0",
-        "type": "ui_ui_control",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "events": "all",
-        "x": 100,
-        "y": 2260,
-        "wires": [
-            [
-                "194029e47b5996c0"
-            ]
-        ]
-    },
-    {
         "id": "194029e47b5996c0",
         "type": "switch",
         "z": "4215ef7ad32b1858",
@@ -5042,44 +4298,6 @@
             [
                 "d88bd07acacb178c",
                 "bfe41399db5d9f88"
-            ]
-        ]
-    },
-    {
-        "id": "ba84192f3b6431ab",
-        "type": "ui_dropdown",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Logic level fan inactive",
-        "tooltip": "Set logic level of relay of fan when ventilation is inactive",
-        "place": "Select option",
-        "group": "bd1454c9fe3a5dbc",
-        "order": 1,
-        "width": "6",
-        "height": "1",
-        "passthru": true,
-        "multiple": false,
-        "options": [
-            {
-                "label": "Low",
-                "value": 0,
-                "type": "num"
-            },
-            {
-                "label": "High",
-                "value": 1,
-                "type": "num"
-            }
-        ],
-        "payload": "",
-        "topic": "topic",
-        "topicType": "msg",
-        "className": "",
-        "x": 670,
-        "y": 2280,
-        "wires": [
-            [
-                "7c0eb6baa7e9f452"
             ]
         ]
     },
@@ -5185,6 +4403,69 @@
         ]
     },
     {
+        "id": "85297554fafe1bb9",
+        "type": "complete",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "scope": [
+            "5e07112cb9dc6a04",
+            "0a49932d761e1ea9",
+            "7f4a650e33e45e7e"
+        ],
+        "uncaught": false,
+        "x": 110,
+        "y": 420,
+        "wires": [
+            [
+                "d02002a112e35aee"
+            ]
+        ]
+    },
+    {
+        "id": "d02002a112e35aee",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "trigger",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "name",
+                "pt": "msg",
+                "to": "Climate",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 420,
+        "wires": [
+            [
+                "4f72dc7988fc49fd"
+            ]
+        ]
+    },
+    {
+        "id": "466fbc6892736784",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "ex dht22",
+        "info": "c'era dht22 da sostituire con climahub",
+        "x": 480,
+        "y": 1920,
+        "wires": []
+    },
+    {
         "id": "b55361425e16765b",
         "type": "ui_led",
         "z": "4215ef7ad32b1858",
@@ -5247,52 +4528,500 @@
         "wires": []
     },
     {
-        "id": "85297554fafe1bb9",
-        "type": "complete",
+        "id": "75cecd7f8ff0f75f",
+        "type": "ui_button",
         "z": "4215ef7ad32b1858",
         "name": "",
-        "scope": [
-            "5e07112cb9dc6a04",
-            "0a49932d761e1ea9",
-            "7f4a650e33e45e7e"
-        ],
-        "uncaught": false,
-        "x": 110,
-        "y": 420,
+        "group": "5cbd1b6fdfe2459d",
+        "order": 11,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Edit",
+        "tooltip": "Edit the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "edit",
+        "payloadType": "str",
+        "topic": "SELECT id, fromtime, totime FROM climate_set;",
+        "topicType": "str",
+        "x": 90,
+        "y": 600,
         "wires": [
             [
-                "d02002a112e35aee"
+                "45ceacc3ef7b1824"
             ]
         ]
     },
     {
-        "id": "d02002a112e35aee",
-        "type": "change",
+        "id": "e25d768af86b3752",
+        "type": "ui_button",
         "z": "4215ef7ad32b1858",
-        "name": "trigger",
-        "rules": [
+        "name": "",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "New",
+        "tooltip": "Add a schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "new",
+        "payloadType": "str",
+        "topic": "SELECT id, fromtime, totime FROM climate_set;",
+        "topicType": "str",
+        "x": 90,
+        "y": 560,
+        "wires": [
+            [
+                "45ceacc3ef7b1824"
+            ]
+        ]
+    },
+    {
+        "id": "4a75e44ec050fa5e",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 12,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Delete",
+        "tooltip": "Remove the selected schedule",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "delete",
+        "payloadType": "str",
+        "topic": "SELECT id, fromtime, totime FROM climate_set;",
+        "topicType": "str",
+        "x": 90,
+        "y": 640,
+        "wires": [
+            [
+                "45ceacc3ef7b1824"
+            ]
+        ]
+    },
+    {
+        "id": "6bef38285d1a4c78",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "138fe263b9fbdc51",
+        "order": 1,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Start / Stop manual heating",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "heat",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 200,
+        "y": 1400,
+        "wires": [
+            [
+                "93ea57e432b87c2d"
+            ]
+        ]
+    },
+    {
+        "id": "63a275ed1cfb4644",
+        "type": "ui_button",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "group": "138fe263b9fbdc51",
+        "order": 2,
+        "width": 8,
+        "height": 1,
+        "passthru": false,
+        "label": "Start / Stop manual fan",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "fan",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 220,
+        "y": 1440,
+        "wires": [
+            [
+                "93ea57e432b87c2d"
+            ]
+        ]
+    },
+    {
+        "id": "ce2c6648051932d5",
+        "type": "ui_dropdown",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Logic level heat inactive",
+        "tooltip": "Set logic level of relay of heating when heating is inactive",
+        "place": "Select option",
+        "group": "bd1454c9fe3a5dbc",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
             {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "change",
-                "tot": "str"
+                "label": "Low",
+                "value": 0,
+                "type": "num"
             },
             {
-                "t": "set",
-                "p": "name",
-                "pt": "msg",
-                "to": "Climate",
-                "tot": "str"
+                "label": "High",
+                "value": 1,
+                "type": "num"
             }
         ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 270,
-        "y": 420,
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 670,
+        "y": 2240,
+        "wires": [
+            [
+                "a90603dd48b92c7a"
+            ]
+        ]
+    },
+    {
+        "id": "ba84192f3b6431ab",
+        "type": "ui_dropdown",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Logic level fan inactive",
+        "tooltip": "Set logic level of relay of fan when ventilation is inactive",
+        "place": "Select option",
+        "group": "bd1454c9fe3a5dbc",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Low",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "High",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "x": 670,
+        "y": 2280,
+        "wires": [
+            [
+                "7c0eb6baa7e9f452"
+            ]
+        ]
+    },
+    {
+        "id": "639c3c659b2eae0b",
+        "type": "ui_switch",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Active",
+        "tooltip": "Enable or disable this programming row",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1670,
+        "y": 740,
+        "wires": [
+            [
+                "393594e25b8c7985"
+            ]
+        ]
+    },
+    {
+        "id": "bf7a442b4b8d2e74",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "From",
+        "tooltip": "Start time of programming",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1670,
+        "y": 780,
+        "wires": [
+            [
+                "5c44af7d64f4a2fc"
+            ]
+        ]
+    },
+    {
+        "id": "fef75a7a1b91590a",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "To",
+        "tooltip": "End time of programming",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": true,
+        "mode": "time",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1670,
+        "y": 820,
+        "wires": [
+            [
+                "2019e4d56cde4447"
+            ]
+        ]
+    },
+    {
+        "id": "0549c84591625fc3",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Temp min",
+        "tooltip": "Minimum temperature allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 6,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1680,
+        "y": 860,
+        "wires": [
+            [
+                "4280c757ee36cbaf"
+            ]
+        ]
+    },
+    {
+        "id": "b1bdf7aa032ca4dd",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Temp max",
+        "tooltip": "Maximum temperature allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 7,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1690,
+        "y": 900,
+        "wires": [
+            [
+                "06ae93c10168d8d6"
+            ]
+        ]
+    },
+    {
+        "id": "3d9bb0efbe2047b2",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Hum min",
+        "tooltip": "Minimum humidity allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 13,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1680,
+        "y": 940,
+        "wires": [
+            [
+                "da4684500c106992"
+            ]
+        ]
+    },
+    {
+        "id": "3aae0239f6650d5c",
+        "type": "ui_text_input",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "label": "Hum max",
+        "tooltip": "Maximum humidity allowed",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 14,
+        "width": 2,
+        "height": 1,
+        "passthru": true,
+        "mode": "number",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 1680,
+        "y": 980,
+        "wires": [
+            [
+                "a4bb1a85552c2970"
+            ]
+        ]
+    },
+    {
+        "id": "0d7e7068d0e78b70",
+        "type": "ui_text",
+        "z": "4215ef7ad32b1858",
+        "group": "40009fbec210236c",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload.inttemp}} °C",
+        "layout": "row-center",
+        "className": "",
+        "x": 650,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "fdc8a361eb52c6f6",
+        "type": "ui_text",
+        "z": "4215ef7ad32b1858",
+        "group": "40009fbec210236c",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Humidity",
+        "format": "{{msg.payload.inthum}} %",
+        "layout": "row-center",
+        "className": "",
+        "x": 640,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b846e7ff492a97fc",
+        "type": "ui_toast",
+        "z": "4215ef7ad32b1858",
+        "position": "top right",
+        "displayTime": "5",
+        "highlight": "red",
+        "sendall": true,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": false,
+        "className": "",
+        "topic": "",
+        "name": "",
+        "x": 1020,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "9a5733b7dc678a1c",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation tab",
+        "events": "change",
+        "x": 120,
+        "y": 700,
+        "wires": [
+            [
+                "35cf8c389803fcbd"
+            ]
+        ]
+    },
+    {
+        "id": "95eb86564f73fc6a",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 110,
+        "y": 1220,
+        "wires": [
+            [
+                "6fc0e5feec84aec1"
+            ]
+        ]
+    },
+    {
+        "id": "cc72a8c1f368cf4e",
+        "type": "ui_ui_control",
+        "z": "4215ef7ad32b1858",
+        "name": "load irrigation notify",
+        "events": "change",
+        "x": 140,
+        "y": 360,
         "wires": [
             [
                 "4f72dc7988fc49fd"
@@ -5300,13 +5029,293 @@
         ]
     },
     {
-        "id": "466fbc6892736784",
-        "type": "comment",
+        "id": "ca61b97da0623ef0",
+        "type": "ui_ui_control",
         "z": "4215ef7ad32b1858",
-        "name": "ex dht22",
-        "info": "c'era dht22 da sostituire con climahub",
-        "x": 480,
-        "y": 1920,
+        "name": "",
+        "events": "all",
+        "x": 100,
+        "y": 2260,
+        "wires": [
+            [
+                "194029e47b5996c0"
+            ]
+        ]
+    },
+    {
+        "id": "0ba7eb63be3fec20",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 1040,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0fedf38b0906fe88",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "244e654b22e4cf1a"
+            ]
+        ]
+    },
+    {
+        "id": "f8c6e9924f9b113e",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 700,
+        "wires": [
+            [
+                "bc29218e5b2fdb7a"
+            ]
+        ]
+    },
+    {
+        "id": "41a11d6b6bc4eeb4",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 560,
+        "y": 1220,
+        "wires": [
+            [
+                "bc6c12ed10b83c45"
+            ]
+        ]
+    },
+    {
+        "id": "5226a70e7304af6c",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 390,
+        "y": 1660,
+        "wires": [
+            [
+                "aa7ff6772acf6be4"
+            ]
+        ]
+    },
+    {
+        "id": "c7c7076229e7fdf7",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "to table climate_actions",
+        "x": 1170,
+        "y": 1580,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fc4d0086b9ab34c4",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "",
+        "x": 580,
+        "y": 600,
+        "wires": [
+            [
+                "93785d1d5015625e"
+            ]
+        ]
+    },
+    {
+        "id": "ebf8ac9a567a7529",
+        "type": "ui_table",
+        "z": "4215ef7ad32b1858",
+        "group": "5cbd1b6fdfe2459d",
+        "name": "clmschedule",
+        "order": 1,
+        "width": 16,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "50",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "active",
+                "title": "Active",
+                "width": "80",
+                "align": "center",
+                "formatter": "tickCross",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "fromtime",
+                "title": "From",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "totime",
+                "title": "To",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "tempmin",
+                "title": "T min",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "tempmax",
+                "title": "T max",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "hummin",
+                "title": "H min",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "hummax",
+                "title": "H max",
+                "width": "90",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 1,
+        "cts": true,
+        "x": 1030,
+        "y": 700,
+        "wires": [
+            [
+                "8fdc234f672b8e41"
+            ]
+        ]
+    },
+    {
+        "id": "29e59a53102e38b5",
+        "type": "ui_table",
+        "z": "4215ef7ad32b1858",
+        "group": "cc3a2eefb8aff812",
+        "name": "",
+        "order": 2,
+        "width": 12,
+        "height": 6,
+        "columns": [
+            {
+                "field": "id",
+                "title": "ID",
+                "width": "80",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "time",
+                "title": "Time",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "inttemp",
+                "title": "Temperature",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "inthum",
+                "title": "Humidity",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "action",
+                "title": "Action",
+                "width": "",
+                "align": "center",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 990,
+        "y": 1220,
         "wires": []
     },
     {

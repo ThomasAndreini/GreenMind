@@ -794,8 +794,9 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "format temperature",
-        "func": "msg.payload = parseFloat(msg.payload);\nmsg.topic = \"Temperature\";\nreturn msg;",
+        "func": "msg.topic = \"Temperature\";\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -813,8 +814,9 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "format humidity",
-        "func": "msg.payload = parseFloat(msg.humidity);\nmsg.topic = \"Humidity\";\nreturn msg;",
+        "func": "msg.topic = \"Humidity\";\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -4016,7 +4018,8 @@
         "y": 1900,
         "wires": [
             [
-                "a81a49a51c5334e3"
+                "0a985b4e22d9af91",
+                "a129a47cf043d372"
             ]
         ]
     },
@@ -4029,28 +4032,9 @@
         "links": [
             "f82df9be90653a7d"
         ],
-        "x": 875,
+        "x": 945,
         "y": 1900,
         "wires": []
-    },
-    {
-        "id": "7f4a650e33e45e7e",
-        "type": "function",
-        "z": "4215ef7ad32b1858",
-        "name": "format temperature",
-        "func": "if (typeof msg.payload === \"string\") global.set(\"climate.inttemp\", parseFloat(msg.payload));\nelse global.set(\"climate.inttemp\", msg.payload);\nif (typeof msg.humidity === \"string\") global.set(\"climate.inthum\", parseFloat(msg.humidity));\nelse global.set(\"climate.inthum\", msg.humidity);\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 730,
-        "y": 1900,
-        "wires": [
-            [
-                "ccf65ec643039010"
-            ]
-        ]
     },
     {
         "id": "a01d2634f4362758",
@@ -4137,7 +4121,7 @@
         "name": "Output pin initialization",
         "info": "",
         "x": 520,
-        "y": 1980,
+        "y": 2000,
         "wires": []
     },
     {
@@ -4361,53 +4345,6 @@
         ]
     },
     {
-        "id": "4b8889351a94bb67",
-        "type": "function",
-        "z": "4215ef7ad32b1858",
-        "name": "Sim t & h",
-        "func": "if (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 0) {\n    msg.payload = global.get(\"climate.inttemp\") + 0.1;//increase 0.1 °C temperature if heat and fan are inactive\n    msg.humidity = global.get(\"climate.inthum\") + 0.5;//increase 0.5% humidity if heat and fan are inactive\n}\nif (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.fanisact\") === 0) {\n    msg.payload = global.get(\"climate.inttemp\") + 0.2;//increase 0.2 °C temperature if heat is active and fan is inactive\n    msg.humidity = global.get(\"climate.inthum\") + 0.7;//increase 0.7% humidity if heat is active and fan is inactive\n}\nif (global.get(\"climate.heatisact\") === 0 && global.get(\"climate.fanisact\") === 1) {\n    msg.payload = global.get(\"climate.inttemp\") - 0.1;//decrease 0.1 °C temperature if heat is inactive and fan is active\n    msg.humidity = global.get(\"climate.inthum\") - 0.5;//increase 0.5% humidity if heat is inactive and fan is active\n}\nif (global.get(\"climate.heatisact\") === 1 && global.get(\"climate.fanisact\") === 1) {\n    msg.payload = global.get(\"climate.inttemp\") + 0.05;//increase 0.05 °C temperature if heat and fan are active\n    msg.humidity = global.get(\"climate.inthum\") - 0.5;//decrease 0.5% humidity if heat and fan are active\n}\n\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 480,
-        "y": 1880,
-        "wires": [
-            [
-                "7f4a650e33e45e7e"
-            ]
-        ],
-        "info": "Simulate temperature and humidity for testing"
-    },
-    {
-        "id": "a81a49a51c5334e3",
-        "type": "switch",
-        "z": "4215ef7ad32b1858",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 310,
-        "y": 1900,
-        "wires": [
-            [
-                "4b8889351a94bb67"
-            ],
-            []
-        ]
-    },
-    {
         "id": "85297554fafe1bb9",
         "type": "complete",
         "z": "4215ef7ad32b1858",
@@ -4459,16 +4396,6 @@
                 "4f72dc7988fc49fd"
             ]
         ]
-    },
-    {
-        "id": "466fbc6892736784",
-        "type": "comment",
-        "z": "4215ef7ad32b1858",
-        "name": "ex dht22",
-        "info": "c'era dht22 da sostituire con climahub",
-        "x": 480,
-        "y": 1920,
-        "wires": []
     },
     {
         "id": "b55361425e16765b",
@@ -5321,6 +5248,102 @@
         "cts": false,
         "x": 990,
         "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "0a985b4e22d9af91",
+        "type": "http request",
+        "z": "4215ef7ad32b1858",
+        "name": "restapi req temperature",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://climahub.local/sensor/temperatura",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 530,
+        "y": 1880,
+        "wires": [
+            [
+                "44a13a7dbe3ac945"
+            ]
+        ]
+    },
+    {
+        "id": "44a13a7dbe3ac945",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "format temperature",
+        "func": "var msgout = {payload:0};\nmsgout.payload = Math.round(msg.payload.value * 10) / 10;\nreturn msgout;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 1880,
+        "wires": [
+            [
+                "ccf65ec643039010"
+            ]
+        ]
+    },
+    {
+        "id": "a129a47cf043d372",
+        "type": "http request",
+        "z": "4215ef7ad32b1858",
+        "name": "restapi req wet bulb",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://climahub.local/sensor/bulbo_umido",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 520,
+        "y": 1920,
+        "wires": [
+            [
+                "639b40b2b115fae7"
+            ]
+        ]
+    },
+    {
+        "id": "639b40b2b115fae7",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "calculate humidity",
+        "func": "var msgout = {payload:0};\nmsgout.payload = Math.round(msg.payload.value * 10) / 10;\nreturn msgout;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 1920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "948d8997d6217ddc",
+        "type": "comment",
+        "z": "4215ef7ad32b1858",
+        "name": "DA FINIRE",
+        "info": "va preso il bulbo secco e bulbo umido e calcolata l'umidità con la formula di chat gpt",
+        "x": 780,
+        "y": 1820,
         "wires": []
     },
     {

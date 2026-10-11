@@ -477,7 +477,7 @@
         "id": "f82df9be90653a7d",
         "type": "link in",
         "z": "473af4e9135bb6f3",
-        "name": "from dht22 to chart",
+        "name": "from climate sensors to chart",
         "links": [
             "ccf65ec643039010"
         ],
@@ -485,8 +485,7 @@
         "y": 460,
         "wires": [
             [
-                "03016bb266140401",
-                "bddd6b77fe91dca1"
+                "03016bb266140401"
             ]
         ]
     },
@@ -494,8 +493,8 @@
         "id": "03016bb266140401",
         "type": "function",
         "z": "473af4e9135bb6f3",
-        "name": "format temperature",
-        "func": "msg.topic = \"Temperature\";\nreturn msg;",
+        "name": "split series",
+        "func": "const p = msg.payload;\nreturn [[\n    { \"topic\": \"Temperature\", \"payload\": p.inttemp },\n    { \"topic\": \"Humidity\", \"payload\": p.inthum },\n    { \"topic\": \"Dew point\", \"payload\": p.dewpoint }\n]];",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -504,26 +503,6 @@
         "libs": [],
         "x": 470,
         "y": 440,
-        "wires": [
-            [
-                "01a35cb9f68f28fb"
-            ]
-        ]
-    },
-    {
-        "id": "bddd6b77fe91dca1",
-        "type": "function",
-        "z": "473af4e9135bb6f3",
-        "name": "format humidity",
-        "func": "msg.topic = \"Humidity\";\nreturn msg;",
-        "outputs": 1,
-        "timeout": "",
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 480,
         "wires": [
             [
                 "01a35cb9f68f28fb"
@@ -2877,7 +2856,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Initialize context and table of db at first start",
-        "func": "var globalcontextnumberarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar globalcontextbooleanarray = [\"climate.testmode\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.hummin\", \"programming.hummax\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextnumberarray.length; i++) {//initialize global context\n    if (global.get(globalcontextnumberarray[i]) === undefined) global.set(globalcontextnumberarray[i], 0);\n}\nfor (let i = 0; i < globalcontextbooleanarray.length; i++) {//initialize global context\n    if (global.get(globalcontextbooleanarray[i]) === undefined) global.set(globalcontextbooleanarray[i], false);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
+        "func": "var globalcontextnumberarray = [\"climate.inttemp\", \"climate.inthum\", \"climate.wetbulb\", \"climate.dewpoint\", \"climate.vpd\", \"climate.lastread\", \"climate.heatisact\", \"climate.fanisact\", \"climate.manualheat\", \"climate.manualfan\", \"climate.clmprgact.id\", \"climate.clmprgact.fromtime\", \"climate.clmprgact.totime\", \"climate.clmprgact.tempmin\", \"climate.clmprgact.tempmax\", \"climate.clmprgact.hummin\", \"climate.clmprgact.hummax\", \"climate.output.levelheat\", \"climate.output.levelfan\"];\nvar globalcontextbooleanarray = [\"climate.testmode\"];\nvar flowcontextarray = [\"programming.fromtime\", \"programming.totime\", \"programming.tempmin\", \"programming.tempmax\", \"programming.hummin\", \"programming.hummax\", \"programming.active\", \"programming.cmd\", \"programming.conflict\"];\nfor (let i = 0; i < globalcontextnumberarray.length; i++) {//initialize global context\n    if (global.get(globalcontextnumberarray[i]) === undefined) global.set(globalcontextnumberarray[i], 0);\n}\nfor (let i = 0; i < globalcontextbooleanarray.length; i++) {//initialize global context\n    if (global.get(globalcontextbooleanarray[i]) === undefined) global.set(globalcontextbooleanarray[i], false);\n}\nfor (let i = 0; i < flowcontextarray.length; i++) {//initialize flow context\n    if (flow.get(flowcontextarray[i]) === undefined && i < 9) flow.set(flowcontextarray[i], 0);\n    if (flow.get(flowcontextarray[i]) === undefined && i >= 9) flow.set(flowcontextarray[i], \"\");\n}\nif (global.get(\"climate.config.sensorhost\") === undefined) global.set(\"climate.config.sensorhost\", \"climahub.local\");//host that exposes the dry and wet bulb sensors\nif (global.get(\"climate.config.altitude\") === undefined) global.set(\"climate.config.altitude\", 0);//altitude in meters, used for the air pressure in the humidity calculation\nif (global.get(\"climate.init\") === undefined) global.set(\"climate.init\", 0);//on first run set context for initialize all context\nif (global.get(\"climate.init\") === 0){\n    var msgout = { \"topic\":\"CREATE TABLE IF NOT EXISTS climate_detected (id INTEGER PRIMARY KEY,date INTEGER NOT NULL, intemperature REAL, inhumidity INTEGER, exttemperature REAL, exthumidity INTEGER);\"}\n    node.send(msgout);//create table climate detected\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_set (id INTEGER PRIMARY KEY, active INTEGER, fromtime INTEGER, totime INTEGER, tempmin INTEGER, tempmax INTEGER, hummin INTEGER, hummax INTEGER);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    setTimeout(function () {\n        msgout.topic = \"CREATE TABLE IF NOT EXISTS climate_actions (id INTEGER PRIMARY KEY, time INTEGER, inttemp INTEGER, inthum INTEGER, action TEXT);\";\n        node.send(msgout);//wait 200ms and create table irrigationdone\n    }, 100);\n    global.set(\"climate.init\", 1);//set climate init to 1, context and db table are created and initialized at version 0.1.0\n}\nreturn;",
         "outputs": 1,
         "timeout": "",
         "noerr": 0,
@@ -3308,7 +3287,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "check climate program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")){//if temperature is minor than tempmin set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0){//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is between tempmin and tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\")  && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is greater than tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n}\nreturn;",
+        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nconst sensorok = global.get(\"climate.testmode\") === true || (Date.now() - global.get(\"climate.lastread\")) < 300000;//data older than 5 minutes is not valid\nif (!sensorok && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//sensor offline: stop the outputs driven by the program (failsafe)\n    if (global.get(\"climate.heatisact\") === 1) {\n        global.set(\"climate.heatisact\", 0);\n        node.send([{ \"payload\": global.get(\"climate.output.levelheat\") === 1 ? 1 : 0 }, null, { \"topic\": 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', NULL, NULL, \"Heating stop, sensor offline\");' }]);\n    }\n    if (global.get(\"climate.fanisact\") === 1) {\n        global.set(\"climate.fanisact\", 0);\n        node.send([null, { \"payload\": global.get(\"climate.output.levelfan\") === 1 ? 1 : 0 }, { \"topic\": 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', NULL, NULL, \"Fan stop, sensor offline\");' }]);\n    }\n    global.set(\"climate.clmprgact.id\", 0);\n    node.status({ fill: \"red\", shape: \"dot\", text: \"sensor offline\" });\n    return;\n}\nnode.status({});\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")){//if temperature is minor than tempmin set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0){//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is between tempmin and tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\")  && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is greater than tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n}\nreturn;",
         "outputs": 3,
         "timeout": "",
         "noerr": 0,
@@ -3724,7 +3703,7 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "data inject",
-        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    var msgout1 = { \"payload\": { \"inttemp\": 0, \"inthum\": 0}};\n    var msgout2 = { \"payload\": 0 };\n    var msgout3 = { \"payload\": 0 };\n    msgout1.payload.inttemp = global.get(\"climate.inttemp\");\n    msgout1.payload.inthum = global.get(\"climate.inthum\");\n    msgout2.payload = global.get(\"climate.heatisact\");\n    msgout3.payload = global.get(\"climate.fanisact\");\n    node.send([msgout1, msgout2, msgout3]);\n}\nreturn;\n",
+        "func": "if (msg.payload === \"change\" && msg.name === \"Climate\") {\n    var msgout1 = { \"payload\": {} };\n    var msgout2 = { \"payload\": 0 };\n    var msgout3 = { \"payload\": 0 };\n    msgout1.payload.inttemp = global.get(\"climate.inttemp\");\n    msgout1.payload.inthum = global.get(\"climate.inthum\");\n    msgout1.payload.dewpoint = global.get(\"climate.dewpoint\");\n    msgout1.payload.vpd = global.get(\"climate.vpd\");\n    msgout2.payload = global.get(\"climate.heatisact\");\n    msgout3.payload = global.get(\"climate.fanisact\");\n    node.send([msgout1, msgout2, msgout3]);\n}\nreturn;\n",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
@@ -3735,7 +3714,9 @@
         "wires": [
             [
                 "0d7e7068d0e78b70",
-                "fdc8a361eb52c6f6"
+                "fdc8a361eb52c6f6",
+                "4e0657db45922a06",
+                "1569bf9c45c15979"
             ],
             [
                 "b55361425e16765b"
@@ -3818,7 +3799,7 @@
         "id": "bce83a130879bec7",
         "type": "inject",
         "z": "4215ef7ad32b1858",
-        "name": "inject",
+        "name": "read sensors every 60 s",
         "props": [
             {
                 "p": "payload"
@@ -3826,8 +3807,8 @@
         ],
         "repeat": "60",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "5",
         "topic": "",
         "payload": "climate.testmode",
         "payloadType": "global",
@@ -3835,8 +3816,7 @@
         "y": 1900,
         "wires": [
             [
-                "0a985b4e22d9af91",
-                "a129a47cf043d372"
+                "1ff87de113e70f35"
             ]
         ]
     },
@@ -3849,8 +3829,8 @@
         "links": [
             "f82df9be90653a7d"
         ],
-        "x": 945,
-        "y": 1900,
+        "x": 1110,
+        "y": 1960,
         "wires": []
     },
     {
@@ -4103,7 +4083,9 @@
         "wires": [
             [
                 "d88bd07acacb178c",
-                "bfe41399db5d9f88"
+                "bfe41399db5d9f88",
+                "24afa53046f22b91",
+                "71caa70500920871"
             ]
         ]
     },
@@ -4225,7 +4207,7 @@
         "name": "Heating status",
         "type": "ui-template",
         "group": "40009fbec210236c",
-        "order": 3,
+        "order": 5,
         "width": "3",
         "height": "1",
         "page": "",
@@ -4249,7 +4231,7 @@
         "name": "Fan status",
         "type": "ui-template",
         "group": "40009fbec210236c",
-        "order": 4,
+        "order": 6,
         "width": "3",
         "height": "1",
         "page": "",
@@ -5186,20 +5168,20 @@
         "id": "0a985b4e22d9af91",
         "type": "http request",
         "z": "4215ef7ad32b1858",
-        "name": "restapi req temperature",
+        "name": "GET dry bulb temperature",
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://climahub.local/sensor/temperatura",
+        "url": "",
         "tls": "",
         "persist": false,
         "proxy": "",
         "insecureHTTPParser": false,
         "authType": "",
-        "senderr": false,
+        "senderr": true,
         "headers": [],
-        "x": 530,
-        "y": 1880,
+        "x": 620,
+        "y": 1900,
         "wires": [
             [
                 "44a13a7dbe3ac945"
@@ -5210,19 +5192,19 @@
         "id": "44a13a7dbe3ac945",
         "type": "function",
         "z": "4215ef7ad32b1858",
-        "name": "format temperature",
-        "func": "var msgout = {payload:0};\nmsgout.payload = Math.round(msg.payload.value * 10) / 10;\nreturn msgout;",
+        "name": "save dry bulb, set url",
+        "func": "if (msg.statusCode !== 200 || !msg.payload || typeof msg.payload.value !== \"number\") {\n    node.status({ fill: \"red\", shape: \"ring\", text: \"dry bulb read failed\" });\n    return;\n}\nmsg.drybulb = msg.payload.value;\nmsg.url = \"http://\" + msg.sensorhost + \"/sensor/bulbo_umido\";\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 1880,
+        "x": 850,
+        "y": 1900,
         "wires": [
             [
-                "ccf65ec643039010"
+                "a129a47cf043d372"
             ]
         ]
     },
@@ -5230,20 +5212,20 @@
         "id": "a129a47cf043d372",
         "type": "http request",
         "z": "4215ef7ad32b1858",
-        "name": "restapi req wet bulb",
+        "name": "GET wet bulb temperature",
         "method": "GET",
         "ret": "obj",
         "paytoqs": "ignore",
-        "url": "http://climahub.local/sensor/bulbo_umido",
+        "url": "",
         "tls": "",
         "persist": false,
         "proxy": "",
         "insecureHTTPParser": false,
         "authType": "",
-        "senderr": false,
+        "senderr": true,
         "headers": [],
-        "x": 520,
-        "y": 1920,
+        "x": 620,
+        "y": 1960,
         "wires": [
             [
                 "639b40b2b115fae7"
@@ -5254,29 +5236,25 @@
         "id": "639b40b2b115fae7",
         "type": "function",
         "z": "4215ef7ad32b1858",
-        "name": "calculate humidity",
-        "func": "var msgout = {payload:0};\nmsgout.payload = Math.round(msg.payload.value * 10) / 10;\nreturn msgout;",
-        "outputs": 1,
+        "name": "calculate RH, dew point, VPD",
+        "func": "if (msg.statusCode !== 200 || !msg.payload || typeof msg.payload.value !== \"number\" || typeof msg.drybulb !== \"number\") {\n    node.status({ fill: \"red\", shape: \"ring\", text: \"wet bulb read failed\" });\n    return;\n}\nconst t = msg.drybulb;//dry bulb temperature °C\nconst tw = Math.min(msg.payload.value, t);//wet bulb temperature °C, it cannot be higher than the dry bulb\nconst es = (x) => 0.6108 * Math.exp(17.27 * x / (x + 237.3));//saturation vapour pressure in kPa (Tetens)\nconst pressure = 101.325 * Math.pow(1 - 2.25577e-5 * (global.get(\"climate.config.altitude\") || 0), 5.25588);//air pressure in kPa at the altitude\nconst e = Math.max(es(tw) - 0.000662 * pressure * (t - tw), 0.001);//actual vapour pressure in kPa (aspirated psychrometer)\nconst rh = Math.max(0, Math.min(100, 100 * e / es(t)));//relative humidity %\nconst a = Math.log(e / 0.6108);\nconst dewpoint = 237.3 * a / (17.27 - a);//dew point °C\nconst vpd = Math.max(es(t) - e, 0);//vapour pressure deficit of the air in kPa\nconst round = (v, d) => Math.round(v * Math.pow(10, d)) / Math.pow(10, d);\n\nglobal.set(\"climate.inttemp\", round(t, 1));\nglobal.set(\"climate.wetbulb\", round(tw, 1));\nglobal.set(\"climate.inthum\", round(rh, 0));\nglobal.set(\"climate.dewpoint\", round(dewpoint, 1));\nglobal.set(\"climate.vpd\", round(vpd, 2));\nglobal.set(\"climate.lastread\", Date.now());\nnode.status({ fill: \"green\", shape: \"dot\", text: round(t, 1) + \" °C \" + round(rh, 0) + \" % VPD \" + round(vpd, 2) + \" kPa\" });\n\nconst tochart = { \"payload\": { \"inttemp\": round(t, 1), \"inthum\": round(rh, 0), \"dewpoint\": round(dewpoint, 1), \"vpd\": round(vpd, 2) } };\nconst todb = { \"topic\": \"INSERT INTO climate_detected(id, date, intemperature, inhumidity, exttemperature, exthumidity) VALUES (NULL, \" + Date.now() + \", \" + round(t, 1) + \", \" + round(rh, 0) + \", NULL, NULL);\" };\nreturn [tochart, todb];\n",
+        "outputs": 2,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 770,
-        "y": 1920,
+        "x": 870,
+        "y": 1960,
         "wires": [
-            []
-        ]
-    },
-    {
-        "id": "948d8997d6217ddc",
-        "type": "comment",
-        "z": "4215ef7ad32b1858",
-        "name": "DA FINIRE",
-        "info": "va preso il bulbo secco e bulbo umido e calcolata l'umidità con la formula di chat gpt\ne vanno passati i valori ai context relativi\nvanno anche creati nuovi context per dewpoint, bulbo umido e quello che viene generato\nda mettere anche nell'inizializzazione ",
-        "x": 780,
-        "y": 1820,
-        "wires": []
+            [
+                "ccf65ec643039010"
+            ],
+            [
+                "e381dd612ad74658"
+            ]
+        ],
+        "info": "Psychrometric calculation from dry bulb and wet bulb temperatures.\n\n- saturation vapour pressure (Tetens): es(T) = 0.6108 * exp(17.27 T / (T + 237.3)) kPa\n- actual vapour pressure (psychrometer equation): e = es(Tw) - A * P * (T - Tw), A = 0.000662 1/°C (aspirated psychrometer), P = station pressure\n- RH = 100 * e / es(T)\n- dew point: Td = 237.3 a / (17.27 - a), a = ln(e / 0.6108)\n- VPD (air) = es(T) - e\n\nOutputs: 1 chart and current values, 2 climate_detected table."
     },
     {
         "id": "bc29d906b9e4136a",
@@ -6145,7 +6123,7 @@
         "type": "function",
         "z": "473af4e9135bb6f3",
         "name": "build status",
-        "func": "msg.payload = {//current values shown on the Home status tiles\n    \"inttemp\": global.get(\"climate.inttemp\"),\n    \"inthum\": global.get(\"climate.inthum\"),\n    \"heat\": global.get(\"climate.heatisact\") === 1,\n    \"fan\": global.get(\"climate.fanisact\") === 1,\n    \"irrigation\": global.get(\"irrigation.irrisact\") === 1\n};\nreturn msg;\n",
+        "func": "const vpd = global.get(\"climate.vpd\");\nconst testmode = global.get(\"climate.testmode\") === true;\nmsg.payload = {//current values shown on the Home status tiles\n    \"inttemp\": global.get(\"climate.inttemp\"),\n    \"inthum\": global.get(\"climate.inthum\"),\n    \"dewpoint\": global.get(\"climate.dewpoint\"),\n    \"vpd\": vpd,\n    \"vpdState\": vpd < 0.4 ? \"low\" : (vpd > 1.6 ? \"high\" : \"\"),//generic range for most crops, from 0.4 to 1.6 kPa\n    \"sensorOk\": testmode || (Date.now() - (global.get(\"climate.lastread\") || 0)) < 300000,\n    \"heat\": global.get(\"climate.heatisact\") === 1,\n    \"fan\": global.get(\"climate.fanisact\") === 1,\n    \"irrigation\": global.get(\"irrigation.irrisact\") === 1\n};\nreturn msg;\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -6222,6 +6200,265 @@
             [
                 "a49933558f887776"
             ]
+        ]
+    },
+    {
+        "id": "1ff87de113e70f35",
+        "type": "function",
+        "z": "4215ef7ad32b1858",
+        "name": "skip in test mode, set url",
+        "func": "if (global.get(\"climate.testmode\") === true) return;//in test mode values are injected by the Test flow\nconst host = global.get(\"climate.config.sensorhost\") || \"climahub.local\";\nmsg.url = \"http://\" + host + \"/sensor/temperatura\";\nmsg.sensorhost = host;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 1900,
+        "wires": [
+            [
+                "0a985b4e22d9af91"
+            ]
+        ]
+    },
+    {
+        "id": "e381dd612ad74658",
+        "type": "sqlite",
+        "z": "4215ef7ad32b1858",
+        "mydb": "273b4a3829d447ed",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "to table climate_detected",
+        "x": 1140,
+        "y": 2010,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc699e5b86048209",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "keep 30 days of climate history",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "05 00 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "DELETE FROM climate_detected WHERE date < (strftime('%s', 'now') - 30 * 86400) * 1000;",
+        "x": 850,
+        "y": 2010,
+        "wires": [
+            [
+                "e381dd612ad74658"
+            ]
+        ]
+    },
+    {
+        "type": "ui-text",
+        "z": "4215ef7ad32b1858",
+        "group": "40009fbec210236c",
+        "width": "3",
+        "height": "1",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "valueType": "jsonata",
+        "id": "4e0657db45922a06",
+        "name": "",
+        "order": 3,
+        "label": "Dew point",
+        "value": "$exists(payload.dewpoint) ? $string($round(payload.dewpoint, 1)) & \" °C\" : \"-\"",
+        "x": 730,
+        "y": 440
+    },
+    {
+        "type": "ui-text",
+        "z": "4215ef7ad32b1858",
+        "group": "40009fbec210236c",
+        "width": "3",
+        "height": "1",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "valueType": "jsonata",
+        "id": "1569bf9c45c15979",
+        "name": "",
+        "order": 4,
+        "label": "VPD",
+        "value": "$exists(payload.vpd) ? $string($round(payload.vpd, 2)) & \" kPa\" : \"-\"",
+        "x": 730,
+        "y": 480
+    },
+    {
+        "id": "24afa53046f22b91",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "climate.config.sensorhost",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "x": 470,
+        "y": 2420,
+        "wires": [
+            [
+                "5aa4fc438740e15b"
+            ]
+        ]
+    },
+    {
+        "id": "5aa4fc438740e15b",
+        "type": "ui-text-input",
+        "z": "4215ef7ad32b1858",
+        "group": "bd1454c9fe3a5dbc",
+        "name": "",
+        "label": "Sensor host",
+        "tooltip": "Host name or IP of the board that exposes /sensor/temperatura and /sensor/bulbo_umido",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "topic": "topic",
+        "topicType": "msg",
+        "mode": "text",
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "sendOnClear": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "x": 690,
+        "y": 2420,
+        "wires": [
+            [
+                "80e732ec3b0f9666"
+            ]
+        ]
+    },
+    {
+        "id": "80e732ec3b0f9666",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.config.sensorhost",
+                "pt": "global",
+                "to": "$trim(payload) != \"\" ? $trim(payload) : \"climahub.local\"",
+                "tot": "jsonata"
+            }
+        ],
+        "x": 930,
+        "y": 2420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "71caa70500920871",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "climate.config.altitude",
+                "tot": "global",
+                "dc": true
+            }
+        ],
+        "x": 470,
+        "y": 2470,
+        "wires": [
+            [
+                "b7974d669ecabc8b"
+            ]
+        ]
+    },
+    {
+        "id": "b7974d669ecabc8b",
+        "type": "ui-number-input",
+        "z": "4215ef7ad32b1858",
+        "group": "bd1454c9fe3a5dbc",
+        "name": "",
+        "label": "Altitude (m)",
+        "tooltip": "Altitude of the greenhouse, used to compute the air pressure for the humidity calculation",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": -500,
+        "max": 5000,
+        "step": 1,
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "stacked",
+        "x": 690,
+        "y": 2470,
+        "wires": [
+            [
+                "9244ebb9b96f1995"
+            ]
+        ]
+    },
+    {
+        "id": "9244ebb9b96f1995",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "climate.config.altitude",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg",
+                "dc": true
+            }
+        ],
+        "x": 930,
+        "y": 2470,
+        "wires": [
+            []
         ]
     }
 ]

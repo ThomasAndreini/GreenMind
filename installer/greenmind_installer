@@ -38,7 +38,7 @@ download() {
 }
 
 # ---------------------------------------------------------------------------
-# Platform: GreenMind v2 needs a 64 bit OS (arm64). The check uses the
+# Platform: GreenMind needs a 64 bit OS (arm64). The check uses the
 # architecture of the OS packages, not of the kernel: the 32 bit Raspberry Pi
 # OS runs a 64 bit kernel on Pi 4 and Pi 5.
 # ---------------------------------------------------------------------------
@@ -53,7 +53,7 @@ check_platform() {
             echo "WARNING: ${model}, amd64: GPIO outputs will not work (test or development install)"
             ;;
         armhf|armel)
-            fail "32 bit OS detected (${arch}) on ${model}. GreenMind v2 requires Raspberry Pi OS 64 bit:
+            fail "32 bit OS detected (${arch}) on ${model}. GreenMind requires Raspberry Pi OS 64 bit:
        1. on this system run greenmind_backup to save database, settings and password
        2. flash Raspberry Pi OS Lite (64-bit) with Raspberry Pi Imager
        3. run this installer with GM_RESTORE=<backup file>

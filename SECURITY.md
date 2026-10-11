@@ -4,8 +4,8 @@
 
 | GreenMind | Node-RED | Node.js | Supported          |
 | --------- | -------- | ------- | ------------------ |
-| 2.x (Raspberry Pi OS 64 bit) | 5.x | 24 LTS | :white_check_mark: |
-| 0.x / 1.x | 2.x-3.x  | 18      | :x:                |
+| 1.x (Raspberry Pi OS 64 bit) | 5.x | 24 LTS | :white_check_mark: |
+| 0.x       | 2.x-3.x  | 18      | :x:                |
 
 ## Protecting your installation
 

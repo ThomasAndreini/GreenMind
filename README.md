@@ -7,7 +7,7 @@ GreenMind is a software designed for the management of a indoor crop. The intent
 Through GreenMind it is possible to manage irrigation, climate, artificial lighting, heating and ventilation of the environment. Each operation performed and data detected is recorded and shown as a graph and table.
 GreenMind  is a ready-to-use product but it was created with the intention of being as open as possible, it is therefore developed through Node Red, a visual language that is very simple to learn and modify if the user wants to adapt it to specifics. needs.
 The platform is the popular Raspberry pi, a low-cost board with great potential.
-GreenMind v2 runs on a Raspberry Pi with the 64 bit Raspberry Pi OS (Pi 3, 4, 5 or Zero 2 W), some hardware components such as relays and temperature and humidity sensors are required.
+GreenMind runs on a Raspberry Pi with the 64 bit Raspberry Pi OS (Pi 3, 4, 5 or Zero 2 W), some hardware components such as relays and temperature and humidity sensors are required.
 Support for other hardware components will be implemented over time, the goal is to use hardware components that are easy to find, at an affordable cost and of good quality. The user can choose which software modules and which hardware components to use according to their needs and budget.
 
 <p align="center">
@@ -18,7 +18,7 @@ Support for other hardware components will be implemented over time, the goal is
   <img src="docs/images/desktop-home.png" alt="GreenMind on a desktop" width="720">
 </p>
 
-### What's new in v2
+### What's new in 1.0
 
 - **Responsive dashboard** built with [Dashboard 2.0](https://dashboard.flowfuse.com): one column on
   smartphones, two on tablets and desktops, three on wide screens. Tables become a stacked list on
@@ -47,7 +47,7 @@ Support for other hardware components will be implemented over time, the goal is
 | Raspberry Pi 4, Pi 400        | 1 / 2 / 4 / 8 GB     | 256 / 448 / 960 / 1024 MB         | Recommended                             |
 | Raspberry Pi 3 B, 3 B+        | 1 GB                 | 256 MB                            |                                         |
 | Raspberry Pi 3 A+, Zero 2 W   | 512 MB               | 256 MB                            | Swap set to 1 GB, enough for GreenMind  |
-| Raspberry Pi 1, 2, Zero, Zero W | -                  | -                                 | 32 bit only: not supported by v2, use v1 |
+| Raspberry Pi 1, 2, Zero, Zero W | -                  | -                                 | 32 bit only: not supported          |
 
 GreenMind (Node-RED, dashboard and database) uses about 130-150 MB of RAM: 1 GB or more leaves room
 for the operating system and for other services.
@@ -101,8 +101,8 @@ To change the heap run the installer again with `GM_HEAP_MB=<MB>`.
 
 ### Migrating to Raspberry Pi OS 64 bit
 
-GreenMind v2 needs the 64 bit OS: on a 32 bit system the installer stops. To move an existing
-installation (v1 or v2, on the same or on a new Raspberry Pi) without losing data:
+GreenMind needs the 64 bit OS: on a 32 bit system the installer stops. To move an existing
+installation (1.x or a previous 0.x version, on the same or on a new Raspberry Pi) without losing data:
 
 1. **Back up** on the old system:
 
@@ -113,7 +113,7 @@ installation (v1 or v2, on the same or on a new Raspberry Pi) without losing dat
 
    It stops Node-RED for a moment and creates `~/greenmind-backup-<date>.tar.gz` with the database
    (schedules, irrigation and climate history), the settings (flow rate, relay levels, sensor host,
-   altitude) and, for v2, the password. Copy it to your PC, for example
+   altitude) and, from 1.0, the password. Copy it to your PC, for example
    `scp <user>@<old-raspberry>:~/greenmind-backup-*.tar.gz .`
 2. **Write Raspberry Pi OS Lite (64-bit)** on a new SD card (keep the old one as a fallback) and start
    the Raspberry Pi, as in [Installation](#installation).
@@ -125,9 +125,9 @@ installation (v1 or v2, on the same or on a new Raspberry Pi) without losing dat
    ```
 
    The installer only extracts the known GreenMind files from the backup. The password is kept if
-   the backup comes from v2, otherwise a new one is asked.
+   the backup comes from 1.0 or newer, otherwise a new one is asked.
 
-Changes for who comes from v1:
+Changes for who comes from a previous version (0.x):
 
 - The dashboard moved from `/ui` to `/dashboard` and needs the password.
 - The flow is in `~/.node-red/greenmind/greenmind.json`, the database stays in `~/greenmind/main.db`.

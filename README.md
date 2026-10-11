@@ -61,7 +61,7 @@ for the operating system and for other services.
 3. Run:
 
 ```bash
-curl -fsSL -o greenmind_installer https://raw.githubusercontent.com/ThomasAndreini/GreenMind/v2.0/installer/greenmind_installer
+curl -fsSL -o greenmind_installer https://github.com/ThomasAndreini/GreenMind/releases/latest/download/greenmind_installer
 bash greenmind_installer
 ```
 
@@ -73,7 +73,7 @@ Optional environment variables:
 
 | Variable                     | Use                                                                    |
 | ---------------------------- | ---------------------------------------------------------------------- |
-| `GM_REF`                     | branch or tag to install (default `v2.0`)                              |
+| `GM_REF`                     | branch or tag to install (the release installer uses its own tag)      |
 | `NODERED_VERSION`            | Node-RED version (default `5.0.8`)                                     |
 | `NODE_MAJOR`                 | Node.js major version, `24` (default) or `22`                          |
 | `GM_HEAP_MB`                 | Node.js heap in MB, instead of the size computed from the RAM          |
@@ -107,7 +107,7 @@ installation (v1 or v2, on the same or on a new Raspberry Pi) without losing dat
 1. **Back up** on the old system:
 
    ```bash
-   curl -fsSL -o greenmind_backup https://raw.githubusercontent.com/ThomasAndreini/GreenMind/v2.0/installer/greenmind_backup
+   curl -fsSL -o greenmind_backup https://github.com/ThomasAndreini/GreenMind/releases/latest/download/greenmind_backup
    bash greenmind_backup
    ```
 

@@ -6,7 +6,8 @@
 #   bash greenmind_installer
 #
 # Optional environment variables:
-#   GM_REF           git branch or tag of GreenMind to install (default: v2.0)
+#   GM_REF           git branch or tag of GreenMind to install (default: master, the release
+#                    installers download the files of their own tag)
 #   NODERED_VERSION  Node-RED version to install (default: 5.0.8)
 #   NODE_MAJOR       Node.js major version (default: 24)
 #   GM_USER          user name for the editor and the dashboard (asked if not set)
@@ -17,7 +18,7 @@
 
 set -euo pipefail
 
-GM_REF="${GM_REF:-v2.0}"
+GM_REF="${GM_REF:-master}"
 NODERED_VERSION="${NODERED_VERSION:-5.0.8}"
 NODE_MAJOR="${NODE_MAJOR:-24}"
 GM_RAW="https://raw.githubusercontent.com/ThomasAndreini/GreenMind/${GM_REF}"

@@ -1,6 +1,7 @@
 #!/bin/bash
 #
-# GreenMind backup: database, settings (Node-RED context) and password, works with v1 and v2.
+# GreenMind backup: database, settings (Node-RED context) and password.
+# Works with GreenMind 1.x and with the previous versions (0.x).
 # Restore it on a new installation with: GM_RESTORE=<file> bash greenmind_installer
 #
 # Usage:

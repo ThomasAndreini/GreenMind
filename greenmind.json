@@ -27,9 +27,323 @@
         "id": "4d9548a7a9fa8f5b",
         "type": "tab",
         "label": "Test",
-        "disabled": false,
-        "info": "Testing stuff",
+        "disabled": true,
+        "info": "Development only: enable this flow to simulate temperature and humidity during the day (set climate.testmode with the inject nodes).",
         "env": []
+    },
+    {
+        "id": "6300f9d82d3260c0",
+        "type": "ui-base",
+        "name": "GreenMind",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": true
+    },
+    {
+        "id": "cdd592b21d6151a4",
+        "type": "ui-theme",
+        "name": "GreenMind",
+        "colors": {
+            "surface": "#1b5e20",
+            "primary": "#2e7d32",
+            "bgPage": "#f3f6f1",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d5e2cf"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "8px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "6691e9ed50dfc4a2",
+        "type": "ui-page",
+        "name": "Home",
+        "ui": "6300f9d82d3260c0",
+        "path": "/home",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "cdd592b21d6151a4",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "960",
+                "cols": "12"
+            },
+            {
+                "name": "Wide",
+                "px": "1600",
+                "cols": "18"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "c9196ab76e307349",
+        "type": "ui-page",
+        "name": "Irrigation",
+        "ui": "6300f9d82d3260c0",
+        "path": "/irrigation",
+        "icon": "water",
+        "layout": "grid",
+        "theme": "cdd592b21d6151a4",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "960",
+                "cols": "12"
+            },
+            {
+                "name": "Wide",
+                "px": "1600",
+                "cols": "18"
+            }
+        ],
+        "order": 2,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "abac10b9eadb5bc0",
+        "type": "ui-page",
+        "name": "Climate",
+        "ui": "6300f9d82d3260c0",
+        "path": "/climate",
+        "icon": "leaf",
+        "layout": "grid",
+        "theme": "cdd592b21d6151a4",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "6"
+            },
+            {
+                "name": "Desktop",
+                "px": "960",
+                "cols": "12"
+            },
+            {
+                "name": "Wide",
+                "px": "1600",
+                "cols": "18"
+            }
+        ],
+        "order": 3,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "770c026fb7d2a338",
+        "type": "ui-group",
+        "name": "Status",
+        "page": "6691e9ed50dfc4a2",
+        "width": "12",
+        "height": "1",
+        "order": 1,
+        "showTitle": false,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "c3238d4fed871bde",
+        "type": "ui-group",
+        "name": "Climate",
+        "page": "6691e9ed50dfc4a2",
+        "width": "6",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "f83273088eb193ee",
+        "type": "ui-group",
+        "name": "Schedule summary",
+        "page": "6691e9ed50dfc4a2",
+        "width": "6",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "f668e2ddd7534d1b",
+        "type": "ui-group",
+        "name": "Announce",
+        "page": "6691e9ed50dfc4a2",
+        "width": "12",
+        "height": "1",
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "fa9ccf2e0cfb5c02",
+        "type": "ui-group",
+        "name": "Schedule",
+        "page": "c9196ab76e307349",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "2b2b4e4e8122d74f",
+        "type": "ui-group",
+        "name": "Manual irrigation",
+        "page": "c9196ab76e307349",
+        "width": "6",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "25572f3b22faabc8",
+        "type": "ui-group",
+        "name": "Irrigation done",
+        "page": "c9196ab76e307349",
+        "width": "6",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "696d740b65c6837c",
+        "type": "ui-group",
+        "name": "Settings",
+        "page": "c9196ab76e307349",
+        "width": "6",
+        "height": "1",
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "40009fbec210236c",
+        "type": "ui-group",
+        "name": "Current data",
+        "page": "abac10b9eadb5bc0",
+        "width": "6",
+        "height": "1",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "138fe263b9fbdc51",
+        "type": "ui-group",
+        "name": "Manual commands",
+        "page": "abac10b9eadb5bc0",
+        "width": "6",
+        "height": "1",
+        "order": 2,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "5cbd1b6fdfe2459d",
+        "type": "ui-group",
+        "name": "Schedule",
+        "page": "abac10b9eadb5bc0",
+        "width": "6",
+        "height": "1",
+        "order": 3,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "cc3a2eefb8aff812",
+        "type": "ui-group",
+        "name": "Climate actions",
+        "page": "abac10b9eadb5bc0",
+        "width": "6",
+        "height": "1",
+        "order": 4,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "bd1454c9fe3a5dbc",
+        "type": "ui-group",
+        "name": "Settings",
+        "page": "abac10b9eadb5bc0",
+        "width": "6",
+        "height": "1",
+        "order": 5,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
     },
     {
         "id": "6b8182068d6abfd6",
@@ -113,614 +427,6 @@
         "h": 202
     },
     {
-        "id": "30310abcb724f80d",
-        "type": "ui_base",
-        "theme": {
-            "name": "theme-light",
-            "lightTheme": {
-                "default": "#0094CE",
-                "baseColor": "#018e3e",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "darkTheme": {
-                "default": "#097479",
-                "baseColor": "#00ff40",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": true,
-                "reset": false
-            },
-            "customTheme": {
-                "name": "Untitled Theme 1",
-                "default": "#4B7930",
-                "baseColor": "#4B7930",
-                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "reset": false
-            },
-            "themeState": {
-                "base-color": {
-                    "default": "#0094CE",
-                    "value": "#018e3e",
-                    "edited": true
-                },
-                "page-titlebar-backgroundColor": {
-                    "value": "#018e3e",
-                    "edited": false
-                },
-                "page-backgroundColor": {
-                    "value": "#fafafa",
-                    "edited": false
-                },
-                "page-sidebar-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-textColor": {
-                    "value": "#02da5f",
-                    "edited": false
-                },
-                "group-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "group-backgroundColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "widget-textColor": {
-                    "value": "#111111",
-                    "edited": false
-                },
-                "widget-backgroundColor": {
-                    "value": "#018e3e",
-                    "edited": false
-                },
-                "widget-borderColor": {
-                    "value": "#ffffff",
-                    "edited": false
-                },
-                "base-font": {
-                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
-                }
-            },
-            "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
-                "warn": "red",
-                "background": "grey",
-                "palette": "light"
-            }
-        },
-        "site": {
-            "name": "GreenMind",
-            "hideToolbar": "false",
-            "allowSwipe": "false",
-            "lockMenu": "false",
-            "allowTempTheme": "true",
-            "dateFormat": "DD/MM/YYYY",
-            "sizes": {
-                "sx": 48,
-                "sy": 48,
-                "gx": 6,
-                "gy": 6,
-                "cx": 6,
-                "cy": 6,
-                "px": 0,
-                "py": 0
-            }
-        }
-    },
-    {
-        "id": "6691e9ed50dfc4a2",
-        "type": "ui_tab",
-        "name": "Home",
-        "icon": "home",
-        "order": 1,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "c9196ab76e307349",
-        "type": "ui_tab",
-        "name": "Irrigation",
-        "icon": "mi-water_drop",
-        "order": 2,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "abac10b9eadb5bc0",
-        "type": "ui_tab",
-        "name": "Climate",
-        "icon": "fa-leaf",
-        "order": 3,
-        "disabled": false,
-        "hidden": false
-    },
-    {
-        "id": "f83273088eb193ee",
-        "type": "ui_group",
-        "name": "Schedule summary",
-        "tab": "6691e9ed50dfc4a2",
-        "order": 1,
-        "disp": false,
-        "width": "20",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "fa9ccf2e0cfb5c02",
-        "type": "ui_group",
-        "name": "Schedule",
-        "tab": "c9196ab76e307349",
-        "order": 1,
-        "disp": true,
-        "width": "14",
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "25572f3b22faabc8",
-        "type": "ui_group",
-        "name": "Irrigation done",
-        "tab": "c9196ab76e307349",
-        "order": 2,
-        "disp": true,
-        "width": 14,
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "2b2b4e4e8122d74f",
-        "type": "ui_group",
-        "name": "Manual irrigation",
-        "tab": "c9196ab76e307349",
-        "order": 3,
-        "disp": true,
-        "width": 14,
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "f668e2ddd7534d1b",
-        "type": "ui_group",
-        "name": "Announce",
-        "tab": "6691e9ed50dfc4a2",
-        "order": 3,
-        "disp": true,
-        "width": "20",
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "c3238d4fed871bde",
-        "type": "ui_group",
-        "name": "Climate",
-        "tab": "6691e9ed50dfc4a2",
-        "order": 2,
-        "disp": true,
-        "width": "20",
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "5cbd1b6fdfe2459d",
-        "type": "ui_group",
-        "name": "Schedule",
-        "tab": "abac10b9eadb5bc0",
-        "order": 2,
-        "disp": true,
-        "width": "16",
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "cc3a2eefb8aff812",
-        "type": "ui_group",
-        "name": "Climate actions",
-        "tab": "abac10b9eadb5bc0",
-        "order": 3,
-        "disp": true,
-        "width": 16,
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "138fe263b9fbdc51",
-        "type": "ui_group",
-        "name": "Manual commands",
-        "tab": "abac10b9eadb5bc0",
-        "order": 4,
-        "disp": true,
-        "width": 16,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "40009fbec210236c",
-        "type": "ui_group",
-        "name": "Current data",
-        "tab": "abac10b9eadb5bc0",
-        "order": 1,
-        "disp": true,
-        "width": 16,
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "696d740b65c6837c",
-        "type": "ui_group",
-        "name": "Settings",
-        "tab": "c9196ab76e307349",
-        "order": 4,
-        "disp": true,
-        "width": "14",
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "bd1454c9fe3a5dbc",
-        "type": "ui_group",
-        "name": "Settings",
-        "tab": "abac10b9eadb5bc0",
-        "order": 5,
-        "disp": true,
-        "width": "16",
-        "collapse": true,
-        "className": ""
-    },
-    {
-        "id": "3b4ec14f0ce1f48a",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "40009fbec210236c",
-        "order": 1,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "7dabedd0bcddc473",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "40009fbec210236c",
-        "order": 3,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "383392ae94ea4363",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "40009fbec210236c",
-        "order": 5,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "5afe47ddcf55a1b0",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "96c9658d19c28737",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 9,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "3bb3a4afd7374de9",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 16,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "52eefa205de8e885",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 1,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "727f2e8cab3ef5e3",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 3,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "0fc48b1853a2d9c1",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 4,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "85b5ab3d126c05ef",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 5,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "f3a2eb19d0ab0c9d",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 6,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "b687a120390458f1",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 7,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "7c81f5f9f5e1adf9",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 8,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "b3c243eee8a957bc",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 9,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "1b9025de99192111",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 10,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "51347577de15116a",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 11,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "99767f4155535324",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 12,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "f82acf669583cfd6",
-        "type": "ui_spacer",
-        "z": "473af4e9135bb6f3",
-        "name": "spacer",
-        "group": "cc3a2eefb8aff812",
-        "order": 13,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "d390524ada203dc1",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 1,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "112b994495383181",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 3,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "75cc0e5dc597c915",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 4,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "33fc269fe52bad2b",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "23ad0cf5711d7eac",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 6,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "2df87595f91bc94a",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 7,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "356d39afc0e66ebf",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 8,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "fe268e992dc25d7a",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 9,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "d0245a3c41a0507d",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 10,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "2dcf926fcfcd0b2e",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 11,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "6d3fb6c57422581f",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 12,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "fdd68ff1a4d84009",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "25572f3b22faabc8",
-        "order": 13,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "2a7cd9fb9f53f18d",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "2b2b4e4e8122d74f",
-        "order": 1,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "fac1e30a191a52ef",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "2b2b4e4e8122d74f",
-        "order": 3,
-        "width": 2,
-        "height": 1
-    },
-    {
-        "id": "ee19e399a85fd39a",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "696d740b65c6837c",
-        "order": 1,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "0c982df2d0f1c930",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "696d740b65c6837c",
-        "order": 3,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "4f8844c52fa57bf5",
-        "type": "ui_spacer",
-        "z": "9cfee97fb9e96644",
-        "name": "spacer",
-        "group": "696d740b65c6837c",
-        "order": 5,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "273b4a3829d447ed",
         "type": "sqlitedb",
         "db": "greenmind/main.db",
@@ -730,18 +436,13 @@
         "id": "a6b7472a7e43b83b",
         "type": "function",
         "z": "473af4e9135bb6f3",
-        "name": "format values",
-        "func": "var msgout = {//prepare msg object to send\n    \"payload\" : {\n        \"dataItems\": [\n                {\n                    \"group\": \"Irrigation\",\n                    \"data\": [\n                    ]\n                },\n                {\n                    \"group\": \"Climate\",\n                    \"data\": [\n                    ]\n                }\n            ]\n        }\n    };\nfor (let i = 0; i < flow.get(\"timechart.irrigationschedule\").length; i++) {//search every active irrigation schedule\n    let fromtime = moment(flow.get(\"timechart.irrigationschedule[\" + i + \"].fromtime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");//format date and time\n    let totime = moment(flow.get(\"timechart.irrigationschedule[\" + i + \"].totime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    if (flow.get(\"timechart.irrigationschedule[\" + i + \"].oneshoot\") === 0) {//If irrigation is repeated type\n        objecttoarray.label = \"Repeat\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ 'timeRange': [fromtime, totime], 'val': 'every ' + flow.get(\"timechart.irrigationschedule[\" + i + \"].every\") + 'min, duration ' + flow.get(\"timechart.irrigationschedule[\" + i + \"].duration\")});//push object in to array\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n    if (flow.get(\"timechart.irrigationschedule[\" + i + \"].oneshoot\") === 1) {//If irrigation is one shoot type\n        objecttoarray.label = \"One shoot\";//Fill the subject with the label, start date and end date\n        objecttoarray.data.push({ \"timeRange\": [fromtime, totime], \"val\": \"One shoot, duration \" + flow.get(\"timechart.irrigationschedule[\" + i + \"].duration\")});//push object to array\n        msgout.payload.dataItems[0].data.push(objecttoarray);//insert objecttoarray in to msgout object\n    }\n}\nfor (let i = 0; i < flow.get(\"timechart.climateschedule\").length; i++) {//search every active climate schedule\n    let fromtime = moment(flow.get(\"timechart.climateschedule[\" + i + \"].fromtime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");//format date and time\n    let totime = moment(flow.get(\"timechart.climateschedule[\" + i + \"].totime\")).utc().format(\"YYYY-MM-DD HH:mm:ss\");\n    let objecttoarray = {//create object to incorporate in msgout\n        \"label\": \"\",\n        \"data\": [\n        ]\n    }\n    objecttoarray.label = \"\";//Fill the subject with the label, start date and end date\n    objecttoarray.data.push({ 'timeRange': [fromtime, totime], 'val': 'tmin ' + flow.get(\"timechart.climateschedule[\" + i + \"].tempmin\") + ', ' + 'tmax ' + flow.get(\"timechart.climateschedule[\" + i + \"].tempmax\") + ', ' + 'ttarget ' + flow.get(\"timechart.climateschedule[\" + i + \"].temptarget\") + ', ' + 'hmin ' + flow.get(\"timechart.climateschedule[\" + i + \"].hummin\") + ', ' + 'hmax ' + flow.get(\"timechart.climateschedule[\" + i + \"].hummax\") + ', ' + 'htarget ' + flow.get(\"timechart.climateschedule[\" + i + \"].humtarget\") });//push object to array\n    msgout.payload.dataItems[1].data.push(objecttoarray);//insert objecttoarray in to msgout object    \n}\nreturn msgout;",
+        "name": "format schedule overview",
+        "func": "const DAY = 86400000;\nfunction hhmm(ms) {//format ms from midnight as HH:mm\n    const min = Math.round(ms / 60000);\n    return String(Math.floor(min / 60)).padStart(2, \"0\") + \":\" + String(min % 60).padStart(2, \"0\");\n}\nfunction item(from, to, label) {//compute position and width of a bar in percent of the day\n    from = Math.max(0, Math.min(DAY, from));\n    to = Math.max(from, Math.min(DAY, to));\n    return { \"from\": hhmm(from), \"to\": hhmm(to), \"left\": from / DAY * 100, \"width\": Math.max((to - from) / DAY * 100, 0.5), \"label\": label };\n}\nconst irrigation = (flow.get(\"timechart.irrigationschedule\") || []).map(p => item(p.fromtime, p.totime,\n    p.oneshoot === 1 ? \"One shot, \" + p.duration + \" ml\" : \"Every \" + p.every + \" min, \" + p.duration + \" ml\"));\nconst climate = (flow.get(\"timechart.climateschedule\") || []).map(p => item(p.fromtime, p.totime,\n    \"T \" + p.tempmin + \"-\" + p.tempmax + \" °C, RH \" + p.hummin + \"-\" + p.hummax + \" %\"));\nreturn { \"payload\": { \"lanes\": [\n    { \"name\": \"Irrigation\", \"cls\": \"irrigation\", \"items\": irrigation },\n    { \"name\": \"Climate\", \"cls\": \"climate\", \"items\": climate }\n] } };",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 1120,
         "y": 180,
         "wires": [
@@ -749,7 +450,7 @@
                 "a35cedd0a8ef43ec"
             ]
         ],
-        "info": "Format values accord to Timeline chart documentation"
+        "info": "Build the lanes shown by the schedule overview template (times are ms from midnight)"
     },
     {
         "id": "a49933558f887776",
@@ -962,54 +663,69 @@
     },
     {
         "id": "01a35cb9f68f28fb",
-        "type": "ui_chart",
         "z": "473af4e9135bb6f3",
-        "name": "",
-        "group": "c3238d4fed871bde",
-        "order": 0,
-        "width": 0,
-        "height": 0,
-        "label": "Climate detected",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "",
-        "dot": false,
-        "ymin": "-10",
-        "ymax": "100",
-        "removeOlder": 1,
-        "removeOlderPoints": "",
-        "removeOlderUnit": "86400",
-        "cutout": 0,
-        "useOneColor": false,
-        "useUTC": false,
-        "colors": [
-            "#ffae00",
-            "#006af5",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "outputs": 1,
-        "useDifferentColor": false,
-        "className": "",
         "x": 790,
         "y": 460,
         "wires": [
             []
-        ]
+        ],
+        "name": "",
+        "type": "ui-chart",
+        "group": "c3238d4fed871bde",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "label": "Climate detected",
+        "chartType": "line",
+        "category": "topic",
+        "categoryType": "msg",
+        "xAxisLabel": "",
+        "xAxisProperty": "",
+        "xAxisPropertyType": "timestamp",
+        "xAxisType": "time",
+        "xAxisFormat": "",
+        "xAxisFormatType": "auto",
+        "xmin": "",
+        "xmax": "",
+        "yAxisLabel": "",
+        "yAxisProperty": "payload",
+        "yAxisPropertyType": "msg",
+        "ymin": "",
+        "ymax": "",
+        "bins": 10,
+        "action": "append",
+        "stackSeries": false,
+        "pointShape": "circle",
+        "pointRadius": 2,
+        "showLegend": true,
+        "removeOlder": 1,
+        "removeOlderUnit": "86400",
+        "removeOlderPoints": "",
+        "colors": [
+            "#ef6c00",
+            "#1e88e5",
+            "#2e7d32",
+            "#8e24aa",
+            "#c62828",
+            "#00838f",
+            "#6d4c41",
+            "#546e7a",
+            "#f9a825"
+        ],
+        "textColor": [
+            "#666666"
+        ],
+        "textColorDefault": true,
+        "gridColor": [
+            "#e5e5e5"
+        ],
+        "gridColorDefault": true,
+        "className": "",
+        "interpolation": "linear"
     },
     {
         "id": "bd541d756dceeb68",
-        "type": "ui_ui_control",
         "z": "473af4e9135bb6f3",
-        "name": "",
-        "events": "all",
         "x": 80,
         "y": 220,
         "wires": [
@@ -1017,28 +733,35 @@
                 "43783318f3f6408b",
                 "a49933558f887776"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-control",
+        "ui": "6300f9d82d3260c0",
+        "events": "all"
     },
     {
         "id": "43783318f3f6408b",
-        "type": "ui_template",
         "z": "473af4e9135bb6f3",
-        "group": "f668e2ddd7534d1b",
-        "name": "",
-        "order": 1,
-        "width": "20",
-        "height": "4",
-        "format": "<div <p>This is a simple but ambitious project, if you want to contribute by testing or suggesting new sensors, or improvements on the software you are welcome.\nThe project is completely open source, if you want to contribute to the development you can find the repository at</p><a href=\"https://github.com/ThomasAndreini/GreenMind\">https://github.com/ThomasAndreini/GreenMind</a>.</div>",
-        "storeOutMessages": true,
-        "fwdInMessages": false,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "className": "",
         "x": 240,
         "y": 280,
         "wires": [
             []
-        ]
+        ],
+        "name": "Announce",
+        "type": "ui-template",
+        "group": "f668e2ddd7534d1b",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "page": "",
+        "ui": "",
+        "head": "",
+        "format": "<template>\n    <div class=\"gm-announce\">\n        <p>This is a simple but ambitious project, if you want to contribute by testing or suggesting new sensors,\n            or improvements on the software you are welcome.</p>\n        <p>The project is completely open source, if you want to contribute to the development you can find the repository at\n            <a href=\"https://github.com/ThomasAndreini/GreenMind\" target=\"_blank\" rel=\"noopener\">github.com/ThomasAndreini/GreenMind</a>.</p>\n    </div>\n</template>\n\n<style>\n.gm-announce p {\n    margin: 0 0 8px 0;\n    line-height: 1.5;\n}\n.gm-announce a {\n    color: rgb(var(--v-theme-primary));\n    word-break: break-word;\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": ""
     },
     {
         "id": "cbf17221b4974b57",
@@ -1059,45 +782,27 @@
     },
     {
         "id": "a35cedd0a8ef43ec",
-        "type": "ui_timelines_chart",
         "z": "473af4e9135bb6f3",
-        "group": "f83273088eb193ee",
-        "name": "timelines chart",
-        "order": 0,
-        "label": "Overview",
-        "width": 0,
-        "height": 0,
-        "lineColors": [
-            {
-                "statusColor": "#00ff4c",
-                "statusValue": "Climate"
-            },
-            {
-                "statusColor": "#00ffd5",
-                "statusValue": "Irrigation"
-            }
-        ],
-        "xTickFormat": "HH:mm",
-        "startDateTime": "",
-        "endDateTime": "",
-        "maxLineHeight": "50",
-        "topMargin": "50",
-        "xAxisLabelsFontSize": 16,
-        "xAxisLabelslColor": "#000000",
-        "yAxisLabelsFontSize": 16,
-        "yAxisLabelslColor": "#001eff",
-        "timeFormat": "%H,%M",
-        "segmentTooltipContent": "",
-        "resetZoomLabelFontSize": 24,
-        "resetZoomLabelColor": "#0033ff",
-        "enableAnimations": true,
-        "enableDateMarker": true,
-        "forwardInputMessages": false,
         "x": 1320,
         "y": 180,
         "wires": [
             []
-        ]
+        ],
+        "name": "Schedule overview",
+        "type": "ui-template",
+        "group": "f83273088eb193ee",
+        "order": 1,
+        "width": "6",
+        "height": "0",
+        "page": "",
+        "ui": "",
+        "head": "",
+        "format": "<template>\n    <div class=\"gm-timeline\">\n        <div v-for=\"lane in lanes\" :key=\"lane.name\" class=\"gm-lane\">\n            <div class=\"gm-lane-title\">{{ lane.name }}</div>\n            <div class=\"gm-track\">\n                <div v-for=\"(item, i) in lane.items\" :key=\"i\" class=\"gm-bar\" :class=\"'gm-' + lane.cls\"\n                     :style=\"{ left: item.left + '%', width: item.width + '%' }\" :title=\"item.from + '-' + item.to + ' ' + item.label\"></div>\n                <div class=\"gm-now\" :style=\"{ left: nowPct + '%' }\"></div>\n            </div>\n            <ul class=\"gm-list\">\n                <li v-for=\"(item, i) in lane.items\" :key=\"'l' + i\">\n                    <strong>{{ item.from }} - {{ item.to }}</strong> <span>{{ item.label }}</span>\n                </li>\n                <li v-if=\"!lane.items.length\" class=\"gm-empty\">No active schedule</li>\n            </ul>\n        </div>\n        <div class=\"gm-axis\">\n            <span v-for=\"h in hours\" :key=\"h\" :style=\"{ left: (h / 24 * 100) + '%' }\">{{ h }}</span>\n        </div>\n    </div>\n</template>\n\n<script>\nexport default {\n    data () {\n        return { now: Date.now(), hours: [0, 6, 12, 18, 24] }\n    },\n    mounted () {\n        this.timer = setInterval(() => { this.now = Date.now() }, 60000)\n    },\n    unmounted () {\n        clearInterval(this.timer)\n    },\n    computed: {\n        lanes () {\n            return (this.msg && this.msg.payload && this.msg.payload.lanes) || []\n        },\n        nowPct () {\n            const d = new Date(this.now)\n            return (d.getHours() * 60 + d.getMinutes()) / 1440 * 100\n        }\n    }\n}\n</script>\n\n<style>\n.gm-timeline {\n    width: 100%;\n    display: flex;\n    flex-direction: column;\n    gap: 14px;\n}\n.gm-lane-title {\n    font-weight: 600;\n    margin-bottom: 4px;\n}\n.gm-track {\n    position: relative;\n    height: 22px;\n    border-radius: 6px;\n    background: rgba(var(--v-theme-on-surface), 0.07);\n    overflow: hidden;\n}\n.gm-bar {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    border-radius: 4px;\n    min-width: 3px;\n}\n.gm-bar.gm-irrigation {\n    background: #1e88e5;\n}\n.gm-bar.gm-climate {\n    background: #43a047;\n}\n.gm-now {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    width: 2px;\n    background: #c62828;\n}\n.gm-list {\n    list-style: none;\n    padding: 0;\n    margin: 6px 0 0 0;\n    font-size: 0.9rem;\n}\n.gm-list li {\n    padding: 2px 0;\n}\n.gm-empty {\n    opacity: 0.6;\n}\n.gm-axis {\n    position: relative;\n    height: 16px;\n    font-size: 0.75rem;\n    opacity: 0.6;\n    margin: 0 8px;\n}\n.gm-axis span {\n    position: absolute;\n    transform: translateX(-50%);\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": ""
     },
     {
         "id": "be7cbfc514e81423",
@@ -1191,8 +896,8 @@
                 "t": "set",
                 "p": "programming.fromtime",
                 "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
+                "to": "$exists(payload) and $type(payload) = \"string\" and $contains(payload, \":\") ? $number($substringBefore(payload, \":\")) * 3600000 + $number($substringAfter(payload, \":\")) * 60000 : $flowContext(\"programming.fromtime\")",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -1216,8 +921,8 @@
                 "t": "set",
                 "p": "programming.totime",
                 "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
+                "to": "$exists(payload) and $type(payload) = \"string\" and $contains(payload, \":\") ? $number($substringBefore(payload, \":\")) * 3600000 + $number($substringAfter(payload, \":\")) * 60000 : $flowContext(\"programming.totime\")",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -1241,8 +946,8 @@
                 "t": "set",
                 "p": "programming.every",
                 "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
+                "to": "$exists(payload) ? payload : $flowContext(\"programming.every\")",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -1471,7 +1176,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "sqlite query",
-        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined) {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n            let durationsec = (flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n            node.send([null, msg]);\n            setTimeout(function () {//send second query after 200 ms for not overload sqlite\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"add\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (msg.payload === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send(msg);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send(msg);\n    }, 200);\n}\nreturn;",
+        "func": "if (flow.get(\"programming.cmd\") === \"edit\" && flow.get(\"programming.id\") != undefined) {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else if (msg.payload[i].id !== flow.get(\"programming.id\")) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//exclude schedule selected, if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is changed, irrigation.irrprgact.id is set to zero in order to update the parameters\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + flow.get(\"programming.totime\") + \", every = \" + flow.get(\"programming.every\") + \", duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//if it is a repeated irrigation, it copies the values ​​normally\n            let durationsec = (flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"UPDATE irrigation SET active = \" + flow.get(\"programming.active\") + \", fromtime = \" + flow.get(\"programming.fromtime\") + \", totime = \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", every = 0, duration = \" + flow.get(\"programming.duration\") + \", oneshoot = \" + flow.get(\"programming.oneshoot\") + \" WHERE id = \" + flow.get(\"programming.id\") + \";\";//otherwise set every to 0 and totime equal to fromtime plus the irrigation duration\n            node.send([null, msg]);\n            setTimeout(function () {//send second query after 200 ms for not overload sqlite\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"add\") {\n    flow.set(\"programming.conflict\", \"\");//reset check context\n    for (let i = 0; i < msg.payload.length; i++) {\n        if ((flow.get(\"programming.fromtime\") > msg.payload[i].fromtime && flow.get(\"programming.fromtime\") > msg.payload[i].totime && flow.get(\"programming.totime\") > msg.payload[i].fromtime && flow.get(\"programming.totime\") > msg.payload[i].totime) || (flow.get(\"programming.fromtime\") < msg.payload[i].fromtime && flow.get(\"programming.fromtime\") < msg.payload[i].totime && flow.get(\"programming.totime\") < msg.payload[i].fromtime && flow.get(\"programming.totime\") < msg.payload[i].totime)) flow.set(\"programming.conflict\", flow.get(\"programming.conflict\"));//if fromtime or / and totime not overlapping other schedule context conflict remain the same \n        else flow.set(\"programming.conflict\", flow.get(\"programming.conflict\") + msg.payload[i].id + \", \");//if fromtime and / or totime overlapping other schedule add id to conflict context for notify\n    }\n    if (flow.get(\"programming.conflict\") === \"\") {\n        if (flow.get(\"programming.fromtime\") <= flow.get(\"programming.totime\")) {\n            if (flow.get(\"programming.oneshoot\") === 0) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + flow.get(\"programming.totime\") + \", \" + flow.get(\"programming.every\") + \", \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            let durationsec = (flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n            if (flow.get(\"programming.oneshoot\") === 1) msg.topic = \"INSERT INTO irrigation(id, active, fromtime, totime, every, duration, oneshoot) VALUES (NULL, \" + flow.get(\"programming.active\") + \", \" + flow.get(\"programming.fromtime\") + \", \" + (flow.get(\"programming.fromtime\") + (durationsec * 1000)) + \", 0, \" + flow.get(\"programming.duration\") + \", \" + flow.get(\"programming.oneshoot\") + \");\";\n            node.send([null, msg]);\n            setTimeout(function () {\n                msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n                node.send([null, msg]);\n            }, 200);\n        }\n        else {\n            msg.payload = \"From time cannot be greater than To time, the program will not be recorded\";\n            msg.topic = \"Error\"\n            node.send([msg, null]);\n        }\n    }\n    else {\n        msg.payload = \"Current schedule overlapping schedule id \" + flow.get(\"programming.conflict\");\n        msg.topic = \"Error\"\n        node.send([msg, null]);\n    }\n}\nif (flow.get(\"programming.cmd\") === \"delete\" && flow.get(\"programming.id\") != undefined) {\n    if (global.get(\"irrigation.irrprgact.id\") === flow.get(\"programming.id\")) global.set(\"irrigation.irrprgact.id\", 0); //If the currently active program is deleted, irrigation.irrprgact.id is set to zero in order to update the parameters\n    msg.topic = \"DELETE FROM irrigation WHERE id = \" + flow.get(\"programming.id\") + \";\";\n    node.send([null, msg]);\n    setTimeout(function () {\n        msg.topic = \"SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;\";\n        node.send([null, msg]);\n    }, 200);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1502,36 +1207,36 @@
                 "t": "set",
                 "p": "payload.active",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             },
             {
                 "t": "set",
                 "p": "payload.fromtime",
                 "pt": "msg",
-                "to": "0",
-                "tot": "num"
+                "to": "00:00",
+                "tot": "str"
             },
             {
                 "t": "set",
                 "p": "payload.totime",
                 "pt": "msg",
-                "to": "0",
-                "tot": "num"
+                "to": "00:00",
+                "tot": "str"
             },
             {
                 "t": "set",
                 "p": "payload.every",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             },
             {
                 "t": "set",
                 "p": "payload.duration",
                 "pt": "msg",
-                "to": "false",
-                "tot": "bool"
+                "to": "0",
+                "tot": "num"
             },
             {
                 "t": "set",
@@ -1574,7 +1279,7 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "toggle respect one shoot",
-        "func": "if (flow.get(\"programming.oneshoot\") === 1){\n    let msgout1 = {};\n    let msgout2 = {};\n    let durationsec = ((flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600) * 1000);//convert ml of duration in milliseconds\n    msgout1.payload = flow.get(\"programming.fromtime\") + durationsec;\n    msgout1.enabled = false;\n    msgout2.payload = null;\n    msgout2.enabled = false;\n    node.send([msgout1, msgout2]);\n}\nif (flow.get(\"programming.oneshoot\") === 0) {\n    msg.payload = undefined;\n    msg.enabled = true;\n    node.send([msg, msg]);\n}\nreturn;",
+        "func": "function hhmm(ms) {//format ms from midnight as HH:mm\n    const min = Math.round(ms / 60000) % 1440;\n    return String(Math.floor(min / 60)).padStart(2, \"0\") + \":\" + String(min % 60).padStart(2, \"0\");\n}\nif (flow.get(\"programming.oneshoot\") === 1) {//To is computed from the duration, Every is not used\n    const durationms = (flow.get(\"programming.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600) * 1000;//convert ml of duration in milliseconds\n    node.send([{ \"payload\": hhmm(flow.get(\"programming.fromtime\") + durationms), \"enabled\": false }, { \"payload\": null, \"enabled\": false }]);\n}\nif (flow.get(\"programming.oneshoot\") === 0) {//enable To and Every without changing their value\n    node.send([{ \"enabled\": true }, { \"enabled\": true }]);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
@@ -1619,18 +1324,13 @@
         "id": "4258efc5d0dbfd62",
         "type": "function",
         "z": "9cfee97fb9e96644",
-        "name": "time to epoch",
-        "func": "msg.payload.fromtime = parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nmsg.payload.totime = parseInt(moment(\"01/01/1970 \" + msg.payload.totime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nreturn msg;",
+        "name": "selected row to inputs",
+        "func": "return msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 1220,
         "y": 500,
         "wires": [
@@ -1643,7 +1343,8 @@
                 "3e27331e70384ee0",
                 "b4efc86f44c4e2da"
             ]
-        ]
+        ],
+        "info": "The table already shows HH:mm, the D2 time inputs accept it as is"
     },
     {
         "id": "7489810a9a80d4a5",
@@ -2053,7 +1754,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "0.5",
+        "onceDelay": "2",
         "topic": "",
         "payload": "irrigation.output.levelirr",
         "payloadType": "global",
@@ -2306,194 +2007,268 @@
     },
     {
         "id": "aff7013e00bc8f63",
-        "type": "ui_button",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 8,
-        "width": 5,
-        "height": 1,
-        "passthru": false,
-        "label": "Edit",
-        "tooltip": "Edit the selected schedule",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "edit",
-        "payloadType": "str",
-        "topic": "SELECT id, fromtime, totime FROM irrigation;",
-        "topicType": "str",
         "x": 90,
         "y": 400,
         "wires": [
             [
                 "1dee4a5b0f066976"
             ]
-        ]
-    },
-    {
-        "id": "ddde992c6bf0e4ba",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
+        ],
         "name": "",
+        "type": "ui-button",
         "group": "fa9ccf2e0cfb5c02",
         "order": 9,
-        "width": 5,
-        "height": 1,
-        "passthru": false,
-        "label": "Add",
-        "tooltip": "Add a schedule",
+        "width": "2",
+        "height": "1",
+        "label": "Edit",
+        "tooltip": "Edit the selected schedule",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "add",
+        "iconPosition": "left",
+        "payload": "edit",
         "payloadType": "str",
         "topic": "SELECT id, fromtime, totime FROM irrigation;",
         "topicType": "str",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "ddde992c6bf0e4ba",
+        "z": "9cfee97fb9e96644",
         "x": 90,
         "y": 360,
         "wires": [
             [
                 "1dee4a5b0f066976"
             ]
-        ]
-    },
-    {
-        "id": "35245eb2fa31ffbd",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
+        ],
         "name": "",
+        "type": "ui-button",
         "group": "fa9ccf2e0cfb5c02",
-        "order": 10,
-        "width": 4,
-        "height": 1,
-        "passthru": false,
-        "label": "Delete",
-        "tooltip": "Remove the selected schedule",
+        "order": 8,
+        "width": "2",
+        "height": "1",
+        "label": "Add",
+        "tooltip": "Add a schedule",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "delete",
+        "iconPosition": "left",
+        "payload": "add",
         "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
+        "topic": "SELECT id, fromtime, totime FROM irrigation;",
+        "topicType": "str",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "35245eb2fa31ffbd",
+        "z": "9cfee97fb9e96644",
         "x": 90,
         "y": 440,
         "wires": [
             [
                 "1dee4a5b0f066976"
             ]
-        ]
-    },
-    {
-        "id": "753b11787971f0df",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
+        ],
         "name": "",
-        "group": "2b2b4e4e8122d74f",
-        "order": 2,
-        "width": 10,
-        "height": 1,
-        "passthru": false,
-        "label": "Start / Stop manual irrigation",
-        "tooltip": "",
+        "type": "ui-button",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 10,
+        "width": "2",
+        "height": "1",
+        "label": "Delete",
+        "tooltip": "Remove the selected schedule",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "",
+        "iconPosition": "left",
+        "payload": "delete",
         "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
+        "topic": "SELECT id, fromtime, totime FROM irrigation;",
+        "topicType": "str",
+        "buttonColor": "#c62828",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "753b11787971f0df",
+        "z": "9cfee97fb9e96644",
         "x": 300,
         "y": 1260,
         "wires": [
             [
                 "4ea9c0c1480a4972"
             ]
-        ]
-    },
-    {
-        "id": "de9356205b76bc90",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
+        ],
         "name": "",
-        "group": "696d740b65c6837c",
-        "order": 6,
-        "width": 7,
-        "height": 1,
-        "passthru": false,
-        "label": "Start flow rate calculation timer",
+        "type": "ui-button",
+        "group": "2b2b4e4e8122d74f",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "label": "Start / Stop manual irrigation",
         "tooltip": "",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
-        "icon": "",
-        "payload": "start",
+        "icon": "water",
+        "iconPosition": "left",
+        "payload": "",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "de9356205b76bc90",
+        "z": "9cfee97fb9e96644",
         "x": 170,
         "y": 2040,
         "wires": [
             [
                 "7c4d9208737888d5"
             ]
-        ]
-    },
-    {
-        "id": "58c12d0c308cc752",
-        "type": "ui_button",
-        "z": "9cfee97fb9e96644",
+        ],
         "name": "",
+        "type": "ui-button",
         "group": "696d740b65c6837c",
-        "order": 7,
-        "width": 7,
-        "height": 1,
-        "passthru": false,
-        "label": "Stop flow rate calculation timer",
-        "tooltip": "",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "label": "Start timer",
+        "tooltip": "Start flow rate calculation timer",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
-        "icon": "",
-        "payload": "stop",
+        "icon": "timer-play-outline",
+        "iconPosition": "left",
+        "payload": "start",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "58c12d0c308cc752",
+        "z": "9cfee97fb9e96644",
         "x": 170,
         "y": 2080,
         "wires": [
             [
                 "7c4d9208737888d5"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-button",
+        "group": "696d740b65c6837c",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "label": "Stop timer",
+        "tooltip": "Stop flow rate calculation timer (1 liter delivered)",
+        "emulateClick": false,
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "timer-stop-outline",
+        "iconPosition": "left",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
     },
     {
         "id": "292d8fffde5edb8b",
-        "type": "ui_dropdown",
         "z": "9cfee97fb9e96644",
+        "x": 660,
+        "y": 1840,
+        "wires": [
+            [
+                "c99e2796c931fd81"
+            ]
+        ],
         "name": "",
-        "label": "Logic level irrigation inactive",
-        "tooltip": "Set logic level of relay of irrigation when irrigation is inactive",
-        "place": "Select option",
+        "type": "ui-dropdown",
         "group": "696d740b65c6837c",
         "order": 4,
-        "width": 6,
-        "height": 1,
+        "width": "6",
+        "height": "1",
+        "label": "Relay level when irrigation is inactive",
+        "tooltip": "Set logic level of relay of irrigation when irrigation is inactive",
         "passthru": true,
         "multiple": false,
+        "chips": false,
+        "clearable": false,
         "options": [
             {
-                "label": "0",
+                "label": "Low (0)",
                 "value": 0,
                 "type": "num"
             },
             {
-                "label": "1",
+                "label": "High (1)",
                 "value": 1,
                 "type": "num"
             }
@@ -2502,64 +2277,35 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
-        "x": 660,
-        "y": 1840,
-        "wires": [
-            [
-                "c99e2796c931fd81"
-            ]
-        ]
+        "typeIsComboBox": false,
+        "msgTrigger": "onChange"
     },
     {
         "id": "0ec6e2279f40fc7b",
-        "type": "ui_switch",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Active",
-        "tooltip": "Enable or disable this programming row",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 2,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "decouple": "false",
-        "topic": "topic",
-        "topicType": "msg",
-        "style": "",
-        "onvalue": "1",
-        "onvalueType": "num",
-        "onicon": "",
-        "oncolor": "",
-        "offvalue": "0",
-        "offvalueType": "num",
-        "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
         "x": 1690,
         "y": 540,
         "wires": [
             [
                 "fc57f377ec280935"
             ]
-        ]
-    },
-    {
-        "id": "3051c6860a0e394c",
-        "type": "ui_switch",
-        "z": "9cfee97fb9e96644",
+        ],
         "name": "",
-        "label": "One Shoot",
-        "tooltip": "Run irrigation once (disable the Every field and the To field)",
+        "type": "ui-switch",
         "group": "fa9ccf2e0cfb5c02",
-        "order": 7,
-        "width": 2,
-        "height": 1,
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "label": "Active",
+        "tooltip": "Enable or disable this programming row",
         "passthru": true,
-        "decouple": "false",
+        "decouple": false,
         "topic": "topic",
         "topicType": "msg",
         "style": "",
+        "className": "",
+        "layout": "row-spread",
+        "clickableArea": "switch",
         "onvalue": "1",
         "onvalueType": "num",
         "onicon": "",
@@ -2567,9 +2313,11 @@
         "offvalue": "0",
         "offvalueType": "num",
         "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
+        "offcolor": ""
+    },
+    {
+        "id": "3051c6860a0e394c",
+        "z": "9cfee97fb9e96644",
         "x": 1710,
         "y": 620,
         "wires": [
@@ -2577,26 +2325,35 @@
                 "1f65ef9f4a1665a6",
                 "37a971ed9a826349"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-switch",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "label": "One shot",
+        "tooltip": "Run irrigation once (disable the Every field and the To field)",
+        "passthru": true,
+        "decouple": false,
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "className": "",
+        "layout": "row-spread",
+        "clickableArea": "switch",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": ""
     },
     {
         "id": "1ac85274d91d1f6b",
-        "type": "ui_text_input",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "From",
-        "tooltip": "Start time of programming",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 3,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1690,
         "y": 580,
         "wires": [
@@ -2604,172 +2361,236 @@
                 "abbba47230890ecb",
                 "37a971ed9a826349"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-text-input",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "label": "From",
+        "tooltip": "Start time of programming",
+        "topic": "topic",
+        "topicType": "msg",
+        "mode": "time",
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "sendOnClear": false,
+        "icon": "clock-outline",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside"
     },
     {
         "id": "8be6109a5cbe938b",
-        "type": "ui_text_input",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "To",
-        "tooltip": "End time of programming",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1690,
         "y": 740,
         "wires": [
             [
                 "81761520c7dc5aef"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-text-input",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "label": "To",
+        "tooltip": "End time of programming",
+        "topic": "topic",
+        "topicType": "msg",
+        "mode": "time",
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "sendOnClear": false,
+        "icon": "clock-outline",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside"
     },
     {
         "id": "35b1cb8d9c5604fd",
-        "type": "ui_text_input",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Every (min)",
-        "tooltip": "Run irrigation every (minutes)",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 5,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1710,
         "y": 780,
         "wires": [
             [
                 "9f7002438e1ab4ea"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-number-input",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 6,
+        "width": "3",
+        "height": "1",
+        "label": "Every (min)",
+        "tooltip": "Run irrigation every (minutes)",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 1440,
+        "step": 1,
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "stacked"
     },
     {
         "id": "77490e9a5b6a8097",
-        "type": "ui_text_input",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Duration (ml)",
-        "tooltip": "Duration of irrigation in ml for plant",
-        "group": "fa9ccf2e0cfb5c02",
-        "order": 6,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1710,
         "y": 820,
         "wires": [
             [
                 "16869e0b8315f42c"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-number-input",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 7,
+        "width": "3",
+        "height": "1",
+        "label": "Duration (ml)",
+        "tooltip": "Duration of irrigation in ml for plant",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 100000,
+        "step": 10,
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "stacked"
     },
     {
         "id": "5c5465a79ddb89e8",
-        "type": "ui_text_input",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "label": "Flow rate lt/h",
-        "tooltip": "Enter the flow rate in liters / hour or calculate it with the utility nearby",
-        "group": "696d740b65c6837c",
-        "order": 2,
-        "width": 5,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 610,
         "y": 1920,
         "wires": [
             [
                 "13d2995b4374b418"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-number-input",
+        "group": "696d740b65c6837c",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "label": "Flow rate (l/h)",
+        "tooltip": "Enter the flow rate in liters / hour or calculate it with the timer below",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10000,
+        "step": 0.01,
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "stacked"
     },
     {
         "id": "a25c098d2bc1a3a7",
-        "type": "ui_toast",
         "z": "9cfee97fb9e96644",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "red",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
         "x": 1020,
         "y": 400,
-        "wires": []
+        "wires": [
+            []
+        ],
+        "name": "",
+        "type": "ui-notification",
+        "ui": "6300f9d82d3260c0",
+        "position": "top right",
+        "colorDefault": false,
+        "color": "#c62828",
+        "displayTime": "5",
+        "showCountdown": true,
+        "outputs": 1,
+        "allowDismiss": true,
+        "dismissText": "Close",
+        "allowConfirm": false,
+        "confirmText": "Confirm",
+        "raw": false,
+        "className": ""
     },
     {
         "id": "09cf0f0ca103e47e",
-        "type": "ui_ui_control",
         "z": "9cfee97fb9e96644",
-        "name": "load irrigation notify",
-        "events": "change",
         "x": 130,
         "y": 500,
         "wires": [
             [
                 "d69ce2da8441ec24"
             ]
-        ]
+        ],
+        "name": "load irrigation notify",
+        "type": "ui-control",
+        "ui": "6300f9d82d3260c0",
+        "events": "change"
     },
     {
         "id": "08f49e173f72a25f",
-        "type": "ui_ui_control",
         "z": "9cfee97fb9e96644",
-        "name": "load irrigation notify",
-        "events": "change",
         "x": 110,
         "y": 1060,
         "wires": [
             [
                 "af730aace9973dff"
             ]
-        ]
+        ],
+        "name": "load irrigation notify",
+        "type": "ui-control",
+        "ui": "6300f9d82d3260c0",
+        "events": "change"
     },
     {
         "id": "0a78e609b54d3cea",
-        "type": "ui_ui_control",
         "z": "9cfee97fb9e96644",
-        "name": "",
-        "events": "all",
         "x": 100,
         "y": 1880,
         "wires": [
             [
                 "205cab230529817b"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-control",
+        "ui": "6300f9d82d3260c0",
+        "events": "all"
     },
     {
         "id": "5d4434152352be75",
@@ -2881,141 +2702,141 @@
     },
     {
         "id": "f8e099d3825a6ece",
-        "type": "ui_table",
         "z": "9cfee97fb9e96644",
-        "group": "fa9ccf2e0cfb5c02",
-        "name": "irrschedule",
-        "order": 1,
-        "width": 14,
-        "height": 6,
-        "columns": [
-            {
-                "field": "id",
-                "title": "ID",
-                "width": "50",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "active",
-                "title": "Active",
-                "width": "90",
-                "align": "center",
-                "formatter": "tickCross",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "fromtime",
-                "title": "From",
-                "width": "125",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "totime",
-                "title": "To",
-                "width": "125",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "every",
-                "title": "Every (min)",
-                "width": "120",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "duration",
-                "title": "Duration (ml)",
-                "width": "130",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "oneshoot",
-                "title": "One shoot",
-                "width": "110",
-                "align": "center",
-                "formatter": "tickCross",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 1,
-        "cts": true,
         "x": 1030,
         "y": 500,
         "wires": [
             [
                 "4258efc5d0dbfd62"
             ]
-        ]
+        ],
+        "name": "irrschedule",
+        "type": "ui-table",
+        "group": "fa9ccf2e0cfb5c02",
+        "order": 1,
+        "width": "6",
+        "height": "0",
+        "label": "Tap a row to edit it",
+        "maxrows": 0,
+        "passthru": false,
+        "autocols": false,
+        "showSearch": false,
+        "deselect": false,
+        "selectionType": "click",
+        "columns": [
+            {
+                "title": "ID",
+                "key": "id",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Active",
+                "key": "active",
+                "keyType": "key",
+                "type": "tickcross",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "From",
+                "key": "fromtime",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "To",
+                "key": "totime",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Every (min)",
+                "key": "every",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Duration (ml)",
+                "key": "duration",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "One shot",
+                "key": "oneshoot",
+                "keyType": "key",
+                "type": "tickcross",
+                "width": "",
+                "align": "center"
+            }
+        ],
+        "mobileBreakpoint": "576",
+        "mobileBreakpointType": "px",
+        "action": "replace",
+        "className": ""
     },
     {
         "id": "cafd7de47d246249",
-        "type": "ui_table",
         "z": "9cfee97fb9e96644",
-        "group": "25572f3b22faabc8",
-        "name": "",
-        "order": 2,
-        "width": 12,
-        "height": 6,
-        "columns": [
-            {
-                "field": "id",
-                "title": "ID",
-                "width": "80",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "time",
-                "title": "Time",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "duration",
-                "title": "Duration (ml)",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 0,
-        "cts": false,
         "x": 990,
         "y": 1060,
-        "wires": []
+        "wires": [
+            []
+        ],
+        "name": "",
+        "type": "ui-table",
+        "group": "25572f3b22faabc8",
+        "order": 1,
+        "width": "6",
+        "height": "0",
+        "label": "",
+        "maxrows": 0,
+        "passthru": false,
+        "autocols": false,
+        "showSearch": false,
+        "deselect": false,
+        "selectionType": "none",
+        "columns": [
+            {
+                "title": "ID",
+                "key": "id",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Time",
+                "key": "time",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Duration (ml)",
+                "key": "duration",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            }
+        ],
+        "mobileBreakpoint": "576",
+        "mobileBreakpointType": "px",
+        "action": "replace",
+        "className": ""
     },
     {
         "id": "cb99007aad076d23",
@@ -3041,7 +2862,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "1.5",
+        "onceDelay": "0.5",
         "topic": "SELECT id, label, value FROM system WHERE label = \"version\";",
         "x": 110,
         "y": 100,
@@ -3180,8 +3001,8 @@
                 "t": "set",
                 "p": "programming.fromtime",
                 "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
+                "to": "$exists(payload) and $type(payload) = \"string\" and $contains(payload, \":\") ? $number($substringBefore(payload, \":\")) * 3600000 + $number($substringAfter(payload, \":\")) * 60000 : $flowContext(\"programming.fromtime\")",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -3205,8 +3026,8 @@
                 "t": "set",
                 "p": "programming.totime",
                 "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
+                "to": "$exists(payload) and $type(payload) = \"string\" and $contains(payload, \":\") ? $number($substringBefore(payload, \":\")) * 3600000 + $number($substringAfter(payload, \":\")) * 60000 : $flowContext(\"programming.totime\")",
+                "tot": "jsonata"
             }
         ],
         "action": "",
@@ -3415,18 +3236,13 @@
         "id": "8fdc234f672b8e41",
         "type": "function",
         "z": "4215ef7ad32b1858",
-        "name": "time to epoch",
-        "func": "msg.payload.fromtime = parseInt(moment(\"01/01/1970 \" + msg.payload.fromtime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nmsg.payload.totime = parseInt(moment(\"01/01/1970 \" + msg.payload.totime, \"DD/MM/YYYY HH:mm\").add(1, 'hours').format(\"x\"));\nreturn msg;",
+        "name": "selected row to inputs",
+        "func": "return msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 1220,
         "y": 700,
         "wires": [
@@ -3440,7 +3256,8 @@
                 "04fbd2665495d68a",
                 "7149659b0ad3359d"
             ]
-        ]
+        ],
+        "info": "The table already shows HH:mm, the D2 time inputs accept it as is"
     },
     {
         "id": "237e3258eecfb151",
@@ -4137,7 +3954,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "0.5",
+        "onceDelay": "2",
         "topic": "",
         "payload": "climate.output.levelheat",
         "payloadType": "global",
@@ -4175,7 +3992,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": "0.5",
+        "onceDelay": "2",
         "topic": "",
         "payload": "climate.output.levelfan",
         "payloadType": "global",
@@ -4399,266 +4216,277 @@
     },
     {
         "id": "b55361425e16765b",
-        "type": "ui_led",
         "z": "4215ef7ad32b1858",
-        "order": 5,
-        "group": "40009fbec210236c",
-        "width": "3",
-        "height": "1",
-        "label": "Heating",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "0",
-                "valueType": "num"
-            },
-            {
-                "color": "#00ff00",
-                "value": "1",
-                "valueType": "num"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "circle",
-        "showGlow": false,
-        "name": "Heating led",
         "x": 650,
         "y": 400,
-        "wires": []
+        "wires": [
+            []
+        ],
+        "name": "Heating status",
+        "type": "ui-template",
+        "group": "40009fbec210236c",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "page": "",
+        "ui": "",
+        "head": "",
+        "format": "<template>\n    <div class=\"gm-badge\" :class=\"{ 'gm-badge-on': isOn }\">\n        <span class=\"gm-dot\"></span>\n        <span class=\"gm-badge-label\">Heating</span>\n        <strong>{{ isOn ? 'ON' : 'OFF' }}</strong>\n    </div>\n</template>\n\n<script>\nexport default {\n    computed: {\n        isOn () {\n            return !!(this.msg && Number(this.msg.payload) === 1)\n        }\n    }\n}\n</script>\n\n<style>\n.gm-badge {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    width: 100%;\n    padding: 6px 10px;\n    border-radius: 8px;\n    border: 1px solid rgba(var(--v-theme-on-surface), 0.12);\n}\n.gm-badge .gm-dot {\n    width: 12px;\n    height: 12px;\n    border-radius: 50%;\n    background: #9e9e9e;\n}\n.gm-badge-on {\n    border-color: rgba(var(--v-theme-primary), 0.5);\n    background: rgba(var(--v-theme-primary), 0.10);\n}\n.gm-badge-on .gm-dot {\n    background: #43a047;\n    box-shadow: 0 0 6px #43a047;\n}\n.gm-badge-label {\n    flex: 1;\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": ""
     },
     {
         "id": "138643c44ca31cf8",
-        "type": "ui_led",
         "z": "4215ef7ad32b1858",
-        "order": 5,
-        "group": "40009fbec210236c",
-        "width": "3",
-        "height": "1",
-        "label": "Fan",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "0",
-                "valueType": "num"
-            },
-            {
-                "color": "#00ff00",
-                "value": "1",
-                "valueType": "num"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "circle",
-        "showGlow": false,
-        "name": "Fan led",
         "x": 640,
         "y": 440,
-        "wires": []
+        "wires": [
+            []
+        ],
+        "name": "Fan status",
+        "type": "ui-template",
+        "group": "40009fbec210236c",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "page": "",
+        "ui": "",
+        "head": "",
+        "format": "<template>\n    <div class=\"gm-badge\" :class=\"{ 'gm-badge-on': isOn }\">\n        <span class=\"gm-dot\"></span>\n        <span class=\"gm-badge-label\">Fan</span>\n        <strong>{{ isOn ? 'ON' : 'OFF' }}</strong>\n    </div>\n</template>\n\n<script>\nexport default {\n    computed: {\n        isOn () {\n            return !!(this.msg && Number(this.msg.payload) === 1)\n        }\n    }\n}\n</script>\n\n<style>\n.gm-badge {\n    display: flex;\n    align-items: center;\n    gap: 8px;\n    width: 100%;\n    padding: 6px 10px;\n    border-radius: 8px;\n    border: 1px solid rgba(var(--v-theme-on-surface), 0.12);\n}\n.gm-badge .gm-dot {\n    width: 12px;\n    height: 12px;\n    border-radius: 50%;\n    background: #9e9e9e;\n}\n.gm-badge-on {\n    border-color: rgba(var(--v-theme-primary), 0.5);\n    background: rgba(var(--v-theme-primary), 0.10);\n}\n.gm-badge-on .gm-dot {\n    background: #43a047;\n    box-shadow: 0 0 6px #43a047;\n}\n.gm-badge-label {\n    flex: 1;\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": ""
     },
     {
         "id": "75cecd7f8ff0f75f",
-        "type": "ui_button",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 11,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Edit",
-        "tooltip": "Edit the selected schedule",
-        "color": "",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "edit",
-        "payloadType": "str",
-        "topic": "SELECT id, fromtime, totime FROM climate_set;",
-        "topicType": "str",
         "x": 90,
         "y": 600,
         "wires": [
             [
                 "45ceacc3ef7b1824"
             ]
-        ]
-    },
-    {
-        "id": "e25d768af86b3752",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
+        ],
         "name": "",
+        "type": "ui-button",
         "group": "5cbd1b6fdfe2459d",
         "order": 10,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "New",
-        "tooltip": "Add a schedule",
+        "width": "2",
+        "height": "1",
+        "label": "Edit",
+        "tooltip": "Edit the selected schedule",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "new",
+        "iconPosition": "left",
+        "payload": "edit",
         "payloadType": "str",
         "topic": "SELECT id, fromtime, totime FROM climate_set;",
         "topicType": "str",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "e25d768af86b3752",
+        "z": "4215ef7ad32b1858",
         "x": 90,
         "y": 560,
         "wires": [
             [
                 "45ceacc3ef7b1824"
             ]
-        ]
-    },
-    {
-        "id": "4a75e44ec050fa5e",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
+        ],
         "name": "",
+        "type": "ui-button",
         "group": "5cbd1b6fdfe2459d",
-        "order": 12,
-        "width": 3,
-        "height": 1,
-        "passthru": false,
-        "label": "Delete",
-        "tooltip": "Remove the selected schedule",
+        "order": 9,
+        "width": "2",
+        "height": "1",
+        "label": "New",
+        "tooltip": "Add a schedule",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "delete",
+        "iconPosition": "left",
+        "payload": "new",
         "payloadType": "str",
         "topic": "SELECT id, fromtime, totime FROM climate_set;",
         "topicType": "str",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "4a75e44ec050fa5e",
+        "z": "4215ef7ad32b1858",
         "x": 90,
         "y": 640,
         "wires": [
             [
                 "45ceacc3ef7b1824"
             ]
-        ]
-    },
-    {
-        "id": "6bef38285d1a4c78",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
+        ],
         "name": "",
-        "group": "138fe263b9fbdc51",
-        "order": 1,
-        "width": 8,
-        "height": 1,
-        "passthru": false,
-        "label": "Start / Stop manual heating",
-        "tooltip": "",
+        "type": "ui-button",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 11,
+        "width": "2",
+        "height": "1",
+        "label": "Delete",
+        "tooltip": "Remove the selected schedule",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
         "icon": "",
-        "payload": "heat",
+        "iconPosition": "left",
+        "payload": "delete",
         "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
+        "topic": "SELECT id, fromtime, totime FROM climate_set;",
+        "topicType": "str",
+        "buttonColor": "#c62828",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "6bef38285d1a4c78",
+        "z": "4215ef7ad32b1858",
         "x": 200,
         "y": 1400,
         "wires": [
             [
                 "93ea57e432b87c2d"
             ]
-        ]
-    },
-    {
-        "id": "63a275ed1cfb4644",
-        "type": "ui_button",
-        "z": "4215ef7ad32b1858",
+        ],
         "name": "",
+        "type": "ui-button",
         "group": "138fe263b9fbdc51",
-        "order": 2,
-        "width": 8,
-        "height": 1,
-        "passthru": false,
-        "label": "Start / Stop manual fan",
-        "tooltip": "",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "label": "Heating",
+        "tooltip": "Start / Stop manual heating",
+        "emulateClick": false,
         "color": "",
         "bgcolor": "",
         "className": "",
-        "icon": "",
-        "payload": "fan",
+        "icon": "radiator",
+        "iconPosition": "left",
+        "payload": "heat",
         "payloadType": "str",
         "topic": "topic",
         "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
+    },
+    {
+        "id": "63a275ed1cfb4644",
+        "z": "4215ef7ad32b1858",
         "x": 220,
         "y": 1440,
         "wires": [
             [
                 "93ea57e432b87c2d"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-button",
+        "group": "138fe263b9fbdc51",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "label": "Fan",
+        "tooltip": "Start / Stop manual fan",
+        "emulateClick": false,
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "fan",
+        "iconPosition": "left",
+        "payload": "fan",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str"
     },
     {
         "id": "ce2c6648051932d5",
-        "type": "ui_dropdown",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Logic level heat inactive",
-        "tooltip": "Set logic level of relay of heating when heating is inactive",
-        "place": "Select option",
-        "group": "bd1454c9fe3a5dbc",
-        "order": 1,
-        "width": "6",
-        "height": "1",
-        "passthru": true,
-        "multiple": false,
-        "options": [
-            {
-                "label": "Low",
-                "value": 0,
-                "type": "num"
-            },
-            {
-                "label": "High",
-                "value": 1,
-                "type": "num"
-            }
-        ],
-        "payload": "",
-        "topic": "topic",
-        "topicType": "msg",
-        "className": "",
         "x": 670,
         "y": 2240,
         "wires": [
             [
                 "a90603dd48b92c7a"
             ]
-        ]
-    },
-    {
-        "id": "ba84192f3b6431ab",
-        "type": "ui_dropdown",
-        "z": "4215ef7ad32b1858",
+        ],
         "name": "",
-        "label": "Logic level fan inactive",
-        "tooltip": "Set logic level of relay of fan when ventilation is inactive",
-        "place": "Select option",
+        "type": "ui-dropdown",
         "group": "bd1454c9fe3a5dbc",
         "order": 1,
         "width": "6",
         "height": "1",
+        "label": "Heating relay level when inactive",
+        "tooltip": "Set logic level of relay of heating when heating is inactive",
         "passthru": true,
         "multiple": false,
+        "chips": false,
+        "clearable": false,
         "options": [
             {
-                "label": "Low",
+                "label": "Low (0)",
                 "value": 0,
                 "type": "num"
             },
             {
-                "label": "High",
+                "label": "High (1)",
                 "value": 1,
                 "type": "num"
             }
@@ -4667,30 +4495,76 @@
         "topic": "topic",
         "topicType": "msg",
         "className": "",
+        "typeIsComboBox": false,
+        "msgTrigger": "onChange"
+    },
+    {
+        "id": "ba84192f3b6431ab",
+        "z": "4215ef7ad32b1858",
         "x": 670,
         "y": 2280,
         "wires": [
             [
                 "7c0eb6baa7e9f452"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-dropdown",
+        "group": "bd1454c9fe3a5dbc",
+        "order": 2,
+        "width": "6",
+        "height": "1",
+        "label": "Fan relay level when inactive",
+        "tooltip": "Set logic level of relay of fan when ventilation is inactive",
+        "passthru": true,
+        "multiple": false,
+        "chips": false,
+        "clearable": false,
+        "options": [
+            {
+                "label": "Low (0)",
+                "value": 0,
+                "type": "num"
+            },
+            {
+                "label": "High (1)",
+                "value": 1,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "className": "",
+        "typeIsComboBox": false,
+        "msgTrigger": "onChange"
     },
     {
         "id": "639c3c659b2eae0b",
-        "type": "ui_switch",
         "z": "4215ef7ad32b1858",
+        "x": 1670,
+        "y": 740,
+        "wires": [
+            [
+                "393594e25b8c7985"
+            ]
+        ],
         "name": "",
-        "label": "Active",
-        "tooltip": "Enable or disable this programming row",
+        "type": "ui-switch",
         "group": "5cbd1b6fdfe2459d",
         "order": 2,
-        "width": 2,
-        "height": 1,
+        "width": "6",
+        "height": "1",
+        "label": "Active",
+        "tooltip": "Enable or disable this programming row",
         "passthru": true,
-        "decouple": "false",
+        "decouple": false,
         "topic": "topic",
         "topicType": "msg",
         "style": "",
+        "className": "",
+        "layout": "row-spread",
+        "clickableArea": "switch",
         "onvalue": "1",
         "onvalueType": "num",
         "onicon": "",
@@ -4698,281 +4572,345 @@
         "offvalue": "0",
         "offvalueType": "num",
         "officon": "",
-        "offcolor": "",
-        "animate": false,
-        "className": "",
-        "x": 1670,
-        "y": 740,
-        "wires": [
-            [
-                "393594e25b8c7985"
-            ]
-        ]
+        "offcolor": ""
     },
     {
         "id": "bf7a442b4b8d2e74",
-        "type": "ui_text_input",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "From",
-        "tooltip": "Start time of programming",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 3,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1670,
         "y": 780,
         "wires": [
             [
                 "5c44af7d64f4a2fc"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-text-input",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 3,
+        "width": "3",
+        "height": "1",
+        "label": "From",
+        "tooltip": "Start time of programming",
+        "topic": "topic",
+        "topicType": "msg",
+        "mode": "time",
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "sendOnClear": false,
+        "icon": "clock-outline",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside"
     },
     {
         "id": "fef75a7a1b91590a",
-        "type": "ui_text_input",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "To",
-        "tooltip": "End time of programming",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 4,
-        "width": 3,
-        "height": 1,
-        "passthru": true,
-        "mode": "time",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1670,
         "y": 820,
         "wires": [
             [
                 "2019e4d56cde4447"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-text-input",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 4,
+        "width": "3",
+        "height": "1",
+        "label": "To",
+        "tooltip": "End time of programming",
+        "topic": "topic",
+        "topicType": "msg",
+        "mode": "time",
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "sendOnClear": false,
+        "icon": "clock-outline",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside"
     },
     {
         "id": "0549c84591625fc3",
-        "type": "ui_text_input",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Temp min",
-        "tooltip": "Minimum temperature allowed",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 6,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1680,
         "y": 860,
         "wires": [
             [
                 "4280c757ee36cbaf"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-number-input",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 5,
+        "width": "3",
+        "height": "1",
+        "label": "T min (°C)",
+        "tooltip": "Minimum temperature allowed",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": -20,
+        "max": 60,
+        "step": 0.5,
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "stacked"
     },
     {
         "id": "b1bdf7aa032ca4dd",
-        "type": "ui_text_input",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Temp max",
-        "tooltip": "Maximum temperature allowed",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 7,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1690,
         "y": 900,
         "wires": [
             [
                 "06ae93c10168d8d6"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-number-input",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 6,
+        "width": "3",
+        "height": "1",
+        "label": "T max (°C)",
+        "tooltip": "Maximum temperature allowed",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": -20,
+        "max": 60,
+        "step": 0.5,
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "stacked"
     },
     {
         "id": "3d9bb0efbe2047b2",
-        "type": "ui_text_input",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Hum min",
-        "tooltip": "Minimum humidity allowed",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 13,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1680,
         "y": 940,
         "wires": [
             [
                 "da4684500c106992"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-number-input",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 7,
+        "width": "3",
+        "height": "1",
+        "label": "RH min (%)",
+        "tooltip": "Minimum humidity allowed",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "stacked"
     },
     {
         "id": "3aae0239f6650d5c",
-        "type": "ui_text_input",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "label": "Hum max",
-        "tooltip": "Maximum humidity allowed",
-        "group": "5cbd1b6fdfe2459d",
-        "order": 14,
-        "width": 2,
-        "height": 1,
-        "passthru": true,
-        "mode": "number",
-        "delay": 300,
-        "topic": "topic",
-        "sendOnBlur": true,
-        "className": "",
-        "topicType": "msg",
         "x": 1680,
         "y": 980,
         "wires": [
             [
                 "a4bb1a85552c2970"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-number-input",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 8,
+        "width": "3",
+        "height": "1",
+        "label": "RH max (%)",
+        "tooltip": "Maximum humidity allowed",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "delay": 300,
+        "passthru": true,
+        "sendOnDelay": false,
+        "sendOnBlur": true,
+        "sendOnEnter": true,
+        "className": "",
+        "clearable": false,
+        "icon": "",
+        "iconPosition": "left",
+        "iconInnerPosition": "inside",
+        "spinner": "stacked"
     },
     {
         "id": "0d7e7068d0e78b70",
-        "type": "ui_text",
         "z": "4215ef7ad32b1858",
-        "group": "40009fbec210236c",
-        "order": 2,
-        "width": 5,
-        "height": 1,
-        "name": "",
-        "label": "Temperature",
-        "format": "{{msg.payload.inttemp}} °C",
-        "layout": "row-center",
-        "className": "",
         "x": 650,
         "y": 320,
-        "wires": []
+        "wires": [],
+        "name": "",
+        "type": "ui-text",
+        "group": "40009fbec210236c",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "label": "Temperature",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "$exists(payload.inttemp) ? $string(payload.inttemp) & \" °C\" : \"-\"",
+        "valueType": "jsonata"
     },
     {
         "id": "fdc8a361eb52c6f6",
-        "type": "ui_text",
         "z": "4215ef7ad32b1858",
-        "group": "40009fbec210236c",
-        "order": 4,
-        "width": 5,
-        "height": 1,
-        "name": "",
-        "label": "Humidity",
-        "format": "{{msg.payload.inthum}} %",
-        "layout": "row-center",
-        "className": "",
         "x": 640,
         "y": 360,
-        "wires": []
+        "wires": [],
+        "name": "",
+        "type": "ui-text",
+        "group": "40009fbec210236c",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "label": "Humidity",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#717171",
+        "wrapText": false,
+        "className": "",
+        "value": "$exists(payload.inthum) ? $string(payload.inthum) & \" %\" : \"-\"",
+        "valueType": "jsonata"
     },
     {
         "id": "b846e7ff492a97fc",
-        "type": "ui_toast",
         "z": "4215ef7ad32b1858",
-        "position": "top right",
-        "displayTime": "5",
-        "highlight": "red",
-        "sendall": true,
-        "outputs": 0,
-        "ok": "OK",
-        "cancel": "",
-        "raw": false,
-        "className": "",
-        "topic": "",
-        "name": "",
         "x": 1020,
         "y": 600,
-        "wires": []
+        "wires": [
+            []
+        ],
+        "name": "",
+        "type": "ui-notification",
+        "ui": "6300f9d82d3260c0",
+        "position": "top right",
+        "colorDefault": false,
+        "color": "#c62828",
+        "displayTime": "5",
+        "showCountdown": true,
+        "outputs": 1,
+        "allowDismiss": true,
+        "dismissText": "Close",
+        "allowConfirm": false,
+        "confirmText": "Confirm",
+        "raw": false,
+        "className": ""
     },
     {
         "id": "9a5733b7dc678a1c",
-        "type": "ui_ui_control",
         "z": "4215ef7ad32b1858",
-        "name": "load irrigation tab",
-        "events": "change",
         "x": 120,
         "y": 700,
         "wires": [
             [
                 "35cf8c389803fcbd"
             ]
-        ]
+        ],
+        "name": "load irrigation tab",
+        "type": "ui-control",
+        "ui": "6300f9d82d3260c0",
+        "events": "change"
     },
     {
         "id": "95eb86564f73fc6a",
-        "type": "ui_ui_control",
         "z": "4215ef7ad32b1858",
-        "name": "load irrigation notify",
-        "events": "change",
         "x": 110,
         "y": 1220,
         "wires": [
             [
                 "6fc0e5feec84aec1"
             ]
-        ]
+        ],
+        "name": "load irrigation notify",
+        "type": "ui-control",
+        "ui": "6300f9d82d3260c0",
+        "events": "change"
     },
     {
         "id": "cc72a8c1f368cf4e",
-        "type": "ui_ui_control",
         "z": "4215ef7ad32b1858",
-        "name": "load irrigation notify",
-        "events": "change",
         "x": 140,
         "y": 360,
         "wires": [
             [
                 "4f72dc7988fc49fd"
             ]
-        ]
+        ],
+        "name": "load irrigation notify",
+        "type": "ui-control",
+        "ui": "6300f9d82d3260c0",
+        "events": "change"
     },
     {
         "id": "ca61b97da0623ef0",
-        "type": "ui_ui_control",
         "z": "4215ef7ad32b1858",
-        "name": "",
-        "events": "all",
         "x": 100,
         "y": 2260,
         "wires": [
             [
                 "194029e47b5996c0"
             ]
-        ]
+        ],
+        "name": "",
+        "type": "ui-control",
+        "ui": "6300f9d82d3260c0",
+        "events": "all"
     },
     {
         "id": "0ba7eb63be3fec20",
@@ -5084,171 +5022,165 @@
     },
     {
         "id": "ebf8ac9a567a7529",
-        "type": "ui_table",
         "z": "4215ef7ad32b1858",
-        "group": "5cbd1b6fdfe2459d",
-        "name": "clmschedule",
-        "order": 1,
-        "width": 16,
-        "height": 6,
-        "columns": [
-            {
-                "field": "id",
-                "title": "ID",
-                "width": "50",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "active",
-                "title": "Active",
-                "width": "80",
-                "align": "center",
-                "formatter": "tickCross",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "fromtime",
-                "title": "From",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "totime",
-                "title": "To",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "tempmin",
-                "title": "T min",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "tempmax",
-                "title": "T max",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "hummin",
-                "title": "H min",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "hummax",
-                "title": "H max",
-                "width": "90",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 1,
-        "cts": true,
         "x": 1030,
         "y": 700,
         "wires": [
             [
                 "8fdc234f672b8e41"
             ]
-        ]
+        ],
+        "name": "clmschedule",
+        "type": "ui-table",
+        "group": "5cbd1b6fdfe2459d",
+        "order": 1,
+        "width": "6",
+        "height": "0",
+        "label": "Tap a row to edit it",
+        "maxrows": 0,
+        "passthru": false,
+        "autocols": false,
+        "showSearch": false,
+        "deselect": false,
+        "selectionType": "click",
+        "columns": [
+            {
+                "title": "ID",
+                "key": "id",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Active",
+                "key": "active",
+                "keyType": "key",
+                "type": "tickcross",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "From",
+                "key": "fromtime",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "To",
+                "key": "totime",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "T min",
+                "key": "tempmin",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "T max",
+                "key": "tempmax",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "H min",
+                "key": "hummin",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "H max",
+                "key": "hummax",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            }
+        ],
+        "mobileBreakpoint": "576",
+        "mobileBreakpointType": "px",
+        "action": "replace",
+        "className": ""
     },
     {
         "id": "29e59a53102e38b5",
-        "type": "ui_table",
         "z": "4215ef7ad32b1858",
-        "group": "cc3a2eefb8aff812",
-        "name": "",
-        "order": 2,
-        "width": 12,
-        "height": 6,
-        "columns": [
-            {
-                "field": "id",
-                "title": "ID",
-                "width": "80",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "time",
-                "title": "Time",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "inttemp",
-                "title": "Temperature",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "inthum",
-                "title": "Humidity",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            },
-            {
-                "field": "action",
-                "title": "Action",
-                "width": "",
-                "align": "center",
-                "formatter": "plaintext",
-                "formatterParams": {
-                    "target": "_blank"
-                }
-            }
-        ],
-        "outputs": 0,
-        "cts": false,
         "x": 990,
         "y": 1220,
-        "wires": []
+        "wires": [
+            []
+        ],
+        "name": "",
+        "type": "ui-table",
+        "group": "cc3a2eefb8aff812",
+        "order": 1,
+        "width": "6",
+        "height": "0",
+        "label": "",
+        "maxrows": 0,
+        "passthru": false,
+        "autocols": false,
+        "showSearch": false,
+        "deselect": false,
+        "selectionType": "none",
+        "columns": [
+            {
+                "title": "ID",
+                "key": "id",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Time",
+                "key": "time",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Temperature",
+                "key": "inttemp",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Humidity",
+                "key": "inthum",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            },
+            {
+                "title": "Action",
+                "key": "action",
+                "keyType": "key",
+                "type": "text",
+                "width": "",
+                "align": "center"
+            }
+        ],
+        "mobileBreakpoint": "576",
+        "mobileBreakpointType": "px",
+        "action": "replace",
+        "className": ""
     },
     {
         "id": "0a985b4e22d9af91",
@@ -6187,6 +6119,109 @@
         "y": 800,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "a22c60478c8b535f",
+        "type": "inject",
+        "z": "473af4e9135bb6f3",
+        "name": "refresh status every 5 s",
+        "props": [],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "",
+        "x": 170,
+        "y": 600,
+        "wires": [
+            [
+                "f3a99309dc4e6be9"
+            ]
+        ]
+    },
+    {
+        "id": "f3a99309dc4e6be9",
+        "type": "function",
+        "z": "473af4e9135bb6f3",
+        "name": "build status",
+        "func": "msg.payload = {//current values shown on the Home status tiles\n    \"inttemp\": global.get(\"climate.inttemp\"),\n    \"inthum\": global.get(\"climate.inthum\"),\n    \"heat\": global.get(\"climate.heatisact\") === 1,\n    \"fan\": global.get(\"climate.fanisact\") === 1,\n    \"irrigation\": global.get(\"irrigation.irrisact\") === 1\n};\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 600,
+        "wires": [
+            [
+                "3c03dcf0a267e429"
+            ]
+        ]
+    },
+    {
+        "id": "3c03dcf0a267e429",
+        "z": "473af4e9135bb6f3",
+        "x": 590,
+        "y": 600,
+        "wires": [
+            []
+        ],
+        "type": "ui-template",
+        "name": "Status tiles",
+        "group": "770c026fb7d2a338",
+        "order": 1,
+        "width": "12",
+        "height": "0",
+        "page": "",
+        "ui": "",
+        "head": "",
+        "format": "<template>\n    <div class=\"gm-tiles\">\n        <div v-for=\"tile in tiles\" :key=\"tile.key\" class=\"gm-tile\" :class=\"tile.cls\">\n            <v-icon class=\"gm-tile-icon\" :icon=\"'mdi-' + tile.icon\"></v-icon>\n            <div class=\"gm-tile-text\">\n                <span class=\"gm-tile-label\">{{ tile.label }}</span>\n                <span class=\"gm-tile-value\">{{ tile.value }}</span>\n            </div>\n        </div>\n    </div>\n</template>\n\n<script>\nexport default {\n    computed: {\n        tiles () {\n            const p = (this.msg && this.msg.payload) || {}\n            const num = (v, unit, digits) => (typeof v === 'number' && !isNaN(v)) ? v.toFixed(digits) + ' ' + unit : '-'\n            const onOff = (v) => v ? 'ON' : 'OFF'\n            const tiles = [\n                { key: 'temp', label: 'Temperature', icon: 'thermometer', value: num(p.inttemp, '°C', 1) },\n                { key: 'hum', label: 'Humidity', icon: 'water-percent', value: num(p.inthum, '%', 0) }\n            ]\n            if (p.dewpoint !== undefined) tiles.push({ key: 'dew', label: 'Dew point', icon: 'weather-fog', value: num(p.dewpoint, '°C', 1) })\n            if (p.vpd !== undefined) tiles.push({ key: 'vpd', label: 'VPD', icon: 'leaf', value: num(p.vpd, 'kPa', 2), cls: p.vpdState ? 'gm-vpd-' + p.vpdState : '' })\n            tiles.push(\n                { key: 'heat', label: 'Heating', icon: 'radiator', value: onOff(p.heat), cls: p.heat ? 'gm-on' : '' },\n                { key: 'fan', label: 'Fan', icon: 'fan', value: onOff(p.fan), cls: p.fan ? 'gm-on' : '' },\n                { key: 'irr', label: 'Irrigation', icon: 'water', value: onOff(p.irrigation), cls: p.irrigation ? 'gm-on' : '' }\n            )\n            if (p.sensorOk === false) tiles.unshift({ key: 'alarm', label: 'Sensor', icon: 'alert', value: 'NO DATA', cls: 'gm-alarm' })\n            return tiles\n        }\n    }\n}\n</script>\n\n<style>\n.gm-tiles {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n    gap: 12px;\n    width: 100%;\n}\n.gm-tile {\n    display: flex;\n    align-items: center;\n    gap: 12px;\n    min-height: 72px;\n    padding: 12px 14px;\n    border-radius: 8px;\n    border: 1px solid rgba(var(--v-theme-on-surface), 0.12);\n    background: rgba(var(--v-theme-primary), 0.04);\n}\n.gm-tile-icon {\n    font-size: 28px;\n    color: rgb(var(--v-theme-primary));\n}\n.gm-tile-text {\n    display: flex;\n    flex-direction: column;\n    min-width: 0;\n}\n.gm-tile-label {\n    font-size: 0.8rem;\n    opacity: 0.7;\n}\n.gm-tile-value {\n    font-size: 1.35rem;\n    font-weight: 600;\n    white-space: nowrap;\n}\n.gm-tile.gm-on {\n    background: rgba(var(--v-theme-primary), 0.14);\n    border-color: rgba(var(--v-theme-primary), 0.5);\n}\n.gm-tile.gm-alarm, .gm-tile.gm-vpd-high, .gm-tile.gm-vpd-low {\n    background: rgba(198, 40, 40, 0.10);\n    border-color: rgba(198, 40, 40, 0.5);\n}\n.gm-tile.gm-alarm .gm-tile-icon, .gm-tile.gm-vpd-high .gm-tile-icon, .gm-tile.gm-vpd-low .gm-tile-icon {\n    color: #c62828;\n}\n</style>\n",
+        "storeOutMessages": true,
+        "passthru": false,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": ""
+    },
+    {
+        "id": "8dfd7bf52f1ef876",
+        "type": "comment",
+        "z": "473af4e9135bb6f3",
+        "name": "Status tiles (current climate and outputs)",
+        "info": "",
+        "x": 200,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "5831c1ef40da76e2",
+        "type": "inject",
+        "z": "473af4e9135bb6f3",
+        "name": "load schedule overview at start",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "name",
+                "v": "Home",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "3",
+        "topic": "",
+        "payload": "change",
+        "payloadType": "str",
+        "x": 210,
+        "y": 520,
+        "wires": [
+            [
+                "a49933558f887776"
+            ]
         ]
     }
 ]

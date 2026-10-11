@@ -94,3 +94,16 @@ Both must answer with a JSON containing the value in °C, for example `{"value":
 
 The `Test` flow is disabled by default: enable it in the editor to simulate temperature and humidity
 during the day (`climate.testmode`).
+
+Tests run on every push with GitHub Actions ([CI workflow](.github/workflows/ci.yml)):
+
+```bash
+npm ci
+npm test                            # unit tests: the code of the function nodes run in a sandbox
+npx playwright install chromium
+npm run test:e2e                    # Node-RED + dashboard driven by a browser, with a fake sensor board
+npm run lint:installer              # requires shellcheck
+```
+
+Pushing a tag `vX.Y.Z` equal to the version in `package.json` runs the tests and publishes a GitHub
+release with the flow and an installer pinned to that version.

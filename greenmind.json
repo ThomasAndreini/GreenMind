@@ -1280,17 +1280,12 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "epoch to time",
-        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "func": "function hhmm(ms) {//ms from midnight to HH:mm\n    const min = Math.round(ms / 60000) % 1440;\n    return String(Math.floor(min / 60)).padStart(2, \"0\") + \":\" + String(min % 60).padStart(2, \"0\");\n}\nfor (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = hhmm(msg.payload[i].fromtime);\n    msg.payload[i].totime = hhmm(msg.payload[i].totime);\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 840,
         "y": 500,
         "wires": [
@@ -1349,17 +1344,17 @@
         "id": "b1d5ca956a4e5bbd",
         "type": "inject",
         "z": "9cfee97fb9e96644",
-        "name": "",
+        "name": "refresh irrigation schedules every 60 s",
         "props": [
             {
                 "p": "topic",
                 "vt": "str"
             }
         ],
-        "repeat": "1",
+        "repeat": "60",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "3",
         "topic": "SELECT id, active, fromtime, totime, every, duration, oneshoot FROM irrigation ORDER BY fromtime;",
         "x": 170,
         "y": 1500,
@@ -1374,17 +1369,12 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "check irrigation program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nif ((millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\")) && global.get(\"irrigation.irrprgact.id\") > 0) global.set(\"irrigation.irrprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"irrigation.irrprgact.id\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is equal than 0 therefore no program is active and manual irrigation is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"irrigation.irrprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"irrigation.irrprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"irrigation.irrprgact.duration\", msg.payload[i].duration);\n            global.set(\"irrigation.irrprgact.oneshoot\", msg.payload[i].oneshoot);\n            if (msg.payload[i].oneshoot === 0) {//if the program is not in one shoot mode get the value set\n                global.set(\"irrigation.irrprgact.totime\", msg.payload[i].totime);\n                global.set(\"irrigation.irrprgact.every\", msg.payload[i].every);\n                global.set(\"irrigation.everytime\", millcurrentday - (global.get(\"irrigation.irrprgact.every\") * 60000) );//set every timer to now time minus every time (so the first irrigation start immediatly)\n            }\n            if (msg.payload[i].oneshoot === 1) {//if the program is in one shoot mode\n                global.set(\"irrigation.irrprgact.totime\", (global.get(\"irrigation.irrprgact.fromtime\") + (global.get(\"irrigation.irrprgact.duration\") * 1500)));//set totime, fromtime plus duration *1500 (500 plus for shure remain inside the program)\n                global.set(\"irrigation.irrprgact.every\", null);\n            }\n            return;\n        }\n    }\n}\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 1 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a one shoot program and manualirrigation is deactivate\n    var msgtopin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0){//if irrigation is not active\n        global.set(\"irrigation.irrisact\",1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;// active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr os\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000 ) >= durationsec){//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((global.get(\"irrigation.config.flowrate\") / 3600) * parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) * 1000) + \");\";//insert in to db irrigation just done in ml integer\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr os\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.irrprgact.id\", 0);//indicates that no irrigation program is active\n        }\n    }\n    return;\n}\n\nif (global.get(\"irrigation.irrprgact.id\") > 0 && global.get(\"irrigation.irrprgact.oneshoot\") === 0 && global.get(\"irrigation.manualirrigation\") === 0) {//if irrprgact is greater than 0 therefore a program is active and is a ripetute irrigation program and manualirrigation is deactivate\n    var msgtopin = { \"payload\": null };\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"irrigation.irrisact\") === 0 && millcurrentday >= ((global.get(\"irrigation.irrprgact.every\") * 60000) + global.get(\"irrigation.everytime\"))) {//if irrigation is not active and actual time is greater or equal to everytime set + every set\n        global.set(\"irrigation.irrisact\", 1);//active the irrigation\n        global.set(\"irrigation.irrtime\", millcurrentday);//set the irrigation timer\n        if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n        if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;//active relay\n        node.send([msgtopin, null]);\n        node.warn(\"avviata irr\");\n    }\n    if (global.get(\"irrigation.irrisact\") === 1) {\n        let durationsec = (global.get(\"irrigation.irrprgact.duration\") / 1000) / (global.get(\"irrigation.config.flowrate\") / 3600);//convert ml of duration in seconds\n        if (((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) >= durationsec) {//if current millis div 1000 (so in seconds) are greather or equal to duration time\n            msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + parseInt((global.get(\"irrigation.config.flowrate\") / 3600) * parseInt((millcurrentday - global.get(\"irrigation.irrtime\")) / 1000) * 1000) + \");\";//insert in to db irrigation just done in ml integer\n            if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n            if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;// deactive relay\n            node.send([msgtopin, msgtodb]);\n            node.warn(\"fermata irr\");//notify on debug console\n            global.set(\"irrigation.irrisact\", 0);//deactive the irrigation\n            global.set(\"irrigation.irrtime\", 0);//reset the irrigation timer\n            global.set(\"irrigation.everytime\", millcurrentday);//set every timer to now for reset every timer\n        }\n    }\n    return;\n}\n\nreturn;",
+        "func": "// Runs every second: starts and stops the irrigation following the schedules cached in flow context\nconst now = new Date();\nconst millcurrentday = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000 + now.getMilliseconds();//current time in ms from midnight (local time)\nconst nowms = now.getTime();//absolute time, used for the durations so they work across midnight\nconst schedules = flow.get(\"cache.irrigation\") || [];\nconst levelon = global.get(\"irrigation.output.levelirr\") === 1 ? 0 : 1;//relay level that activates the irrigation\nconst flowrate = global.get(\"irrigation.config.flowrate\");//l/h\nconst durationms = (ml) => ml * 3600 / flowrate;//time needed to deliver ml at the configured flow rate\n\nif (global.get(\"irrigation.manualirrigation\") !== 0) return;//manual irrigation has the priority\nif (!(flowrate > 0)) {\n    node.status({ fill: \"red\", shape: \"ring\", text: \"flow rate not set\" });\n    return;\n}\n\nfunction stop() {//stop the pump and record the irrigation done\n    const delivered = Math.round((nowms - global.get(\"irrigation.irrtime\")) / 1000 * flowrate / 3.6);//ml delivered\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.irrtime\", 0);\n    node.send([{ \"payload\": 1 - levelon }, { \"topic\": \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + delivered + \");\" }]);\n    node.status({ fill: \"grey\", shape: \"ring\", text: \"stop, \" + delivered + \" ml\" });\n}\n\nlet active = global.get(\"irrigation.irrprgact.id\");\n//leave the program when its time is over, never while the pump is running\nif (active > 0 && global.get(\"irrigation.irrisact\") === 0 &&\n    (millcurrentday < global.get(\"irrigation.irrprgact.fromtime\") || millcurrentday >= global.get(\"irrigation.irrprgact.totime\"))) {\n    global.set(\"irrigation.irrprgact.id\", 0);\n    active = 0;\n}\n\nif (active === 0 && global.get(\"irrigation.irrisact\") === 1) {//the running program was changed or deleted: stop the pump\n    stop();\n    return;\n}\nif (active === 0) {//search the program for the current time\n    const p = schedules.find(s => s.active === 1 && millcurrentday >= s.fromtime && millcurrentday < s.totime);\n    if (!p) return;\n    global.set(\"irrigation.irrprgact.id\", p.id);\n    global.set(\"irrigation.irrprgact.fromtime\", p.fromtime);\n    global.set(\"irrigation.irrprgact.duration\", p.duration);\n    global.set(\"irrigation.irrprgact.oneshoot\", p.oneshoot);\n    global.set(\"irrigation.irrprgact.done\", 0);\n    if (p.oneshoot === 1) {//one shot: the program lasts the time needed to deliver the duration, plus one minute\n        global.set(\"irrigation.irrprgact.totime\", p.fromtime + durationms(p.duration) + 60000);\n        global.set(\"irrigation.irrprgact.every\", null);\n    } else {\n        global.set(\"irrigation.irrprgact.totime\", p.totime);\n        global.set(\"irrigation.irrprgact.every\", p.every);\n        global.set(\"irrigation.everytime\", nowms - p.every * 60000);//the first irrigation starts immediately\n    }\n    node.status({ fill: \"blue\", shape: \"dot\", text: \"program \" + p.id });\n    return;\n}\n\nif (global.get(\"irrigation.irrisact\") === 1) {//pump running: stop it when the duration has been delivered\n    if (nowms - global.get(\"irrigation.irrtime\") >= durationms(global.get(\"irrigation.irrprgact.duration\"))) {\n        stop();\n        if (global.get(\"irrigation.irrprgact.oneshoot\") === 1) global.set(\"irrigation.irrprgact.done\", 1);//one shot runs only once\n        else global.set(\"irrigation.everytime\", nowms);\n    }\n    return;\n}\n\nconst oneshot = global.get(\"irrigation.irrprgact.oneshoot\") === 1;\nconst due = oneshot ? global.get(\"irrigation.irrprgact.done\") !== 1\n    : nowms >= global.get(\"irrigation.irrprgact.every\") * 60000 + global.get(\"irrigation.everytime\");\nif (due) {//start the pump\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.irrtime\", nowms);\n    node.send([{ \"payload\": levelon }, null]);\n    node.status({ fill: \"green\", shape: \"dot\", text: \"irrigating, program \" + active });\n}\nreturn;\n",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 720,
         "y": 1500,
         "wires": [
@@ -1535,17 +1525,12 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "epoch to time",
-        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].time = moment(msg.payload[i].time).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "func": "function hhmm(ms) {//ms from midnight to HH:mm\n    const min = Math.round(ms / 60000) % 1440;\n    return String(Math.floor(min / 60)).padStart(2, \"0\") + \":\" + String(min % 60).padStart(2, \"0\");\n}\nfor (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].time = hhmm(msg.payload[i].time);\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 820,
         "y": 1060,
         "wires": [
@@ -1559,17 +1544,12 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "Check irrisact status and modify",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    flow.set(\"utility.starttimermanual\", parseInt(moment().format(\"X\")));\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    let durationmanirr = parseInt(((global.get(\"irrigation.config.flowrate\") / 3600) * 1000) * ((parseInt(moment().format(\"X\"))) - flow.get(\"utility.starttimermanual\")));//Calculate irrigation flow in ml\n    node.warn(flow.get(\"utility.starttimermanual\"));\n    node.warn(durationmanirr);\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + durationmanirr + \");\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
+        "func": "const now = new Date();\nvar millcurrentday = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000 + now.getMilliseconds();//current time in ms from midnight (local time)\nvar msgtopin = {\"payload\" : null};\nvar msgtodb = {\"topic\" : \"\"};\nif (global.get(\"irrigation.irrisact\") === 0) {//If no irrigation is active, activate irrigation\n    flow.set(\"utility.starttimermanual\", Math.floor(Date.now() / 1000));\n    global.set(\"irrigation.irrisact\", 1);\n    global.set(\"irrigation.manualirrigation\", 1);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 0;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 1;\n    node.send([msgtopin, null]);\n}\nelse {//Otherwise deactivate it and put on irrigation done database\n    let durationmanirr = parseInt(((global.get(\"irrigation.config.flowrate\") / 3600) * 1000) * ((Math.floor(Date.now() / 1000)) - flow.get(\"utility.starttimermanual\")));//Calculate irrigation flow in ml\n    global.set(\"irrigation.irrisact\", 0);\n    global.set(\"irrigation.manualirrigation\", 0);\n    if (global.get(\"irrigation.output.levelirr\") === 1) msgtopin.payload = 1;\n    if (global.get(\"irrigation.output.levelirr\") === 0) msgtopin.payload = 0;\n    msgtodb.topic = \"INSERT INTO irrigationdone(id, time, duration) VALUES (NULL, \" + millcurrentday + \", \" + durationmanirr + \");\";\n    node.send([msgtopin, msgtodb]);\n}\nreturn;",
         "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 590,
         "y": 1260,
         "wires": [
@@ -1907,17 +1887,12 @@
         "type": "function",
         "z": "9cfee97fb9e96644",
         "name": "",
-        "func": "if (msg.payload === \"start\"){\n    flow.set(\"utility.starttimerflowrate\", moment().unix());\n    flow.set(\"utility.stoptimerflowrate\", 0);\n}\nnode.warn(flow.get(\"utility.starttimerflowrate\"));\nif (msg.payload === \"stop\"){\n    flow.set(\"utility.stoptimerflowrate\", moment().unix());\n    node.warn(flow.get(\"utility.stoptimerflowrate\"));\n    global.set(\"irrigation.config.flowrate\", (1 / (flow.get(\"utility.stoptimerflowrate\") - flow.get(\"utility.starttimerflowrate\"))) * 3600);\n    node.warn(global.get(\"irrigation.config.flowrate\"));\n    msg.payload = global.get(\"irrigation.config.flowrate\");\n    node.send(msg);\n}\nreturn;",
+        "func": "if (msg.payload === \"start\"){\n    flow.set(\"utility.starttimerflowrate\", Math.floor(Date.now() / 1000));\n    flow.set(\"utility.stoptimerflowrate\", 0);\n}\nif (msg.payload === \"stop\"){\n    flow.set(\"utility.stoptimerflowrate\", Math.floor(Date.now() / 1000));\n    global.set(\"irrigation.config.flowrate\", (1 / (flow.get(\"utility.stoptimerflowrate\") - flow.get(\"utility.starttimerflowrate\"))) * 3600);\n    msg.payload = global.get(\"irrigation.config.flowrate\");\n    node.send(msg);\n}\nreturn;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 420,
         "y": 2060,
         "wires": [
@@ -2583,7 +2558,8 @@
         "y": 500,
         "wires": [
             [
-                "a7ae236536372f97"
+                "a7ae236536372f97",
+                "33be40682e55d097"
             ]
         ]
     },
@@ -2615,7 +2591,7 @@
         "y": 1500,
         "wires": [
             [
-                "b0a9b08b0a502a9e"
+                "33be40682e55d097"
             ]
         ]
     },
@@ -3192,17 +3168,12 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "epoch to time",
-        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = moment(msg.payload[i].fromtime).utc().format(\"HH:mm\");\n    msg.payload[i].totime = moment(msg.payload[i].totime).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "func": "function hhmm(ms) {//ms from midnight to HH:mm\n    const min = Math.round(ms / 60000) % 1440;\n    return String(Math.floor(min / 60)).padStart(2, \"0\") + \":\" + String(min % 60).padStart(2, \"0\");\n}\nfor (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].fromtime = hhmm(msg.payload[i].fromtime);\n    msg.payload[i].totime = hhmm(msg.payload[i].totime);\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 840,
         "y": 700,
         "wires": [
@@ -3262,17 +3233,17 @@
         "id": "e11dacf9398aba6b",
         "type": "inject",
         "z": "4215ef7ad32b1858",
-        "name": "",
+        "name": "refresh climate schedules every 60 s",
         "props": [
             {
                 "p": "topic",
                 "vt": "str"
             }
         ],
-        "repeat": "1",
+        "repeat": "60",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "3",
         "topic": "SELECT id, active, fromtime, totime, tempmin, tempmax, hummin, hummax FROM climate_set ORDER BY fromtime;",
         "x": 170,
         "y": 1660,
@@ -3287,18 +3258,13 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "check climate program and execute it",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nconst sensorok = global.get(\"climate.testmode\") === true || (Date.now() - global.get(\"climate.lastread\")) < 300000;//data older than 5 minutes is not valid\nif (!sensorok && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//sensor offline: stop the outputs driven by the program (failsafe)\n    if (global.get(\"climate.heatisact\") === 1) {\n        global.set(\"climate.heatisact\", 0);\n        node.send([{ \"payload\": global.get(\"climate.output.levelheat\") === 1 ? 1 : 0 }, null, { \"topic\": 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', NULL, NULL, \"Heating stop, sensor offline\");' }]);\n    }\n    if (global.get(\"climate.fanisact\") === 1) {\n        global.set(\"climate.fanisact\", 0);\n        node.send([null, { \"payload\": global.get(\"climate.output.levelfan\") === 1 ? 1 : 0 }, { \"topic\": 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', NULL, NULL, \"Fan stop, sensor offline\");' }]);\n    }\n    global.set(\"climate.clmprgact.id\", 0);\n    node.status({ fill: \"red\", shape: \"dot\", text: \"sensor offline\" });\n    return;\n}\nnode.status({});\nif ((millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\")) && global.get(\"climate.clmprgact.id\") > 0) global.set(\"climate.clmprgact.id\", 0);//if we are out of program time indicates that no irrigation program is active and search for new program otherwise remain on id program and wait every time\nif (global.get(\"climate.clmprgact.id\") === 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is equal than 0 therefore no program is active and manual heat and fan is deactivate\n    for (let i = 0; i < msg.payload.length; i++) {\n        if (millcurrentday >= msg.payload[i].fromtime && millcurrentday < msg.payload[i].totime && msg.payload[i].active === 1) {//if the current time is greater than or equal to the start time or less than the program end time and is set to active\n            node.warn(\"programma trovato\");\n            global.set(\"climate.clmprgact.id\", msg.payload[i].id);//set the id program as active\n            global.set(\"climate.clmprgact.fromtime\", msg.payload[i].fromtime);//and copy relative parameter to global context\n            global.set(\"climate.clmprgact.totime\", msg.payload[i].totime);\n            global.set(\"climate.clmprgact.tempmin\", msg.payload[i].tempmin);\n            global.set(\"climate.clmprgact.tempmax\", msg.payload[i].tempmax);\n            global.set(\"climate.clmprgact.hummin\", msg.payload[i].hummin);\n            global.set(\"climate.clmprgact.hummax\", msg.payload[i].hummax);\n            return;\n        }\n    }\n}\nif (global.get(\"climate.clmprgact.id\") > 0 && global.get(\"climate.manualheat\") === 0 && global.get(\"climate.manualfan\") === 0) {//if clmprgact is greater than 0 therefore a program is active and manualheat and manualfan is deactivate\n    var msgheatpin = {\"payload\" : null};\n    var msgfanpin = {\"payload\" : null};\n    var msgtodb = { \"topic\": null };\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")){//if temperature is minor than tempmin set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0){//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is minor than tempmin set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is between tempmin and tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 0) {//if heat is inactive\n            global.set(\"climate.heatisact\", 1);//active heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 0;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating start\");';//insert in to db heating start\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 1) {//if fan is active\n            global.set(\"climate.fanisact\", 0);//deactive fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 1;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan stop\");';//insert in to db fan stop\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmin\") && global.get(\"climate.inttemp\") < global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is between tempmin and tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\")  && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummin\")) {//if temperature is greater than tempmax set and humidity is minor than hummin set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummin\") && global.get(\"climate.inthum\") < global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is between hummin and hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n    if (global.get(\"climate.inttemp\") > global.get(\"climate.clmprgact.tempmax\") && global.get(\"climate.inthum\") > global.get(\"climate.clmprgact.hummax\")) {//if temperature is greater than tempmax set and humidity is greater than hummax set\n        if (global.get(\"climate.heatisact\") === 1) {//if heat is active\n            global.set(\"climate.heatisact\", 0);//deactive heating\n            if (global.get(\"climate.output.levelheat\") === 1) msgheatpin.payload = 1;\n            if (global.get(\"climate.output.levelheat\") === 0) msgheatpin.payload = 0;//deactive relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Heating stop\");';//insert in to db heating stop\n            node.send([msgheatpin, null, msgtodb]);//send payloads to IO and db\n            node.warn(\"fermato riscaldamento\");\n        }\n        if (global.get(\"climate.fanisact\") === 0) {//if fan is inactive\n            global.set(\"climate.fanisact\", 1);//active fan\n            if (global.get(\"climate.output.levelfan\") === 1) msgfanpin.payload = 0;\n            if (global.get(\"climate.output.levelfan\") === 0) msgfanpin.payload = 1;//active relay\n            msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Fan start\");';//insert in to db fan start\n            node.send([null, msgfanpin, msgtodb]);//send payloads to IO and db\n            node.warn(\"avviata ventilazione\");\n        }\n    }\n}\nreturn;",
+        "func": "// Runs every second: drives heating and fan following the schedules cached in flow context\nconst now = new Date();\nconst millcurrentday = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000 + now.getMilliseconds();//current time in ms from midnight (local time)\nconst schedules = flow.get(\"cache.climate\") || [];\nconst temp = global.get(\"climate.inttemp\");\nconst hum = global.get(\"climate.inthum\");\n\nif (global.get(\"climate.manualheat\") !== 0 || global.get(\"climate.manualfan\") !== 0) return;//manual commands have the priority\n\nconst outputs = {//output index, global flag, relay level setting, label for the log\n    \"heat\": { \"index\": 0, \"flag\": \"climate.heatisact\", \"level\": \"climate.output.levelheat\", \"label\": \"Heating\" },\n    \"fan\": { \"index\": 1, \"flag\": \"climate.fanisact\", \"level\": \"climate.output.levelfan\", \"label\": \"Fan\" }\n};\nfunction setOutput(name, on, reason) {//switch an output only when its state changes, log the action\n    const o = outputs[name];\n    if ((global.get(o.flag) === 1) === on) return;\n    global.set(o.flag, on ? 1 : 0);\n    const levelinactive = global.get(o.level) === 1 ? 1 : 0;\n    const pin = [null, null, null];\n    pin[o.index] = { \"payload\": on ? 1 - levelinactive : levelinactive };\n    pin[2] = { \"topic\": \"INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, \" + millcurrentday + \", \" +\n        (typeof temp === \"number\" ? temp : \"NULL\") + \", \" + (typeof hum === \"number\" ? hum : \"NULL\") + \", \\\"\" + o.label + (on ? \" start\" : \" stop\") + (reason ? \", \" + reason : \"\") + \"\\\");\" };\n    node.send(pin);\n}\n\n//sensor watchdog: data older than 5 minutes is not valid, stop the outputs (failsafe)\nconst sensorok = global.get(\"climate.testmode\") === true || (Date.now() - global.get(\"climate.lastread\")) < 300000;\nif (!sensorok) {\n    setOutput(\"heat\", false, \"sensor offline\");\n    setOutput(\"fan\", false, \"sensor offline\");\n    global.set(\"climate.clmprgact.id\", 0);\n    node.status({ fill: \"red\", shape: \"dot\", text: \"sensor offline\" });\n    return;\n}\n\nlet active = global.get(\"climate.clmprgact.id\");\nif (active > 0 && (millcurrentday < global.get(\"climate.clmprgact.fromtime\") || millcurrentday >= global.get(\"climate.clmprgact.totime\"))) {\n    global.set(\"climate.clmprgact.id\", 0);//program time is over\n    active = 0;\n}\nif (active === 0) {//search the program for the current time\n    const p = schedules.find(s => s.active === 1 && millcurrentday >= s.fromtime && millcurrentday < s.totime);\n    if (!p) {//no program: the outputs driven by a program are stopped\n        setOutput(\"heat\", false, \"no program\");\n        setOutput(\"fan\", false, \"no program\");\n        node.status({ fill: \"grey\", shape: \"ring\", text: \"no program\" });\n        return;\n    }\n    global.set(\"climate.clmprgact.id\", p.id);\n    global.set(\"climate.clmprgact.fromtime\", p.fromtime);\n    global.set(\"climate.clmprgact.totime\", p.totime);\n    global.set(\"climate.clmprgact.tempmin\", p.tempmin);\n    global.set(\"climate.clmprgact.tempmax\", p.tempmax);\n    global.set(\"climate.clmprgact.hummin\", p.hummin);\n    global.set(\"climate.clmprgact.hummax\", p.hummax);\n}\n\n//temperature and humidity compared with the limits of the program (limits included in the range)\nconst tstate = temp < global.get(\"climate.clmprgact.tempmin\") ? \"low\" : (temp > global.get(\"climate.clmprgact.tempmax\") ? \"high\" : \"ok\");\nconst hstate = hum < global.get(\"climate.clmprgact.hummin\") ? \"low\" : (hum > global.get(\"climate.clmprgact.hummax\") ? \"high\" : \"ok\");\n//heating when cold, or when temperature is fine but the air is too dry; fan when too hot or too humid\nsetOutput(\"heat\", tstate === \"low\" || (tstate === \"ok\" && hstate === \"low\"));\nsetOutput(\"fan\", tstate === \"high\" || hstate === \"high\");\nnode.status({ fill: \"blue\", shape: \"dot\", text: \"program \" + global.get(\"climate.clmprgact.id\") + \": T \" + tstate + \", RH \" + hstate });\nreturn;\n",
         "outputs": 3,
         "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 710,
         "y": 1660,
         "wires": [
@@ -3381,17 +3347,12 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "epoch to time",
-        "func": "for (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].time = moment(msg.payload[i].time).utc().format(\"HH:mm\");\n}\nreturn msg;",
+        "func": "function hhmm(ms) {//ms from midnight to HH:mm\n    const min = Math.round(ms / 60000) % 1440;\n    return String(Math.floor(min / 60)).padStart(2, \"0\") + \":\" + String(min % 60).padStart(2, \"0\");\n}\nfor (let i = 0; i < msg.payload.length; i++) {\n    msg.payload[i].time = hhmm(msg.payload[i].time);\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 820,
         "y": 1220,
         "wires": [
@@ -3405,17 +3366,12 @@
         "type": "function",
         "z": "4215ef7ad32b1858",
         "name": "Check heatisact or fanisact status and modify",
-        "func": "var millcurrentday = moment().valueOf() - parseInt(moment().startOf('date').format(\"x\")); //subtracts year, month and day from the current date to get only the current hour and minute in milliseconds according with the current time zone\nvar msgtodb = {\"topic\" : \"\"};\nif (msg.payload === \"heat\"){\n    var msgtoheatpin = { \"payload\": null };\n    if (global.get(\"climate.heatisact\") === 0) {//If no heating is active, activate heating\n        global.set(\"climate.heatisact\", 1);\n        global.set(\"climate.manualheat\", 1);\n        if (global.get(\"climate.output.levelheat\") === 1) msgtoheatpin.payload = 0;\n        if (global.get(\"climate.output.levelheat\") === 0) msgtoheatpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual heat start\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.heatisact\", 0);\n        global.set(\"climate.manualheat\", 0);\n        if (global.get(\"climate.output.levelheat\") === 1) msgtoheatpin.payload = 1;\n        if (global.get(\"climate.output.levelheat\") === 0) msgtoheatpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") +', \"Manual heat stop\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n}\nif (msg.payload === \"fan\") {\n    var msgtofanpin = { \"payload\": null };\n    if (global.get(\"climate.fanisact\") === 0) {//If no fan is active, activate fan\n        global.set(\"climate.fanisact\", 1);\n        global.set(\"climate.manualfan\", 1);\n        if (global.get(\"climate.output.levelfan\") === 1) msgtofanpin.payload = 0;\n        if (global.get(\"climate.output.levelfan\") === 0) msgtofanpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan start\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.fanisact\", 0);\n        global.set(\"climate.manualfan\", 0);\n        if (global.get(\"climate.output.levelfan\") === 1) msgtofanpin.payload = 1;\n        if (global.get(\"climate.output.levelfan\") === 0) msgtofanpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan stop\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n}\nreturn;",
+        "func": "const now = new Date();\nvar millcurrentday = ((now.getHours() * 60 + now.getMinutes()) * 60 + now.getSeconds()) * 1000 + now.getMilliseconds();//current time in ms from midnight (local time)\nvar msgtodb = {\"topic\" : \"\"};\nif (msg.payload === \"heat\"){\n    var msgtoheatpin = { \"payload\": null };\n    if (global.get(\"climate.heatisact\") === 0) {//If no heating is active, activate heating\n        global.set(\"climate.heatisact\", 1);\n        global.set(\"climate.manualheat\", 1);\n        if (global.get(\"climate.output.levelheat\") === 1) msgtoheatpin.payload = 0;\n        if (global.get(\"climate.output.levelheat\") === 0) msgtoheatpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual heat start\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.heatisact\", 0);\n        global.set(\"climate.manualheat\", 0);\n        if (global.get(\"climate.output.levelheat\") === 1) msgtoheatpin.payload = 1;\n        if (global.get(\"climate.output.levelheat\") === 0) msgtoheatpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") +', \"Manual heat stop\");';\n        node.send([msgtoheatpin, null, msgtodb]);\n    }\n}\nif (msg.payload === \"fan\") {\n    var msgtofanpin = { \"payload\": null };\n    if (global.get(\"climate.fanisact\") === 0) {//If no fan is active, activate fan\n        global.set(\"climate.fanisact\", 1);\n        global.set(\"climate.manualfan\", 1);\n        if (global.get(\"climate.output.levelfan\") === 1) msgtofanpin.payload = 0;\n        if (global.get(\"climate.output.levelfan\") === 0) msgtofanpin.payload = 1;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan start\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n    else {//Otherwise deactivate it and put on climate actions database\n        global.set(\"climate.fanisact\", 0);\n        global.set(\"climate.manualfan\", 0);\n        if (global.get(\"climate.output.levelfan\") === 1) msgtofanpin.payload = 1;\n        if (global.get(\"climate.output.levelfan\") === 0) msgtofanpin.payload = 0;\n        msgtodb.topic = 'INSERT INTO climate_actions(id, time, inttemp, inthum, action) VALUES (NULL, ' + millcurrentday + ', ' + global.get(\"climate.inttemp\") + ', ' + global.get(\"climate.inthum\") + ', \"Manual fan stop\");';\n        node.send([null, msgtofanpin, msgtodb]);\n    }\n}\nreturn;",
         "outputs": 3,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
-        "libs": [
-            {
-                "var": "moment",
-                "module": "moment"
-            }
-        ],
+        "libs": [],
         "x": 550,
         "y": 1420,
         "wires": [
@@ -4936,7 +4892,8 @@
         "y": 700,
         "wires": [
             [
-                "bc29218e5b2fdb7a"
+                "bc29218e5b2fdb7a",
+                "d47e9b4e1416659f"
             ]
         ]
     },
@@ -4968,7 +4925,7 @@
         "y": 1660,
         "wires": [
             [
-                "aa7ff6772acf6be4"
+                "d47e9b4e1416659f"
             ]
         ]
     },
@@ -6459,6 +6416,146 @@
         "y": 2470,
         "wires": [
             []
+        ]
+    },
+    {
+        "id": "33be40682e55d097",
+        "type": "switch",
+        "z": "9cfee97fb9e96644",
+        "name": "only SELECT results",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^SELECT",
+                "vt": "str",
+                "case": true
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 580,
+        "y": 1550,
+        "wires": [
+            [
+                "599762a02e4439d0"
+            ]
+        ]
+    },
+    {
+        "id": "599762a02e4439d0",
+        "type": "change",
+        "z": "9cfee97fb9e96644",
+        "name": "cache irrigation schedules",
+        "rules": [
+            {
+                "t": "set",
+                "p": "cache.irrigation",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1550,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "112963c02658faaa",
+        "type": "inject",
+        "z": "9cfee97fb9e96644",
+        "name": "every second",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "4",
+        "topic": "",
+        "x": 490,
+        "y": 1550,
+        "wires": [
+            [
+                "b0a9b08b0a502a9e"
+            ]
+        ]
+    },
+    {
+        "id": "d47e9b4e1416659f",
+        "type": "switch",
+        "z": "4215ef7ad32b1858",
+        "name": "only SELECT results",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^SELECT",
+                "vt": "str",
+                "case": true
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 580,
+        "y": 1710,
+        "wires": [
+            [
+                "ba10e0934fb64a24"
+            ]
+        ]
+    },
+    {
+        "id": "ba10e0934fb64a24",
+        "type": "change",
+        "z": "4215ef7ad32b1858",
+        "name": "cache climate schedules",
+        "rules": [
+            {
+                "t": "set",
+                "p": "cache.climate",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1710,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3d328000b7d9e886",
+        "type": "inject",
+        "z": "4215ef7ad32b1858",
+        "name": "every second",
+        "props": [],
+        "repeat": "1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "4",
+        "topic": "",
+        "x": 480,
+        "y": 1710,
+        "wires": [
+            [
+                "aa7ff6772acf6be4"
+            ]
         ]
     }
 ]

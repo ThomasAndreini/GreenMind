@@ -94,13 +94,13 @@ async function runFunction (fnNode, msg, { flow = createContext(), global = crea
     return { outputs, warnings, flow, global }
 }
 
-/** A Date class whose "now" is fixed to the given local time ("HH:mm" or epoch ms) */
+/** A Date class whose "now" is fixed to the given local time of today ("HH:mm[:ss]") or epoch ms */
 function fakeDate (now) {
     let fixed = now
     if (typeof now === 'string') {
-        const [h, m] = now.split(':').map(Number)
+        const [h, m, sec = 0] = now.split(':').map(Number)
         const d = new Date()
-        d.setHours(h, m, 0, 0)
+        d.setHours(h, m, sec, 0)
         fixed = d.getTime()
     }
     return class extends Date {

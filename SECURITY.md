@@ -4,7 +4,7 @@
 
 | GreenMind | Node-RED | Node.js | Supported          |
 | --------- | -------- | ------- | ------------------ |
-| 2.x       | 5.x      | 24 LTS (22 LTS on 32 bit ARM) | :white_check_mark: |
+| 2.x (Raspberry Pi OS 64 bit) | 5.x | 24 LTS | :white_check_mark: |
 | 0.x / 1.x | 2.x-3.x  | 18      | :x:                |
 
 ## Protecting your installation
@@ -13,6 +13,8 @@
   random credential secret in `~/.node-red/greenmind-auth.json` (file mode 600).
   The same credentials protect the Node-RED editor, the dashboard and its socket.io channel.
 - Never commit `greenmind-auth.json` or any `*_cred.json` file.
+- Backups created by `greenmind_backup` contain the password hash: they are created with mode 600,
+  keep them private.
 - To change the password delete `~/.node-red/greenmind-auth.json` and run the installer again,
   or put a new hash created with `node-red admin hash-pw` in the file, then restart Node-RED.
 - GreenMind is meant to run inside your local network. Do not expose port 1880 to the internet:

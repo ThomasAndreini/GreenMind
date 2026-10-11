@@ -33,7 +33,8 @@ jobs:
           # the released installer downloads the files of this release
           sed "s/^GM_REF=\"\${GM_REF:-[^}]*}\"/GM_REF=\"\${GM_REF:-${GITHUB_REF_NAME}}\"/" installer/greenmind_installer > dist/greenmind_installer
           grep -q "GM_REF:-${GITHUB_REF_NAME}}" dist/greenmind_installer
-          chmod +x dist/greenmind_installer
+          cp installer/greenmind_backup dist/
+          chmod +x dist/greenmind_installer dist/greenmind_backup
           (cd dist && sha256sum * > SHA256SUMS)
       - name: Create release
         env:

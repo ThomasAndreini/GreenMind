@@ -10,7 +10,7 @@
     "scripts": {
         "test": "node --test \"test/unit/*.test.js\"",
         "test:e2e": "node --test --test-concurrency=1 \"test/e2e/*.test.js\"",
-        "lint:installer": "shellcheck installer/greenmind_installer"
+        "lint:installer": "shellcheck installer/greenmind_installer installer/greenmind_backup"
     },
     "dependencies": {
         "@flowfuse/node-red-dashboard": "1.33.0",

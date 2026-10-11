@@ -31,11 +31,13 @@ Support for other hardware components will be implemented over time, the goal is
   switched off and the event is logged.
 - **Climate history** saved in the database for 30 days.
 - **Security**: editor and dashboard are protected by user name and password.
-- **Up to date runtime**: Node.js 22 LTS and Node-RED 5, Raspberry Pi 5 supported.
+- **Up to date runtime**: Node-RED 5 on Node.js 24 LTS (Node.js 22 LTS on 32 bit systems), Raspberry Pi 5 supported.
 
 ### Requirements
 
-- Raspberry Pi 2 or newer (Pi 3, 4 or 5 recommended) with Raspberry Pi OS Bookworm or newer
+- Raspberry Pi 2 or newer (Pi 3, 4 or 5 recommended) with Raspberry Pi OS Bookworm or newer.
+  The 64 bit OS is recommended: Node.js 24 is not available for 32 bit ARM, so 32 bit systems get
+  Node.js 22, supported until April 2027
 - Relay board for irrigation pump, heating and fan
 - A board that exposes the dry bulb and wet bulb temperatures over HTTP (see [Sensors](#sensors))
 
@@ -48,11 +50,11 @@ curl -fsSL -o greenmind_installer https://raw.githubusercontent.com/ThomasAndrei
 bash greenmind_installer
 ```
 
-The installer installs Node.js 22 and Node-RED, copies GreenMind in `~/.node-red`, installs the
+The installer installs Node.js and Node-RED, copies GreenMind in `~/.node-red`, installs the
 required nodes, asks for the user name and password used to protect the editor and the dashboard,
 and starts Node-RED at boot.
 
-Optional environment variables: `GM_REF` (branch or tag to install), `NODERED_VERSION`,
+Optional environment variables: `GM_REF` (branch or tag to install), `NODERED_VERSION`, `NODE_MAJOR` (22 or 24),
 `GM_USER` and `GM_PASSWORD` (to install without prompts).
 
 When it finishes open:

@@ -8,6 +8,7 @@
 # Optional environment variables:
 #   GM_REF           git branch or tag of GreenMind to install (default: v2.0)
 #   NODERED_VERSION  Node-RED version to install (default: 5.0.8)
+#   NODE_MAJOR       Node.js major version (default: 24 on 64 bit systems, 22 on 32 bit ARM)
 #   GM_USER          user name for the editor and the dashboard (asked if not set)
 #   GM_PASSWORD      password for the editor and the dashboard (asked if not set)
 #
@@ -30,7 +31,24 @@ download() {
     curl -fsSL -o "$2" "$1" || fail "Failed to download $1, check your internet connection"
 }
 
-echo "GreenMind installer (ref: ${GM_REF}, Node-RED ${NODERED_VERSION})"
+# Node.js 24 LTS has no builds for 32 bit ARM (armv7l): use Node.js 22 LTS there
+ARCH="$(uname -m)"
+case "${ARCH}" in
+    armv6l|armv7l)
+        NODE_MAJOR="${NODE_MAJOR:-22}"
+        echo "WARNING: 32 bit system (${ARCH}), Node.js 24 is not available, installing Node.js ${NODE_MAJOR}."
+        echo "         Node.js 22 is supported until April 2027: use the 64 bit Raspberry Pi OS if your board supports it (Pi 3 or newer)."
+        ;;
+    *)
+        NODE_MAJOR="${NODE_MAJOR:-24}"
+        ;;
+esac
+case "${NODE_MAJOR}" in
+    22|24) ;;
+    *) fail "Unsupported NODE_MAJOR=${NODE_MAJOR}, use 22 or 24" ;;
+esac
+
+echo "GreenMind installer (ref: ${GM_REF}, Node-RED ${NODERED_VERSION}, Node.js ${NODE_MAJOR}, ${ARCH})"
 
 command -v curl >/dev/null 2>&1 || fail "curl is required, install it with: sudo apt install curl"
 
@@ -38,11 +56,11 @@ command -v curl >/dev/null 2>&1 || fail "curl is required, install it with: sudo
 mkdir -p "${NODERED_DIR}/greenmind" || fail "Failed to create ${NODERED_DIR}, check permissions"
 mkdir -p "${GM_DATA_DIR}" || fail "Failed to create ${GM_DATA_DIR}, check permissions"
 
-# Install Node.js 22 LTS and Node-RED using the official installer
+# Install Node.js LTS and Node-RED using the official installer
 NR_INSTALLER="$(mktemp)"
 trap 'rm -f "${NR_INSTALLER}"' EXIT
 download "https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered" "${NR_INSTALLER}"
-bash "${NR_INSTALLER}" --confirm-install --confirm-pi --node22 --nodered-version="${NODERED_VERSION}" \
+bash "${NR_INSTALLER}" --confirm-install --confirm-pi "--node${NODE_MAJOR}" --nodered-version="${NODERED_VERSION}" \
     || fail "Node-RED installation failed, check /var/log/nodered-install.log for more details"
 echo "Node-RED installed"
 

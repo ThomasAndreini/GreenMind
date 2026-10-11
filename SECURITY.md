@@ -4,7 +4,7 @@
 
 | GreenMind | Node-RED | Node.js | Supported          |
 | --------- | -------- | ------- | ------------------ |
-| 2.x       | 5.x      | 22 LTS  | :white_check_mark: |
+| 2.x       | 5.x      | 24 LTS (22 LTS on 32 bit ARM) | :white_check_mark: |
 | 0.x / 1.x | 2.x-3.x  | 18      | :x:                |
 
 ## Protecting your installation

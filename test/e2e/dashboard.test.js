@@ -17,7 +17,8 @@ let browser
 
 test.before(async () => {
     gm = await startGreenMind()
-    browser = await chromium.launch()
+    // CHROMIUM_PATH: use an already installed Chromium instead of the one downloaded by Playwright
+    browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {})
 })
 
 test.after(async () => {

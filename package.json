@@ -20,7 +20,7 @@
     },
     "devDependencies": {
         "node-red": "5.0.8",
-        "playwright": "1.56.1"
+        "playwright": "1.63.0"
     },
     "node-red": {
         "settings": {

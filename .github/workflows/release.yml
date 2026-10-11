@@ -3,9 +3,15 @@ name: Release
 on:
   push:
     tags: ['v*']
+  release:
+    types: [published]
 
 permissions:
   contents: read
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
 
 jobs:
   ci:
@@ -40,6 +46,11 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          prerelease=""
-          case "${GITHUB_REF_NAME}" in *-*) prerelease="--prerelease" ;; esac
-          gh release create "${GITHUB_REF_NAME}" dist/* --title "GreenMind ${GITHUB_REF_NAME}" --generate-notes ${prerelease}
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            # release already created from the GitHub web page: attach the files
+            gh release upload "${GITHUB_REF_NAME}" dist/* --clobber
+          else
+            prerelease=""
+            case "${GITHUB_REF_NAME}" in *-*) prerelease="--prerelease" ;; esac
+            gh release create "${GITHUB_REF_NAME}" dist/* --title "GreenMind ${GITHUB_REF_NAME}" --generate-notes ${prerelease}
+          fi

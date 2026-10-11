@@ -1,67 +1,241 @@
 #!/bin/bash
 #
-# GreenMind Installer for Raspberry Pi OS Lite
+# GreenMind Installer for Raspberry Pi OS 64 bit (Bookworm or newer, Lite or Desktop)
+#
+# Usage:
+#   bash greenmind_installer
+#
+# Optional environment variables:
+#   GM_REF           git branch or tag of GreenMind to install (default: master, the release
+#                    installers download the files of their own tag)
+#   NODERED_VERSION  Node-RED version to install (default: 5.0.8)
+#   NODE_MAJOR       Node.js major version (default: 24)
+#   GM_USER          user name for the editor and the dashboard (asked if not set)
+#   GM_PASSWORD      password for the editor and the dashboard (asked if not set)
+#   GM_RESTORE       backup created by greenmind_backup to restore (database, settings, password)
+#   GM_HEAP_MB       Node.js heap size in MB (default: sized on the RAM of the board)
 #
 
-# Create nodered folder
-if mkdir -p ~/.node-red ; then
-    echo ".node-red folder created, create greenmind folder"
-else
-    echo "Failed to create .node-red folder, check permissions or reboot, exiting"
-    exit 1
-fi
+set -euo pipefail
 
-# Create GreenMind folder
-if mkdir -p ~/greenmind ; then
-    echo "GreenMind folder created, downloading files"
-else
-    echo "Failed to create GreenMind folder, check permissions or reboot, exiting"
-    exit 1
-fi
+GM_REF="${GM_REF:-master}"
+NODERED_VERSION="${NODERED_VERSION:-5.0.8}"
+NODE_MAJOR="${NODE_MAJOR:-24}"
+GM_RAW="https://raw.githubusercontent.com/ThomasAndreini/GreenMind/${GM_REF}"
+NODERED_DIR="${HOME}/.node-red"
+GM_DATA_DIR="${HOME}/greenmind"
+MEMINFO="${MEMINFO:-/proc/meminfo}"
+SYSTEMD_DROPIN_DIR="${SYSTEMD_DROPIN_DIR:-/etc/systemd/system/nodered.service.d}"
 
-# Download GreenMind files
-cd ~/greenmind
-if wget -O greenmind.json https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/greenmind.json ; then
-    echo "greenmind.json downloaded, downloading modified settings.js"
-else
-    echo "Failed to download greenmind.json, check your internet connection, exiting"
+fail() {
+    echo "ERROR: $1" >&2
     exit 1
-fi
+}
 
-cd ~/.node-red
-if wget -O settings.js https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/installer/settings.js ; then
-    echo "settings.js downloaded, downloading package.json"
-else
-    echo "Failed to download settings.js, check your internet connection, exiting"
-    exit 1
-fi
+download() {
+    # download <url> <destination>
+    curl -fsSL -o "$2" "$1" || fail "Failed to download $1, check your internet connection"
+}
 
-if wget -O package.json https://raw.githubusercontent.com/ThomasAndreini/GreenMind/master/package.json ; then
-    echo "package.json downloaded, installing it"
-else
-    echo "Failed to download package.json, check your internet connection, exiting"
-    exit 1
-fi
+# ---------------------------------------------------------------------------
+# Platform: GreenMind v2 needs a 64 bit OS (arm64). The check uses the
+# architecture of the OS packages, not of the kernel: the 32 bit Raspberry Pi
+# OS runs a 64 bit kernel on Pi 4 and Pi 5.
+# ---------------------------------------------------------------------------
+check_platform() {
+    local arch model
+    arch="$(dpkg --print-architecture 2>/dev/null || echo unknown)"
+    model="$(tr -d '\0' < /proc/device-tree/model 2>/dev/null || echo "not a Raspberry Pi")"
+    case "${arch}" in
+        arm64)
+            ;;
+        amd64)
+            echo "WARNING: ${model}, amd64: GPIO outputs will not work (test or development install)"
+            ;;
+        armhf|armel)
+            fail "32 bit OS detected (${arch}) on ${model}. GreenMind v2 requires Raspberry Pi OS 64 bit:
+       1. on this system run greenmind_backup to save database, settings and password
+       2. flash Raspberry Pi OS Lite (64-bit) with Raspberry Pi Imager
+       3. run this installer with GM_RESTORE=<backup file>
+       See https://github.com/ThomasAndreini/GreenMind#migrating-to-raspberry-pi-os-64-bit"
+            ;;
+        *)
+            fail "Unsupported architecture: ${arch}"
+            ;;
+    esac
+    case "${NODE_MAJOR}" in
+        22|24) ;;
+        *) fail "Unsupported NODE_MAJOR=${NODE_MAJOR}, use 22 or 24" ;;
+    esac
+    echo "Platform: ${model}, ${arch}"
+}
 
-# Install Node-RED
-if bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) --confirm-install --confirm-pi --nodered-version="3.1.6" --node18 ; then
-    echo "Node-RED installed, install extra nodes"
-else
-    echo "Node-RED installation failed, check Node-RED log for more details"
-    exit 1
-fi
+# ---------------------------------------------------------------------------
+# Memory: the Node.js heap is sized on the RAM of the board
+# ---------------------------------------------------------------------------
+meminfo_mb() {
+    # meminfo_mb <MemTotal|SwapTotal>: value in MB from /proc/meminfo
+    awk -v key="$1:" '$1 == key { printf "%d", $2 / 1024 }' "${MEMINFO}"
+}
 
-# Install extra nodes
-if npm install ; then
-    echo "Extra nodes installed, GreenMind is installed successfully, starting Node-RED"
-else
-    echo "Can't install extra nodes, exiting"
-    exit 1
-fi
-echo "Run Node Red at startup"
-#Run Node-Red at startup
-sudo systemctl enable nodered.service
+heap_size_mb() {
+    # heap_size_mb <ram MB>: a quarter of the RAM, multiple of 64, from 256 to 1024 MB
+    local heap=$(( $1 / 4 / 64 * 64 ))
+    [ "${heap}" -lt 256 ] && heap=256
+    [ "${heap}" -gt 1024 ] && heap=1024
+    echo "${heap}"
+}
 
-echo "Start Node Red"
-# Start Node-RED
-node-red-start
+check_memory() {
+    local ram swap
+    ram="$(meminfo_mb MemTotal)"
+    swap="$(meminfo_mb SwapTotal)"
+    [ "${ram}" -ge 350 ] || fail "${ram} MB of RAM: GreenMind needs a board with at least 512 MB"
+    GM_HEAP_MB="${GM_HEAP_MB:-$(heap_size_mb "${ram}")}"
+    echo "Memory: ${ram} MB RAM, ${swap} MB swap, Node.js heap ${GM_HEAP_MB} MB"
+    if [ "${ram}" -lt 1000 ] && [ "${swap}" -lt 512 ]; then
+        if [ -f /etc/dphys-swapfile ]; then
+            echo "Less than 1 GB of RAM: setting the swap file to 1024 MB"
+            sudo sed -i 's/^#\?CONF_SWAPSIZE=.*/CONF_SWAPSIZE=1024/' /etc/dphys-swapfile
+            sudo systemctl restart dphys-swapfile.service || echo "WARNING: could not resize the swap, do it after the installation"
+        else
+            echo "WARNING: less than 1 GB of RAM and ${swap} MB of swap, configure at least 512 MB of swap"
+        fi
+    fi
+}
+
+configure_memory() {
+    # systemd drop-in: survives the updates of nodered.service made by the Node-RED installer
+    sudo mkdir -p "${SYSTEMD_DROPIN_DIR}"
+    printf '[Service]\n# Written by the GreenMind installer, sized on the RAM of the board\nEnvironment="NODE_OPTIONS=--max-old-space-size=%s"\n' "${GM_HEAP_MB}" \
+        | sudo tee "${SYSTEMD_DROPIN_DIR}/greenmind.conf" >/dev/null
+    sudo systemctl daemon-reload
+}
+
+# ---------------------------------------------------------------------------
+# Restore a backup created by greenmind_backup (only the known GreenMind files)
+# ---------------------------------------------------------------------------
+restore_backup() {
+    local archive="$1" entry
+    local members=()
+    [ -f "${archive}" ] || fail "Backup ${archive} not found"
+    while IFS= read -r entry; do
+        case "${entry}" in
+            *..*) fail "Unexpected path in backup: ${entry}" ;;
+            greenmind/main.db|.node-red/greenmind-auth.json|.node-red/context/*) members+=("${entry}") ;;
+            greenmind/|.node-red/) ;;
+            *) fail "Unexpected file in backup: ${entry}" ;;
+        esac
+    done < <(tar -tzf "${archive}")
+    [ "${#members[@]}" -gt 0 ] || fail "Backup ${archive} is empty"
+    if tar -tvzf "${archive}" | grep -q '^[lh]'; then
+        fail "Unexpected link in backup ${archive}"
+    fi
+    tar -xzf "${archive}" -C "${HOME}" --no-same-owner --no-recursion -- "${members[@]}"
+    [ -f "${NODERED_DIR}/greenmind-auth.json" ] && chmod 600 "${NODERED_DIR}/greenmind-auth.json"
+    echo "Backup restored: ${#members[@]} files"
+}
+
+# ---------------------------------------------------------------------------
+# Editor and dashboard password
+# ---------------------------------------------------------------------------
+create_auth() {
+    # The bcrypt hash and a random credential secret are stored in greenmind-auth.json (read by settings.js)
+    local auth_file="${NODERED_DIR}/greenmind-auth.json"
+    if [ -f "${auth_file}" ]; then
+        echo "Keeping the existing ${auth_file}"
+        return
+    fi
+    GM_USER="${GM_USER:-}"
+    GM_PASSWORD="${GM_PASSWORD:-}"
+    if [ -z "${GM_USER}" ]; then
+        read -rp "User name for the GreenMind editor and dashboard [admin]: " GM_USER </dev/tty
+        GM_USER="${GM_USER:-admin}"
+    fi
+    while [ ${#GM_PASSWORD} -lt 8 ]; do
+        read -rsp "Password (at least 8 characters): " GM_PASSWORD </dev/tty
+        echo ""
+        read -rsp "Repeat the password: " GM_PASSWORD2 </dev/tty
+        echo ""
+        if [ "${GM_PASSWORD}" != "${GM_PASSWORD2}" ] || [ ${#GM_PASSWORD} -lt 8 ]; then
+            echo "Passwords do not match or are too short, try again"
+            GM_PASSWORD=""
+        fi
+    done
+    GM_USER="${GM_USER}" GM_PASSWORD="${GM_PASSWORD}" AUTH_FILE="${auth_file}" node -e '
+        const bcrypt = require("bcryptjs");
+        const auth = {
+            username: process.env.GM_USER,
+            passwordHash: bcrypt.hashSync(process.env.GM_PASSWORD, 10),
+            credentialSecret: require("crypto").randomBytes(32).toString("hex")
+        };
+        require("fs").writeFileSync(process.env.AUTH_FILE, JSON.stringify(auth, null, 4) + "\n", { mode: 0o600 });
+    ' || fail "Can't create ${auth_file}"
+    unset GM_PASSWORD GM_PASSWORD2
+    echo "Credentials saved in ${auth_file}"
+}
+
+main() {
+    echo "GreenMind installer (ref: ${GM_REF}, Node-RED ${NODERED_VERSION}, Node.js ${NODE_MAJOR})"
+    command -v curl >/dev/null 2>&1 || fail "curl is required, install it with: sudo apt install curl"
+    check_platform
+    check_memory
+    if [ -n "${GM_RESTORE:-}" ]; then
+        GM_RESTORE="$(realpath "${GM_RESTORE}")"
+        [ -f "${GM_RESTORE}" ] || fail "Backup ${GM_RESTORE} not found"
+    fi
+
+    # Create Node-RED user directory, the folder of the flow and the data folder (sqlite db)
+    mkdir -p "${NODERED_DIR}/greenmind" || fail "Failed to create ${NODERED_DIR}, check permissions"
+    mkdir -p "${GM_DATA_DIR}" || fail "Failed to create ${GM_DATA_DIR}, check permissions"
+
+    # Install Node.js LTS and Node-RED using the official installer
+    NR_INSTALLER="$(mktemp)"
+    trap 'rm -f "${NR_INSTALLER}"' EXIT
+    download "https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered" "${NR_INSTALLER}"
+    bash "${NR_INSTALLER}" --confirm-install --confirm-pi "--node${NODE_MAJOR}" --nodered-version="${NODERED_VERSION}" \
+        || fail "Node-RED installation failed, check /var/log/nodered-install.log for more details"
+    echo "Node-RED installed"
+
+    # Stop Node-RED (if running) while GreenMind files are copied
+    sudo systemctl stop nodered.service 2>/dev/null || true
+    configure_memory
+
+    # Raspberry Pi 5 does not support the legacy RPi.GPIO library used by node-red-node-pi-gpio,
+    # python3-rpi-lgpio provides a compatible replacement
+    if grep -qs "Raspberry Pi 5" /proc/device-tree/model; then
+        echo "Raspberry Pi 5 detected, installing python3-rpi-lgpio"
+        sudo apt-get install -y python3-rpi-lgpio || fail "Failed to install python3-rpi-lgpio"
+    fi
+
+    # Download GreenMind files
+    download "${GM_RAW}/greenmind.json" "${NODERED_DIR}/greenmind/greenmind.json"
+    download "${GM_RAW}/installer/settings.js" "${NODERED_DIR}/settings.js"
+    download "${GM_RAW}/package.json" "${NODERED_DIR}/package.json"
+    echo "GreenMind files downloaded"
+
+    # Install the extra nodes required by GreenMind
+    cd "${NODERED_DIR}"
+    npm install --omit=dev --no-audit --no-fund || fail "Can't install extra nodes"
+    echo "Extra nodes installed"
+
+    if [ -n "${GM_RESTORE:-}" ]; then
+        restore_backup "${GM_RESTORE}"
+    fi
+    create_auth
+
+    # Run Node-RED at startup and start it
+    sudo systemctl enable nodered.service
+    sudo systemctl start nodered.service
+
+    IP_ADDR="$(hostname -I 2>/dev/null | awk '{print $1}')"
+    echo ""
+    echo "GreenMind is installed successfully"
+    echo "  Dashboard: http://${IP_ADDR:-<raspberry-ip>}:1880/dashboard"
+    echo "  Editor:    http://${IP_ADDR:-<raspberry-ip>}:1880"
+}
+
+# GM_INSTALLER_SOURCE_ONLY=1 loads the functions without running the installation (tests)
+if [ "${GM_INSTALLER_SOURCE_ONLY:-0}" != "1" ]; then
+    main "$@"
+fi

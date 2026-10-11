@@ -1,1 +1,11 @@
 *.backup
+node_modules/
+
+# Local secrets and runtime files, never commit them
+greenmind-auth.json
+*_cred.json
+.config.*.json
+context/
+
+# Data
+*.db

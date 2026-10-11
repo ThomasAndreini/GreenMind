@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# GreenMind backup: database, settings (Node-RED context) and password, works with v1 and v2.
+# Restore it on a new installation with: GM_RESTORE=<file> bash greenmind_installer
+#
+# Usage:
+#   bash greenmind_backup [output file]
+#
+
+set -euo pipefail
+
+OUT="${1:-${HOME}/greenmind-backup-$(date +%Y%m%d-%H%M%S).tar.gz}"
+
+fail() {
+    echo "ERROR: $1" >&2
+    exit 1
+}
+
+cd "${HOME}"
+items=()
+[ -f greenmind/main.db ] && items+=(greenmind/main.db)
+[ -d .node-red/context ] && items+=(.node-red/context)
+[ -f .node-red/greenmind-auth.json ] && items+=(.node-red/greenmind-auth.json)
+[ "${#items[@]}" -gt 0 ] || fail "No GreenMind data found in ${HOME}"
+
+# stop Node-RED so the database and the context files are consistent, restart it at the end
+if systemctl is-active --quiet nodered.service 2>/dev/null; then
+    sudo systemctl stop nodered.service
+    trap 'sudo systemctl start nodered.service' EXIT
+fi
+
+umask 077
+tar -czf "${OUT}" "${items[@]}"
+echo "Backup saved in ${OUT}:"
+tar -tzf "${OUT}" | grep -v '/$' | sed 's/^/  /'
+echo "Copy it to the new Raspberry Pi, for example: scp ${OUT} <user>@<new-raspberry>:~"

@@ -20,6 +20,21 @@
  *
  **/
 
+/** GreenMind: user name, password hash and credential secret are created by the
+ * installer in greenmind-auth.json (next to this file, never committed).
+ * If the file is missing the editor and the dashboard are NOT protected.
+ * Format: { "username": "admin", "passwordHash": "<bcrypt hash>", "credentialSecret": "<random>" }
+ * Create a hash with: node-red admin hash-pw
+ */
+const greenmindAuth = (function () {
+    try {
+        return require(require('path').join(__dirname, 'greenmind-auth.json'))
+    } catch (err) {
+        console.warn('GreenMind: greenmind-auth.json not found, editor and dashboard are not password protected')
+        return null
+    }
+})()
+
 module.exports = {
 
 /*******************************************************************************
@@ -41,7 +56,7 @@ module.exports = {
      * node-red from being able to decrypt your existing credentials and they will be
      * lost.
      */
-    //credentialSecret: "a-secret-key",
+    credentialSecret: greenmindAuth && greenmindAuth.credentialSecret ? greenmindAuth.credentialSecret : undefined,
 
     /** By default, the flow JSON will be formatted over multiple lines making
      * it easier to compare changes when using version control.
@@ -73,6 +88,14 @@ module.exports = {
     /** To password protect the Node-RED editor and admin API, the following
      * property can be used. See http://nodered.org/docs/security.html for details.
      */
+    adminAuth: greenmindAuth ? {
+        type: "credentials",
+        users: [{
+            username: greenmindAuth.username,
+            password: greenmindAuth.passwordHash,
+            permissions: "*"
+        }]
+    } : undefined,
     //adminAuth: {
     //    type: "credentials",
     //    users: [{
@@ -122,6 +145,8 @@ module.exports = {
      * The `pass` field is a bcrypt hash of the password.
      * See http://nodered.org/docs/security.html#generating-the-password-hash
      */
+    /** GreenMind: the dashboard (/dashboard) is served by the http nodes server */
+    httpNodeAuth: greenmindAuth ? { user: greenmindAuth.username, pass: greenmindAuth.passwordHash } : undefined,
     //httpNodeAuth: {user:"user",pass:"$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN."},
     //httpStaticAuth: {user:"user",pass:"$2a$08$zZWtXTja0fB1pzD4sHCMyOCMYz2Z6dNbM6tl8sJogENOMcxWV9DN."},
 
@@ -434,6 +459,38 @@ module.exports = {
      *  ioMiddleware:{function or array}, (socket,next) - socket.io middleware
      */
     //ui: { path: "ui" },
+
+    /** GreenMind: Dashboard 2.0 socket.io connections are not covered by httpNodeAuth,
+     * check the same credentials on the socket handshake (the browser sends the
+     * basic auth header it used to open the dashboard).
+     * The first two checks are the Dashboard 2.0 defaults (no direct websocket,
+     * no cross domain connections).
+     */
+    dashboard: {
+        ioMiddleware: function (socket, next) {
+            if (socket.client.conn.request.url.indexOf('transport=websocket') !== -1) {
+                socket.client.conn.close()
+                return
+            }
+            if (socket.handshake.xdomain !== false) {
+                socket.disconnect(true)
+                return
+            }
+            if (!greenmindAuth) {
+                return next()
+            }
+            const [scheme, encoded] = (socket.handshake.headers.authorization || '').split(' ')
+            if (scheme === 'Basic' && encoded) {
+                const decoded = Buffer.from(encoded, 'base64').toString()
+                const sep = decoded.indexOf(':')
+                if (sep > 0 && decoded.slice(0, sep) === greenmindAuth.username &&
+                    require('bcryptjs').compareSync(decoded.slice(sep + 1), greenmindAuth.passwordHash)) {
+                    return next()
+                }
+            }
+            next(new Error('Unauthorized'))
+        }
+    },
 
     /** Colourise the console output of the debug node */
     //debugUseColors: true,

@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint installer and settings
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: ShellCheck installer and backup
+        run: shellcheck installer/greenmind_installer installer/greenmind_backup
+      - name: Scripts syntax
+        run: bash -n installer/greenmind_installer && bash -n installer/greenmind_backup
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: settings.js loads
+        run: node -e "require('./installer/settings.js')"
+      - name: Flow is valid JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('greenmind.json', 'utf8'))"
+
+  unit:
+    name: Unit tests (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+
+  e2e:
+    name: End-to-end tests (Node ${{ matrix.node }}, Chromium)
+    needs: unit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24]
+    env:
+      TZ: Europe/Rome
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Install Chromium for Playwright
+        run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - name: Audit runtime dependencies installed on the Raspberry Pi
+        run: npm audit --omit=dev --audit-level=high

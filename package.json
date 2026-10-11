@@ -1,19 +1,30 @@
 {
-    "name": "GreenMind",
+    "name": "greenmind",
     "description": "A green mind for small crop",
-    "version": "0.1.0",
+    "version": "2.0.0",
+    "private": true,
+    "license": "Apache-2.0",
+    "engines": {
+        "node": ">=22.9"
+    },
+    "scripts": {
+        "test": "node --test \"test/unit/*.test.js\"",
+        "test:e2e": "node --test --test-concurrency=1 \"test/e2e/*.test.js\"",
+        "lint:installer": "shellcheck installer/greenmind_installer installer/greenmind_backup"
+    },
     "dependencies": {
-        "node-red-dashboard": "3.6.2",
-        "node-red-node-sqlite": "1.1.0",
-        "node-red-contrib-ui-timelines-chart": "0.1.7",
-        "node-red-node-pi-gpio": "2.0.6",
-        "node-red-node-ui-table": "0.4.3",
-        "node-red-contrib-ui-led": "0.4.11"
+        "@flowfuse/node-red-dashboard": "1.33.0",
+        "node-red-node-sqlite": "2.0.1",
+        "node-red-node-pi-gpio": "2.0.7",
+        "bcryptjs": "3.0.3"
+    },
+    "devDependencies": {
+        "node-red": "5.0.8",
+        "playwright": "1.63.0"
     },
     "node-red": {
         "settings": {
-            "flowFile": "greenmind.json",
-            "credentialsFile": "greenmind_cred.json"
+            "flowFile": "greenmind/greenmind.json"
         }
     }
 }

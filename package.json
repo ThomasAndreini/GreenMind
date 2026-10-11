@@ -8,7 +8,8 @@
     "dependencies": {
         "@flowfuse/node-red-dashboard": "1.33.0",
         "node-red-node-sqlite": "2.0.1",
-        "node-red-node-pi-gpio": "2.0.7"
+        "node-red-node-pi-gpio": "2.0.7",
+        "bcryptjs": "3.0.3"
     },
     "node-red": {
         "settings": {

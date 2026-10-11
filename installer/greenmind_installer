@@ -8,6 +8,8 @@
 # Optional environment variables:
 #   GM_REF           git branch or tag of GreenMind to install (default: v2.0)
 #   NODERED_VERSION  Node-RED version to install (default: 5.0.8)
+#   GM_USER          user name for the editor and the dashboard (asked if not set)
+#   GM_PASSWORD      password for the editor and the dashboard (asked if not set)
 #
 
 set -euo pipefail
@@ -64,6 +66,41 @@ echo "GreenMind files downloaded"
 cd "${NODERED_DIR}"
 npm install --omit=dev --no-audit --no-fund || fail "Can't install extra nodes"
 echo "Extra nodes installed"
+
+# Protect the editor and the dashboard with a user name and a password.
+# The bcrypt hash and a random credential secret are stored in greenmind-auth.json (read by settings.js)
+AUTH_FILE="${NODERED_DIR}/greenmind-auth.json"
+if [ -f "${AUTH_FILE}" ]; then
+    echo "Keeping the existing ${AUTH_FILE}"
+else
+    GM_USER="${GM_USER:-}"
+    GM_PASSWORD="${GM_PASSWORD:-}"
+    if [ -z "${GM_USER}" ]; then
+        read -rp "User name for the GreenMind editor and dashboard [admin]: " GM_USER </dev/tty
+        GM_USER="${GM_USER:-admin}"
+    fi
+    while [ ${#GM_PASSWORD} -lt 8 ]; do
+        read -rsp "Password (at least 8 characters): " GM_PASSWORD </dev/tty
+        echo ""
+        read -rsp "Repeat the password: " GM_PASSWORD2 </dev/tty
+        echo ""
+        if [ "${GM_PASSWORD}" != "${GM_PASSWORD2}" ] || [ ${#GM_PASSWORD} -lt 8 ]; then
+            echo "Passwords do not match or are too short, try again"
+            GM_PASSWORD=""
+        fi
+    done
+    GM_USER="${GM_USER}" GM_PASSWORD="${GM_PASSWORD}" AUTH_FILE="${AUTH_FILE}" node -e '
+        const bcrypt = require("bcryptjs");
+        const auth = {
+            username: process.env.GM_USER,
+            passwordHash: bcrypt.hashSync(process.env.GM_PASSWORD, 10),
+            credentialSecret: require("crypto").randomBytes(32).toString("hex")
+        };
+        require("fs").writeFileSync(process.env.AUTH_FILE, JSON.stringify(auth, null, 4) + "\n", { mode: 0o600 });
+    ' || fail "Can't create ${AUTH_FILE}"
+    unset GM_PASSWORD GM_PASSWORD2
+    echo "Credentials saved in ${AUTH_FILE}"
+fi
 
 # Run Node-RED at startup and start it
 sudo systemctl enable nodered.service
